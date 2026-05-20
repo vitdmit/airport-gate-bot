@@ -1,0 +1,79 @@
+name: airport-gate-bot
+
+on:
+  schedule:
+    # GitHub uses UTC. Every hour we save live gates.
+    - cron: "5 * * * *"
+    # 06:00 UTC = 09:00 Moscow: build yesterday's report.
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "collect, report, or all"
+        required: false
+        default: "all"
+        type: choice
+        options:
+          - collect
+          - report
+          - all
+      report_date:
+        description: "YYYY-MM-DD, today, or yesterday"
+        required: false
+        default: "yesterday"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: airport-gate-bot
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Collect live gate snapshots
+        if: github.event_name == 'schedule' || github.event.inputs.mode == 'collect' || github.event.inputs.mode == 'all'
+        run: python -m airport_gate_bot collect --airports SVO,VKO,DME
+
+      - name: Build yesterday report from collected live gates
+        if: github.event.schedule == '0 6 * * *' || github.event.inputs.mode == 'report' || github.event.inputs.mode == 'all'
+        shell: bash
+        run: |
+          REPORT_DATE="${{ github.event.inputs.report_date }}"
+
+          if [ -z "$REPORT_DATE" ]; then
+            REPORT_DATE="yesterday"
+          fi
+
+          python -m airport_gate_bot daily-report --date "$REPORT_DATE" --airports SVO,VKO,DME
+
+      - name: Save collected data and reports
+        shell: bash
+        run: |
+          git config user.name "airport-gate-bot"
+          git config user.email "airport-gate-bot@users.noreply.github.com"
+          git add data outputs || true
+          if ! git diff --cached --quiet; then
+            git commit -m "Update airport gate data"
+            git push
+          fi
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: airport-gate-output
+          path: |
+            data
+            outputs
+          if-no-files-found: ignore
