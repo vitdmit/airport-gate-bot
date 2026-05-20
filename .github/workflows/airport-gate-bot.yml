@@ -3,7 +3,8 @@ name: airport-gate-bot
 on:
   schedule:
     # GitHub uses UTC. Every hour we save live gates.
-    - cron: "5 * * * *"
+    # Minute 17 is used to avoid the crowded start of the hour.
+    - cron: "17 * * * *"
     # 06:00 UTC = 09:00 Moscow: build yesterday's report.
     - cron: "0 6 * * *"
   workflow_dispatch:
