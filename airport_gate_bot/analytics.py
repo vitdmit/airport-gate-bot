@@ -67,6 +67,8 @@ def build_operational_flights(
         airlines = _unique_join(item["airline_name"] for item in items)
         flight_numbers = _unique_join(item["flight_code"] for item in items)
         statuses = _unique_join(item["status"] for item in items)
+        gate_sources = _unique_join(item.get("gate_source", "") for item in items)
+        gate_matches = _unique_join(item.get("gate_match", "") for item in items)
         operational.append(
             {
                 "date": departure_dt.date(),
@@ -83,6 +85,8 @@ def build_operational_flights(
                 "status": statuses,
                 "source_url": items[0]["source_url"],
                 "codeshare_rows": len(items),
+                "gate_source": gate_sources,
+                "gate_match": gate_matches,
             }
         )
 
@@ -224,6 +228,8 @@ def normalize_flight(
         "status": status,
         "is_departed": _contains_any(status, DEPARTED_WORDS),
         "is_cancelled": _contains_any(status, CANCELLED_WORDS),
+        "gate_source": str(departure.get("gateSource") or ("Flighty" if str(departure.get("gate") or "").strip() else "")).strip(),
+        "gate_match": _unique_join([departure.get("gateMatch", ""), departure.get("gateConflict", "")]),
     }
 
 
@@ -294,6 +300,10 @@ def _carry_forward_known_gate(previous: dict[str, Any], current: dict[str, Any])
         merged["gate"] = previous["gate"]
         if previous.get("terminal") and previous.get("terminal") != "не указан":
             merged["terminal"] = previous["terminal"]
+        if previous.get("gate_source"):
+            merged["gate_source"] = previous["gate_source"]
+        if previous.get("gate_match"):
+            merged["gate_match"] = previous["gate_match"]
         merged["gate_carried_from"] = previous["collected_at"]
     return merged
 

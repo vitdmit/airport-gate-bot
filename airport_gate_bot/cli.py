@@ -6,9 +6,11 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from .analytics import build_operational_flights, latest_records_from_snapshots
+from .combined_history import build_combined_history
 from .flighty_source import SourceError, fetch_departures
 from .gate_history import build_daily_rows
 from .historical import fetch_historical_operational_rows
+from .manual_history import import_manual_history
 from .report import create_report
 from .settings import AIRPORTS, MOSCOW_TZ
 from .storage import load_snapshots_around, write_snapshot
@@ -58,6 +60,26 @@ def main() -> None:
     verified_parser.add_argument("--data-dir", default="data")
     verified_parser.add_argument("--output", default="")
 
+    import_history_parser = subparsers.add_parser(
+        "import-history",
+        help="Import old manual Excel files into normalized history tables.",
+    )
+    import_history_parser.add_argument("--dme", default="", help="Path to the old DME workbook.")
+    import_history_parser.add_argument("--vko", default="", help="Path to the old VKO workbook.")
+    import_history_parser.add_argument("--svo", default="", help="Path to the old SVO workbook.")
+    import_history_parser.add_argument("--output", default="outputs/manual_history_import.xlsx")
+    import_history_parser.add_argument("--data-dir", default="data/history")
+    import_history_parser.add_argument("--max-date", default="today", help="YYYY-MM-DD, today, or all.")
+
+    combined_history_parser = subparsers.add_parser(
+        "combined-history",
+        help="Build one workbook from manual history plus bot snapshots.",
+    )
+    combined_history_parser.add_argument("--manual-csv", default="data/history/manual_history_flights.csv")
+    combined_history_parser.add_argument("--data-dir", default="data")
+    combined_history_parser.add_argument("--output", default="outputs/combined_history.xlsx")
+    combined_history_parser.add_argument("--max-date", default="today", help="YYYY-MM-DD, today, or all.")
+
     args = parser.parse_args()
     if args.command == "collect":
         collect(args.airports, Path(args.data_dir))
@@ -72,6 +94,22 @@ def main() -> None:
         daily_report(_parse_report_date(args.date), _airport_list(args.airports), Path(args.data_dir), args.output)
     elif args.command == "verified-report":
         verified_report(_parse_report_date(args.date), _airport_list(args.airports), Path(args.data_dir), args.output)
+    elif args.command == "import-history":
+        import_history(
+            args.dme,
+            args.vko,
+            args.svo,
+            Path(args.output),
+            Path(args.data_dir) if args.data_dir else None,
+            _parse_history_max_date(args.max_date),
+        )
+    elif args.command == "combined-history":
+        combined_history(
+            Path(args.manual_csv),
+            Path(args.data_dir),
+            Path(args.output),
+            _parse_history_max_date(args.max_date),
+        )
 
 
 def collect(airports_csv: str, data_dir: Path) -> list[Path]:
@@ -128,8 +166,8 @@ def daily_report(target_date: date, airports: list[str], data_dir: Path, output:
             row["gate_source"] = "не найден в live-снимке"
             row["gate_match"] = ""
         else:
-            row["gate_source"] = "live-снимок"
-            row["gate_match"] = "собран в течение дня"
+            row["gate_source"] = row.get("gate_source") or "live-снимок"
+            row["gate_match"] = row.get("gate_match") or "собран в течение дня"
     output_path = Path(output) if output else Path("outputs") / f"gate_report_{target_date.isoformat()}_daily.xlsx"
     create_report(
         output_path,
@@ -166,6 +204,41 @@ def verified_report(target_date: date, airports: list[str], data_dir: Path, outp
     return output_path
 
 
+def import_history(
+    dme: str,
+    vko: str,
+    svo: str,
+    output_path: Path,
+    data_dir: Path | None = None,
+    max_date: date | None = None,
+) -> Path:
+    files = {
+        "DME": _resolve_history_file(dme, "DME"),
+        "VKO": _resolve_history_file(vko, "VKO"),
+        "SVO": _resolve_history_file(svo, "SVO"),
+    }
+    missing = [f"{airport}: {path}" for airport, path in files.items() if not path.exists()]
+    if missing:
+        raise SystemExit("Manual history file(s) not found:\n" + "\n".join(missing))
+
+    result = import_manual_history(files, output_path, data_dir=data_dir, max_date=max_date)
+    print(f"Imported manual flight rows: {result['flights']}")
+    print(f"Imported manual gate counters: {result['gate_counts']}")
+    print(f"Saved history workbook: {result['output_path']}")
+    if data_dir:
+        print(f"Saved history CSV files: {data_dir}")
+    return output_path
+
+
+def combined_history(manual_csv: Path, data_dir: Path, output_path: Path, max_date: date | None = None) -> Path:
+    result = build_combined_history(manual_csv, data_dir, output_path, max_date=max_date)
+    print(f"Combined operational rows: {result['rows']}")
+    print(f"Rows with manual history: {result['manual_rows']}")
+    print(f"Rows with bot data: {result['bot_rows']}")
+    print(f"Saved combined workbook: {result['output_path']}")
+    return output_path
+
+
 def _airport_list(value: str) -> list[str]:
     airports = [item.strip().upper() for item in value.split(",") if item.strip()]
     unknown = [airport for airport in airports if airport not in AIRPORTS]
@@ -183,3 +256,27 @@ def _parse_report_date(value: str) -> date:
     if normalized == "yesterday":
         return today - timedelta(days=1)
     return date.fromisoformat(value)
+
+
+def _parse_history_max_date(value: str) -> date | None:
+    if value.strip().lower() == "all":
+        return None
+    return _parse_report_date(value)
+
+
+def _resolve_history_file(value: str, airport: str) -> Path:
+    if value:
+        return Path(value)
+
+    downloads = Path.home() / "Downloads"
+    preferred_names = {
+        "DME": ["Рейсы DME (1).xlsx", "Рейсы DME (1).xlsx"],
+        "VKO": ["Рейсы VKO (2).xlsx", "Рейсы VKO (2).xlsx"],
+        "SVO": ["Рейсы SVO (9).xlsx", "Рейсы SVO (9).xlsx"],
+    }
+    for name in preferred_names[airport]:
+        path = downloads / name
+        if path.exists():
+            return path
+    matches = sorted(downloads.glob(f"*{airport}*.xlsx"), key=lambda item: item.stat().st_mtime, reverse=True)
+    return matches[0] if matches else downloads / preferred_names[airport][0]

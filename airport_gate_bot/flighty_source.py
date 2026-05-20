@@ -8,7 +8,7 @@ import urllib.request
 from dataclasses import dataclass
 from typing import Any
 
-from .dme_source import enrich_dme_gates
+from .airport_gate_enrichment import enrich_airport_gates
 from .settings import AIRPORTS, PAGE_BASE_PATH, SOURCE_BASE_URL, SOURCE_NAME
 
 
@@ -47,11 +47,10 @@ def fetch_departures(airport: str, limit: int = 500) -> SourceSnapshot:
             pass
 
     extra_meta: dict[str, Any] = {}
-    if airport == "DME":
-        try:
-            extra_meta = enrich_dme_gates(flights)
-        except Exception as exc:
-            extra_meta = {"dme_official_error": str(exc)}
+    try:
+        extra_meta = enrich_airport_gates(airport, flights)
+    except Exception as exc:
+        extra_meta = {f"{airport.lower()}_gate_enrichment_error": str(exc)}
 
     return SourceSnapshot(
         airport=airport,

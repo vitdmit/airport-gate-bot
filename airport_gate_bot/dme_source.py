@@ -57,6 +57,8 @@ def enrich_dme_gates(flights: list[dict[str, Any]]) -> dict[str, Any]:
         departure["gate"] = gate
         if not departure.get("terminal"):
             departure["terminal"] = "T1"
+        departure["gateSource"] = "официальный DME"
+        departure["gateMatch"] = "рейс + время"
         flight["secondaryCorner"] = f"Gate {gate}"
         filled += 1
 
