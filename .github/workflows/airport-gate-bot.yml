@@ -2,9 +2,9 @@ name: airport-gate-bot
 
 on:
   schedule:
-    # GitHub uses UTC. Every hour we save live gates.
-    # Minute 17 is used to avoid the crowded start of the hour.
-    - cron: "17 * * * *"
+    # GitHub uses UTC. Try several times per hour because scheduled runs
+    # can be delayed or dropped. A guard below keeps only one snapshot per hour.
+    - cron: "7,22,37,52 * * * *"
     # 06:00 UTC = 09:00 Moscow: build yesterday's report.
     - cron: "0 6 * * *"
   workflow_dispatch:
@@ -36,15 +36,37 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Decide whether this hour needs a snapshot
+        id: hourly_guard
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" != "schedule" ]; then
+            echo "run_collect=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          DAY="$(TZ=Europe/Moscow date +'%Y-%m-%d')"
+          HOUR="$(TZ=Europe/Moscow date +'%Y%m%d_%H')"
+
+          if compgen -G "data/raw/${DAY}/*_${HOUR}*.json" > /dev/null; then
+            echo "run_collect=false" >> "$GITHUB_OUTPUT"
+            echo "Snapshot already exists for Moscow hour ${HOUR}."
+          else
+            echo "run_collect=true" >> "$GITHUB_OUTPUT"
+            echo "No snapshot for Moscow hour ${HOUR}; collecting."
+          fi
+
       - uses: actions/setup-python@v5
+        if: steps.hourly_guard.outputs.run_collect == 'true' || github.event.schedule == '0 6 * * *' || github.event.inputs.mode == 'report' || github.event.inputs.mode == 'all'
         with:
           python-version: "3.12"
 
       - name: Install dependencies
+        if: steps.hourly_guard.outputs.run_collect == 'true' || github.event.schedule == '0 6 * * *' || github.event.inputs.mode == 'report' || github.event.inputs.mode == 'all'
         run: python -m pip install -r requirements.txt
 
       - name: Collect live gate snapshots
-        if: github.event_name == 'schedule' || github.event.inputs.mode == 'collect' || github.event.inputs.mode == 'all'
+        if: steps.hourly_guard.outputs.run_collect == 'true' && (github.event_name == 'schedule' || github.event.inputs.mode == 'collect' || github.event.inputs.mode == 'all')
         run: python -m airport_gate_bot collect --airports SVO,VKO,DME
 
       - name: Build yesterday report from collected live gates
