@@ -8,6 +8,7 @@ from typing import Any
 
 DEPARTED_WORDS = ("departed", "landed", "arrived")
 CANCELLED_WORDS = ("cancel", "cancelled", "canceled")
+UNKNOWN_GATES = {"", "не указан", "not available", "n/a", "--", "$undefined", "none", "null"}
 
 
 def latest_records_from_snapshots(snapshots: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -204,6 +205,7 @@ def normalize_flight(
     status = _status_text(flight.get("status", []))
     flight_code = f"{airline.get('iata', '').strip()} {str(flight.get('flightNumber', '')).strip()}".strip()
     arrival_country = _country_from_flag(arrival.get("flag", ""))
+    gate = _normalize_gate(departure.get("gate"))
 
     return {
         "flight_uid": str(flight.get("id") or f"{airport}-{flight_code}-{original_time}-{arrival.get('iata', '')}"),
@@ -216,7 +218,7 @@ def normalize_flight(
         "scheduled_time": scheduled_dt.strftime("%H:%M"),
         "departure_time": departure_dt.strftime("%H:%M"),
         "terminal": str(departure.get("terminal") or "").strip() or "не указан",
-        "gate": str(departure.get("gate") or "").strip() or "не указан",
+        "gate": gate,
         "airline_iata": str(airline.get("iata") or "").strip(),
         "airline_name": str(airline.get("name") or "").strip(),
         "flight_number": str(flight.get("flightNumber") or "").strip(),
@@ -228,7 +230,7 @@ def normalize_flight(
         "status": status,
         "is_departed": _contains_any(status, DEPARTED_WORDS),
         "is_cancelled": _contains_any(status, CANCELLED_WORDS),
-        "gate_source": str(departure.get("gateSource") or ("Flighty" if str(departure.get("gate") or "").strip() else "")).strip(),
+        "gate_source": str(departure.get("gateSource") or ("Flighty live-снимок" if gate != "не указан" else "")).strip(),
         "gate_match": _unique_join([departure.get("gateMatch", ""), departure.get("gateConflict", "")]),
     }
 
@@ -301,16 +303,23 @@ def _carry_forward_known_gate(previous: dict[str, Any], current: dict[str, Any])
         if previous.get("terminal") and previous.get("terminal") != "не указан":
             merged["terminal"] = previous["terminal"]
         if previous.get("gate_source"):
-            merged["gate_source"] = previous["gate_source"]
-        if previous.get("gate_match"):
-            merged["gate_match"] = previous["gate_match"]
+            merged["gate_source"] = _unique_join([previous["gate_source"], "сохранен из более раннего live-снимка"])
+        carried_note = f"gate сохранен из снимка {previous['collected_at'].strftime('%H:%M')}"
+        merged["gate_match"] = _unique_join([previous.get("gate_match", ""), carried_note])
         merged["gate_carried_from"] = previous["collected_at"]
     return merged
 
 
 def _has_known_gate(record: dict[str, Any]) -> bool:
     gate = str(record.get("gate") or "").strip().lower()
-    return bool(gate and gate not in {"не указан", "n/a", "--", "$undefined"})
+    return gate not in UNKNOWN_GATES
+
+
+def _normalize_gate(value: Any) -> str:
+    gate = str(value or "").strip()
+    if gate.lower() in UNKNOWN_GATES:
+        return "не указан"
+    return gate
 
 
 def _unique_join(values) -> str:

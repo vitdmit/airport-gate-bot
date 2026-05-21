@@ -160,13 +160,13 @@ def history_report(target_date: date, airports: list[str], output: str = "") -> 
 def daily_report(target_date: date, airports: list[str], data_dir: Path, output: str = "") -> Path:
     snapshots = [item for item in load_snapshots_around(data_dir, target_date) if item.get("airport") in airports]
     records = latest_records_from_snapshots(snapshots)
-    operational = build_operational_flights(records, target_date, factual_only=False)
+    operational = build_operational_flights(records, target_date, factual_only=True)
     for row in operational:
         if row["gate"] == "не указан":
             row["gate_source"] = "не найден в live-снимке"
             row["gate_match"] = ""
         else:
-            row["gate_source"] = row.get("gate_source") or "live-снимок"
+            row["gate_source"] = row.get("gate_source") or "Flighty live-снимок"
             row["gate_match"] = row.get("gate_match") or "собран в течение дня"
     output_path = Path(output) if output else Path("outputs") / f"gate_report_{target_date.isoformat()}_daily.xlsx"
     create_report(
@@ -174,8 +174,8 @@ def daily_report(target_date: date, airports: list[str], data_dir: Path, output:
         target_date,
         operational,
         snapshots=snapshots,
-        factual_only=False,
-        mode_label="бесплатный режим: отчет из накопленных live-снимков",
+        factual_only=True,
+        mode_label="бесплатный режим: только фактически улетевшие из накопленных live-снимков",
     )
     missing_gates = sum(1 for row in operational if row["gate"] == "не указан")
     print(f"Daily report rows: {len(operational)}")
@@ -196,7 +196,7 @@ def verified_report(target_date: date, airports: list[str], data_dir: Path, outp
         mode_label="медленная сверка: фактические вылеты + gate из live-снимков",
     )
     missing_gates = sum(1 for row in operational if row["gate"] == "не указан")
-    snapshot_gates = sum(1 for row in operational if str(row.get("gate_source", "")).startswith("live-снимок"))
+    snapshot_gates = sum(1 for row in operational if "live-снимок" in str(row.get("gate_source", "")))
     print(f"Verified report rows: {len(operational)}")
     print(f"Gates filled from live snapshots: {snapshot_gates}")
     print(f"Rows without gate: {missing_gates}")

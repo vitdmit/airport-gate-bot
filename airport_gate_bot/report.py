@@ -193,19 +193,54 @@ def create_report(
 
     snapshot_rows = []
     for snapshot in sorted(snapshots, key=lambda item: (item.get("service_date", ""), item.get("airport", ""), item.get("collected_at", ""))):
+        meta = snapshot.get("meta") or {}
         snapshot_rows.append(
             [
                 snapshot.get("collected_at", ""),
                 snapshot.get("service_date", ""),
                 snapshot.get("airport", ""),
                 len(snapshot.get("flights", [])),
+                _snapshot_known_gates(snapshot),
                 snapshot.get("source_url", ""),
+                _meta_value(meta, "missing_before"),
+                _meta_value(meta, "missing_after"),
+                _meta_value(meta, "missing_after_official"),
+                _meta_value(meta, "missing_after_backup"),
+                _meta_value(meta, "official_checked"),
+                _meta_value(meta, "official_rows"),
+                _meta_value(meta, "official_filled"),
+                _meta_value(meta, "official_conflicts"),
+                _meta_text(meta, "official_errors"),
+                _meta_text(meta, "official_error"),
+                _meta_value(meta, "backup_rows"),
+                _meta_value(meta, "backup_filled"),
+                _meta_text(meta, "backup_error"),
             ]
         )
     _write_rows(
         ws_snapshots,
         [
-            ["Собрано", "Дата табло", "Аэропорт", "Строк в снимке", "Источник"],
+            [
+                "Собрано",
+                "Дата табло",
+                "Аэропорт",
+                "Строк в снимке",
+                "Строк с gate",
+                "Основной источник",
+                "Без gate до уточнения",
+                "Без gate после всех уточнений",
+                "Без gate после офиц. табло",
+                "Без gate после запасного табло",
+                "Офиц. табло проверено",
+                "Строк найдено в офиц. табло",
+                "Gate заполнен офиц. табло",
+                "Конфликты с офиц. табло",
+                "Ошибки офиц. табло",
+                "Ошибка DME",
+                "Строк найдено в запасном табло",
+                "Gate заполнен запасным табло",
+                "Ошибка запасного табло",
+            ],
             *snapshot_rows,
             [],
             ["Параметр", "Значение"],
@@ -255,6 +290,36 @@ def _format_sheet(ws) -> None:
         ws["A2"].fill = SUBTLE_FILL
 
 
+def _snapshot_known_gates(snapshot: dict[str, Any]) -> int:
+    count = 0
+    for flight in snapshot.get("flights", []):
+        departure = flight.get("departure") or {}
+        gate = str(departure.get("gate") or "").strip().lower()
+        if gate and gate not in {"не указан", "not available", "n/a", "--", "$undefined"}:
+            count += 1
+    return count
+
+
+def _meta_value(meta: dict[str, Any], suffix: str) -> Any:
+    values = []
+    for key, value in meta.items():
+        if key.endswith(suffix) and value not in ("", None, []):
+            values.append(value)
+    return ", ".join(str(value) for value in values)
+
+
+def _meta_text(meta: dict[str, Any], suffix: str) -> str:
+    values = []
+    for key, value in meta.items():
+        if not key.endswith(suffix) or value in ("", None, []):
+            continue
+        if isinstance(value, list):
+            values.extend(str(item) for item in value if item)
+        else:
+            values.append(str(value))
+    return "\n".join(values)
+
+
 def _quality_rows(operational: list[dict[str, Any]]) -> list[list[Any]]:
     airports = sorted({row["airport"] for row in operational})
     result: list[list[Any]] = [["Всего операционных вылетов", "Все", len(operational)]]
@@ -268,14 +333,24 @@ def _quality_rows(operational: list[dict[str, Any]]) -> list[list[Any]]:
                 ["Гейт не указан источником", airport, sum(1 for row in rows if row["gate"] == "не указан")],
                 ["Терминал не указан источником", airport, sum(1 for row in rows if row["terminal"] == "не указан")],
                 [
-                    "Гейт взят из live-снимков",
+                    "Гейт пришел из Flighty live-снимка",
                     airport,
-                    sum(1 for row in rows if str(row.get("gate_source", "")).startswith("live-снимок")),
+                    sum(1 for row in rows if "Flighty" in str(row.get("gate_source", ""))),
                 ],
                 [
-                    "Гейт подтвержден live-снимками",
+                    "Гейт заполнен официальным табло",
                     airport,
-                    sum(1 for row in rows if "live подтвержден" in str(row.get("gate_source", ""))),
+                    sum(1 for row in rows if str(row.get("gate_source", "")).startswith("официальный")),
+                ],
+                [
+                    "Гейт подтвержден официальным табло",
+                    airport,
+                    sum(1 for row in rows if "подтвержден официальный" in str(row.get("gate_source", ""))),
+                ],
+                [
+                    "Гейт сохранен из более раннего снимка",
+                    airport,
+                    sum(1 for row in rows if "более раннего live-снимка" in str(row.get("gate_source", ""))),
                 ],
                 ["Схлопнутые кодшеринги", airport, sum(max((row.get("codeshare_rows") or 1) - 1, 0) for row in rows)],
             ]

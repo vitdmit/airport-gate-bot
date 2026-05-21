@@ -2,11 +2,9 @@ name: airport-gate-bot
 
 on:
   schedule:
-    # GitHub uses UTC. Try several times per hour because scheduled runs
-    # can be delayed or dropped. A guard below keeps only one snapshot per hour.
-    - cron: "7,22,37,52 * * * *"
-    # 06:00 UTC = 09:00 Moscow: build yesterday's report.
-    - cron: "0 6 * * *"
+    # GitHub uses UTC. The guard below keeps DME to one snapshot per
+    # 10-minute bucket and SVO/VKO to one snapshot per hour.
+    - cron: "*/10 * * * *"
   repository_dispatch:
     types:
       - hourly_collect
@@ -25,6 +23,10 @@ on:
         description: "YYYY-MM-DD, today, or yesterday"
         required: false
         default: "yesterday"
+      airports:
+        description: "Airports to collect when mode is collect/all"
+        required: false
+        default: "SVO,VKO,DME"
 
 permissions:
   contents: write
@@ -43,8 +45,8 @@ jobs:
         shell: bash
         run: git pull --ff-only origin "${GITHUB_REF_NAME:-main}"
 
-      - name: Decide whether this hour needs a snapshot
-        id: hourly_guard
+      - name: Decide whether this interval needs snapshots
+        id: collect_guard
         shell: bash
         run: |
           EVENT_NAME="${{ github.event_name }}"
@@ -53,21 +55,47 @@ jobs:
           if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
             if [ "$MODE" = "collect" ] || [ "$MODE" = "all" ] || [ -z "$MODE" ]; then
               echo "run_collect=true" >> "$GITHUB_OUTPUT"
+              echo "collect_airports=${{ github.event.inputs.airports }}" >> "$GITHUB_OUTPUT"
             else
               echo "run_collect=false" >> "$GITHUB_OUTPUT"
+              echo "collect_airports=" >> "$GITHUB_OUTPUT"
             fi
             exit 0
           fi
 
           DAY="$(TZ=Europe/Moscow date +'%Y-%m-%d')"
-          HOUR="$(TZ=Europe/Moscow date +'%Y%m%d_%H')"
+          STAMP_DAY="$(TZ=Europe/Moscow date +'%Y%m%d')"
+          HOUR="$(TZ=Europe/Moscow date +'%H')"
+          MINUTE="$(TZ=Europe/Moscow date +'%M')"
+          BUCKET_MINUTE="$(printf '%02d' $((10#${MINUTE} / 10 * 10)))"
+          HOUR_STAMP="${STAMP_DAY}_${HOUR}"
+          BUCKET_STAMP="${STAMP_DAY}_${HOUR}${BUCKET_MINUTE}"
+          COLLECT_AIRPORTS=()
 
-          if compgen -G "data/raw/${DAY}/*_${HOUR}*.json" > /dev/null; then
-            echo "run_collect=false" >> "$GITHUB_OUTPUT"
-            echo "Snapshot already exists for Moscow hour ${HOUR}."
+          if compgen -G "data/raw/${DAY}/DME_${BUCKET_STAMP}*.json" > /dev/null; then
+            echo "DME snapshot already exists for Moscow 10-minute bucket ${BUCKET_STAMP}."
           else
+            COLLECT_AIRPORTS+=("DME")
+            echo "No DME snapshot for Moscow 10-minute bucket ${BUCKET_STAMP}; collecting DME."
+          fi
+
+          for AIRPORT in SVO VKO; do
+            if compgen -G "data/raw/${DAY}/${AIRPORT}_${HOUR_STAMP}*.json" > /dev/null; then
+              echo "${AIRPORT} snapshot already exists for Moscow hour ${HOUR_STAMP}."
+            else
+              COLLECT_AIRPORTS+=("${AIRPORT}")
+              echo "No ${AIRPORT} snapshot for Moscow hour ${HOUR_STAMP}; collecting."
+            fi
+          done
+
+          if [ "${#COLLECT_AIRPORTS[@]}" -eq 0 ]; then
+            echo "run_collect=false" >> "$GITHUB_OUTPUT"
+            echo "collect_airports=" >> "$GITHUB_OUTPUT"
+          else
+            AIRPORTS_CSV="$(IFS=,; echo "${COLLECT_AIRPORTS[*]}")"
             echo "run_collect=true" >> "$GITHUB_OUTPUT"
-            echo "No snapshot for Moscow hour ${HOUR}; collecting."
+            echo "collect_airports=${AIRPORTS_CSV}" >> "$GITHUB_OUTPUT"
+            echo "Collect airports: ${AIRPORTS_CSV}"
           fi
 
       - name: Decide whether to build the daily report
@@ -83,9 +111,7 @@ jobs:
             if [ "$MODE" = "report" ] || [ "$MODE" = "all" ]; then
               RUN_REPORT="true"
             fi
-          elif [ "$EVENT_NAME" = "schedule" ] && [ "$EVENT_SCHEDULE" = "0 6 * * *" ]; then
-            RUN_REPORT="true"
-          elif [ "$EVENT_NAME" = "repository_dispatch" ]; then
+          elif [ "$EVENT_NAME" = "schedule" ] || [ "$EVENT_NAME" = "repository_dispatch" ]; then
             MOSCOW_HOUR="$(TZ=Europe/Moscow date +'%H')"
             REPORT_DATE="$(TZ=Europe/Moscow date -d 'yesterday' +'%Y-%m-%d')"
             REPORT_PATH="outputs/gate_report_${REPORT_DATE}_daily.xlsx"
@@ -99,17 +125,17 @@ jobs:
           echo "Daily report needed: ${RUN_REPORT}"
 
       - uses: actions/setup-python@v5
-        if: steps.hourly_guard.outputs.run_collect == 'true' || steps.daily_guard.outputs.run_report == 'true'
+        if: steps.collect_guard.outputs.run_collect == 'true' || steps.daily_guard.outputs.run_report == 'true'
         with:
           python-version: "3.12"
 
       - name: Install dependencies
-        if: steps.hourly_guard.outputs.run_collect == 'true' || steps.daily_guard.outputs.run_report == 'true'
+        if: steps.collect_guard.outputs.run_collect == 'true' || steps.daily_guard.outputs.run_report == 'true'
         run: python -m pip install -r requirements.txt
 
       - name: Collect live gate snapshots
-        if: steps.hourly_guard.outputs.run_collect == 'true'
-        run: python -m airport_gate_bot collect --airports SVO,VKO,DME
+        if: steps.collect_guard.outputs.run_collect == 'true'
+        run: python -m airport_gate_bot collect --airports "${{ steps.collect_guard.outputs.collect_airports }}"
 
       - name: Build yesterday report from collected live gates
         if: steps.daily_guard.outputs.run_report == 'true'

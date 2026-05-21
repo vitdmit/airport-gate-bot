@@ -45,9 +45,7 @@ def enrich_airport_gates(airport: str, flights: list[dict[str, Any]]) -> dict[st
 
 
 def _enrich_svo_gates(flights: list[dict[str, Any]]) -> dict[str, Any]:
-    if not _has_missing_gates(flights):
-        return {"svo_gate_enrichment_needed": 0}
-
+    missing_before = _count_missing_gates(flights)
     rows: list[GateRow] = []
     errors: list[str] = []
     for period in _svo_periods(datetime.now(ZoneInfo(MOSCOW_TZ))):
@@ -60,32 +58,35 @@ def _enrich_svo_gates(flights: list[dict[str, Any]]) -> dict[str, Any]:
         rows.extend(_parse_gate_rows(text, "официальный SVO"))
 
     filled, conflicts = _apply_gate_rows(flights, rows)
-    if filled or rows:
-        return {
-            "svo_official_rows": len(rows),
-            "svo_official_filled": filled,
-            "svo_official_conflicts": conflicts,
-            "svo_official_errors": errors[:3],
-        }
-
-    backup_rows, backup_error = _fetch_backup_rows("SVO")
-    backup_filled, backup_conflicts = _apply_gate_rows(flights, backup_rows)
-    return {
+    missing_after_official = _count_missing_gates(flights)
+    meta = {
+        "svo_gate_enrichment_needed": int(missing_before > 0),
+        "svo_missing_before": missing_before,
+        "svo_missing_after_official": missing_after_official,
+        "svo_official_checked": 1,
         "svo_official_rows": len(rows),
         "svo_official_filled": filled,
         "svo_official_conflicts": conflicts,
         "svo_official_errors": errors[:3],
+    }
+
+    if not missing_after_official:
+        return meta
+
+    backup_rows, backup_error = _fetch_backup_rows("SVO")
+    backup_filled, backup_conflicts = _apply_gate_rows(flights, backup_rows)
+    meta.update({
+        "svo_missing_after_backup": _count_missing_gates(flights),
         "svo_backup_rows": len(backup_rows),
         "svo_backup_filled": backup_filled,
         "svo_backup_conflicts": backup_conflicts,
         "svo_backup_error": backup_error,
-    }
+    })
+    return meta
 
 
 def _enrich_vko_gates(flights: list[dict[str, Any]]) -> dict[str, Any]:
-    if not _has_missing_gates(flights):
-        return {"vko_gate_enrichment_needed": 0}
-
+    missing_before = _count_missing_gates(flights)
     rows: list[GateRow] = []
     errors: list[str] = []
     for url in VKO_ONLINE_URLS:
@@ -97,26 +98,31 @@ def _enrich_vko_gates(flights: list[dict[str, Any]]) -> dict[str, Any]:
         rows.extend(_parse_gate_rows(text, "официальный VKO"))
 
     filled, conflicts = _apply_gate_rows(flights, rows)
-    if filled or rows:
-        return {
-            "vko_official_rows": len(rows),
-            "vko_official_filled": filled,
-            "vko_official_conflicts": conflicts,
-            "vko_official_errors": errors[:3],
-        }
-
-    backup_rows, backup_error = _fetch_backup_rows("VKO")
-    backup_filled, backup_conflicts = _apply_gate_rows(flights, backup_rows)
-    return {
+    missing_after_official = _count_missing_gates(flights)
+    meta = {
+        "vko_gate_enrichment_needed": int(missing_before > 0),
+        "vko_missing_before": missing_before,
+        "vko_missing_after_official": missing_after_official,
+        "vko_official_checked": 1,
         "vko_official_rows": len(rows),
         "vko_official_filled": filled,
         "vko_official_conflicts": conflicts,
         "vko_official_errors": errors[:3],
+    }
+
+    if not missing_after_official:
+        return meta
+
+    backup_rows, backup_error = _fetch_backup_rows("VKO")
+    backup_filled, backup_conflicts = _apply_gate_rows(flights, backup_rows)
+    meta.update({
+        "vko_missing_after_backup": _count_missing_gates(flights),
         "vko_backup_rows": len(backup_rows),
         "vko_backup_filled": backup_filled,
         "vko_backup_conflicts": backup_conflicts,
         "vko_backup_error": backup_error,
-    }
+    })
+    return meta
 
 
 def _fetch_backup_rows(airport: str) -> tuple[list[GateRow], str]:
@@ -244,6 +250,14 @@ def _apply_gate_rows(flights: list[dict[str, Any]], rows: list[GateRow]) -> tupl
             continue
 
         if current_gate:
+            departure["gateSource"] = _append_value(
+                str(departure.get("gateSource") or "Flighty live-снимок"),
+                f"подтвержден {row.source_label}",
+            )
+            departure["gateMatch"] = _append_value(
+                str(departure.get("gateMatch") or ""),
+                "рейс + время" if any(exact.get((code, value)) is row for value in times if value) else "рейс + направление",
+            )
             continue
 
         departure["gate"] = row_gate
@@ -275,10 +289,14 @@ def _has_missing_gates(flights: list[dict[str, Any]]) -> bool:
     return any(not _known_gate(flight) for flight in flights)
 
 
+def _count_missing_gates(flights: list[dict[str, Any]]) -> int:
+    return sum(1 for flight in flights if not _known_gate(flight))
+
+
 def _known_gate(flight: dict[str, Any]) -> bool:
     departure = flight.get("departure") or {}
     gate = str(departure.get("gate") or "").strip()
-    return bool(gate and gate.lower() not in {"не указан", "n/a", "--", "$undefined"})
+    return bool(gate and gate.lower() not in {"не указан", "not available", "n/a", "--", "$undefined"})
 
 
 def _flight_code(flight: dict[str, Any]) -> str:
@@ -339,12 +357,28 @@ def _request_text(url: str) -> str:
             "Accept-Language": "ru-RU,ru;q=0.9,en;q=0.8",
         },
     )
-    try:
-        with urllib.request.urlopen(request, timeout=45, context=ssl.create_default_context()) as response:
-            charset = response.headers.get_content_charset() or "utf-8"
-            return response.read().decode(charset, errors="replace")
-    except (urllib.error.URLError, TimeoutError) as exc:
-        raise RuntimeError(f"Cannot fetch {url}: {exc}") from exc
+    last_error: Exception | None = None
+    for context in (ssl.create_default_context(), ssl._create_unverified_context()):
+        try:
+            with urllib.request.urlopen(request, timeout=20, context=context) as response:
+                charset = response.headers.get_content_charset() or "utf-8"
+                return response.read().decode(charset, errors="replace")
+        except (urllib.error.URLError, TimeoutError, ssl.SSLError, OSError) as exc:
+            last_error = exc
+    raise RuntimeError(f"Cannot fetch {url}: {last_error}")
+
+
+def _append_value(current: str, value: str) -> str:
+    current = str(current or "").strip()
+    value = str(value or "").strip()
+    if not value:
+        return current
+    if not current:
+        return value
+    parts = [item.strip() for item in current.split(";") if item.strip()]
+    if value not in parts:
+        parts.append(value)
+    return "; ".join(parts)
 
 
 def _plain(value: str) -> str:
