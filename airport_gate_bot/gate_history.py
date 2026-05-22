@@ -7,7 +7,7 @@ from datetime import date, datetime
 from pathlib import Path
 from typing import Any
 
-from .analytics import normalize_flight
+from .analytics import is_unknown_gate, normalize_flight
 from .historical import fetch_historical_operational_rows
 from .storage import load_snapshots_around
 
@@ -157,8 +157,7 @@ def _parse_datetime(value: str | None) -> datetime:
 
 
 def _is_known(value: Any) -> bool:
-    text = str(value or "").strip()
-    return bool(text and text.lower() not in {"не указан", "n/a", "--", "$undefined"})
+    return not is_unknown_gate(value)
 
 
 def _flight_codes(value: Any) -> list[str]:
