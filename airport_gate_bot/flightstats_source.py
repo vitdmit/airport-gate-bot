@@ -19,6 +19,7 @@ BASE_URL = "https://www.flightstats.com/v2"
 HOUR_WINDOWS = tuple(range(24))
 JINA_PREFIX = "https://r.jina.ai/"
 CACHE_DIR = Path("data/cache/flightstats")
+RETRYABLE_HTTP_CODES = {429, 500, 502, 503, 504}
 
 
 class FlightStatsError(RuntimeError):
@@ -44,22 +45,26 @@ class FlightStatsFlight:
     is_cancelled: bool
 
 
-def fetch_daily_departures(airport: str, target_date: date, workers: int = 1, use_jina: bool = True) -> list[FlightStatsFlight]:
+def fetch_daily_departures(airport: str, target_date: date, workers: int = 3, use_jina: bool = True) -> list[FlightStatsFlight]:
     summaries = _fetch_departure_summaries_jina(airport, target_date) if use_jina else _fetch_departure_summaries(airport, target_date)
     if not summaries:
         return []
 
     flights: list[FlightStatsFlight] = []
+    skipped = 0
     with ThreadPoolExecutor(max_workers=workers) as executor:
         futures = {executor.submit(_fetch_detail_jina if use_jina else _fetch_detail, airport, summary): summary for summary in summaries}
         for future in as_completed(futures):
             try:
                 flight = future.result()
             except FlightStatsError as exc:
+                skipped += 1
                 print(f"{airport}: detail skipped: {exc}")
                 continue
             if flight:
                 flights.append(flight)
+    if skipped:
+        print(f"{airport}: skipped {skipped} historical detail page(s)")
     flights.sort(key=lambda item: (item.actual_departure or item.scheduled_departure or datetime.max, item.flight_code))
     return flights
 
@@ -89,7 +94,11 @@ def _fetch_departure_summaries_jina(airport: str, target_date: date) -> list[dic
             f"{BASE_URL}/flight-tracker/departures/{airport}"
             f"?year={target_date.year}&month={target_date.month}&date={target_date.day}&hour={hour}"
         )
-        text = _request_jina(source_url)
+        try:
+            text = _request_jina(source_url)
+        except FlightStatsError as exc:
+            print(f"{airport}: historical hour {hour:02d} skipped: {exc}")
+            continue
         for match in re.finditer(r"\]\((https://www\.flightstats\.com/v2/flight-tracker/[^)]+flightId=\d+)\)", text):
             url = match.group(1)
             flight_id = _flight_id_from_url(url)
@@ -225,7 +234,7 @@ def _request_text(url: str) -> str:
         return response.read().decode(charset, errors="replace")
 
 
-def _request_jina(source_url: str) -> str:
+def _request_jina(source_url: str, retries: int = 5) -> str:
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
     cache_key = sha256(source_url.encode("utf-8")).hexdigest()
     cache_path = CACHE_DIR / f"{cache_key}.txt"
@@ -235,7 +244,7 @@ def _request_jina(source_url: str) -> str:
     jina_url = JINA_PREFIX + source_url
     text = ""
     last_error: Exception | None = None
-    for attempt in range(4):
+    for attempt in range(retries):
         request = urllib.request.Request(
             jina_url,
             headers={
@@ -250,10 +259,17 @@ def _request_jina(source_url: str) -> str:
             break
         except urllib.error.HTTPError as exc:
             last_error = exc
-            if exc.code == 429:
-                time.sleep(35 + 15 * attempt)
+            if exc.code in RETRYABLE_HTTP_CODES:
+                wait_seconds = min(90, 15 + 15 * attempt)
+                print(f"FlightStats/Jina temporary HTTP {exc.code}; retry {attempt + 1}/{retries} in {wait_seconds}s")
+                time.sleep(wait_seconds)
                 continue
-            raise
+            raise FlightStatsError(f"HTTP {exc.code} from Jina Reader: {source_url}") from exc
+        except (urllib.error.URLError, TimeoutError) as exc:
+            last_error = exc
+            wait_seconds = min(90, 10 + 10 * attempt)
+            print(f"FlightStats/Jina temporary network error; retry {attempt + 1}/{retries} in {wait_seconds}s")
+            time.sleep(wait_seconds)
     if not text:
         raise FlightStatsError(f"Cannot read through Jina Reader: {source_url}: {last_error}")
     cache_path.write_text(text, encoding="utf-8")

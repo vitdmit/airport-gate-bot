@@ -4,7 +4,7 @@ from collections import defaultdict
 from datetime import date, datetime
 
 from .analytics import is_unknown_gate
-from .flightstats_source import FlightStatsFlight, fetch_daily_departures
+from .flightstats_source import FlightStatsError, FlightStatsFlight, fetch_daily_departures
 from .settings import AIRPORTS
 
 
@@ -12,7 +12,11 @@ def fetch_historical_operational_rows(target_date: date, airports: list[str] | N
     airports = airports or list(AIRPORTS.keys())
     all_flights: list[FlightStatsFlight] = []
     for airport in airports:
-        flights = fetch_daily_departures(airport, target_date)
+        try:
+            flights = fetch_daily_departures(airport, target_date)
+        except FlightStatsError as exc:
+            print(f"{airport}: historical source failed: {exc}")
+            continue
         print(f"{airport}: loaded {len(flights)} historical rows before filtering")
         all_flights.extend(flights)
     return operational_rows_from_flights(all_flights, target_date)
