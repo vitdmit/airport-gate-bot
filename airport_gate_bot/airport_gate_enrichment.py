@@ -20,6 +20,7 @@ VKO_ONLINE_URLS = (
     "https://www.vnukovo.ru/flights/online-timetable/#tab-sortie",
 )
 BACKUP_BOARD_URL = "https://www.airports-worldwide.info/airport/{airport}/departures"
+JINA_READER_PREFIX = "https://r.jina.ai/"
 
 
 @dataclass(frozen=True)
@@ -99,6 +100,7 @@ def _enrich_vko_gates(flights: list[dict[str, Any]]) -> dict[str, Any]:
 
     filled, conflicts = _apply_gate_rows(flights, rows)
     missing_after_official = _count_missing_gates(flights)
+    official_added = _append_gate_rows_as_flights(flights, rows, "VKO")
     meta = {
         "vko_gate_enrichment_needed": int(missing_before > 0),
         "vko_missing_before": missing_before,
@@ -106,19 +108,21 @@ def _enrich_vko_gates(flights: list[dict[str, Any]]) -> dict[str, Any]:
         "vko_official_checked": 1,
         "vko_official_rows": len(rows),
         "vko_official_filled": filled,
+        "vko_official_added_missing_flights": official_added,
         "vko_official_conflicts": conflicts,
         "vko_official_errors": errors[:3],
     }
 
-    if not missing_after_official:
-        return meta
-
+    # VKO/Flighty can omit some carriers entirely, especially Pobeda (DP).
+    # So the backup board is useful even when all Flighty rows already have gates.
     backup_rows, backup_error = _fetch_backup_rows("VKO")
     backup_filled, backup_conflicts = _apply_gate_rows(flights, backup_rows)
+    backup_added = _append_gate_rows_as_flights(flights, backup_rows, "VKO")
     meta.update({
         "vko_missing_after_backup": _count_missing_gates(flights),
         "vko_backup_rows": len(backup_rows),
         "vko_backup_filled": backup_filled,
+        "vko_backup_added_missing_flights": backup_added,
         "vko_backup_conflicts": backup_conflicts,
         "vko_backup_error": backup_error,
     })
@@ -130,12 +134,21 @@ def _fetch_backup_rows(airport: str) -> tuple[list[GateRow], str]:
     try:
         text = _request_text(url)
     except Exception as exc:
-        return [], str(exc)
+        direct_error = str(exc)
+        try:
+            text = _request_text(f"{JINA_READER_PREFIX}{url}")
+        except Exception as jina_exc:
+            return [], f"{direct_error}; Jina Reader: {jina_exc}"
+        rows = _parse_gate_rows(text, f"доп. live-табло {airport}")
+        return rows, f"direct fetch failed; used Jina Reader: {direct_error}"
     return _parse_gate_rows(text, f"доп. live-табло {airport}"), ""
 
 
 def _parse_gate_rows(text: str, source_label: str) -> list[GateRow]:
     rows = _parse_html_table_rows(text, source_label)
+    if rows:
+        return rows
+    rows = _parse_markdown_table_rows(text, source_label)
     if rows:
         return rows
     return _parse_text_table_rows(text, source_label)
@@ -145,9 +158,28 @@ def _parse_html_table_rows(text: str, source_label: str) -> list[GateRow]:
     rows: list[GateRow] = []
     for block in re.findall(r"<tr\b.*?</tr>", text or "", flags=re.I | re.S):
         cells = [_plain(cell) for cell in re.findall(r"<t[dh]\b[^>]*>(.*?)</t[dh]>", block, flags=re.I | re.S)]
-        parsed = _row_from_cells(cells, source_label)
-        if parsed:
-            rows.append(parsed)
+        rows.extend(_rows_from_cells(cells, source_label))
+    return rows
+
+
+def _parse_markdown_table_rows(text: str, source_label: str) -> list[GateRow]:
+    rows: list[GateRow] = []
+    for line in (text or "").splitlines():
+        if "|" not in line:
+            continue
+        cells = [_plain(cell) for cell in line.split("|")]
+        if cells and not cells[0]:
+            cells = cells[1:]
+        if cells and not cells[-1]:
+            cells = cells[:-1]
+        if len(cells) < 7:
+            continue
+        lowered = " ".join(cells).lower()
+        if "destination" in lowered and "flight" in lowered:
+            continue
+        if all(set(cell) <= {"-"} for cell in cells if cell):
+            continue
+        rows.extend(_rows_from_cells(cells, source_label))
     return rows
 
 
@@ -169,47 +201,91 @@ def _parse_text_table_rows(text: str, source_label: str) -> list[GateRow]:
         gate = _clean_gate(match.group("gate"))
         if not times or not gate:
             continue
-        rows.append(
-            GateRow(
-                flight_code=_normalize_code(match.group("flight")),
-                scheduled_time=times[0],
-                actual_time=times[1] if len(times) > 1 else "",
-                terminal=match.group("terminal").upper(),
-                gate=gate,
-                destination_iata=match.group("iata").upper(),
-                source_label=source_label,
+        for flight_code in _flight_codes_from_cell(match.group("flight")):
+            rows.append(
+                GateRow(
+                    flight_code=flight_code,
+                    scheduled_time=times[0],
+                    actual_time=times[1] if len(times) > 1 else "",
+                    terminal=match.group("terminal").upper(),
+                    gate=gate,
+                    destination_iata=match.group("iata").upper(),
+                    source_label=source_label,
+                )
             )
-        )
     return rows
 
 
-def _row_from_cells(cells: list[str], source_label: str) -> GateRow | None:
+def _append_gate_rows_as_flights(flights: list[dict[str, Any]], rows: list[GateRow], airport: str) -> int:
+    existing = {
+        (
+            _flight_code(flight),
+            str(((flight.get("arrival") or {}).get("iata") or "")).upper(),
+            _time_text((flight.get("originalTime") or {}).get("text")),
+        )
+        for flight in flights
+    }
+    added = 0
+    for row in rows:
+        key = (row.flight_code, row.destination_iata, row.scheduled_time)
+        if key in existing:
+            continue
+        airline_iata, flight_number = _split_flight_code(row.flight_code)
+        if not airline_iata or not flight_number:
+            continue
+        flights.append(
+            {
+                "id": f"{airport}-extra-gate-{row.flight_code}-{row.destination_iata}-{row.scheduled_time}",
+                "airline": {"iata": airline_iata, "name": ""},
+                "flightNumber": flight_number,
+                "city": "",
+                "arrival": {"iata": row.destination_iata, "flag": ""},
+                "departure": {
+                    "terminal": row.terminal,
+                    "gate": row.gate,
+                    "gateSource": row.source_label,
+                    "gateMatch": "доп. табло: рейс + плановое время",
+                },
+                "originalTime": {"text": row.scheduled_time},
+                "newTime": {"text": row.actual_time},
+                "status": [{"type": "text", "text": "Scheduled"}],
+            }
+        )
+        existing.add(key)
+        added += 1
+    return added
+
+
+def _rows_from_cells(cells: list[str], source_label: str) -> list[GateRow]:
     if len(cells) >= 8:
         destination, departure, flight, terminal, gate = cells[1], cells[2], cells[5], cells[6], cells[7]
     elif len(cells) >= 7:
         destination, departure, flight, terminal, gate = cells[0], cells[1], cells[4], cells[5], cells[6]
     else:
-        return None
+        return []
 
     if "flight" in flight.lower() or "рейс" in flight.lower():
-        return None
+        return []
 
-    flight_code = _normalize_code(flight)
+    flight_codes = _flight_codes_from_cell(flight)
     gate = _clean_gate(gate)
     times = _times_from_text(departure)
-    if not flight_code or not gate or not times:
-        return None
+    if not flight_codes or not gate or not times:
+        return []
 
     iata_match = re.search(r"\(([A-Z]{3})\)", destination or "")
-    return GateRow(
-        flight_code=flight_code,
-        scheduled_time=times[0],
-        actual_time=times[1] if len(times) > 1 else "",
-        terminal=_clean_terminal(terminal),
-        gate=gate,
-        destination_iata=iata_match.group(1).upper() if iata_match else "",
-        source_label=source_label,
-    )
+    return [
+        GateRow(
+            flight_code=flight_code,
+            scheduled_time=times[0],
+            actual_time=times[1] if len(times) > 1 else "",
+            terminal=_clean_terminal(terminal),
+            gate=gate,
+            destination_iata=iata_match.group(1).upper() if iata_match else "",
+            source_label=source_label,
+        )
+        for flight_code in flight_codes
+    ]
 
 
 def _apply_gate_rows(flights: list[dict[str, Any]], rows: list[GateRow]) -> tuple[int, int]:
@@ -302,6 +378,52 @@ def _known_gate(flight: dict[str, Any]) -> bool:
 def _flight_code(flight: dict[str, Any]) -> str:
     airline = flight.get("airline") or {}
     return _normalize_code(f"{airline.get('iata', '')} {flight.get('flightNumber', '')}")
+
+
+def _split_flight_code(value: str) -> tuple[str, str]:
+    code = _compact_flight_code(_normalize_code(value))
+    if not code:
+        return "", ""
+    if len(code) >= 3 and _looks_airline_token(code[:2]) and code[2].isdigit():
+        return code[:2], code[2:]
+    if len(code) >= 4 and code[:3].isalpha() and code[3].isdigit():
+        return code[:3], code[3:]
+    return "", ""
+
+
+def _flight_codes_from_cell(value: str) -> list[str]:
+    codes: list[str] = []
+    tokens = re.findall(r"[A-ZА-Я0-9]+", (value or "").upper())
+    index = 0
+    while index < len(tokens):
+        code = ""
+        token = tokens[index]
+        if (
+            index + 1 < len(tokens)
+            and _looks_airline_token(token)
+            and re.fullmatch(r"\d{1,5}[A-ZА-Я]?", tokens[index + 1])
+        ):
+            code = f"{token}{tokens[index + 1]}"
+            index += 2
+        else:
+            code = _compact_flight_code(token)
+            index += 1
+        if code and code not in codes:
+            codes.append(code)
+    return codes
+
+
+def _compact_flight_code(token: str) -> str:
+    token = _normalize_code(token)
+    if len(token) >= 3 and _looks_airline_token(token[:2]) and token[2].isdigit():
+        return token
+    if len(token) >= 4 and token[:3].isalpha() and token[3].isdigit():
+        return token
+    return ""
+
+
+def _looks_airline_token(token: str) -> bool:
+    return len(token) in {2, 3} and token.isalnum() and any(char.isalpha() for char in token)
 
 
 def _normalize_code(value: str) -> str:
