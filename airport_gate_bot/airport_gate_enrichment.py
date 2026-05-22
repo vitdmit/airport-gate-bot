@@ -20,6 +20,7 @@ VKO_ONLINE_URLS = (
     "https://www.vnukovo.ru/flights/online-timetable/#tab-sortie",
 )
 BACKUP_BOARD_URL = "https://www.airports-worldwide.info/airport/{airport}/departures"
+AIRPORT_INFORMATION_URL = "https://www.airportinformation.com/{airport}/departures"
 JINA_READER_PREFIX = "https://r.jina.ai/"
 
 
@@ -130,18 +131,22 @@ def _enrich_vko_gates(flights: list[dict[str, Any]]) -> dict[str, Any]:
 
 
 def _fetch_backup_rows(airport: str) -> tuple[list[GateRow], str]:
-    url = BACKUP_BOARD_URL.format(airport=airport)
-    try:
-        text = _request_text(url)
-    except Exception as exc:
-        direct_error = str(exc)
+    errors: list[str] = []
+    sources = [
+        (AIRPORT_INFORMATION_URL.format(airport=airport), f"airportinformation.com {airport}"),
+        (BACKUP_BOARD_URL.format(airport=airport), f"доп. live-табло {airport}"),
+    ]
+    for url, label in sources:
         try:
-            text = _request_text(f"{JINA_READER_PREFIX}{url}")
-        except Exception as jina_exc:
-            return [], f"{direct_error}; Jina Reader: {jina_exc}"
-        rows = _parse_gate_rows(text, f"доп. live-табло {airport}")
-        return rows, f"direct fetch failed; used Jina Reader: {direct_error}"
-    return _parse_gate_rows(text, f"доп. live-табло {airport}"), ""
+            text = _request_text(url)
+        except Exception as exc:
+            errors.append(f"{label}: {exc}")
+            continue
+        rows = _parse_gate_rows(text, label)
+        if rows:
+            return rows, "; ".join(errors)
+        errors.append(f"{label}: rows not found")
+    return [], "; ".join(errors)
 
 
 def _parse_gate_rows(text: str, source_label: str) -> list[GateRow]:
@@ -149,6 +154,9 @@ def _parse_gate_rows(text: str, source_label: str) -> list[GateRow]:
     if rows:
         return rows
     rows = _parse_markdown_table_rows(text, source_label)
+    if rows:
+        return rows
+    rows = _parse_airport_information_rows(text, source_label)
     if rows:
         return rows
     return _parse_text_table_rows(text, source_label)
@@ -180,6 +188,34 @@ def _parse_markdown_table_rows(text: str, source_label: str) -> list[GateRow]:
         if all(set(cell) <= {"-"} for cell in cells if cell):
             continue
         rows.extend(_rows_from_cells(cells, source_label))
+    return rows
+
+
+def _parse_airport_information_rows(text: str, source_label: str) -> list[GateRow]:
+    rows: list[GateRow] = []
+    lines = _plain_lines(text)
+    for idx, line in enumerate(lines):
+        if not re.fullmatch(r"\d{1,2}:\d{2}", line):
+            continue
+        if idx + 4 >= len(lines):
+            continue
+        destination = lines[idx + 1]
+        flight_cell = lines[idx + 2]
+        gate = _clean_gate(lines[idx + 4])
+        if not gate:
+            continue
+        for flight_code in _flight_codes_from_cell(flight_cell):
+            rows.append(
+                GateRow(
+                    flight_code=flight_code,
+                    scheduled_time=_times_from_text(line)[0],
+                    actual_time="",
+                    terminal="",
+                    gate=gate,
+                    destination_iata="",
+                    source_label=source_label,
+                )
+            )
     return rows
 
 
@@ -505,3 +541,13 @@ def _append_value(current: str, value: str) -> str:
 
 def _plain(value: str) -> str:
     return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", value or ""))).replace("\xa0", " ").strip()
+
+
+def _plain_lines(value: str) -> list[str]:
+    text = re.sub(r"<\s*(br|/tr|/td|/th|/div|/p|/li|/h[1-6])\b[^>]*>", "\n", value or "", flags=re.I)
+    text = re.sub(r"<[^>]+>", "\n", text)
+    return [
+        re.sub(r"\s+", " ", html.unescape(line).replace("\xa0", " ")).strip()
+        for line in text.splitlines()
+        if re.sub(r"\s+", " ", html.unescape(line).replace("\xa0", " ")).strip()
+    ]
