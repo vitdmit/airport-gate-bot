@@ -1,0 +1,70 @@
+Title: (SVO Departures) Moscow Sheremetyevo International Airport Departures
+
+URL Source: https://www.flightstats.com/v2/flight-tracker/departures/SVO?year=2026&month=5&date=21&hour=13
+
+Markdown Content:
+## (SVO) Moscow Sheremetyevo International Airport Departures 21-May-2026
+
+## SVO Departure Filters
+
+Departure Airport
+
+X
+
+Arrival Airport
+
+X
+
+Airline (optional)
+
+X
+
+Date
+
+Time
+
+Show Codeshares?
+
+Show
+
+Hide
+
+107 results
+
+«
+
+←
+
+1
+
+2
+
+3
+
+4
+
+5
+
+→
+
+»
+
+[Flight Departure Time Arrival Time Destination](https://www.flightstats.com/v2/flight-tracker/departures/SVO?year=2026&month=5&date=21&hour=13)## [DP*6927 ## 09:20 ## 12:20 ## MCX Pobeda Makhachkala](https://www.flightstats.com/v2/flight-tracker/DP*/6927?year=2026&month=5&date=21&flightId=1385006556)## [DP*6841 ## 11:55 ## 13:45 ## KZN Pobeda Kazan](https://www.flightstats.com/v2/flight-tracker/DP*/6841?year=2026&month=5&date=21&flightId=1385006549)## [DP*6861 ## 12:30 ## 15:05 ## GSV Pobeda Saratov](https://www.flightstats.com/v2/flight-tracker/DP*/6861?year=2026&month=5&date=21&flightId=1385006560)## [SU 6271 ## 13:00 ## 14:25 ## LED Aeroflot / Operated by Rossiya Airlines on behalf of Aeroflot Saint Petersburg](https://www.flightstats.com/v2/flight-tracker/SU/6271?year=2026&month=5&date=21&flightId=1384760410)## [SU 1780 ## 13:05 ## 17:20 ## SVX Aeroflot Yekaterinburg](https://www.flightstats.com/v2/flight-tracker/SU/1780?year=2026&month=5&date=21&flightId=1384760034)## [DP*6871 ## 13:05 ## 14:45 ## KGD Pobeda Kaliningrad](https://www.flightstats.com/v2/flight-tracker/DP*/6871?year=2026&month=5&date=21&flightId=1384714558)## [DP*6817 ## 13:10 ## 14:35 ## CSY Pobeda Cheboksary](https://www.flightstats.com/v2/flight-tracker/DP*/6817?year=2026&month=5&date=21&flightId=1385006526)## [SU 1642 ## 13:20 ## 17:00 ## ASF Aeroflot Astrakhan](https://www.flightstats.com/v2/flight-tracker/SU/1642?year=2026&month=5&date=21&flightId=1384760002)## [SU 1962 ## 13:20 ## 18:50 ## TSE Aeroflot Astana](https://www.flightstats.com/v2/flight-tracker/SU/1962?year=2026&month=5&date=21&flightId=1384760117)## [DP*6913 ## 13:20 ## 16:40 ## MRV Pobeda Mineralnye Vody](https://www.flightstats.com/v2/flight-tracker/DP*/6913?year=2026&month=5&date=21&flightId=1385233754)## [SU 1310 ## 13:25 ## 16:30 ## MRV Aeroflot Mineralnye Vody](https://www.flightstats.com/v2/flight-tracker/SU/1310?year=2026&month=5&date=21&flightId=1384759833)## [N4*105 ## 13:30 ## 15:10 ## KGD Nordwind Airlines Kaliningrad](https://www.flightstats.com/v2/flight-tracker/N4*/105?year=2026&month=5&date=21&flightId=1384747174)## [SU 1082 ## 13:30 ## 17:35 ## GDZ Aeroflot Gelendzik](https://www.flightstats.com/v2/flight-tracker/SU/1082?year=2026&month=5&date=21&flightId=1384759770)## [SU 1004 ## 13:35 ## 15:10 ## KGD Aeroflot Kaliningrad](https://www.flightstats.com/v2/flight-tracker/SU/1004?year=2026&month=5&date=21&flightId=1384759706)## [SU 1212 ## 13:40 ## 16:35 ## KUF Aeroflot Samara](https://www.flightstats.com/v2/flight-tracker/SU/1212?year=2026&month=5&date=21&flightId=1384759793)## [D2 333 ## 13:40 ## 15:40 ## UCT Severstal Aircompany Ukhta](https://www.flightstats.com/v2/flight-tracker/D2/333?year=2026&month=5&date=21&flightId=1384708159)## [STW 2 ## 13:45 ## 18:00 ## AYT Southwind Airlines Antalya](https://www.flightstats.com/v2/flight-tracker/STW/2?year=2026&month=5&date=21&flightId=1384677093)## [B2 912 ## 13:45 ## 15:35 ## BQT Belavia Brest](https://www.flightstats.com/v2/flight-tracker/B2/912?year=2026&month=5&date=21&flightId=1384700023)## [SU 2144 ## 13:50 ## 18:55 ## AYT Aeroflot Antalya](https://www.flightstats.com/v2/flight-tracker/SU/2144?year=2026&month=5&date=21&flightId=1384760162)## [5N 265 ## 13:55 ## 16:05 ## MRV Smartavia Mineralnye Vody](https://www.flightstats.com/v2/flight-tracker/5N/265?year=2026&month=5&date=21&flightId=1384678902)## [SU 6855 ## 14:00 ## 15:25 ## LED Aeroflot / Operated by Rossiya Airlines on behalf of Aeroflot Saint Petersburg](https://www.flightstats.com/v2/flight-tracker/SU/6855?year=2026&month=5&date=21&flightId=1384760563)## [SU 6361 ## 14:00 ## 15:40 ## KZN Aeroflot / Operated by Rossiya Airlines on behalf of Aeroflot Kazan](https://www.flightstats.com/v2/flight-tracker/SU/6361?year=2026&month=5&date=21&flightId=1384760450)## [DP*6835 ## 14:00 ## 15:40 ## KGD Pobeda Kaliningrad](https://www.flightstats.com/v2/flight-tracker/DP*/6835?year=2026&month=5&date=21&flightId=1384714556)## [SU 6141 ## 14:10 ## 19:00 ## TJM Aeroflot / Operated by Rossiya Airlines on behalf of Aeroflot Tyumen](https://www.flightstats.com/v2/flight-tracker/SU/6141?year=2026&month=5&date=21&flightId=1384760342)## [SU 1024 ## 14:15 ## 16:00 ## KGD Aeroflot Kaliningrad](https://www.flightstats.com/v2/flight-tracker/SU/1024?year=2026&month=5&date=21&flightId=1384759696)
+
+«
+
+←
+
+1
+
+2
+
+3
+
+4
+
+5
+
+→
+
+»

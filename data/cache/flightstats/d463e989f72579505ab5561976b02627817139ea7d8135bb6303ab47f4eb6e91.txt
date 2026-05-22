@@ -1,0 +1,70 @@
+Title: (SVO Departures) Moscow Sheremetyevo International Airport Departures
+
+URL Source: https://www.flightstats.com/v2/flight-tracker/departures/SVO?year=2026&month=5&date=21&hour=12
+
+Markdown Content:
+## (SVO) Moscow Sheremetyevo International Airport Departures 21-May-2026
+
+## SVO Departure Filters
+
+Departure Airport
+
+X
+
+Arrival Airport
+
+X
+
+Airline (optional)
+
+X
+
+Date
+
+Time
+
+Show Codeshares?
+
+Show
+
+Hide
+
+103 results
+
+«
+
+←
+
+1
+
+2
+
+3
+
+4
+
+5
+
+→
+
+»
+
+[Flight Departure Time Arrival Time Destination](https://www.flightstats.com/v2/flight-tracker/departures/SVO?year=2026&month=5&date=21&hour=12)## [DP*6927 ## 09:20 ## 12:20 ## MCX Pobeda Makhachkala](https://www.flightstats.com/v2/flight-tracker/DP*/6927?year=2026&month=5&date=21&flightId=1385006556)## [SU 1018 ## 11:50 ## 13:35 ## KGD Aeroflot Kaliningrad](https://www.flightstats.com/v2/flight-tracker/SU/1018?year=2026&month=5&date=21&flightId=1384759702)## [SU 1490 ## 11:50 ## 20:35 ## KJA Aeroflot Krasnojarsk](https://www.flightstats.com/v2/flight-tracker/SU/1490?year=2026&month=5&date=21&flightId=1384759934)## [DP*6841 ## 11:55 ## 13:45 ## KZN Pobeda Kazan](https://www.flightstats.com/v2/flight-tracker/DP*/6841?year=2026&month=5&date=21&flightId=1385006549)## [SU 6243 ## 12:00 ## 13:25 ## LED Aeroflot / Operated by Rossiya Airlines on behalf of Aeroflot Saint Petersburg](https://www.flightstats.com/v2/flight-tracker/SU/6243?year=2026&month=5&date=21&flightId=1384760406)## [SU 1156 ## 12:00 ## 15:55 ## KRR Aeroflot Krasnodar](https://www.flightstats.com/v2/flight-tracker/SU/1156?year=2026&month=5&date=21&flightId=1384759767)## [DP*6837 ## 12:00 ## 13:40 ## KGD Pobeda Kaliningrad](https://www.flightstats.com/v2/flight-tracker/DP*/6837?year=2026&month=5&date=21&flightId=1384714560)## [SU 1028 ## 12:10 ## 15:30 ## MRV Aeroflot Mineralnye Vody](https://www.flightstats.com/v2/flight-tracker/SU/1028?year=2026&month=5&date=21&flightId=1384759707)## [SU 1842 ## 12:15 ## 13:45 ## MSQ Aeroflot Minsk](https://www.flightstats.com/v2/flight-tracker/SU/1842?year=2026&month=5&date=21&flightId=1384760071)## [SU 6535 ## 12:15 ## 16:25 ## UFA Aeroflot / Operated by Rossiya Airlines on behalf of Aeroflot Ufa](https://www.flightstats.com/v2/flight-tracker/SU/6535?year=2026&month=5&date=21&flightId=1384760471)## [SU 1222 ## 12:20 ## 13:35 ## GOJ Aeroflot Nizhniy Novgorod](https://www.flightstats.com/v2/flight-tracker/SU/1222?year=2026&month=5&date=21&flightId=1384759789)## [SU 430 ## 12:20 ## 19:00 ## SSH Aeroflot Sharm el Sheikh](https://www.flightstats.com/v2/flight-tracker/SU/430?year=2026&month=5&date=21&flightId=1384760257)## [SU 1346 ## 12:25 ## 14:50 ## KVK Aeroflot Kirovsk](https://www.flightstats.com/v2/flight-tracker/SU/1346?year=2026&month=5&date=21&flightId=1384759856)## [SU 420 ## 12:25 ## 19:00 ## HRG Aeroflot Hurghada](https://www.flightstats.com/v2/flight-tracker/SU/420?year=2026&month=5&date=21&flightId=1384760230)## [DP*6861 ## 12:30 ## 15:05 ## GSV Pobeda Saratov](https://www.flightstats.com/v2/flight-tracker/DP*/6861?year=2026&month=5&date=21&flightId=1385006560)## [SU 1974 ## 12:30 ## 18:20 ## TAS Aeroflot Tashkent](https://www.flightstats.com/v2/flight-tracker/SU/1974?year=2026&month=5&date=21&flightId=1384760119)## [SU 1136 ## 12:50 ## 16:30 ## AER Aeroflot Adler/Sochi](https://www.flightstats.com/v2/flight-tracker/SU/1136?year=2026&month=5&date=21&flightId=1384759734)## [SU 6271 ## 13:00 ## 14:25 ## LED Aeroflot / Operated by Rossiya Airlines on behalf of Aeroflot Saint Petersburg](https://www.flightstats.com/v2/flight-tracker/SU/6271?year=2026&month=5&date=21&flightId=1384760410)## [SU 1780 ## 13:05 ## 17:20 ## SVX Aeroflot Yekaterinburg](https://www.flightstats.com/v2/flight-tracker/SU/1780?year=2026&month=5&date=21&flightId=1384760034)## [DP*6871 ## 13:05 ## 14:45 ## KGD Pobeda Kaliningrad](https://www.flightstats.com/v2/flight-tracker/DP*/6871?year=2026&month=5&date=21&flightId=1384714558)## [DP*6817 ## 13:10 ## 14:35 ## CSY Pobeda Cheboksary](https://www.flightstats.com/v2/flight-tracker/DP*/6817?year=2026&month=5&date=21&flightId=1385006526)## [SU 1642 ## 13:20 ## 17:00 ## ASF Aeroflot Astrakhan](https://www.flightstats.com/v2/flight-tracker/SU/1642?year=2026&month=5&date=21&flightId=1384760002)## [SU 1962 ## 13:20 ## 18:50 ## TSE Aeroflot Astana](https://www.flightstats.com/v2/flight-tracker/SU/1962?year=2026&month=5&date=21&flightId=1384760117)## [DP*6913 ## 13:20 ## 16:40 ## MRV Pobeda Mineralnye Vody](https://www.flightstats.com/v2/flight-tracker/DP*/6913?year=2026&month=5&date=21&flightId=1385233754)## [SU 1310 ## 13:25 ## 16:30 ## MRV Aeroflot Mineralnye Vody](https://www.flightstats.com/v2/flight-tracker/SU/1310?year=2026&month=5&date=21&flightId=1384759833)
+
+«
+
+←
+
+1
+
+2
+
+3
+
+4
+
+5
+
+→
+
+»
