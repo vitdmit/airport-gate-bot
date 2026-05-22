@@ -8,7 +8,7 @@ from openpyxl import Workbook
 from openpyxl.styles import Alignment, Font, PatternFill
 from openpyxl.utils import get_column_letter
 
-from .analytics import gate_load_rows, summarize_by_gate, summarize_by_hour, summarize_gate_hour_grid
+from .analytics import gate_load_rows, is_unknown_gate, summarize_by_gate, summarize_by_hour, summarize_gate_hour_grid
 
 
 HEADER_FILL = PatternFill("solid", fgColor="1F4E78")
@@ -294,8 +294,7 @@ def _snapshot_known_gates(snapshot: dict[str, Any]) -> int:
     count = 0
     for flight in snapshot.get("flights", []):
         departure = flight.get("departure") or {}
-        gate = str(departure.get("gate") or "").strip().lower()
-        if gate and gate not in {"не указан", "not available", "n/a", "--", "$undefined"}:
+        if not is_unknown_gate(departure.get("gate")):
             count += 1
     return count
 
@@ -330,7 +329,7 @@ def _quality_rows(operational: list[dict[str, Any]]) -> list[list[Any]]:
                 ["Всего операционных вылетов", airport, len(rows)],
                 ["ВВЛ", airport, sum(1 for row in rows if row["line_type"] == "ВВЛ")],
                 ["МВЛ", airport, sum(1 for row in rows if row["line_type"] == "МВЛ")],
-                ["Гейт не указан источником", airport, sum(1 for row in rows if row["gate"] == "не указан")],
+                ["Гейт не указан источником", airport, sum(1 for row in rows if is_unknown_gate(row["gate"]))],
                 ["Терминал не указан источником", airport, sum(1 for row in rows if row["terminal"] == "не указан")],
                 [
                     "Гейт пришел из Flighty live-снимка",

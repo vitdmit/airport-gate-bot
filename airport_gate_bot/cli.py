@@ -5,7 +5,7 @@ from datetime import date, datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-from .analytics import build_operational_flights, latest_records_from_snapshots
+from .analytics import build_operational_flights, is_unknown_gate, latest_records_from_snapshots
 from .combined_history import build_combined_history
 from .flighty_source import SourceError, fetch_departures
 from .gate_history import build_daily_rows
@@ -160,9 +160,9 @@ def history_report(target_date: date, airports: list[str], output: str = "") -> 
 def daily_report(target_date: date, airports: list[str], data_dir: Path, output: str = "") -> Path:
     snapshots = [item for item in load_snapshots_around(data_dir, target_date) if item.get("airport") in airports]
     records = latest_records_from_snapshots(snapshots)
-    operational = build_operational_flights(records, target_date, factual_only=True)
+    operational = build_operational_flights(records, target_date, factual_only=False)
     for row in operational:
-        if row["gate"] == "не указан":
+        if is_unknown_gate(row["gate"]):
             row["gate_source"] = "не найден в live-снимке"
             row["gate_match"] = ""
         else:
@@ -174,10 +174,10 @@ def daily_report(target_date: date, airports: list[str], data_dir: Path, output:
         target_date,
         operational,
         snapshots=snapshots,
-        factual_only=True,
-        mode_label="бесплатный режим: только фактически улетевшие из накопленных live-снимков",
+        factual_only=False,
+        mode_label="бесплатный режим: завершенный день, все не отмененные вылеты из накопленных live-снимков",
     )
-    missing_gates = sum(1 for row in operational if row["gate"] == "не указан")
+    missing_gates = sum(1 for row in operational if is_unknown_gate(row["gate"]))
     print(f"Daily report rows: {len(operational)}")
     print(f"Rows without gate: {missing_gates}")
     print(f"Saved report: {output_path}")

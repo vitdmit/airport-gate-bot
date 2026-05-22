@@ -311,15 +311,18 @@ def _carry_forward_known_gate(previous: dict[str, Any], current: dict[str, Any])
 
 
 def _has_known_gate(record: dict[str, Any]) -> bool:
-    gate = str(record.get("gate") or "").strip().lower()
-    return gate not in UNKNOWN_GATES
+    return not is_unknown_gate(record.get("gate"))
 
 
 def _normalize_gate(value: Any) -> str:
     gate = str(value or "").strip()
-    if gate.lower() in UNKNOWN_GATES:
+    if is_unknown_gate(gate):
         return "не указан"
     return gate
+
+
+def is_unknown_gate(value: Any) -> bool:
+    return str(value or "").strip().lower() in UNKNOWN_GATES
 
 
 def _unique_join(values) -> str:
