@@ -1,0 +1,204 @@
+Title: (DME Departures) Moscow Domodedovo Airport Departures
+
+URL Source: https://www.flightstats.com/v2/flight-tracker/departures/DME?year=2026&month=5&date=22&hour=7
+
+Markdown Content:
+# (DME Departures) Moscow Domodedovo Airport Departures
+
+![Image 2](https://assets.flightstats.com/v2/backgrounds/ArrivalBoard.jpg)[![Image 3](https://assets.flightstats.com/v2/FSbyCLogo.png)](https://www.flightstats.com/v2)
+
+Follow us on
+
+[](https://twitter.com/cirium)[](https://www.linkedin.com/company/cirium)[](https://www.youtube.com/c/Cirium)
+
+[Create Account](https://www.flightstats.com/v2/register/plan)[Login](https://www.flightstats.com/v2/account/login)
+
+[Flights](https://www.flightstats.com/v2/flight-tracker/departures/DME?year=2026&month=5&date=22&hour=7)
+
+    *   [Flight Tracker](https://www.flightstats.com/v2/flight-tracker/search)
+
+    *   [Historical Flight Status](https://www.flightstats.com/v2/historical-flight/search)
+
+    *   [Alerts](https://www.flightstats.com/v2/flight-alerts/home)
+
+[Airports](https://www.flightstats.com/v2/flight-tracker/departures/DME?year=2026&month=5&date=22&hour=7)
+
+    *   [Current Conditions](https://www.flightstats.com/v2/airport-conditions/search)
+
+    *   [Departures and Arrivals](https://www.flightstats.com/v2/airports/departing-arriving/search)
+
+    *   [Airport Delays](https://www.flightstats.com/v2/airport-delays)
+
+[On-Time Performance](https://www.flightstats.com/v2/flight-tracker/departures/DME?year=2026&month=5&date=22&hour=7)
+
+    *   [On-Time Performance Reports](https://www.cirium.com/resources/on-time-performance/?cmpid=ilc%7Cotp%7CCIALD_202501_glob_mul%7C2024-OTP-Annual-Report_m&sfid=701dP000008LIGgQAO)
+
+    *   [On-Time Monthly Update](https://www.cirium.com/thoughtcloud/cirium-monthly-on-time-performance-reports/?cmpid=ilc%7Cotp%7CCIALD_202501_glob_mul%7C2024-OTP-Annual-Report_m&sfid=701dP000008LIGgQAO)
+
+    *   [On-Time Performance Articles](https://www.cirium.com/thoughtcloud/?cmpid=ilc|otp|CIALD_202501_glob_mul|2024-OTP-articles_m&sfid=701dP000008LIGgQAO)
+
+[Cirium](https://www.flightstats.com/v2/flight-tracker/departures/DME?year=2026&month=5&date=22&hour=7)
+
+    *   [About](https://www.cirium.com/about/)
+
+    *   [Cirium](https://www.cirium.com/)
+
+    *   [Thought Cloud](https://www.cirium.com/thoughtcloud/)
+
+[Resources](https://www.flightstats.com/v2/flight-tracker/departures/DME?year=2026&month=5&date=22&hour=7)
+
+    *   [Support](https://helpdesk.cirium.com/s/topic/0TOJ5000000TNJ1OAO/flightstats-by-cirium)
+
+    *   [Developer Studio](https://developer.cirium.com/?inctmp=flightstats-resources-menu)
+
+    *   [Careers](https://relx.wd3.myworkdayjobs.com/ciriumcareers)
+
+    *   [Contact](https://www.cirium.com/contact-us/?cmpid=ILC%7CCIR%7CCIR-flightstats-contact)
+
+[My FlightStats](https://www.flightstats.com/v2/flight-tracker/departures/DME?year=2026&month=5&date=22&hour=7)
+
+    *   [My Alerts](https://www.flightstats.com/v2/flight-alerts/home)
+
+    *   [My Account](https://www.flightstats.com/v2/my-account/profile)
+
+# (DME) Moscow Domodedovo Airport Departures 22-May-2026
+
+## DME Departure Filters
+
+Departure Airport 
+
+X
+
+Arrival Airport 
+
+X
+
+Airline (optional) 
+
+X
+
+Date 
+
+Time 
+
+Refine Search
+
+Show Codeshares? 
+
+Show
+
+- [x] 
+
+Hide
+
+40 results
+
+«
+
+←
+
+1
+
+2
+
+→
+
+»
+
+[Flight Departure Time Arrival Time Destination](https://www.flightstats.com/v2/flight-tracker/departures/DME?year=2026&month=5&date=22&hour=7)## [S7 2519 ## 07:30 ## 15:30 ## OVB S7 Airlines Novosibirsk](https://www.flightstats.com/v2/flight-tracker/S7/2519?year=2026&month=5&date=22&flightId=1384944417)## [U6 9862 ## 08:00 ## 09:00 ## LED Ural Airlines Saint Petersburg](https://www.flightstats.com/v2/flight-tracker/U6/9862?year=2026&month=5&date=22&flightId=1385364297)## [U6 2611 ## 08:00 ## 14:10 ## NMA Ural Airlines Namangan](https://www.flightstats.com/v2/flight-tracker/U6/2611?year=2026&month=5&date=22&flightId=1384954569)## [U6 273 ## 08:25 ## 12:55 ## SVX Ural Airlines Yekaterinburg](https://www.flightstats.com/v2/flight-tracker/U6/273?year=2026&month=5&date=22&flightId=1384954614)## [I8 302 ## 08:40 ## 11:10 ## IJK Izhavia Izhevsk](https://www.flightstats.com/v2/flight-tracker/I8/302?year=2026&month=5&date=22&flightId=1384918614)## [S7 3745 ## 08:45 ## 13:55 ## AYT S7 Airlines Antalya](https://www.flightstats.com/v2/flight-tracker/S7/3745?year=2026&month=5&date=22&flightId=1384944442)## [S7 2049 ## 08:55 ## 12:40 ## AER S7 Airlines Adler/Sochi](https://www.flightstats.com/v2/flight-tracker/S7/2049?year=2026&month=5&date=22&flightId=1384944414)## [U6 3555 ## 09:00 ## 14:05 ## AYT Ural Airlines Antalya](https://www.flightstats.com/v2/flight-tracker/U6/3555?year=2026&month=5&date=22&flightId=1384954646)## [U6 371 ## 09:00 ## 10:45 ## KGD Ural Airlines Kaliningrad](https://www.flightstats.com/v2/flight-tracker/U6/371?year=2026&month=5&date=22&flightId=1384954647)## [S7 1003 ## 09:30 ## 11:05 ## LED S7 Airlines Saint Petersburg](https://www.flightstats.com/v2/flight-tracker/S7/1003?year=2026&month=5&date=22&flightId=1384944375)## [QNT 708 ## 09:40 ## 15:30 ## TAS Qanot Sharq Tashkent](https://www.flightstats.com/v2/flight-tracker/QNT/708?year=2026&month=5&date=22&flightId=1384916921)## [TYA 533 ## 09:45 ## 18:25 ## KJA NordStar Krasnojarsk](https://www.flightstats.com/v2/flight-tracker/TYA/533?year=2026&month=5&date=22&flightId=1384974993)## [S7 3749 ## 09:55 ## 15:10 ## ISL S7 Airlines Istanbul](https://www.flightstats.com/v2/flight-tracker/S7/3749?year=2026&month=5&date=22&flightId=1384944463)## [U6 261 ## 10:00 ## 14:30 ## SVX Ural Airlines Yekaterinburg](https://www.flightstats.com/v2/flight-tracker/U6/261?year=2026&month=5&date=22&flightId=1384954585)## [U6 783 ## 10:05 ## 15:20 ## ISL Ural Airlines Istanbul](https://www.flightstats.com/v2/flight-tracker/U6/783?year=2026&month=5&date=22&flightId=1384954655)## [U6 1387 ## 10:15 ## 13:20 ## OGZ Ural Airlines Vladikavkaz](https://www.flightstats.com/v2/flight-tracker/U6/1387?year=2026&month=5&date=22&flightId=1384954535)## [IAE 469 ## 10:30 ## 15:00 ## GYD IrAero Baku](https://www.flightstats.com/v2/flight-tracker/IAE/469?year=2026&month=5&date=22&flightId=1384919795)## [S7 1135 ## 10:35 ## 14:40 ## UFA S7 Airlines Ufa](https://www.flightstats.com/v2/flight-tracker/S7/1135?year=2026&month=5&date=22&flightId=1384944390)## [S7 3235 ## 10:35 ## 16:35 ## ASB S7 Airlines Ashgabat](https://www.flightstats.com/v2/flight-tracker/S7/3235?year=2026&month=5&date=22&flightId=1384944454)## [TEZ 1702 ## 10:40 ## 18:00 ## FRU Tez Jet Airlines Bishkek](https://www.flightstats.com/v2/flight-tracker/TEZ/1702?year=2026&month=5&date=22&flightId=1384923793)## [U6 153 ## 10:40 ## 13:55 ## MRV Ural Airlines Mineralnye Vody](https://www.flightstats.com/v2/flight-tracker/U6/153?year=2026&month=5&date=22&flightId=1384954563)## [U6 109 ## 11:00 ## 14:40 ## KRR Ural Airlines Krasnodar](https://www.flightstats.com/v2/flight-tracker/U6/109?year=2026&month=5&date=22&flightId=1384954543)## [Z7 966 ## 11:05 ## 18:15 ## OSS Avia Traffic Company Osh](https://www.flightstats.com/v2/flight-tracker/Z7/966?year=2026&month=5&date=22&flightId=1384975298)## [U6 427 ## 11:10 ## 14:10 ## GRV Ural Airlines Groznyy](https://www.flightstats.com/v2/flight-tracker/U6/427?year=2026&month=5&date=22&flightId=1384954671)## [S7 2167 ## 11:15 ## 14:40 ## MRV S7 Airlines Mineralnye Vody](https://www.flightstats.com/v2/flight-tracker/S7/2167?year=2026&month=5&date=22&flightId=1384944408)
+
+«
+
+←
+
+1
+
+2
+
+→
+
+»
+
+[Cookies Settings](https://www.flightstats.com/v2/flight-tracker/departures/DME?year=2026&month=5&date=22&hour=7)[Cookie Policy](https://risk.lexisnexis.com/corporate/cookie-policy)[Privacy Policy](https://risk.lexisnexis.com/corporate/privacy-policy)[Terms of Use](https://www.flightstats.com/company/legal/terms-of-use)[Security](https://risk.lexisnexis.com/contact-us#security)[Sitemap](https://www.flightstats.com/v2/sitemap)[Copyright](https://risk.lexisnexis.com/group/copyright)© 2026 LNRS Data Services
+
+[Contact Us](https://www.cirium.com/about/contact-us/)
+
+Version v8.1.2-nxt[![Image 4: RELX Group](https://assets.flightstats.com/common/Relx-OrangeWhite@2x.png)](http://www.relx.com/)
+
+We use cookies to analyze and improve our service, to improve and personalize content, advertising and your digital experience. We also share information about your use of our site with our social media, advertising and analytics partners. [Cookie Policy](https://privacy.rxglobal.com/en-us/cookie-policy.html)
+
+Cookies Settings Accept All Cookies
+
+![Image 5: Company Logo](https://cdn.cookielaw.org/logos/static/ot_company_logo.png)
+
+## Cookie Preference Center
+
+## Cookie Preference Center
+
+*   ### Your Privacy 
+*   ### Strictly Necessary Cookies 
+*   ### Performance Cookies 
+*   ### Functional Cookies 
+*   ### Targeting Cookies 
+
+#### Your Privacy
+
+We process your information, to deliver content or advertisements and measure the delivery of such content or advertisements, extract insights, and generate reports to understand service usage; and/or accessing or storing information on devices for that purpose. 
+
+ You can choose not to allow some types of cookies. However, blocking some types of cookies may impact your experience of the site and the services we are able to offer. Click on the different category headings to find out more, to change our default settings, and/or view the list of [Google Ad-Tech Vendors](https://support.google.com/admanager/answer/9012903). 
+
+[Cookie Policy](https://privacy.reedexpo.com/en-us/cookie-policy.html)
+
+#### Strictly Necessary Cookies
+
+Always Active
+
+These cookies are necessary for the website to function and cannot be switched off in our systems. They are usually only set in response to actions made by you which amount to a request for services, such as setting your privacy preferences, logging in or filling in forms. You can set your browser to block or alert you about these cookies, but some parts of the site will not then work.
+
+Cookies Details‎
+
+#### Performance Cookies
+
+- [x] Performance Cookies 
+
+These cookies allow us to count visits and traffic sources so we can measure and improve the performance of our site. They help us to know which pages are the most and least popular and see how visitors move around the site.
+
+Cookies Details‎
+
+#### Functional Cookies
+
+- [x] Functional Cookies 
+
+These cookies enable the website to provide enhanced functionality and personalization. They may be set by us or by third party providers whose services we have added to our pages. If you do not allow these cookies then some or all of these services may not function properly.
+
+Cookies Details‎
+
+#### Targeting Cookies
+
+- [x] Targeting Cookies 
+
+These cookies may be set through our site by our advertising partners. They may be used by those companies to build a profile of your interests and show you relevant adverts on other sites. If you do not allow these cookies, you will experience less targeted advertising.
+
+Cookies Details‎
+
+### Cookie List
+
+Consent Leg.Interest
+
+- [x] checkbox label label
+
+- [x] checkbox label label
+
+- [x] checkbox label label
+
+Clear
+
+- [x] checkbox label label
+
+Apply Cancel
+
+Confirm My Choices
+
+Allow All
+
+[![Image 6: Powered by Onetrust](https://cdn.cookielaw.org/logos/static/powered_by_logo.svg)](https://www.onetrust.com/products/cookie-consent/)

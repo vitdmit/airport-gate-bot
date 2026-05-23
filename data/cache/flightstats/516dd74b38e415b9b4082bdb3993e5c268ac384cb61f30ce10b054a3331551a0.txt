@@ -1,0 +1,340 @@
+Title: Utair UT 559 Flight Tracker
+
+URL Source: https://www.flightstats.com/v2/flight-tracker/UT/559?year=2026&month=5&date=21&flightId=1384774351
+
+Markdown Content:
+# UT559 - Utair UT 559 Flight Tracker
+
+![Image 3](https://assets.flightstats.com/v2/backgrounds/Clouds.jpg)[![Image 4](https://assets.flightstats.com/v2/FSbyCLogo.png)](https://www.flightstats.com/v2)
+
+Follow us on
+
+[](https://twitter.com/cirium)[](https://www.linkedin.com/company/cirium)[](https://www.youtube.com/c/Cirium)
+
+[Create Account](https://www.flightstats.com/v2/register/plan)[Login](https://www.flightstats.com/v2/account/login)
+
+[Flights](https://www.flightstats.com/v2/flight-tracker/UT/559?year=2026&month=5&date=21&flightId=1384774351)
+
+    *   [Flight Tracker](https://www.flightstats.com/v2/flight-tracker/search)
+
+    *   [Historical Flight Status](https://www.flightstats.com/v2/historical-flight/search)
+
+    *   [Alerts](https://www.flightstats.com/v2/flight-alerts/home)
+
+[Airports](https://www.flightstats.com/v2/flight-tracker/UT/559?year=2026&month=5&date=21&flightId=1384774351)
+
+    *   [Current Conditions](https://www.flightstats.com/v2/airport-conditions/search)
+
+    *   [Departures and Arrivals](https://www.flightstats.com/v2/airports/departing-arriving/search)
+
+    *   [Airport Delays](https://www.flightstats.com/v2/airport-delays)
+
+[On-Time Performance](https://www.flightstats.com/v2/flight-tracker/UT/559?year=2026&month=5&date=21&flightId=1384774351)
+
+    *   [On-Time Performance Reports](https://www.cirium.com/resources/on-time-performance/?cmpid=ilc%7Cotp%7CCIALD_202501_glob_mul%7C2024-OTP-Annual-Report_m&sfid=701dP000008LIGgQAO)
+
+    *   [On-Time Monthly Update](https://www.cirium.com/thoughtcloud/cirium-monthly-on-time-performance-reports/?cmpid=ilc%7Cotp%7CCIALD_202501_glob_mul%7C2024-OTP-Annual-Report_m&sfid=701dP000008LIGgQAO)
+
+    *   [On-Time Performance Articles](https://www.cirium.com/thoughtcloud/?cmpid=ilc|otp|CIALD_202501_glob_mul|2024-OTP-articles_m&sfid=701dP000008LIGgQAO)
+
+[Cirium](https://www.flightstats.com/v2/flight-tracker/UT/559?year=2026&month=5&date=21&flightId=1384774351)
+
+    *   [About](https://www.cirium.com/about/)
+
+    *   [Cirium](https://www.cirium.com/)
+
+    *   [Thought Cloud](https://www.cirium.com/thoughtcloud/)
+
+[Resources](https://www.flightstats.com/v2/flight-tracker/UT/559?year=2026&month=5&date=21&flightId=1384774351)
+
+    *   [Support](https://helpdesk.cirium.com/s/topic/0TOJ5000000TNJ1OAO/flightstats-by-cirium)
+
+    *   [Developer Studio](https://developer.cirium.com/?inctmp=flightstats-resources-menu)
+
+    *   [Careers](https://relx.wd3.myworkdayjobs.com/ciriumcareers)
+
+    *   [Contact](https://www.cirium.com/contact-us/?cmpid=ILC%7CCIR%7CCIR-flightstats-contact)
+
+[My FlightStats](https://www.flightstats.com/v2/flight-tracker/UT/559?year=2026&month=5&date=21&flightId=1384774351)
+
+    *   [My Alerts](https://www.flightstats.com/v2/flight-alerts/home)
+
+    *   [My Account](https://www.flightstats.com/v2/my-account/profile)
+
+## Track a Flight
+
+[SEARCH](https://www.flightstats.com/v2/flight-tracker/UT/559?year=2026&month=5&date=21&flightId=1384774351)
+
+[ADVANCED SEARCH](https://www.flightstats.com/v2/flight-tracker/search)
+
+# (UT) Utair 559 Flight Tracker
+
+#### Unknown Final Status
+
+We were unable to determine the final status of this flight. Please contact the airline for more details.
+
+## Flight Status
+
+UT 559
+
+Utair
+
+[VKO](https://www.flightstats.com/v2/airport-conditions/VKO)
+
+Moscow
+
+[MCX](https://www.flightstats.com/v2/airport-conditions/MCX)
+
+Makhachkala
+
+Unknown
+
+[VKO](https://www.flightstats.com/v2/airport-conditions/VKO)
+
+Moscow, RU
+
+Moscow Vnukovo International Airport
+
+Flight Departure Times
+
+21-May-2026
+
+Scheduled
+
+23:55 MSK
+
+Actual
+
+00:40 MSK
+
+Terminal
+
+A
+
+Gate
+
+N/A
+
+[MCX](https://www.flightstats.com/v2/airport-conditions/MCX)
+
+Makhachkala, RU
+
+Makhachkala Uytash Airport
+
+Flight Arrival Times
+
+22-May-2026
+
+Scheduled
+
+02:55 MSK
+
+Estimated
+
+--
+
+Terminal
+
+N/A
+
+Gate
+
+N/A
+
+[VIEW FLIGHT DETAILS](https://www.flightstats.com/v2/flight-details/UT/559?year=2026&month=5&date=21&flightId=1384774351)[ON-TIME PERFORMANCE](https://www.flightstats.com/v2/flight-ontime-performance-rating/UT/559/VKO)[AIRPORT DELAYS](https://www.flightstats.com/v2/airport-delays/europe)[VKO AIRPORT CONDITIONS](https://www.flightstats.com/v2/airport-conditions/VKO)[MCX AIRPORT CONDITIONS](https://www.flightstats.com/v2/airport-conditions/MCX)[REFRESH DATA](https://www.flightstats.com/v2/flight-tracker/UT/559?year=2026&month=5&date=21&flightId=1384774351)
+
+## Additional Details
+
+### Aircraft Equipment
+
+#### Code
+
+##### 73H
+
+#### Description
+
+##### Boeing 737-800 (winglets) Passenger/BBJ2
+
+## Past and Upcoming Flights
+
+For flights prior to the results below, please use our[Historical Flight Status](https://www.flightstats.com/v2/historical-flight/search)feature.
+
+21-May
+
+20-May
+
+21-May
+
+22-May
+
+23-May
+
+24-May
+
+25-May
+
+26-May
+
+Flights for Wednesday, 20-May-2026
+
+Departure Time
+
+Origin
+
+Destination
+
+Arrival Time
+
+[23:55 MSK VKO Moscow MCX Makhachkala 02:55 MSK](https://www.flightstats.com/v2/flight-tracker/UT/559?year=2026&month=05&date=20&flightId=1384588103)
+
+Flights for Thursday, 21-May-2026
+
+One Flight This Day
+
+You are currently viewing the only flight for this day
+
+Flights for Friday, 22-May-2026
+
+Departure Time
+
+Origin
+
+Destination
+
+Arrival Time
+
+[23:55 MSK VKO Moscow MCX Makhachkala 02:55 MSK](https://www.flightstats.com/v2/flight-tracker/UT/559?year=2026&month=05&date=22&flightId=1384961229)
+
+Flights for Saturday, 23-May-2026
+
+Departure Time
+
+Origin
+
+Destination
+
+Arrival Time
+
+[23:55 MSK VKO Moscow MCX Makhachkala 02:55 MSK](https://www.flightstats.com/v2/flight-tracker/UT/559?year=2026&month=05&date=23&flightId=1385150488)
+
+Flights for Sunday, 24-May-2026
+
+Departure Time
+
+Origin
+
+Destination
+
+Arrival Time
+
+[23:55 MSK VKO Moscow MCX Makhachkala 02:55 MSK](https://www.flightstats.com/v2/flight-tracker/UT/559?year=2026&month=05&date=24&flightId=1385349136)
+
+Flights for Monday, 25-May-2026
+
+Departure Time
+
+Origin
+
+Destination
+
+Arrival Time
+
+[23:55 MSK VKO Moscow MCX Makhachkala 02:55 MSK](https://www.flightstats.com/v2/flight-tracker/UT/559?year=2026&month=05&date=25&flightId=1385554321)
+
+Flights for Tuesday, 26-May-2026
+
+No Flight Information Available
+
+According to our data, this flight is not scheduled to fly on this date
+
+## Mobile Applications for the Active Traveler
+
+### Over 10 million people have downloaded our FlightStats mobile apps!
+
+#### try it out today!
+
+[](https://itunes.apple.com/app/apple-store/id572700574?pt=829440&ct=flightstats.com&mt=8)[](https://play.google.com/store/apps/details?id=com.conducivetech.android.traveler&referrer=utm_source%3Dflightstats.com)
+
+[Cookies Settings](https://www.flightstats.com/v2/flight-tracker/UT/559?year=2026&month=5&date=21&flightId=1384774351)[Cookie Policy](https://risk.lexisnexis.com/corporate/cookie-policy)[Privacy Policy](https://risk.lexisnexis.com/corporate/privacy-policy)[Terms of Use](https://www.flightstats.com/company/legal/terms-of-use)[Security](https://risk.lexisnexis.com/contact-us#security)[Sitemap](https://www.flightstats.com/v2/sitemap)[Copyright](https://risk.lexisnexis.com/group/copyright)© 2026 LNRS Data Services
+
+[Contact Us](https://www.cirium.com/about/contact-us/)
+
+Version v8.1.2-nxt[![Image 5: RELX Group](https://assets.flightstats.com/common/Relx-OrangeWhite@2x.png)](http://www.relx.com/)
+
+We use cookies to analyze and improve our service, to improve and personalize content, advertising and your digital experience. We also share information about your use of our site with our social media, advertising and analytics partners. [Cookie Policy](https://privacy.rxglobal.com/en-us/cookie-policy.html)
+
+Cookies Settings Accept All Cookies
+
+![Image 6: Company Logo](https://cdn.cookielaw.org/logos/static/ot_company_logo.png)
+
+## Cookie Preference Center
+
+## Cookie Preference Center
+
+*   ### Your Privacy 
+*   ### Strictly Necessary Cookies 
+*   ### Performance Cookies 
+*   ### Functional Cookies 
+*   ### Targeting Cookies 
+
+#### Your Privacy
+
+We process your information, to deliver content or advertisements and measure the delivery of such content or advertisements, extract insights, and generate reports to understand service usage; and/or accessing or storing information on devices for that purpose. 
+
+ You can choose not to allow some types of cookies. However, blocking some types of cookies may impact your experience of the site and the services we are able to offer. Click on the different category headings to find out more, to change our default settings, and/or view the list of [Google Ad-Tech Vendors](https://support.google.com/admanager/answer/9012903). 
+
+[Cookie Policy](https://privacy.reedexpo.com/en-us/cookie-policy.html)
+
+#### Strictly Necessary Cookies
+
+Always Active
+
+These cookies are necessary for the website to function and cannot be switched off in our systems. They are usually only set in response to actions made by you which amount to a request for services, such as setting your privacy preferences, logging in or filling in forms. You can set your browser to block or alert you about these cookies, but some parts of the site will not then work.
+
+Cookies Details‎
+
+#### Performance Cookies
+
+- [x] Performance Cookies 
+
+These cookies allow us to count visits and traffic sources so we can measure and improve the performance of our site. They help us to know which pages are the most and least popular and see how visitors move around the site.
+
+Cookies Details‎
+
+#### Functional Cookies
+
+- [x] Functional Cookies 
+
+These cookies enable the website to provide enhanced functionality and personalization. They may be set by us or by third party providers whose services we have added to our pages. If you do not allow these cookies then some or all of these services may not function properly.
+
+Cookies Details‎
+
+#### Targeting Cookies
+
+- [x] Targeting Cookies 
+
+These cookies may be set through our site by our advertising partners. They may be used by those companies to build a profile of your interests and show you relevant adverts on other sites. If you do not allow these cookies, you will experience less targeted advertising.
+
+Cookies Details‎
+
+### Cookie List
+
+Consent Leg.Interest
+
+- [x] checkbox label label
+
+- [x] checkbox label label
+
+- [x] checkbox label label
+
+Clear
+
+- [x] checkbox label label
+
+Apply Cancel
+
+Confirm My Choices
+
+Allow All
+
+[![Image 7: Powered by Onetrust](https://cdn.cookielaw.org/logos/static/powered_by_logo.svg)](https://www.onetrust.com/products/cookie-consent/)
