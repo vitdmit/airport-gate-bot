@@ -1,0 +1,74 @@
+Title: (SVO Departures) Moscow Sheremetyevo International Airport Departures
+
+URL Source: https://www.flightstats.com/v2/flight-tracker/departures/SVO?year=2026&month=5&date=23&hour=7
+
+Markdown Content:
+## (SVO) Moscow Sheremetyevo International Airport Departures 23-May-2026
+
+## SVO Departure Filters
+
+Departure Airport
+
+X
+
+Arrival Airport
+
+X
+
+Airline (optional)
+
+X
+
+Date
+
+Time
+
+Show Codeshares?
+
+Show
+
+Hide
+
+138 results
+
+«
+
+←
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+→
+
+»
+
+[Flight Departure Time Arrival Time Destination](https://www.flightstats.com/v2/flight-tracker/departures/SVO?year=2026&month=5&date=23&hour=7)## [SU 1256 ## 06:10 ## 10:05 ## KRR Aeroflot Krasnodar](https://www.flightstats.com/v2/flight-tracker/SU/1256?year=2026&month=5&date=23&flightId=1385138016)## [SU 1270 ## 06:25 ## 08:05 ## KZN Aeroflot Kazan](https://www.flightstats.com/v2/flight-tracker/SU/1270?year=2026&month=5&date=23&flightId=1385138027)## [SU 1266 ## 06:55 ## 10:50 ## KRR Aeroflot Krasnodar](https://www.flightstats.com/v2/flight-tracker/SU/1266?year=2026&month=5&date=23&flightId=1385138009)## [SU 1534 ## 07:00 ## 11:30 ## CEK Aeroflot Chelyabinsk](https://www.flightstats.com/v2/flight-tracker/SU/1534?year=2026&month=5&date=23&flightId=1385138239)## [DP*6961 ## 07:00 ## 10:35 ## ASF Pobeda Astrakhan](https://www.flightstats.com/v2/flight-tracker/DP*/6961?year=2026&month=5&date=23&flightId=1385398645)## [SU 6381 ## 07:05 ## 09:55 ## IJK Aeroflot / Operated by Rossiya Airlines on behalf of Aeroflot Izhevsk](https://www.flightstats.com/v2/flight-tracker/SU/6381?year=2026&month=5&date=23&flightId=1385138502)## [SU 6 ## 07:05 ## 08:35 ## LED Aeroflot Saint Petersburg](https://www.flightstats.com/v2/flight-tracker/SU/6?year=2026&month=5&date=23&flightId=1385138364)## [DP*6863 ## 07:10 ## 09:50 ## GSV Pobeda Saratov](https://www.flightstats.com/v2/flight-tracker/DP*/6863?year=2026&month=5&date=23&flightId=1385398629)## [SU 1264 ## 07:10 ## 11:15 ## KRR Aeroflot Krasnodar](https://www.flightstats.com/v2/flight-tracker/SU/1264?year=2026&month=5&date=23&flightId=1385138015)## [SU 1872 ## 07:10 ## 12:50 ## TAS Aeroflot Tashkent](https://www.flightstats.com/v2/flight-tracker/SU/1872?year=2026&month=5&date=23&flightId=1385138201)## [SU 6351 ## 07:15 ## 08:30 ## GOJ Aeroflot / Operated by Rossiya Airlines on behalf of Aeroflot Nizhniy Novgorod](https://www.flightstats.com/v2/flight-tracker/SU/6351?year=2026&month=5&date=23&flightId=1385138510)## [SU 426 ## 07:20 ## 13:45 ## SSH Aeroflot Sharm el Sheikh](https://www.flightstats.com/v2/flight-tracker/SU/426?year=2026&month=5&date=23&flightId=1385138304)## [SU 2172 ## 07:20 ## 12:20 ## ISL Aeroflot Istanbul](https://www.flightstats.com/v2/flight-tracker/SU/2172?year=2026&month=5&date=23&flightId=1385138311)## [DP*6921 ## 07:25 ## 10:25 ## MCX Pobeda Makhachkala](https://www.flightstats.com/v2/flight-tracker/DP*/6921?year=2026&month=5&date=23&flightId=1385398612)## [SU 1180 ## 07:25 ## 09:30 ## VOG Aeroflot Volgograd](https://www.flightstats.com/v2/flight-tracker/SU/1180?year=2026&month=5&date=23&flightId=1385137936)## [SU 6811 ## 07:30 ## 09:05 ## SKX Aeroflot / Operated by Rossiya Airlines on behalf of Aeroflot Saransk](https://www.flightstats.com/v2/flight-tracker/SU/6811?year=2026&month=5&date=23&flightId=1385138609)## [DP*6911 ## 07:30 ## 10:50 ## MRV Pobeda Mineralnye Vody](https://www.flightstats.com/v2/flight-tracker/DP*/6911?year=2026&month=5&date=23&flightId=1385398621)## [SU 438 ## 07:30 ## 13:55 ## SSH Aeroflot Sharm el Sheikh](https://www.flightstats.com/v2/flight-tracker/SU/438?year=2026&month=5&date=23&flightId=1385138293)## [SU 2142 ## 07:35 ## 12:50 ## AYT Aeroflot Antalya](https://www.flightstats.com/v2/flight-tracker/SU/2142?year=2026&month=5&date=23&flightId=1385138174)## [DP*6965 ## 07:40 ## 09:40 ## VOG Pobeda Volgograd](https://www.flightstats.com/v2/flight-tracker/DP*/6965?year=2026&month=5&date=23&flightId=1385398622)## [IK*1293 ## 07:40 ## 11:20 ## SUI Ikar Sukhumi](https://www.flightstats.com/v2/flight-tracker/IK*/1293?year=2026&month=5&date=23&flightId=1385098616)## [N4*1293 ## 07:40 ## 11:20 ## SUI Nordwind Airlines / Operated by Ikar Sukhumi](https://www.flightstats.com/v2/flight-tracker/N4*/1293?year=2026&month=5&date=23&flightId=1385098616)## [DP*6841 ## 07:40 ## 09:20 ## KZN Pobeda Kazan](https://www.flightstats.com/v2/flight-tracker/DP*/6841?year=2026&month=5&date=23&flightId=1385398633)## [AT 221 ## 07:45 ## 12:00 ## CMN Royal Air Maroc Casablanca](https://www.flightstats.com/v2/flight-tracker/AT/221?year=2026&month=5&date=23&flightId=1385081893)## [SU 1366 ## 07:45 ## 11:05 ## STW Aeroflot Stavropol](https://www.flightstats.com/v2/flight-tracker/SU/1366?year=2026&month=5&date=23&flightId=1385138036)
+
+«
+
+←
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+→
+
+»
