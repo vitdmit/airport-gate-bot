@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import html
 import re
@@ -23,11 +23,6 @@ BACKUP_BOARD_URL = "https://www.airports-worldwide.info/airport/{airport}/depart
 AIRPORT_INFORMATION_URL = "https://www.airportinformation.com/{airport}/departures"
 PLANEFINDER_DEPARTURES_URL = "https://planefinder.net/data/airport/{airport}/departures"
 FIDS_LIVE_DEPARTURES_URL = "https://www.fids.live/{airport}/departures"
-KUPI_TIMETABLE_URL = "https://www.kupi.com/en-ae/explore/russian-federation/moscow/{airport}/timetable"
-KUPI_AIRPORT_SLUGS = {
-    "DME": "domodedovo",
-    "VKO": "vnukovo",
-}
 JINA_READER_PREFIX = "https://r.jina.ai/"
 RUSSIAN_AIRPORT_IATAS = {
     "ABA", "AER", "ARH", "ASF", "BAX", "BQS", "BTK", "CEK", "CEE", "CSY",
@@ -94,7 +89,7 @@ def _enrich_svo_gates(flights: list[dict[str, Any]]) -> dict[str, Any]:
         except Exception as exc:
             errors.append(f"official SVO {period}: {exc}")
             continue
-        rows.extend(_parse_gate_rows(text, "официальный SVO"))
+        rows.extend(_parse_gate_rows(text, "РѕС„РёС†РёР°Р»СЊРЅС‹Р№ SVO"))
 
     filled, conflicts = _apply_gate_rows(flights, rows)
     missing_after_official = _count_missing_gates(flights)
@@ -134,7 +129,7 @@ def _enrich_vko_gates(flights: list[dict[str, Any]]) -> dict[str, Any]:
         except Exception as exc:
             errors.append(f"official VKO: {exc}")
             continue
-        rows.extend(_parse_gate_rows(text, "официальный VKO"))
+        rows.extend(_parse_gate_rows(text, "РѕС„РёС†РёР°Р»СЊРЅС‹Р№ VKO"))
 
     filled, conflicts = _apply_gate_rows(flights, rows)
     missing_after_official = _count_missing_gates(flights)
@@ -173,23 +168,12 @@ def _fetch_backup_rows(airport: str) -> tuple[list[GateRow], str]:
     planefinder_url = PLANEFINDER_DEPARTURES_URL.format(airport=airport)
     fids_live_url = FIDS_LIVE_DEPARTURES_URL.format(airport=airport.lower())
     airport_information_url = AIRPORT_INFORMATION_URL.format(airport=airport)
-    kupi_urls = (
-        [KUPI_TIMETABLE_URL.format(airport=KUPI_AIRPORT_SLUGS[airport])]
-        if airport in KUPI_AIRPORT_SLUGS
-        else []
-    )
     sources = [
         (planefinder_url, f"PlaneFinder {airport}"),
         (_reader_url(planefinder_url), f"PlaneFinder {airport} via Reader"),
         (fids_live_url, f"fids.live {airport}"),
-        *(
-            [(KUPI_TIMETABLE_URL.format(airport=KUPI_AIRPORT_SLUGS[airport]), f"Kupi {airport}")]
-            if airport in KUPI_AIRPORT_SLUGS
-            else []
-        ),
-        *[(_reader_url(url), f"Kupi {airport} via Reader") for url in kupi_urls],
         (airport_information_url, f"airportinformation.com {airport}"),
-        (BACKUP_BOARD_URL.format(airport=airport), f"доп. live-табло {airport}"),
+        (BACKUP_BOARD_URL.format(airport=airport), f"airports-worldwide {airport}"),
     ]
     for url, label in sources:
         try:
@@ -214,8 +198,6 @@ def _parse_gate_rows(text: str, source_label: str) -> list[GateRow]:
         return _parse_planefinder_rows(text, source_label)
     if "fids.live" in source_label.lower():
         return _parse_fids_live_rows(text, source_label)
-    if "kupi" in source_label.lower():
-        return _parse_kupi_rows(text, source_label)
     rows = _parse_html_table_rows(text, source_label)
     if rows:
         return rows
@@ -409,125 +391,8 @@ def _fids_live_page_is_current(text: str) -> bool:
     return month == today.month and int(match.group(2)) == today.day
 
 
-def _parse_kupi_rows(text: str, source_label: str) -> list[GateRow]:
-    if not _kupi_page_is_current(text):
-        return []
-
-    rows: list[GateRow] = []
-    lines = _plain_lines(text)
-    for idx, line in enumerate(lines):
-        times = _times_from_text(line)
-        if not times or not re.fullmatch(r"\d{1,2}:\d{2}", line):
-            continue
-        if (
-            idx > 0
-            and re.fullmatch(r"\d{1,2}:\d{2}", lines[idx - 1])
-            and idx + 1 < len(lines)
-            and _destination_iata_from_text(lines[idx + 1])
-        ):
-            continue
-
-        actual_time = ""
-        destination_idx = idx + 1
-        if destination_idx < len(lines):
-            possible_actual = _times_from_text(lines[destination_idx])
-            if (
-                possible_actual
-                and re.fullmatch(r"\d{1,2}:\d{2}", lines[destination_idx])
-                and destination_idx + 1 < len(lines)
-                and _destination_iata_from_text(lines[destination_idx + 1])
-            ):
-                actual_time = possible_actual[0]
-                destination_idx += 1
-
-        if destination_idx >= len(lines):
-            continue
-        destination_iata = _destination_iata_from_text(lines[destination_idx])
-        destination_name = _destination_name_from_text(lines[destination_idx])
-        if not destination_iata:
-            continue
-
-        flight_idx = -1
-        flight_codes: list[str] = []
-        for probe_idx in range(destination_idx + 1, min(destination_idx + 7, len(lines))):
-            flight_codes = _flight_codes_from_cell(lines[probe_idx])
-            if flight_codes:
-                flight_idx = probe_idx
-                break
-        if flight_idx < 0:
-            continue
-
-        status_idx = -1
-        for probe_idx in range(flight_idx + 1, min(flight_idx + 6, len(lines))):
-            if _looks_kupi_status(lines[probe_idx]):
-                status_idx = probe_idx
-                break
-        if status_idx < 0 or status_idx + 1 >= len(lines):
-            continue
-
-        if not actual_time:
-            status_times = _times_from_text(lines[status_idx])
-            if status_times:
-                actual_time = status_times[-1]
-
-        terminal, gate = _kupi_terminal_gate(lines[status_idx + 1])
-        if not gate:
-            continue
-
-        for flight_code in flight_codes:
-            rows.append(
-                GateRow(
-                    flight_code=flight_code,
-                    scheduled_time=times[0],
-                    actual_time=actual_time,
-                    terminal=terminal,
-                    gate=gate,
-                    destination_iata=destination_iata,
-                    destination_name=destination_name,
-                    source_label=source_label,
-                )
-            )
-    return rows
-
-
-def _kupi_page_is_current(text: str) -> bool:
-    match = re.search(r"\bDeparture date\s+(\d{1,2})\s+([A-Za-z]+),\s+today\b", text or "", re.I)
-    if not match:
-        return "Departure date" not in (text or "")
-
-    months = {
-        "january": 1,
-        "february": 2,
-        "march": 3,
-        "april": 4,
-        "may": 5,
-        "june": 6,
-        "july": 7,
-        "august": 8,
-        "september": 9,
-        "october": 10,
-        "november": 11,
-        "december": 12,
-    }
-    month = months.get(match.group(2).lower())
-    if not month:
-        return False
-    today = datetime.now(ZoneInfo(MOSCOW_TZ)).date()
-    return int(match.group(1)) == today.day and month == today.month
-
-
-def _looks_kupi_status(value: str) -> bool:
-    return bool(
-        re.search(
-            r"\b(?:arrived|cancelled|canceled|delayed|departed|in flight|on schedule|boarding|scheduled)\b",
-            value or "",
-            re.I,
-        )
-    )
-
-
-def _kupi_terminal_gate(value: str) -> tuple[str, str]:
-    text = _plain(value).upper().replace("—", "-").strip()
+def _removed_invalid_terminal_gate(value: str) -> tuple[str, str]:
+    text = _plain(value).upper().replace("вЂ”", "-").strip()
     text = re.sub(r"\s+", " ", text)
     if not text or text in {"-", "--", "N/A"}:
         return "", ""
@@ -610,13 +475,13 @@ def _parse_text_table_rows(text: str, source_label: str) -> list[GateRow]:
     rows: list[GateRow] = []
     plain = _plain(text)
     pattern = re.compile(
-        r"(?P<destination>[A-Za-zА-Яа-яёЁ \-/]+)?\s*"
+        r"(?P<destination>[A-Za-zРђ-РЇР°-СЏС‘РЃ \-/]+)?\s*"
         r"\((?P<iata>[A-Z]{3})\)\s+"
         r"(?P<time>\d{1,2}:\d{2}(?:\s+\d{1,2}:\d{2})?)\s+"
         r"(?P<status>.*?)\s+"
-        r"(?P<flight>[A-ZА-Я0-9]{1,3}\s*\d{1,4}[A-ZА-Я]?)\s+"
-        r"(?P<terminal>[A-ZА-Я]?)\s+"
-        r"(?P<gate>[A-ZА-Я]?\d{1,3}[A-ZА-Я]?(?:\d)?)\b",
+        r"(?P<flight>[A-ZРђ-РЇ0-9]{1,3}\s*\d{1,4}[A-ZРђ-РЇ]?)\s+"
+        r"(?P<terminal>[A-ZРђ-РЇ]?)\s+"
+        r"(?P<gate>[A-ZРђ-РЇ]?\d{1,3}[A-ZРђ-РЇ]?(?:\d)?)\b",
         re.I,
     )
     for match in pattern.finditer(plain):
@@ -708,10 +573,10 @@ def _append_gate_rows_as_flights(flights: list[dict[str, Any]], rows: list[GateR
                     "terminal": row.terminal,
                     "gate": row.gate,
                     "gateSource": row.source_label,
-                    "gateMatch": "доп. табло: рейс + плановое время",
+                    "gateMatch": "РґРѕРї. С‚Р°Р±Р»Рѕ: СЂРµР№СЃ + РїР»Р°РЅРѕРІРѕРµ РІСЂРµРјСЏ",
                 },
                 "dataQuality": data_quality,
-                "destinationSource": "резервное табло" if row.destination_iata or row.destination_name else "Flighty по номеру рейса" if template else "",
+                "destinationSource": "СЂРµР·РµСЂРІРЅРѕРµ С‚Р°Р±Р»Рѕ" if row.destination_iata or row.destination_name else "Flighty РїРѕ РЅРѕРјРµСЂСѓ СЂРµР№СЃР°" if template else "",
                 "originalTime": {"text": row.scheduled_time},
                 "newTime": {"text": row.actual_time},
                 "status": [{"type": "text", "text": "Scheduled"}],
@@ -739,11 +604,11 @@ def _flight_templates_by_code(flights: list[dict[str, Any]]) -> dict[str, dict[s
 def _extra_row_quality(row: GateRow, reused_flighty_direction: bool, has_direction: bool) -> str:
     notes: list[str] = []
     if row.destination_iata or row.destination_name:
-        notes.append("направление пришло из резервного live-табло")
+        notes.append("РЅР°РїСЂР°РІР»РµРЅРёРµ РїСЂРёС€Р»Рѕ РёР· СЂРµР·РµСЂРІРЅРѕРіРѕ live-С‚Р°Р±Р»Рѕ")
     elif reused_flighty_direction:
-        notes.append("направление восстановлено по номеру рейса из Flighty")
+        notes.append("РЅР°РїСЂР°РІР»РµРЅРёРµ РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРѕ РїРѕ РЅРѕРјРµСЂСѓ СЂРµР№СЃР° РёР· Flighty")
     elif not has_direction:
-        notes.append("направление не подтверждено резервным live-табло")
+        notes.append("РЅР°РїСЂР°РІР»РµРЅРёРµ РЅРµ РїРѕРґС‚РІРµСЂР¶РґРµРЅРѕ СЂРµР·РµСЂРІРЅС‹Рј live-С‚Р°Р±Р»Рѕ")
     return "; ".join(notes)
 
 
@@ -755,7 +620,7 @@ def _rows_from_cells(cells: list[str], source_label: str) -> list[GateRow]:
     else:
         return []
 
-    if "flight" in flight.lower() or "рейс" in flight.lower():
+    if "flight" in flight.lower() or "СЂРµР№СЃ" in flight.lower():
         return []
 
     flight_codes = _flight_codes_from_cell(flight)
@@ -820,12 +685,12 @@ def _apply_gate_rows(flights: list[dict[str, Any]], rows: list[GateRow]) -> tupl
 
         if current_gate:
             departure["gateSource"] = _append_value(
-                str(departure.get("gateSource") or "Flighty live-снимок"),
-                f"подтвержден {row.source_label}",
+                str(departure.get("gateSource") or "Flighty live-СЃРЅРёРјРѕРє"),
+                f"РїРѕРґС‚РІРµСЂР¶РґРµРЅ {row.source_label}",
             )
             departure["gateMatch"] = _append_value(
                 str(departure.get("gateMatch") or ""),
-                "рейс + время" if any(exact.get((code, value)) is row for value in times if value) else "рейс + направление",
+                "СЂРµР№СЃ + РІСЂРµРјСЏ" if any(exact.get((code, value)) is row for value in times if value) else "СЂРµР№СЃ + РЅР°РїСЂР°РІР»РµРЅРёРµ",
             )
             continue
 
@@ -833,7 +698,7 @@ def _apply_gate_rows(flights: list[dict[str, Any]], rows: list[GateRow]) -> tupl
         if row_terminal and not departure.get("terminal"):
             departure["terminal"] = row_terminal
         departure["gateSource"] = row.source_label
-        departure["gateMatch"] = "рейс + время" if any(exact.get((code, value)) is row for value in times if value) else "рейс + направление"
+        departure["gateMatch"] = "СЂРµР№СЃ + РІСЂРµРјСЏ" if any(exact.get((code, value)) is row for value in times if value) else "СЂРµР№СЃ + РЅР°РїСЂР°РІР»РµРЅРёРµ"
         flight["secondaryCorner"] = f"Gate {row_gate}"
         filled += 1
 
@@ -865,7 +730,7 @@ def _count_missing_gates(flights: list[dict[str, Any]]) -> int:
 def _known_gate(flight: dict[str, Any]) -> bool:
     departure = flight.get("departure") or {}
     gate = str(departure.get("gate") or "").strip()
-    return bool(gate and gate.lower() not in {"не указан", "not available", "n/a", "--", "$undefined"})
+    return bool(gate and gate.lower() not in {"РЅРµ СѓРєР°Р·Р°РЅ", "not available", "n/a", "--", "$undefined"})
 
 
 def _flight_code(flight: dict[str, Any]) -> str:
@@ -904,7 +769,7 @@ def _country_for_destination(destination_iata: str) -> str:
 
 def _flight_codes_from_cell(value: str) -> list[str]:
     codes: list[str] = []
-    tokens = re.findall(r"[A-ZА-Я0-9]+", (value or "").upper())
+    tokens = re.findall(r"[A-ZРђ-РЇ0-9]+", (value or "").upper())
     index = 0
     while index < len(tokens):
         code = ""
@@ -912,7 +777,7 @@ def _flight_codes_from_cell(value: str) -> list[str]:
         if (
             index + 1 < len(tokens)
             and _looks_airline_token(token)
-            and re.fullmatch(r"\d{1,5}[A-ZА-Я]?", tokens[index + 1])
+            and re.fullmatch(r"\d{1,5}[A-ZРђ-РЇ]?", tokens[index + 1])
         ):
             code = f"{token}{tokens[index + 1]}"
             index += 2
@@ -938,28 +803,28 @@ def _looks_airline_token(token: str) -> bool:
 
 
 def _normalize_code(value: str) -> str:
-    return re.sub(r"[^A-Za-zА-Яа-я0-9]", "", value or "").upper()
+    return re.sub(r"[^A-Za-zРђ-РЇР°-СЏ0-9]", "", value or "").upper()
 
 
 def _clean_gate(value: str) -> str:
-    text = _plain(value).upper().replace("А", "A").replace("В", "B").replace("С", "C")
+    text = _plain(value).upper().replace("Рђ", "A").replace("Р’", "B").replace("РЎ", "C")
     text = re.sub(r"\s+", "", text)
     if not text or text in {"-", "N/A", "$UNDEFINED"}:
         return ""
-    match = re.search(r"([A-ZА-Я]?\d{1,3}[A-ZА-Я]?(?:\d)?)", text)
+    match = re.search(r"([A-ZРђ-РЇ]?\d{1,3}[A-ZРђ-РЇ]?(?:\d)?)", text)
     return match.group(1) if match else ""
 
 
 def _clean_terminal(value: str) -> str:
     text = _plain(value).upper().strip()
-    match = re.search(r"[A-ZА-Я0-9]", text)
+    match = re.search(r"[A-ZРђ-РЇ0-9]", text)
     return match.group(0) if match else ""
 
 
 def _split_gate_terminal(gate: str, terminal: str) -> tuple[str, str]:
     gate = gate.upper().strip()
     terminal = terminal.upper().strip()
-    match = re.fullmatch(r"([BCD])(\d{3}[A-ZА-Я]?)", gate)
+    match = re.fullmatch(r"([BCD])(\d{3}[A-ZРђ-РЇ]?)", gate)
     if match:
         return match.group(2), terminal or match.group(1)
     return gate, terminal
@@ -1026,3 +891,4 @@ def _plain_lines(value: str) -> list[str]:
         for line in text.splitlines()
         if re.sub(r"\s+", " ", html.unescape(line).replace("\xa0", " ")).strip()
     ]
+

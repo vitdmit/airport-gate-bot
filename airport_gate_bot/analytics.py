@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import re
 from collections import defaultdict
@@ -8,7 +8,9 @@ from typing import Any
 
 DEPARTED_WORDS = ("departed", "landed", "arrived")
 CANCELLED_WORDS = ("cancel", "cancelled", "canceled")
-UNKNOWN_GATES = {"", "не указан", "not available", "n/a", "--", "$undefined", "none", "null"}
+REJECTED_GATE_SOURCE_MARKERS = ("kupi",)
+UNKNOWN_GATE = "\u043d\u0435 \u0443\u043a\u0430\u0437\u0430\u043d"
+UNKNOWN_GATES = {"", UNKNOWN_GATE, "РЅРµ СѓРєР°Р·Р°РЅ", "not available", "n/a", "--", "$undefined", "none", "null"}
 
 
 def latest_records_from_snapshots(snapshots: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -49,7 +51,7 @@ def build_operational_flights(
     groups: dict[tuple[Any, ...], list[dict[str, Any]]] = defaultdict(list)
     for record in filtered:
         minute = record["departure_dt"].replace(second=0, microsecond=0)
-        unknown_gate_guard = record["destination_iata"] if record["gate"] == "не указан" else ""
+        unknown_gate_guard = record["destination_iata"] if record["gate"] == "РЅРµ СѓРєР°Р·Р°РЅ" else ""
         key = (
             record["airport"],
             minute,
@@ -210,6 +212,10 @@ def normalize_flight(
     flight_code = f"{airline.get('iata', '').strip()} {str(flight.get('flightNumber', '')).strip()}".strip()
     arrival_country = str(arrival.get("countryCode") or "").upper() or _country_from_flag(arrival.get("flag", ""))
     gate = _normalize_gate(departure.get("gate"))
+    gate_source = str(departure.get("gateSource") or "").strip()
+    if _is_rejected_gate_source(gate_source):
+        gate = UNKNOWN_GATE
+        gate_source = "rejected: unreliable gate source"
 
     return {
         "flight_uid": str(flight.get("id") or f"{airport}-{flight_code}-{original_time}-{arrival.get('iata', '')}"),
@@ -221,7 +227,7 @@ def normalize_flight(
         "departure_dt": departure_dt,
         "scheduled_time": scheduled_dt.strftime("%H:%M"),
         "departure_time": departure_dt.strftime("%H:%M"),
-        "terminal": str(departure.get("terminal") or "").strip() or "не указан",
+        "terminal": str(departure.get("terminal") or "").strip() or "РЅРµ СѓРєР°Р·Р°РЅ",
         "gate": gate,
         "airline_iata": str(airline.get("iata") or "").strip(),
         "airline_name": str(airline.get("name") or "").strip(),
@@ -230,11 +236,11 @@ def normalize_flight(
         "destination": str(flight.get("city") or "").strip(),
         "destination_iata": str(arrival.get("iata") or "").strip(),
         "arrival_country": arrival_country,
-        "line_type": "ВВЛ" if arrival_country == "RU" else "МВЛ",
+        "line_type": "Р’Р’Р›" if arrival_country == "RU" else "РњР’Р›",
         "status": status,
         "is_departed": _contains_any(status, DEPARTED_WORDS),
         "is_cancelled": _contains_any(status, CANCELLED_WORDS),
-        "gate_source": str(departure.get("gateSource") or ("Flighty live-снимок" if gate != "не указан" else "")).strip(),
+        "gate_source": gate_source or ("Flighty live-снимок" if gate != UNKNOWN_GATE else ""),
         "gate_match": _unique_join([departure.get("gateMatch", ""), departure.get("gateConflict", "")]),
         "data_quality": str(flight.get("dataQuality") or "").strip(),
         "destination_source": str(flight.get("destinationSource") or ("Flighty" if flight.get("city") or arrival.get("iata") else "")).strip(),
@@ -293,6 +299,11 @@ def _contains_any(text: str, words: tuple[str, ...]) -> bool:
     return any(word in text_lower for word in words)
 
 
+def _is_rejected_gate_source(value: str) -> bool:
+    text_lower = (value or "").lower()
+    return any(marker in text_lower for marker in REJECTED_GATE_SOURCE_MARKERS)
+
+
 def _tracking_key(record: dict[str, Any]) -> str:
     flight_code = str(record.get("flight_code") or "").replace(" ", "").upper()
     destination_iata = str(record.get("destination_iata") or "").upper()
@@ -306,13 +317,13 @@ def _carry_forward_known_gate(previous: dict[str, Any], current: dict[str, Any])
     merged = dict(current)
     if not _has_known_gate(merged) and _has_known_gate(previous):
         merged["gate"] = previous["gate"]
-        if previous.get("terminal") and previous.get("terminal") != "не указан":
+        if previous.get("terminal") and previous.get("terminal") != "РЅРµ СѓРєР°Р·Р°РЅ":
             merged["terminal"] = previous["terminal"]
         if previous.get("gate_source"):
-            merged["gate_source"] = _unique_join([previous["gate_source"], "сохранен из более раннего live-снимка"])
-        carried_note = f"gate сохранен из снимка {previous['collected_at'].strftime('%H:%M')}"
+            merged["gate_source"] = _unique_join([previous["gate_source"], "СЃРѕС…СЂР°РЅРµРЅ РёР· Р±РѕР»РµРµ СЂР°РЅРЅРµРіРѕ live-СЃРЅРёРјРєР°"])
+        carried_note = f"gate СЃРѕС…СЂР°РЅРµРЅ РёР· СЃРЅРёРјРєР° {previous['collected_at'].strftime('%H:%M')}"
         merged["gate_match"] = _unique_join([previous.get("gate_match", ""), carried_note])
-        merged["data_quality"] = _unique_join([merged.get("data_quality", ""), "gate сохранен из более раннего live-снимка"])
+        merged["data_quality"] = _unique_join([merged.get("data_quality", ""), "gate СЃРѕС…СЂР°РЅРµРЅ РёР· Р±РѕР»РµРµ СЂР°РЅРЅРµРіРѕ live-СЃРЅРёРјРєР°"])
         merged["gate_carried_from"] = previous["collected_at"]
     return merged
 
@@ -324,7 +335,7 @@ def _has_known_gate(record: dict[str, Any]) -> bool:
 def _normalize_gate(value: Any) -> str:
     gate = str(value or "").strip()
     if is_unknown_gate(gate):
-        return "не указан"
+        return UNKNOWN_GATE
     return gate
 
 
@@ -362,3 +373,4 @@ def _timeline_text(rows: list[dict[str, Any]]) -> str:
 def _gate_sort_key(gate: str) -> tuple[int, str]:
     match = re.search(r"\d+", gate or "")
     return (int(match.group(0)) if match else 9999, gate or "")
+

@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 from datetime import date, datetime
 from pathlib import Path
@@ -28,28 +28,28 @@ def create_report(
     output_path.parent.mkdir(parents=True, exist_ok=True)
     wb = Workbook()
     ws_summary = wb.active
-    ws_summary.title = "Итог сутки"
-    ws_details = wb.create_sheet("Рейсы")
-    ws_gate_load = wb.create_sheet("Загрузка гейтов")
-    ws_gate_hours = wb.create_sheet("Гейты x часы")
-    ws_hours = wb.create_sheet("Часы")
-    ws_quality = wb.create_sheet("Качество")
-    ws_snapshots = wb.create_sheet("Снимки")
+    ws_summary.title = "РС‚РѕРі СЃСѓС‚РєРё"
+    ws_details = wb.create_sheet("Р РµР№СЃС‹")
+    ws_gate_load = wb.create_sheet("Р—Р°РіСЂСѓР·РєР° РіРµР№С‚РѕРІ")
+    ws_gate_hours = wb.create_sheet("Р“РµР№С‚С‹ x С‡Р°СЃС‹")
+    ws_hours = wb.create_sheet("Р§Р°СЃС‹")
+    ws_quality = wb.create_sheet("РљР°С‡РµСЃС‚РІРѕ")
+    ws_snapshots = wb.create_sheet("РЎРЅРёРјРєРё")
 
     _write_rows(
         ws_summary,
         [
             [
-                "Дата",
-                "Аэропорт",
-                "ВВЛ/МВЛ",
-                "Терминал",
-                "Гейт",
-                "Кол-во рейсов",
-                "Первый вылет",
-                "Последний вылет",
-                "Направления",
-                "Рейсы по времени",
+                "Р”Р°С‚Р°",
+                "РђСЌСЂРѕРїРѕСЂС‚",
+                "Р’Р’Р›/РњР’Р›",
+                "РўРµСЂРјРёРЅР°Р»",
+                "Р“РµР№С‚",
+                "РљРѕР»-РІРѕ СЂРµР№СЃРѕРІ",
+                "РџРµСЂРІС‹Р№ РІС‹Р»РµС‚",
+                "РџРѕСЃР»РµРґРЅРёР№ РІС‹Р»РµС‚",
+                "РќР°РїСЂР°РІР»РµРЅРёСЏ",
+                "Р РµР№СЃС‹ РїРѕ РІСЂРµРјРµРЅРё",
             ],
             *[
                 [
@@ -73,23 +73,23 @@ def create_report(
         ws_details,
         [
             [
-                "Дата",
-                "Аэропорт",
-                "ВВЛ/МВЛ",
-                "Терминал",
-                "Гейт",
-                "Время вылета факт/текущее",
-                "План",
-                "Авиакомпания",
-                "Рейс",
-                "Направление",
-                "Код",
-                "Статус",
-                "Кодшеринг строк",
-                "Источник гейта",
-                "Способ сопоставления",
-                "Качество данных",
-                "Источник",
+                "Р”Р°С‚Р°",
+                "РђСЌСЂРѕРїРѕСЂС‚",
+                "Р’Р’Р›/РњР’Р›",
+                "РўРµСЂРјРёРЅР°Р»",
+                "Р“РµР№С‚",
+                "Р’СЂРµРјСЏ РІС‹Р»РµС‚Р° С„Р°РєС‚/С‚РµРєСѓС‰РµРµ",
+                "РџР»Р°РЅ",
+                "РђРІРёР°РєРѕРјРїР°РЅРёСЏ",
+                "Р РµР№СЃ",
+                "РќР°РїСЂР°РІР»РµРЅРёРµ",
+                "РљРѕРґ",
+                "РЎС‚Р°С‚СѓСЃ",
+                "РљРѕРґС€РµСЂРёРЅРі СЃС‚СЂРѕРє",
+                "РСЃС‚РѕС‡РЅРёРє РіРµР№С‚Р°",
+                "РЎРїРѕСЃРѕР± СЃРѕРїРѕСЃС‚Р°РІР»РµРЅРёСЏ",
+                "РљР°С‡РµСЃС‚РІРѕ РґР°РЅРЅС‹С…",
+                "РСЃС‚РѕС‡РЅРёРє",
             ],
             *[
                 [
@@ -120,20 +120,20 @@ def create_report(
         ws_gate_load,
         [
             [
-                "Дата",
-                "Аэропорт",
-                "ВВЛ/МВЛ",
-                "Терминал",
-                "Гейт",
-                "Час",
-                "Время вылета",
-                "Авиакомпания",
-                "Рейс",
-                "Направление",
-                "Код направления",
-                "Кодшеринг строк",
-                "Источник гейта",
-                "Качество данных",
+                "Р”Р°С‚Р°",
+                "РђСЌСЂРѕРїРѕСЂС‚",
+                "Р’Р’Р›/РњР’Р›",
+                "РўРµСЂРјРёРЅР°Р»",
+                "Р“РµР№С‚",
+                "Р§Р°СЃ",
+                "Р’СЂРµРјСЏ РІС‹Р»РµС‚Р°",
+                "РђРІРёР°РєРѕРјРїР°РЅРёСЏ",
+                "Р РµР№СЃ",
+                "РќР°РїСЂР°РІР»РµРЅРёРµ",
+                "РљРѕРґ РЅР°РїСЂР°РІР»РµРЅРёСЏ",
+                "РљРѕРґС€РµСЂРёРЅРі СЃС‚СЂРѕРє",
+                "РСЃС‚РѕС‡РЅРёРє РіРµР№С‚Р°",
+                "РљР°С‡РµСЃС‚РІРѕ РґР°РЅРЅС‹С…",
             ],
             *[
                 [
@@ -161,7 +161,7 @@ def create_report(
     _write_rows(
         ws_gate_hours,
         [
-            ["Дата", "Аэропорт", "ВВЛ/МВЛ", "Терминал", "Гейт", "Всего", *hour_headers],
+            ["Р”Р°С‚Р°", "РђСЌСЂРѕРїРѕСЂС‚", "Р’Р’Р›/РњР’Р›", "РўРµСЂРјРёРЅР°Р»", "Р“РµР№С‚", "Р’СЃРµРіРѕ", *hour_headers],
             *[
                 [
                     row["date"].isoformat(),
@@ -180,7 +180,7 @@ def create_report(
     _write_rows(
         ws_hours,
         [
-            ["Дата", "Аэропорт", "ВВЛ/МВЛ", "Час", "Кол-во рейсов"],
+            ["Р”Р°С‚Р°", "РђСЌСЂРѕРїРѕСЂС‚", "Р’Р’Р›/РњР’Р›", "Р§Р°СЃ", "РљРѕР»-РІРѕ СЂРµР№СЃРѕРІ"],
             *[
                 [row["date"].isoformat(), row["airport"], row["line_type"], row["hour"], row["flights_count"]]
                 for row in summarize_by_hour(operational)
@@ -192,7 +192,7 @@ def create_report(
     _write_rows(
         ws_quality,
         [
-            ["Проверка", "Аэропорт", "Значение"],
+            ["РџСЂРѕРІРµСЂРєР°", "РђСЌСЂРѕРїРѕСЂС‚", "Р—РЅР°С‡РµРЅРёРµ"],
             *quality_rows,
         ],
     )
@@ -227,32 +227,32 @@ def create_report(
         ws_snapshots,
         [
             [
-                "Собрано",
-                "Дата табло",
-                "Аэропорт",
-                "Строк в снимке",
-                "Строк с gate",
-                "Основной источник",
-                "Без gate до уточнения",
-                "Без gate после всех уточнений",
-                "Без gate после офиц. табло",
-                "Без gate после запасного табло",
-                "Офиц. табло проверено",
-                "Строк найдено в офиц. табло",
-                "Gate заполнен офиц. табло",
-                "Конфликты с офиц. табло",
-                "Ошибки офиц. табло",
-                "Ошибка DME",
-                "Строк найдено в запасном табло",
-                "Gate заполнен запасным табло",
-                "Ошибка запасного табло",
+                "РЎРѕР±СЂР°РЅРѕ",
+                "Р”Р°С‚Р° С‚Р°Р±Р»Рѕ",
+                "РђСЌСЂРѕРїРѕСЂС‚",
+                "РЎС‚СЂРѕРє РІ СЃРЅРёРјРєРµ",
+                "РЎС‚СЂРѕРє СЃ gate",
+                "РћСЃРЅРѕРІРЅРѕР№ РёСЃС‚РѕС‡РЅРёРє",
+                "Р‘РµР· gate РґРѕ СѓС‚РѕС‡РЅРµРЅРёСЏ",
+                "Р‘РµР· gate РїРѕСЃР»Рµ РІСЃРµС… СѓС‚РѕС‡РЅРµРЅРёР№",
+                "Р‘РµР· gate РїРѕСЃР»Рµ РѕС„РёС†. С‚Р°Р±Р»Рѕ",
+                "Р‘РµР· gate РїРѕСЃР»Рµ Р·Р°РїР°СЃРЅРѕРіРѕ С‚Р°Р±Р»Рѕ",
+                "РћС„РёС†. С‚Р°Р±Р»Рѕ РїСЂРѕРІРµСЂРµРЅРѕ",
+                "РЎС‚СЂРѕРє РЅР°Р№РґРµРЅРѕ РІ РѕС„РёС†. С‚Р°Р±Р»Рѕ",
+                "Gate Р·Р°РїРѕР»РЅРµРЅ РѕС„РёС†. С‚Р°Р±Р»Рѕ",
+                "РљРѕРЅС„Р»РёРєС‚С‹ СЃ РѕС„РёС†. С‚Р°Р±Р»Рѕ",
+                "РћС€РёР±РєРё РѕС„РёС†. С‚Р°Р±Р»Рѕ",
+                "РћС€РёР±РєР° DME",
+                "РЎС‚СЂРѕРє РЅР°Р№РґРµРЅРѕ РІ Р·Р°РїР°СЃРЅРѕРј С‚Р°Р±Р»Рѕ",
+                "Gate Р·Р°РїРѕР»РЅРµРЅ Р·Р°РїР°СЃРЅС‹Рј С‚Р°Р±Р»Рѕ",
+                "РћС€РёР±РєР° Р·Р°РїР°СЃРЅРѕРіРѕ С‚Р°Р±Р»Рѕ",
             ],
             *snapshot_rows,
             [],
-            ["Параметр", "Значение"],
-            ["Дата отчета", target_date.isoformat()],
-            ["Режим", mode_label or ("только фактически улетевшие" if factual_only else "предпросмотр: все не отмененные")],
-            ["Сформировано", datetime.now().isoformat(timespec="seconds")],
+            ["РџР°СЂР°РјРµС‚СЂ", "Р—РЅР°С‡РµРЅРёРµ"],
+            ["Р”Р°С‚Р° РѕС‚С‡РµС‚Р°", target_date.isoformat()],
+            ["Р РµР¶РёРј", mode_label or ("С‚РѕР»СЊРєРѕ С„Р°РєС‚РёС‡РµСЃРєРё СѓР»РµС‚РµРІС€РёРµ" if factual_only else "РїСЂРµРґРїСЂРѕСЃРјРѕС‚СЂ: РІСЃРµ РЅРµ РѕС‚РјРµРЅРµРЅРЅС‹Рµ")],
+            ["РЎС„РѕСЂРјРёСЂРѕРІР°РЅРѕ", datetime.now().isoformat(timespec="seconds")],
         ],
     )
 
@@ -291,7 +291,7 @@ def _format_sheet(ws) -> None:
         ws.column_dimensions[get_column_letter(col_idx)].width = width + 2
 
     if ws.max_row == 1:
-        ws.append(["Нет данных"])
+        ws.append(["РќРµС‚ РґР°РЅРЅС‹С…"])
         ws["A2"].font = BOLD_FONT
         ws["A2"].fill = SUBTLE_FILL
 
@@ -327,47 +327,47 @@ def _meta_text(meta: dict[str, Any], suffix: str) -> str:
 
 def _quality_rows(operational: list[dict[str, Any]]) -> list[list[Any]]:
     airports = sorted({row["airport"] for row in operational})
-    result: list[list[Any]] = [["Всего операционных вылетов", "Все", len(operational)]]
+    result: list[list[Any]] = [["Р’СЃРµРіРѕ РѕРїРµСЂР°С†РёРѕРЅРЅС‹С… РІС‹Р»РµС‚РѕРІ", "Р’СЃРµ", len(operational)]]
     for airport in airports:
         rows = [row for row in operational if row["airport"] == airport]
         result.extend(
             [
-                ["Всего операционных вылетов", airport, len(rows)],
-                ["ВВЛ", airport, sum(1 for row in rows if row["line_type"] == "ВВЛ")],
-                ["МВЛ", airport, sum(1 for row in rows if row["line_type"] == "МВЛ")],
-                ["Гейт не указан источником", airport, sum(1 for row in rows if is_unknown_gate(row["gate"]))],
-                ["Терминал не указан источником", airport, sum(1 for row in rows if row["terminal"] == "не указан")],
+                ["Р’СЃРµРіРѕ РѕРїРµСЂР°С†РёРѕРЅРЅС‹С… РІС‹Р»РµС‚РѕРІ", airport, len(rows)],
+                ["Р’Р’Р›", airport, sum(1 for row in rows if row["line_type"] == "Р’Р’Р›")],
+                ["РњР’Р›", airport, sum(1 for row in rows if row["line_type"] == "РњР’Р›")],
+                ["Р“РµР№С‚ РЅРµ СѓРєР°Р·Р°РЅ РёСЃС‚РѕС‡РЅРёРєРѕРј", airport, sum(1 for row in rows if is_unknown_gate(row["gate"]))],
+                ["РўРµСЂРјРёРЅР°Р» РЅРµ СѓРєР°Р·Р°РЅ РёСЃС‚РѕС‡РЅРёРєРѕРј", airport, sum(1 for row in rows if row["terminal"] == "РЅРµ СѓРєР°Р·Р°РЅ")],
                 [
-                    "Гейт пришел из Flighty live-снимка",
+                    "Р“РµР№С‚ РїСЂРёС€РµР» РёР· Flighty live-СЃРЅРёРјРєР°",
                     airport,
                     sum(1 for row in rows if "Flighty" in str(row.get("gate_source", ""))),
                 ],
                 [
-                    "Гейт заполнен официальным табло",
+                    "Р“РµР№С‚ Р·Р°РїРѕР»РЅРµРЅ РѕС„РёС†РёР°Р»СЊРЅС‹Рј С‚Р°Р±Р»Рѕ",
                     airport,
-                    sum(1 for row in rows if str(row.get("gate_source", "")).startswith("официальный")),
+                    sum(1 for row in rows if str(row.get("gate_source", "")).startswith("РѕС„РёС†РёР°Р»СЊРЅС‹Р№")),
                 ],
                 [
-                    "Гейт подтвержден официальным табло",
+                    "Р“РµР№С‚ РїРѕРґС‚РІРµСЂР¶РґРµРЅ РѕС„РёС†РёР°Р»СЊРЅС‹Рј С‚Р°Р±Р»Рѕ",
                     airport,
-                    sum(1 for row in rows if "подтвержден официальный" in str(row.get("gate_source", ""))),
+                    sum(1 for row in rows if "РїРѕРґС‚РІРµСЂР¶РґРµРЅ РѕС„РёС†РёР°Р»СЊРЅС‹Р№" in str(row.get("gate_source", ""))),
                 ],
                 [
-                    "Гейт сохранен из более раннего снимка",
+                    "Р“РµР№С‚ СЃРѕС…СЂР°РЅРµРЅ РёР· Р±РѕР»РµРµ СЂР°РЅРЅРµРіРѕ СЃРЅРёРјРєР°",
                     airport,
-                    sum(1 for row in rows if "более раннего live-снимка" in str(row.get("gate_source", ""))),
+                    sum(1 for row in rows if "Р±РѕР»РµРµ СЂР°РЅРЅРµРіРѕ live-СЃРЅРёРјРєР°" in str(row.get("gate_source", ""))),
                 ],
                 [
-                    "Гейт пришел из резервного live-источника",
+                    "Р“РµР№С‚ РїСЂРёС€РµР» РёР· СЂРµР·РµСЂРІРЅРѕРіРѕ live-РёСЃС‚РѕС‡РЅРёРєР°",
                     airport,
                     sum(1 for row in rows if _has_backup_gate_source(row.get("gate_source", ""))),
                 ],
                 [
-                    "Направление в live-снимке не подтверждено",
+                    "РќР°РїСЂР°РІР»РµРЅРёРµ РІ live-СЃРЅРёРјРєРµ РЅРµ РїРѕРґС‚РІРµСЂР¶РґРµРЅРѕ",
                     airport,
-                    sum(1 for row in rows if "направление в live-снимке не подтверждено" in str(row.get("data_quality", ""))),
+                    sum(1 for row in rows if "РЅР°РїСЂР°РІР»РµРЅРёРµ РІ live-СЃРЅРёРјРєРµ РЅРµ РїРѕРґС‚РІРµСЂР¶РґРµРЅРѕ" in str(row.get("data_quality", ""))),
                 ],
-                ["Схлопнутые кодшеринги", airport, sum(max((row.get("codeshare_rows") or 1) - 1, 0) for row in rows)],
+                ["РЎС…Р»РѕРїРЅСѓС‚С‹Рµ РєРѕРґС€РµСЂРёРЅРіРё", airport, sum(max((row.get("codeshare_rows") or 1) - 1, 0) for row in rows)],
             ]
         )
     return result
@@ -375,5 +375,7 @@ def _quality_rows(operational: list[dict[str, Any]]) -> list[list[Any]]:
 
 def _has_backup_gate_source(value: Any) -> bool:
     text = str(value or "")
-    markers = ("airportinformation.com", "fids.live", "PlaneFinder", "Kupi", "доп. live-табло")
+    markers = ("airportinformation.com", "fids.live", "PlaneFinder", "airports-worldwide")
     return any(marker in text for marker in markers)
+
+
