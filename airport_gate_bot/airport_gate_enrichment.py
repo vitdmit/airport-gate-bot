@@ -29,6 +29,16 @@ KUPI_AIRPORT_SLUGS = {
     "VKO": "vnukovo",
 }
 JINA_READER_PREFIX = "https://r.jina.ai/"
+RUSSIAN_AIRPORT_IATAS = {
+    "ABA", "AER", "ARH", "ASF", "BAX", "BQS", "BTK", "CEK", "CEE", "CSY",
+    "DME", "EGO", "EYK", "GDX", "GOJ", "GRV", "HTA", "IAR", "IKT", "IJK",
+    "IWA", "KHV", "KJA", "KLF", "KRR", "KUF", "KZN", "LED", "LPK", "MCX",
+    "MMK", "MQF", "MRV", "NAL", "NBC", "NJC", "NOZ", "NUX", "NVR", "NYM",
+    "OGZ", "OMS", "OVB", "PEE", "PES", "PEX", "PKC", "PKV", "PWE", "REN",
+    "ROV", "RTW", "SCW", "SGC", "SIP", "SLY", "STW", "SVX", "SVO", "TBW",
+    "TJM", "TOF", "UCT", "UFA", "ULV", "ULY", "URS", "USK", "VKO", "VOG",
+    "VOZ", "VVO", "YKS", "ZIA",
+}
 
 
 @dataclass(frozen=True)
@@ -39,6 +49,7 @@ class GateRow:
     terminal: str
     gate: str
     destination_iata: str
+    destination_name: str
     source_label: str
 
 
@@ -228,8 +239,11 @@ def _parse_planefinder_rows(text: str, source_label: str) -> list[GateRow]:
             continue
 
         destination_iata = ""
+        destination_name = ""
         for probe_idx in range(flight_idx + 1, min(flight_idx + 5, len(lines))):
             destination_iata = _destination_iata_from_text(lines[probe_idx])
+            if not destination_name:
+                destination_name = _destination_name_from_text(lines[probe_idx])
             if destination_iata:
                 break
 
@@ -259,6 +273,7 @@ def _parse_planefinder_rows(text: str, source_label: str) -> list[GateRow]:
                     terminal=terminal,
                     gate=gate,
                     destination_iata=destination_iata,
+                    destination_name=destination_name,
                     source_label=source_label,
                 )
             )
@@ -330,6 +345,8 @@ def _parse_fids_live_rows(text: str, source_label: str) -> list[GateRow]:
         gate = _clean_gate(lines[idx + 4])
         if not flight_codes or not gate:
             continue
+        destination_name = _destination_name_from_text(lines[idx + 1])
+        destination_iata = _destination_iata_from_text(lines[idx + 1])
 
         actual_time = ""
         status_times = _times_from_text(lines[idx + 3])
@@ -344,7 +361,8 @@ def _parse_fids_live_rows(text: str, source_label: str) -> list[GateRow]:
                     actual_time=actual_time,
                     terminal="",
                     gate=gate,
-                    destination_iata="",
+                    destination_iata=destination_iata,
+                    destination_name=destination_name,
                     source_label=source_label,
                 )
             )
@@ -411,6 +429,7 @@ def _parse_kupi_rows(text: str, source_label: str) -> list[GateRow]:
         if destination_idx >= len(lines):
             continue
         destination_iata = _destination_iata_from_text(lines[destination_idx])
+        destination_name = _destination_name_from_text(lines[destination_idx])
         if not destination_iata:
             continue
 
@@ -450,6 +469,7 @@ def _parse_kupi_rows(text: str, source_label: str) -> list[GateRow]:
                     terminal=terminal,
                     gate=gate,
                     destination_iata=destination_iata,
+                    destination_name=destination_name,
                     source_label=source_label,
                 )
             )
@@ -554,6 +574,8 @@ def _parse_airport_information_rows(text: str, source_label: str) -> list[GateRo
         gate = _clean_gate(lines[idx + 4])
         if not gate:
             continue
+        destination_iata = _destination_iata_from_text(destination)
+        destination_name = _destination_name_from_text(destination)
         for flight_code in _flight_codes_from_cell(flight_cell):
             rows.append(
                 GateRow(
@@ -562,7 +584,8 @@ def _parse_airport_information_rows(text: str, source_label: str) -> list[GateRo
                     actual_time="",
                     terminal="",
                     gate=gate,
-                    destination_iata="",
+                    destination_iata=destination_iata,
+                    destination_name=destination_name,
                     source_label=source_label,
                 )
             )
@@ -596,6 +619,7 @@ def _parse_text_table_rows(text: str, source_label: str) -> list[GateRow]:
                     terminal=match.group("terminal").upper(),
                     gate=gate,
                     destination_iata=match.group("iata").upper(),
+                    destination_name=_destination_name_from_text(match.group("destination") or ""),
                     source_label=source_label,
                 )
             )
@@ -611,6 +635,7 @@ def _dedupe_gate_rows(rows: list[GateRow]) -> list[GateRow]:
             row.scheduled_time,
             row.actual_time,
             row.destination_iata,
+            row.destination_name,
             row.terminal,
             row.gate,
         )
@@ -622,6 +647,7 @@ def _dedupe_gate_rows(rows: list[GateRow]) -> list[GateRow]:
 
 
 def _append_gate_rows_as_flights(flights: list[dict[str, Any]], rows: list[GateRow], airport: str) -> int:
+    templates = _flight_templates_by_code(flights)
     existing = {
         (
             _flight_code(flight),
@@ -647,19 +673,31 @@ def _append_gate_rows_as_flights(flights: list[dict[str, Any]], rows: list[GateR
         airline_iata, flight_number = _split_flight_code(row.flight_code)
         if not airline_iata or not flight_number:
             continue
+        template = templates.get(row.flight_code)
+        template_airline = (template.get("airline") if template else {}) or {}
+        template_arrival = (template.get("arrival") if template else {}) or {}
+        destination_iata = row.destination_iata or str(template_arrival.get("iata") or "").upper()
+        destination_country = _country_for_destination(destination_iata) or str(template_arrival.get("countryCode") or "")
+        destination_flag = str(template_arrival.get("flag") or "")
+        if destination_country == "RU" and not destination_flag:
+            destination_flag = "/flag/RU.svg"
+        destination_name = row.destination_name or str((template or {}).get("city") or "")
+        data_quality = _extra_row_quality(row, bool(template), bool(destination_iata or destination_name))
         flights.append(
             {
-                "id": f"{airport}-extra-gate-{row.flight_code}-{row.destination_iata}-{row.scheduled_time}",
-                "airline": {"iata": airline_iata, "name": ""},
+                "id": f"{airport}-extra-gate-{row.flight_code}-{destination_iata}-{row.scheduled_time}",
+                "airline": {"iata": airline_iata, "name": str(template_airline.get("name") or "")},
                 "flightNumber": flight_number,
-                "city": "",
-                "arrival": {"iata": row.destination_iata, "flag": ""},
+                "city": destination_name,
+                "arrival": {"iata": destination_iata, "flag": destination_flag, "countryCode": destination_country},
                 "departure": {
                     "terminal": row.terminal,
                     "gate": row.gate,
                     "gateSource": row.source_label,
                     "gateMatch": "доп. табло: рейс + плановое время",
                 },
+                "dataQuality": data_quality,
+                "destinationSource": "резервное табло" if row.destination_iata or row.destination_name else "Flighty по номеру рейса" if template else "",
                 "originalTime": {"text": row.scheduled_time},
                 "newTime": {"text": row.actual_time},
                 "status": [{"type": "text", "text": "Scheduled"}],
@@ -669,6 +707,30 @@ def _append_gate_rows_as_flights(flights: list[dict[str, Any]], rows: list[GateR
         existing_code_time.add((row.flight_code, row.scheduled_time))
         added += 1
     return added
+
+
+def _flight_templates_by_code(flights: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
+    templates: dict[str, dict[str, Any] | None] = {}
+    for flight in flights:
+        code = _flight_code(flight)
+        if not code:
+            continue
+        if code in templates:
+            templates[code] = None
+        else:
+            templates[code] = flight
+    return {code: flight for code, flight in templates.items() if flight is not None}
+
+
+def _extra_row_quality(row: GateRow, reused_flighty_direction: bool, has_direction: bool) -> str:
+    notes: list[str] = []
+    if row.destination_iata or row.destination_name:
+        notes.append("направление пришло из резервного live-табло")
+    elif reused_flighty_direction:
+        notes.append("направление восстановлено по номеру рейса из Flighty")
+    elif not has_direction:
+        notes.append("направление не подтверждено резервным live-табло")
+    return "; ".join(notes)
 
 
 def _rows_from_cells(cells: list[str], source_label: str) -> list[GateRow]:
@@ -689,6 +751,7 @@ def _rows_from_cells(cells: list[str], source_label: str) -> list[GateRow]:
         return []
 
     iata_match = re.search(r"\(([A-Z]{3})\)", destination or "")
+    destination_name = _destination_name_from_text(destination)
     return [
         GateRow(
             flight_code=flight_code,
@@ -697,6 +760,7 @@ def _rows_from_cells(cells: list[str], source_label: str) -> list[GateRow]:
             terminal=_clean_terminal(terminal),
             gate=gate,
             destination_iata=iata_match.group(1).upper() if iata_match else "",
+            destination_name=destination_name,
             source_label=source_label,
         )
         for flight_code in flight_codes
@@ -811,6 +875,17 @@ def _destination_iata_from_text(value: str) -> str:
     if not matches:
         return ""
     return matches[-1].upper()
+
+
+def _destination_name_from_text(value: str) -> str:
+    text = _plain(value)
+    text = re.sub(r"\(([A-Z]{3})\)", "", text)
+    text = re.sub(r"\b[A-Z]{3}\b$", "", text).strip(" ,-")
+    return text
+
+
+def _country_for_destination(destination_iata: str) -> str:
+    return "RU" if destination_iata.upper() in RUSSIAN_AIRPORT_IATAS else ""
 
 
 def _flight_codes_from_cell(value: str) -> list[str]:

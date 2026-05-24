@@ -88,6 +88,7 @@ def create_report(
                 "Кодшеринг строк",
                 "Источник гейта",
                 "Способ сопоставления",
+                "Качество данных",
                 "Источник",
             ],
             *[
@@ -107,6 +108,7 @@ def create_report(
                     row["codeshare_rows"],
                     row.get("gate_source", ""),
                     row.get("gate_match", ""),
+                    row.get("data_quality", ""),
                     row["source_url"],
                 ]
                 for row in operational
@@ -130,6 +132,8 @@ def create_report(
                 "Направление",
                 "Код направления",
                 "Кодшеринг строк",
+                "Источник гейта",
+                "Качество данных",
             ],
             *[
                 [
@@ -145,6 +149,8 @@ def create_report(
                     row["destination"],
                     row["destination_iata"],
                     row["codeshare_rows"],
+                    row.get("gate_source", ""),
+                    row.get("data_quality", ""),
                 ]
                 for row in gate_load_rows(operational)
             ],
@@ -351,7 +357,23 @@ def _quality_rows(operational: list[dict[str, Any]]) -> list[list[Any]]:
                     airport,
                     sum(1 for row in rows if "более раннего live-снимка" in str(row.get("gate_source", ""))),
                 ],
+                [
+                    "Гейт пришел из резервного live-источника",
+                    airport,
+                    sum(1 for row in rows if _has_backup_gate_source(row.get("gate_source", ""))),
+                ],
+                [
+                    "Направление в live-снимке не подтверждено",
+                    airport,
+                    sum(1 for row in rows if "направление в live-снимке не подтверждено" in str(row.get("data_quality", ""))),
+                ],
                 ["Схлопнутые кодшеринги", airport, sum(max((row.get("codeshare_rows") or 1) - 1, 0) for row in rows)],
             ]
         )
     return result
+
+
+def _has_backup_gate_source(value: Any) -> bool:
+    text = str(value or "")
+    markers = ("airportinformation.com", "fids.live", "PlaneFinder", "Kupi", "доп. live-табло")
+    return any(marker in text for marker in markers)

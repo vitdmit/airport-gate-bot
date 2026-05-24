@@ -26,6 +26,9 @@ class GateCandidate:
     departure_time: str
     collected_at: datetime
     source_url: str
+    gate_source: str
+    gate_match: str
+    data_quality: str
 
 
 def build_daily_rows(
@@ -54,18 +57,22 @@ def enrich_rows_with_snapshot_gates(
         if match and not current_gate_is_known:
             item["terminal"] = match.terminal or item.get("terminal") or UNKNOWN
             item["gate"] = match.gate
-            item["gate_source"] = "live-снимок"
-            item["gate_match"] = match_name
+            item["gate_source"] = _candidate_gate_source(match)
+            item["gate_match"] = _join_sources(match_name, match.gate_match)
+            item["data_quality"] = _join_sources(item.get("data_quality", ""), _candidate_quality(match))
             item["source_url"] = _join_sources(item.get("source_url", ""), match.source_url)
         elif match and current_gate_is_known:
-            item["gate_source"] = "post-fact источник; live подтвержден"
-            item["gate_match"] = match_name
+            item["gate_source"] = _join_sources("post-fact источник; live подтвержден", match.gate_source)
+            item["gate_match"] = _join_sources(match_name, match.gate_match)
+            item["data_quality"] = _join_sources(item.get("data_quality", ""), _candidate_quality(match))
         elif current_gate_is_known:
             item["gate_source"] = "post-fact источник"
             item["gate_match"] = ""
+            item["data_quality"] = item.get("data_quality", "")
         else:
             item["gate_source"] = "не найден"
             item["gate_match"] = ""
+            item["data_quality"] = item.get("data_quality", "")
 
         enriched.append(item)
 
@@ -100,6 +107,9 @@ def _build_gate_index(snapshots: list[dict[str, Any]], target_date: date) -> dic
                 departure_time=record["departure_time"],
                 collected_at=collected_at,
                 source_url=source_url,
+                gate_source=record.get("gate_source", ""),
+                gate_match=record.get("gate_match", ""),
+                data_quality=record.get("data_quality", ""),
             )
 
             normalized_code = _normalize_flight_code(candidate.flight_code)
@@ -144,6 +154,19 @@ def _find_best_candidate(row: dict[str, Any], index: dict[str, dict[tuple[str, .
     return candidate, f"{match_name}; confidence={score}"
 
 
+def _candidate_gate_source(candidate: GateCandidate) -> str:
+    return _join_sources("live-снимок", candidate.gate_source)
+
+
+def _candidate_quality(candidate: GateCandidate) -> str:
+    notes = []
+    if candidate.data_quality:
+        notes.append(candidate.data_quality)
+    if not candidate.destination_iata:
+        notes.append("направление в live-снимке не подтверждено; направление взято из post-fact источника")
+    return _join_sources(*notes)
+
+
 def _parse_date(value: str | None) -> date:
     if not value:
         return datetime.now().date()
@@ -183,9 +206,9 @@ def _first_time(value: Any) -> str:
     return match.group(0) if match else ""
 
 
-def _join_sources(left: str, right: str) -> str:
+def _join_sources(*values: Any) -> str:
     sources = []
-    for source in (left, right):
+    for source in values:
         source = str(source or "").strip()
         if source and source not in sources:
             sources.append(source)

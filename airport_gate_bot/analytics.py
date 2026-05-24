@@ -70,6 +70,7 @@ def build_operational_flights(
         statuses = _unique_join(item["status"] for item in items)
         gate_sources = _unique_join(item.get("gate_source", "") for item in items)
         gate_matches = _unique_join(item.get("gate_match", "") for item in items)
+        data_quality = _unique_join(item.get("data_quality", "") for item in items)
         operational.append(
             {
                 "date": departure_dt.date(),
@@ -88,6 +89,7 @@ def build_operational_flights(
                 "codeshare_rows": len(items),
                 "gate_source": gate_sources,
                 "gate_match": gate_matches,
+                "data_quality": data_quality,
             }
         )
 
@@ -163,6 +165,8 @@ def gate_load_rows(operational: list[dict[str, Any]]) -> list[dict[str, Any]]:
                 "destination": row["destination"],
                 "destination_iata": row["destination_iata"],
                 "codeshare_rows": row["codeshare_rows"],
+                "gate_source": row.get("gate_source", ""),
+                "data_quality": row.get("data_quality", ""),
             }
         )
     rows.sort(key=lambda item: (item["airport"], item["terminal"], item["gate"], item["time"], item["flight_numbers"]))
@@ -204,7 +208,7 @@ def normalize_flight(
     departure_dt = _combine_date_time(service_date, new_time, scheduled_dt) if new_time else scheduled_dt
     status = _status_text(flight.get("status", []))
     flight_code = f"{airline.get('iata', '').strip()} {str(flight.get('flightNumber', '')).strip()}".strip()
-    arrival_country = _country_from_flag(arrival.get("flag", ""))
+    arrival_country = str(arrival.get("countryCode") or "").upper() or _country_from_flag(arrival.get("flag", ""))
     gate = _normalize_gate(departure.get("gate"))
 
     return {
@@ -232,6 +236,8 @@ def normalize_flight(
         "is_cancelled": _contains_any(status, CANCELLED_WORDS),
         "gate_source": str(departure.get("gateSource") or ("Flighty live-снимок" if gate != "не указан" else "")).strip(),
         "gate_match": _unique_join([departure.get("gateMatch", ""), departure.get("gateConflict", "")]),
+        "data_quality": str(flight.get("dataQuality") or "").strip(),
+        "destination_source": str(flight.get("destinationSource") or ("Flighty" if flight.get("city") or arrival.get("iata") else "")).strip(),
     }
 
 
@@ -306,6 +312,7 @@ def _carry_forward_known_gate(previous: dict[str, Any], current: dict[str, Any])
             merged["gate_source"] = _unique_join([previous["gate_source"], "сохранен из более раннего live-снимка"])
         carried_note = f"gate сохранен из снимка {previous['collected_at'].strftime('%H:%M')}"
         merged["gate_match"] = _unique_join([previous.get("gate_match", ""), carried_note])
+        merged["data_quality"] = _unique_join([merged.get("data_quality", ""), "gate сохранен из более раннего live-снимка"])
         merged["gate_carried_from"] = previous["collected_at"]
     return merged
 
