@@ -1,0 +1,3536 @@
+{
+  "airport": "SVO",
+  "service_date": "2026-05-24",
+  "collected_at": "2026-05-24T20:00:40+03:00",
+  "source_url": "https://flighty.com/airports/sheremetyevo-intl-svo/departures",
+  "meta": {
+    "airport_name": "Sheremetyevo",
+    "slug": "sheremetyevo-intl-svo",
+    "type": "departures",
+    "phase": "DEPARTURE",
+    "rows": 80,
+    "svo_gate_enrichment_error": "bad character range ђ-Р at position 24"
+  },
+  "flights": [
+    {
+      "id": "7644cc85-8600-46e5-92e4-07ce5cb5795e",
+      "city": "Ulyanovsk",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "RED"
+        },
+        {
+          "type": "text",
+          "text": "Departure Overdue",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "19:00",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "20:00",
+        "style": "RED"
+      },
+      "secondaryCorner": "Gate 106",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "6079",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "106",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "ULV",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "B4",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "8ab88cdb-af96-4ca5-9b44-6bc5d8c4cb68",
+      "city": "Shanghai",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "RED"
+        },
+        {
+          "type": "text",
+          "text": "1h 5m Late",
+          "style": "RED"
+        }
+      ],
+      "originalTime": {
+        "text": "19:05",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "20:10",
+        "style": "RED"
+      },
+      "secondaryCorner": "Gate 126",
+      "airline": {
+        "id": "7c3dc023-a5b2-4d2d-9bd1-6adecdcf1f16",
+        "iata": "MU",
+        "name": "China Eastern"
+      },
+      "flightNumber": "592",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "C",
+        "gate": "126",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "PVG",
+        "terminal": "T1",
+        "gate": "",
+        "belt": "C3",
+        "flag": "/airports/svg/flag/CN.svg"
+      }
+    },
+    {
+      "id": "7f0d23a1-2fdd-4d48-82e3-53f86aee4611",
+      "city": "Saratov",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "GREEN"
+        },
+        {
+          "type": "text",
+          "text": "Departure Overdue",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "19:25",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 117",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "6489",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "117",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "GSV",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "B4",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "d964d634-808c-40bb-9068-7a85c2970d36",
+      "city": "Anadyr",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "RED"
+        },
+        {
+          "type": "text",
+          "text": "3h 25m Late",
+          "style": "RED"
+        }
+      ],
+      "originalTime": {
+        "text": "19:35",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "23:00",
+        "style": "RED"
+      },
+      "secondaryCorner": "Gate 103",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "6865",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "103",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "DYR",
+        "terminal": "",
+        "gate": "",
+        "belt": "B5",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "59de5409-bc25-4586-ab07-5d2de708aa4a",
+      "city": "Adler/Sochi",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "GREEN"
+        },
+        {
+          "type": "text",
+          "text": "Departed 2m Early",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "19:25",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "19:23",
+        "style": "REGULAR"
+      },
+      "secondaryCorner": "Gate 121",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "1130",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "121",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "AER",
+        "terminal": "T1",
+        "gate": "",
+        "belt": "B3",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "f7773fb0-f523-4b72-ab91-7c835cb66899",
+      "city": "Vladivostok",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "GREEN"
+        },
+        {
+          "type": "text",
+          "text": "Departure Overdue",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "19:40",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 104",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "1702",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "104",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "VVO",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "B3",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "276d5825-cd65-4fdb-9b1b-d38461f33655",
+      "city": "Saint Petersburg",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "GREEN"
+        },
+        {
+          "type": "text",
+          "text": "Departure Overdue",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "19:30",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 101",
+      "airline": {
+        "id": "c2378013-f6f7-49fc-b6b5-82437e540c59",
+        "iata": "FV",
+        "name": "Rossiya"
+      },
+      "flightNumber": "6093",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "101",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "LED",
+        "terminal": "T1",
+        "gate": "",
+        "belt": "",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "4c8100ae-765d-402a-a80e-aa52f3d8ca9e",
+      "city": "Tashkent",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "GREEN"
+        },
+        {
+          "type": "text",
+          "text": "Departure Overdue",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "19:40",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 140",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "1870",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "C",
+        "gate": "140",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "TAS",
+        "terminal": "T2",
+        "gate": "",
+        "belt": "C3",
+        "flag": "/airports/svg/flag/UZ.svg"
+      }
+    },
+    {
+      "id": "a8340753-b2e5-45fc-91ad-ef24fa6b818f",
+      "city": "Saint Petersburg",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "GREEN"
+        },
+        {
+          "type": "text",
+          "text": "Departure Overdue",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "19:30",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 101",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "6093",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "101",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "LED",
+        "terminal": "1",
+        "gate": "",
+        "belt": "B1",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "c8326200-6c93-456f-bae2-e6f209b9b302",
+      "city": "Saransk",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "GREEN"
+        },
+        {
+          "type": "text",
+          "text": "Departure Overdue",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "19:45",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 112",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "6827",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "112",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "SKX",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "B2",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "0f8a8ba4-02ca-42a0-b4c3-0aa71335bc1f",
+      "city": "Petropavlovsk-Kamchatsky",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "GREEN"
+        },
+        {
+          "type": "text",
+          "text": "Departure Overdue",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "19:50",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 119",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "1734",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "119",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "PKC",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "B2",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "af7188aa-e929-437a-8656-530e1208add0",
+      "city": "Murmansk",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "GREEN"
+        },
+        {
+          "type": "text",
+          "text": "Departed 8m Early",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "19:50",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "19:42",
+        "style": "REGULAR"
+      },
+      "secondaryCorner": "Gate 113",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "1322",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "113",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "MMK",
+        "terminal": "A",
+        "gate": "",
+        "belt": "B5",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "d49d93e5-aab9-4ff7-94e2-0f157adab925",
+      "city": "Samara",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "GREEN"
+        },
+        {
+          "type": "text",
+          "text": "Departed 2m Early",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "19:55",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "19:53",
+        "style": "REGULAR"
+      },
+      "secondaryCorner": "Gate 102",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "1604",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "102",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "KUF",
+        "terminal": "A",
+        "gate": "",
+        "belt": "B1",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "e3e326ce-9d41-49e5-b85b-2a248dd1fe9e",
+      "city": "Kazan",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "20:10",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 14",
+      "airline": {
+        "id": "94080a08-1388-41e3-9f5b-4274e1d70131",
+        "iata": "5N",
+        "name": "Smartavia"
+      },
+      "flightNumber": "227",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "D",
+        "gate": "14",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "KZN",
+        "terminal": "T1A",
+        "gate": "",
+        "belt": "",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "ff09de8c-b980-40e0-9f11-cfd688ffbbcc",
+      "city": "Saint Petersburg",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "GREEN"
+        },
+        {
+          "type": "text",
+          "text": "Departure Overdue",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "20:00",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 103",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "6703",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "103",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "LED",
+        "terminal": "1",
+        "gate": "",
+        "belt": "B3",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "acd313b1-20dd-4e1a-ae2b-047645026c8b",
+      "city": "Shanghai",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "GREEN"
+        },
+        {
+          "type": "text",
+          "text": "Departure Overdue",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "20:00",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 131",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "208",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "C",
+        "gate": "131",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "PVG",
+        "terminal": "2",
+        "gate": "",
+        "belt": "29",
+        "flag": "/airports/svg/flag/CN.svg"
+      }
+    },
+    {
+      "id": "20386282-eaf4-494d-b1ad-c9444c328153",
+      "city": "Magadan",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "20:10",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 111",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "6289",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "111",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "GDX",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "B1",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "aeb356b6-254a-4800-be5f-7877dbb33672",
+      "city": "Beijing",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "20:05",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 142",
+      "airline": {
+        "id": "0f72443f-2b6b-46d8-92f7-94f57e6c4bea",
+        "iata": "HU",
+        "name": "Hainan"
+      },
+      "flightNumber": "7986",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "C",
+        "gate": "142",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "PEK",
+        "terminal": "2",
+        "gate": "",
+        "belt": "3",
+        "flag": "/airports/svg/flag/CN.svg"
+      }
+    },
+    {
+      "id": "7b341c5b-fae1-4e8a-b70b-92d356eb4a19",
+      "city": "Kazan",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "20:15",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 123",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "6241",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "123",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "KZN",
+        "terminal": "T1A",
+        "gate": "",
+        "belt": "B3",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "3635ea27-c73d-43a3-aeac-1445dc2a3e3a",
+      "city": "Yuzhno-Sakhalinsk",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "ORANGE"
+        },
+        {
+          "type": "text",
+          "text": "22m Late",
+          "style": "ORANGE"
+        }
+      ],
+      "originalTime": {
+        "text": "20:20",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "20:42",
+        "style": "ORANGE"
+      },
+      "secondaryCorner": "Gate 107",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "5822",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "107",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "UUS",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "B6",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "3b486639-7895-46ac-94a6-6d811d5cb390",
+      "city": "Krasnojarsk",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "ORANGE"
+        },
+        {
+          "type": "text",
+          "text": "17m Late",
+          "style": "ORANGE"
+        }
+      ],
+      "originalTime": {
+        "text": "20:20",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "20:37",
+        "style": "ORANGE"
+      },
+      "secondaryCorner": "Gate 115",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "1480",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "115",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "KJA",
+        "terminal": "T1",
+        "gate": "",
+        "belt": "B6",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "26ce5582-c189-4145-a7a3-408d2c74d479",
+      "city": "Minsk",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "ORANGE"
+        },
+        {
+          "type": "text",
+          "text": "17m Late",
+          "style": "ORANGE"
+        }
+      ],
+      "originalTime": {
+        "text": "20:25",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "20:42",
+        "style": "ORANGE"
+      },
+      "secondaryCorner": "Gate 129",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "1844",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "C",
+        "gate": "129",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "MSQ",
+        "terminal": "MAIN",
+        "gate": "1",
+        "belt": "C1",
+        "flag": "/airports/svg/flag/BY.svg"
+      }
+    },
+    {
+      "id": "25eb8f32-3045-41db-850b-623afdf012f9",
+      "city": "Hong Kong",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "20:15",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 133",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "212",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "C",
+        "gate": "133",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "HKG",
+        "terminal": "1",
+        "gate": "",
+        "belt": "C8",
+        "flag": "/airports/svg/flag/HK.svg"
+      }
+    },
+    {
+      "id": "63b77c14-e98c-497e-8118-8e933ac4e810",
+      "city": "Nizhniy Novgorod",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "20:30",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 103",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "6235",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "103",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "GOJ",
+        "terminal": "T2",
+        "gate": "",
+        "belt": "B2",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "48b86681-46f7-4903-964d-a928710079a8",
+      "city": "Kaliningrad",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "20:25",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 114",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "1008",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "114",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "KGD",
+        "terminal": "A",
+        "gate": "",
+        "belt": "2",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "76593c30-bebb-43b8-ab45-cc40d31dd4b7",
+      "city": "Shanghai",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "20:25",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 145",
+      "airline": {
+        "id": "7c3dc023-a5b2-4d2d-9bd1-6adecdcf1f16",
+        "iata": "MU",
+        "name": "China Eastern"
+      },
+      "flightNumber": "6020",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "C",
+        "gate": "145",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "PVG",
+        "terminal": "T1",
+        "gate": "",
+        "belt": "16",
+        "flag": "/airports/svg/flag/CN.svg"
+      }
+    },
+    {
+      "id": "11c4bd5c-5cc7-430c-bb55-fde9495a915e",
+      "city": "Saint Petersburg",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "20:30",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 104",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "30",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "104",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "LED",
+        "terminal": "1",
+        "gate": "",
+        "belt": "B5",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "8425306c-31c8-4a96-9c74-b466f1fa3f0d",
+      "city": "Perm",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "ORANGE"
+        },
+        {
+          "type": "text",
+          "text": "17m Late",
+          "style": "ORANGE"
+        }
+      ],
+      "originalTime": {
+        "text": "20:40",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "20:57",
+        "style": "ORANGE"
+      },
+      "secondaryCorner": "Gate 113",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "1394",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "113",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "PEE",
+        "terminal": "A",
+        "gate": "",
+        "belt": "B5",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "3e8ed2db-1607-4f17-930a-bdf8d0378759",
+      "city": "Novosibirsk",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "ORANGE"
+        },
+        {
+          "type": "text",
+          "text": "17m Late",
+          "style": "ORANGE"
+        }
+      ],
+      "originalTime": {
+        "text": "20:45",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "21:02",
+        "style": "ORANGE"
+      },
+      "secondaryCorner": "Gate 102",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "1548",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "102",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "OVB",
+        "terminal": "C",
+        "gate": "",
+        "belt": "B3",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "47a6924f-e24c-4685-9ae7-5e5086dad474",
+      "city": "Ufa",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "ORANGE"
+        },
+        {
+          "type": "text",
+          "text": "17m Late",
+          "style": "ORANGE"
+        }
+      ],
+      "originalTime": {
+        "text": "20:50",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "21:07",
+        "style": "ORANGE"
+      },
+      "secondaryCorner": "Gate 118",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "1260",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "118",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "UFA",
+        "terminal": "T1",
+        "gate": "",
+        "belt": "B1",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "991a605c-ebe8-4b5a-a51e-fff00849ff35",
+      "city": "Kaliningrad",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "20:50",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 112",
+      "airline": {
+        "id": "b9ae6380-a333-4740-b715-02341984d223",
+        "iata": "EO",
+        "name": "Pegas Fly"
+      },
+      "flightNumber": "103",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "112",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "KGD",
+        "terminal": "A",
+        "gate": "",
+        "belt": "3",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "cf0cd74d-8942-43f6-9aa4-16843d98d97d",
+      "city": "Cheboksary",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "ORANGE"
+        },
+        {
+          "type": "text",
+          "text": "17m Late",
+          "style": "ORANGE"
+        }
+      ],
+      "originalTime": {
+        "text": "20:50",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "21:07",
+        "style": "ORANGE"
+      },
+      "secondaryCorner": "Gate 117",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "1586",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "117",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "CSY",
+        "terminal": "",
+        "gate": "",
+        "belt": "B6",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "0dc2c8b6-ef52-4af6-9ad4-ccb705228a68",
+      "city": "Adler/Sochi",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "ORANGE"
+        },
+        {
+          "type": "text",
+          "text": "17m Late",
+          "style": "ORANGE"
+        }
+      ],
+      "originalTime": {
+        "text": "20:55",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "21:12",
+        "style": "ORANGE"
+      },
+      "secondaryCorner": "Gate 121",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "1118",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "121",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "AER",
+        "terminal": "T1",
+        "gate": "",
+        "belt": "B6",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "3fde5c4f-c997-41f5-96ac-7ea2aafea662",
+      "city": "Arkhangelsk",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "ORANGE"
+        },
+        {
+          "type": "text",
+          "text": "17m Late",
+          "style": "ORANGE"
+        }
+      ],
+      "originalTime": {
+        "text": "21:00",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "21:17",
+        "style": "ORANGE"
+      },
+      "secondaryCorner": "Gate 115",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "1334",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "115",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "ARH",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "B2",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "bc7bb94d-f7f1-4dbb-b7e9-9a34e13f79ed",
+      "city": "Ulan-Ude",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "ORANGE"
+        },
+        {
+          "type": "text",
+          "text": "17m Late",
+          "style": "ORANGE"
+        }
+      ],
+      "originalTime": {
+        "text": "21:05",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "21:22",
+        "style": "ORANGE"
+      },
+      "secondaryCorner": "Gate 122",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "1454",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "122",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "UUD",
+        "terminal": "A",
+        "gate": "",
+        "belt": "1",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "a7dfcbf0-9d4c-4cbc-995d-b592989adede",
+      "city": "Khabarovsk",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "ORANGE"
+        },
+        {
+          "type": "text",
+          "text": "22m Late",
+          "style": "ORANGE"
+        }
+      ],
+      "originalTime": {
+        "text": "21:10",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "21:32",
+        "style": "ORANGE"
+      },
+      "secondaryCorner": "Gate 106",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "1714",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "106",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "KHV",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "B5",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "96df10c7-255b-44bc-96e5-2d3e624ad816",
+      "city": "Saint Petersburg",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "21:00",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 101",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "6705",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "101",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "LED",
+        "terminal": "1",
+        "gate": "",
+        "belt": "B4",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "46d01d1a-0a25-469b-a783-8ee90bc23284",
+      "city": "Beijing",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "21:05",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 137",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "204",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "C",
+        "gate": "137",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "PKX",
+        "terminal": "",
+        "gate": "",
+        "belt": "C3",
+        "flag": "/airports/svg/flag/CN.svg"
+      }
+    },
+    {
+      "id": "284c399b-d00f-4abf-88a3-8645b9a7aaa6",
+      "city": "Irkutsk",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "ORANGE"
+        },
+        {
+          "type": "text",
+          "text": "17m Late",
+          "style": "ORANGE"
+        }
+      ],
+      "originalTime": {
+        "text": "21:20",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "21:37",
+        "style": "ORANGE"
+      },
+      "secondaryCorner": "Gate 104",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "1442",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "104",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "IKT",
+        "terminal": "",
+        "gate": "",
+        "belt": "B2",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "33e84465-ebe8-44c5-98b7-0e6218aa315d",
+      "city": "Delhi",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "ORANGE"
+        },
+        {
+          "type": "text",
+          "text": "22m Late",
+          "style": "ORANGE"
+        }
+      ],
+      "originalTime": {
+        "text": "21:20",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "21:42",
+        "style": "ORANGE"
+      },
+      "secondaryCorner": "Gate 133",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "232",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "C",
+        "gate": "133",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "DEL",
+        "terminal": "T3",
+        "gate": "",
+        "belt": "9",
+        "flag": "/airports/svg/flag/IN.svg"
+      }
+    },
+    {
+      "id": "a42086cc-551d-4cca-a417-f876bd5711a0",
+      "city": "Wuhan",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "RED"
+        },
+        {
+          "type": "text",
+          "text": "6h 45m Late",
+          "style": "RED"
+        }
+      ],
+      "originalTime": {
+        "text": "21:15",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "04:00",
+        "style": "RED"
+      },
+      "secondaryCorner": "Gate 138",
+      "airline": {
+        "id": "255d4d33-d2aa-4a84-bc7d-0613c507151f",
+        "iata": "CZ",
+        "name": "China Southern"
+      },
+      "flightNumber": "8004",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "C",
+        "gate": "138",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "WUH",
+        "terminal": "3",
+        "gate": "",
+        "belt": "C2",
+        "flag": "/airports/svg/flag/CN.svg"
+      }
+    },
+    {
+      "id": "c7a725cd-75a0-4615-8ed0-a4c6481c0115",
+      "city": "Istanbul",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "21:15",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 141",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "2132",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "C",
+        "gate": "141",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "IST",
+        "terminal": "I",
+        "gate": "",
+        "belt": "C7",
+        "flag": "/airports/svg/flag/TR.svg"
+      }
+    },
+    {
+      "id": "4a35feb4-074a-43fb-b03a-791401567410",
+      "city": "Bishkek",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "ORANGE"
+        },
+        {
+          "type": "text",
+          "text": "17m Late",
+          "style": "ORANGE"
+        }
+      ],
+      "originalTime": {
+        "text": "21:35",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "21:52",
+        "style": "ORANGE"
+      },
+      "secondaryCorner": "Gate 135",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "1882",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "C",
+        "gate": "135",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "BSZ",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "",
+        "flag": "/airports/svg/flag/KG.svg"
+      }
+    },
+    {
+      "id": "5f3354a1-c9a8-41bc-8b50-d43d1f9ceb39",
+      "city": "Istanbul",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "21:40",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "$undefined",
+      "airline": {
+        "id": "c78aba4f-5162-4f43-bc7b-1370f95bae70",
+        "iata": "2S",
+        "name": "Southwind Airlines"
+      },
+      "flightNumber": "82",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "C",
+        "gate": "",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "IST",
+        "terminal": "",
+        "gate": "",
+        "belt": "",
+        "flag": "/airports/svg/flag/TR.svg"
+      }
+    },
+    {
+      "id": "f10edf26-35e5-477d-a982-f3cba143bed7",
+      "city": "Saint Petersburg",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "21:30",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 101",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "6707",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "101",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "LED",
+        "terminal": "1",
+        "gate": "",
+        "belt": "B3",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "24ea2452-c943-4011-912d-376d57c1ab8b",
+      "city": "Surgut",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "ORANGE"
+        },
+        {
+          "type": "text",
+          "text": "17m Late",
+          "style": "ORANGE"
+        }
+      ],
+      "originalTime": {
+        "text": "21:40",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "21:57",
+        "style": "ORANGE"
+      },
+      "secondaryCorner": "Gate 123",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "1510",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "123",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "SGC",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "B3",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "d2626ff1-9429-44cb-a276-5c1ecfca95e1",
+      "city": "Baku",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "21:30",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 128",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "1850",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "C",
+        "gate": "128",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "GYD",
+        "terminal": "1",
+        "gate": "",
+        "belt": "C4",
+        "flag": "/airports/svg/flag/AZ.svg"
+      }
+    },
+    {
+      "id": "47e50a3b-3da1-4285-8b0a-b6ecfa6cbb3c",
+      "city": "Chelyabinsk",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "ORANGE"
+        },
+        {
+          "type": "text",
+          "text": "17m Late",
+          "style": "ORANGE"
+        }
+      ],
+      "originalTime": {
+        "text": "21:45",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "22:02",
+        "style": "ORANGE"
+      },
+      "secondaryCorner": "Gate 119",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "1420",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "119",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "CEK",
+        "terminal": "A",
+        "gate": "",
+        "belt": "B2",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "aac4a347-37b8-402d-bfe0-0d24b8bd30a1",
+      "city": "Cherepovets",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "21:55",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 114",
+      "airline": {
+        "id": "ef2d797b-fde6-41ee-9bd0-44631e47cdfc",
+        "iata": "D2",
+        "name": "Severstal Aircompany"
+      },
+      "flightNumber": "154",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "114",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "CEE",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "B1",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "faec8f05-c5f6-40ee-ba7d-ba673cb7c781",
+      "city": "Ürümqi",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "21:55",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 134",
+      "airline": {
+        "id": "255d4d33-d2aa-4a84-bc7d-0613c507151f",
+        "iata": "CZ",
+        "name": "China Southern"
+      },
+      "flightNumber": "6002",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "C",
+        "gate": "134",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "URC",
+        "terminal": "3",
+        "gate": "",
+        "belt": "C2",
+        "flag": "/airports/svg/flag/CN.svg"
+      }
+    },
+    {
+      "id": "9a2ad5b8-c0c9-4fc2-bb49-e501713da65c",
+      "city": "Muscat",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "22:05",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 145",
+      "airline": {
+        "id": "500826cd-26ba-4cfb-834a-e3403b20a11b",
+        "iata": "WY",
+        "name": "Oman Air"
+      },
+      "flightNumber": "184",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "C",
+        "gate": "145",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "MCT",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "C6",
+        "flag": "/airports/svg/flag/OM.svg"
+      }
+    },
+    {
+      "id": "8d9016f1-400e-49b2-8615-f5d70c41184b",
+      "city": "Omsk",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "ORANGE"
+        },
+        {
+          "type": "text",
+          "text": "17m Late",
+          "style": "ORANGE"
+        }
+      ],
+      "originalTime": {
+        "text": "22:15",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "22:32",
+        "style": "ORANGE"
+      },
+      "secondaryCorner": "Gate 107",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "1762",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "107",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "OMS",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "B1",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "1168ac14-6393-4b2b-a963-676abc7bcac6",
+      "city": "Kazan",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "ORANGE"
+        },
+        {
+          "type": "text",
+          "text": "17m Late",
+          "style": "ORANGE"
+        }
+      ],
+      "originalTime": {
+        "text": "22:15",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "22:32",
+        "style": "ORANGE"
+      },
+      "secondaryCorner": "Gate 102",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "1198",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "102",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "KZN",
+        "terminal": "T1A",
+        "gate": "",
+        "belt": "B6",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "6b711ade-d0a6-4039-929f-3bf4c2fe79cf",
+      "city": "Abu Dhabi",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "22:15",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 125",
+      "airline": {
+        "id": "4d3bca9e-92ed-4ba9-b15d-9adf90c8a57b",
+        "iata": "EY",
+        "name": "Etihad"
+      },
+      "flightNumber": "844",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "C",
+        "gate": "125",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "AUH",
+        "terminal": "A",
+        "gate": "",
+        "belt": "C5",
+        "flag": "/airports/svg/flag/AE.svg"
+      }
+    },
+    {
+      "id": "79595473-b5e1-4867-9b2f-afb8135f46d2",
+      "city": "Bangkok",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "ORANGE"
+        },
+        {
+          "type": "text",
+          "text": "22m Late",
+          "style": "ORANGE"
+        }
+      ],
+      "originalTime": {
+        "text": "22:25",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "22:47",
+        "style": "ORANGE"
+      },
+      "secondaryCorner": "Gate 133",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "272",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "C",
+        "gate": "133",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "BKK",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "C1",
+        "flag": "/airports/svg/flag/TH.svg"
+      }
+    },
+    {
+      "id": "ebd15a88-3c2c-4f27-ba9f-759c0abef70f",
+      "city": "Novosibirsk",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "ORANGE"
+        },
+        {
+          "type": "text",
+          "text": "17m Late",
+          "style": "ORANGE"
+        }
+      ],
+      "originalTime": {
+        "text": "22:25",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "22:42",
+        "style": "ORANGE"
+      },
+      "secondaryCorner": "Gate 113",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "1554",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "113",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "OVB",
+        "terminal": "C",
+        "gate": "",
+        "belt": "B5",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "1883a818-a23d-4f8e-b669-5736eed3e62e",
+      "city": "Chengdu",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "RED"
+        },
+        {
+          "type": "text",
+          "text": "1h 30m Late",
+          "style": "RED"
+        }
+      ],
+      "originalTime": {
+        "text": "22:20",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "23:50",
+        "style": "RED"
+      },
+      "secondaryCorner": "Gate 137",
+      "airline": {
+        "id": "fab62880-f263-4586-866e-31876e29d6e3",
+        "iata": "3U",
+        "name": "Sichuan"
+      },
+      "flightNumber": "3888",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "C",
+        "gate": "137",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "TFU",
+        "terminal": "1",
+        "gate": "",
+        "belt": "C3",
+        "flag": "/airports/svg/flag/CN.svg"
+      }
+    },
+    {
+      "id": "f6cf2a47-d437-44d7-8923-d0a362b639b1",
+      "city": "Novokuznetsk",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "ORANGE"
+        },
+        {
+          "type": "text",
+          "text": "17m Late",
+          "style": "ORANGE"
+        }
+      ],
+      "originalTime": {
+        "text": "22:30",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "22:47",
+        "style": "ORANGE"
+      },
+      "secondaryCorner": "Gate 116",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "1458",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "116",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "NOZ",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "B5",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "0077b9fb-758b-4fd8-9b43-90be14b64096",
+      "city": "Malé",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "ORANGE"
+        },
+        {
+          "type": "text",
+          "text": "22m Late",
+          "style": "ORANGE"
+        }
+      ],
+      "originalTime": {
+        "text": "22:35",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "22:57",
+        "style": "ORANGE"
+      },
+      "secondaryCorner": "Gate 138",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "320",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "C",
+        "gate": "138",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "MLE",
+        "terminal": "T1",
+        "gate": "",
+        "belt": "C2",
+        "flag": "/airports/svg/flag/MV.svg"
+      }
+    },
+    {
+      "id": "a9c031cc-18fc-4a04-92fc-f8b5381da7f8",
+      "city": "Saint Petersburg",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "22:30",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 101",
+      "airline": {
+        "id": "c2378013-f6f7-49fc-b6b5-82437e540c59",
+        "iata": "FV",
+        "name": "Rossiya"
+      },
+      "flightNumber": "6809",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "101",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "LED",
+        "terminal": "T1",
+        "gate": "",
+        "belt": "",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "624996dc-6180-4d4e-9135-bcfd1de715eb",
+      "city": "Saint Petersburg",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "22:30",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 101",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "6809",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "101",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "LED",
+        "terminal": "1",
+        "gate": "",
+        "belt": "B2",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "0624c887-a975-4d0d-b75d-c05b91be0dff",
+      "city": "Vladivostok",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "ORANGE"
+        },
+        {
+          "type": "text",
+          "text": "22m Late",
+          "style": "ORANGE"
+        }
+      ],
+      "originalTime": {
+        "text": "22:40",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "23:02",
+        "style": "ORANGE"
+      },
+      "secondaryCorner": "Gate 104",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "1726",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "104",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "VVO",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "B3",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "0c4f4978-1fda-4ae6-9204-724876256d37",
+      "city": "Kemerovo",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "ORANGE"
+        },
+        {
+          "type": "text",
+          "text": "17m Late",
+          "style": "ORANGE"
+        }
+      ],
+      "originalTime": {
+        "text": "22:45",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "23:02",
+        "style": "ORANGE"
+      },
+      "secondaryCorner": "Gate 115",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "1450",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "115",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "KEJ",
+        "terminal": "A",
+        "gate": "",
+        "belt": "B4",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "9fc65c7e-3243-44c8-be50-a1c9fd438341",
+      "city": "Minsk",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "22:50",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 142",
+      "airline": {
+        "id": "10e0b161-a270-453f-b5fc-e7fdfdf1ce73",
+        "iata": "B2",
+        "name": "Belavia"
+      },
+      "flightNumber": "978",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "C",
+        "gate": "142",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "MSQ",
+        "terminal": "MAIN",
+        "gate": "1",
+        "belt": "C3",
+        "flag": "/airports/svg/flag/BY.svg"
+      }
+    },
+    {
+      "id": "c0e22d50-43cf-4336-879f-b31d8906d1da",
+      "city": "Almaty",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "ORANGE"
+        },
+        {
+          "type": "text",
+          "text": "17m Late",
+          "style": "ORANGE"
+        }
+      ],
+      "originalTime": {
+        "text": "22:55",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "23:12",
+        "style": "ORANGE"
+      },
+      "secondaryCorner": "Gate 132",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "1940",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "C",
+        "gate": "132",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "ALA",
+        "terminal": "T2",
+        "gate": "",
+        "belt": "C1",
+        "flag": "/airports/svg/flag/KZ.svg"
+      }
+    },
+    {
+      "id": "37a0f669-3063-4ba2-b2a0-dd2897328f9c",
+      "city": "Nizhnevartovsk",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "ORANGE"
+        },
+        {
+          "type": "text",
+          "text": "17m Late",
+          "style": "ORANGE"
+        }
+      ],
+      "originalTime": {
+        "text": "22:55",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "23:12",
+        "style": "ORANGE"
+      },
+      "secondaryCorner": "Gate 117",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "1646",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "117",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "NJC",
+        "terminal": "T1",
+        "gate": "",
+        "belt": "B1",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "3f420e22-1239-4ca8-813c-d41dd5043ed2",
+      "city": "Cherepovets",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "23:00",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 119",
+      "airline": {
+        "id": "ef2d797b-fde6-41ee-9bd0-44631e47cdfc",
+        "iata": "D2",
+        "name": "Severstal Aircompany"
+      },
+      "flightNumber": "158",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "119",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "CEE",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "B2",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "8395bfae-37bb-4d9d-acab-1aa502ca4b0d",
+      "city": "Tomsk",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "ORANGE"
+        },
+        {
+          "type": "text",
+          "text": "17m Late",
+          "style": "ORANGE"
+        }
+      ],
+      "originalTime": {
+        "text": "23:00",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "23:17",
+        "style": "ORANGE"
+      },
+      "secondaryCorner": "Gate 118",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "1530",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "118",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "TOF",
+        "terminal": "A",
+        "gate": "",
+        "belt": "1",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "f9f17933-3a4f-4896-a7ae-520af043ff8d",
+      "city": "Khabarovsk",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "ORANGE"
+        },
+        {
+          "type": "text",
+          "text": "22m Late",
+          "style": "ORANGE"
+        }
+      ],
+      "originalTime": {
+        "text": "23:05",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "23:27",
+        "style": "ORANGE"
+      },
+      "secondaryCorner": "Gate 110",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "5806",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "110",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "KHV",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "B2",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "d7390682-7ed6-444d-ae87-a7b1c8eca75f",
+      "city": "Tashkent",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "23:10",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 126",
+      "airline": {
+        "id": "45fb20f2-483e-44d0-9d09-82b228c511ec",
+        "iata": "C6",
+        "name": "Centrum Air"
+      },
+      "flightNumber": "404",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "C",
+        "gate": "126",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "TAS",
+        "terminal": "T2",
+        "gate": "",
+        "belt": "C7",
+        "flag": "/airports/svg/flag/UZ.svg"
+      }
+    },
+    {
+      "id": "abe5bea6-eca4-403f-a5d6-1aebe037941a",
+      "city": "Yerevan",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "23:15",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 130",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "1968",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "C",
+        "gate": "130",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "EVN",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "C6",
+        "flag": "/airports/svg/flag/AM.svg"
+      }
+    },
+    {
+      "id": "f7bc3abc-d7bf-43db-8117-5b3116a092a6",
+      "city": "Astana",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "ORANGE"
+        },
+        {
+          "type": "text",
+          "text": "17m Late",
+          "style": "ORANGE"
+        }
+      ],
+      "originalTime": {
+        "text": "23:30",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "23:47",
+        "style": "ORANGE"
+      },
+      "secondaryCorner": "Gate 141",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "1956",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "C",
+        "gate": "141",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "NQZ",
+        "terminal": "T1",
+        "gate": "",
+        "belt": "",
+        "flag": "/airports/svg/flag/KZ.svg"
+      }
+    },
+    {
+      "id": "ad159581-0ea1-4c3a-823a-d7d0f53624bd",
+      "city": "Saint Petersburg",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "23:30",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 101",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "6805",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "101",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "LED",
+        "terminal": "T1",
+        "gate": "",
+        "belt": "B1",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "aa70b4c6-544a-4e45-b992-9ed0213b08b2",
+      "city": "Kaliningrad",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "23:20",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 111",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "1072",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "111",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "KGD",
+        "terminal": "A",
+        "gate": "",
+        "belt": "B6",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "4654b87e-4049-4580-8c43-890effe48be6",
+      "city": "Istanbul",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "23:25",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 131",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "2138",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "C",
+        "gate": "131",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "IST",
+        "terminal": "I",
+        "gate": "",
+        "belt": "C4",
+        "flag": "/airports/svg/flag/TR.svg"
+      }
+    },
+    {
+      "id": "fd1f38cf-946d-43bf-83e6-363dc9062d84",
+      "city": "Nha Trang",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "ORANGE"
+        },
+        {
+          "type": "text",
+          "text": "22m Late",
+          "style": "ORANGE"
+        }
+      ],
+      "originalTime": {
+        "text": "23:40",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "00:02",
+        "style": "ORANGE"
+      },
+      "secondaryCorner": "Gate 133",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "298",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "C",
+        "gate": "133",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "CXR",
+        "terminal": "T2",
+        "gate": "",
+        "belt": "1",
+        "flag": "/airports/svg/flag/VN.svg"
+      }
+    },
+    {
+      "id": "a60de61d-8b40-45bf-a308-591bd48b72ea",
+      "city": "Shymkent",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "ORANGE"
+        },
+        {
+          "type": "text",
+          "text": "17m Late",
+          "style": "ORANGE"
+        }
+      ],
+      "originalTime": {
+        "text": "23:40",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "23:57",
+        "style": "ORANGE"
+      },
+      "secondaryCorner": "Gate 135",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "1950",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "C",
+        "gate": "135",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "CIT",
+        "terminal": "A",
+        "gate": "",
+        "belt": "C4",
+        "flag": "/airports/svg/flag/KZ.svg"
+      }
+    },
+    {
+      "id": "c4216dee-9b97-4d9f-9bc3-f59080118bb4",
+      "city": "Tyumen",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "23:40",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 107",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "6365",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "107",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "TJM",
+        "terminal": "A",
+        "gate": "",
+        "belt": "B4",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "64b5da0b-4c36-489b-8245-96d2747840e7",
+      "city": "Samarkand",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "ORANGE"
+        },
+        {
+          "type": "text",
+          "text": "17m Late",
+          "style": "ORANGE"
+        }
+      ],
+      "originalTime": {
+        "text": "23:45",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "00:02",
+        "style": "ORANGE"
+      },
+      "secondaryCorner": "Gate 134",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "1984",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "C",
+        "gate": "134",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "SKD",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "C8",
+        "flag": "/airports/svg/flag/UZ.svg"
+      }
+    },
+    {
+      "id": "c605c404-ee08-4c51-b5eb-a8acdbcaa717",
+      "city": "Yakutsk",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "ORANGE"
+        },
+        {
+          "type": "text",
+          "text": "17m Late",
+          "style": "ORANGE"
+        }
+      ],
+      "originalTime": {
+        "text": "23:50",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "00:07",
+        "style": "ORANGE"
+      },
+      "secondaryCorner": "Gate 112",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "1750",
+      "departure": {
+        "iata": "SVO",
+        "terminal": "B",
+        "gate": "112",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "YKS",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "B6",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    }
+  ]
+}
