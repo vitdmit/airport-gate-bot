@@ -1,0 +1,844 @@
+{
+  "airport": "VKO",
+  "service_date": "2026-05-24",
+  "collected_at": "2026-05-24T22:40:22+03:00",
+  "source_url": "https://flighty.com/airports/vnukovo-intl-vko/departures",
+  "meta": {
+    "airport_name": "Vnukovo",
+    "slug": "vnukovo-intl-vko",
+    "type": "departures",
+    "phase": "DEPARTURE",
+    "rows": 21,
+    "vko_gate_enrichment_needed": 1,
+    "vko_missing_before": 1,
+    "vko_missing_after_official": 1,
+    "vko_official_checked": 1,
+    "vko_official_rows": 0,
+    "vko_official_filled": 0,
+    "vko_official_added_missing_flights": 0,
+    "vko_official_conflicts": 0,
+    "vko_official_errors": [],
+    "vko_missing_after_backup": 1,
+    "vko_backup_rows": 12,
+    "vko_backup_filled": 0,
+    "vko_backup_added_missing_flights": 11,
+    "vko_backup_conflicts": 0,
+    "vko_backup_error": "PlaneFinder VKO: Cannot fetch https://planefinder.net/data/airport/VKO/departures: HTTP Error 403: Forbidden; PlaneFinder VKO via Reader: rows not found; airports-worldwide VKO: Cannot fetch https://www.airports-worldwide.info/airport/VKO/departures: HTTP Error 403: Forbidden"
+  },
+  "flights": [
+    {
+      "id": "8c0ea72a-83f4-4295-af77-f389ae9c1628",
+      "city": "Antalya",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "RED"
+        },
+        {
+          "type": "text",
+          "text": "19h Late",
+          "style": "RED"
+        }
+      ],
+      "originalTime": {
+        "text": "09:20",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "04:20",
+        "style": "RED"
+      },
+      "secondaryCorner": "Gate 18A",
+      "airline": {
+        "id": "0f2b5378-8bc0-493f-a312-04b6d3717f97",
+        "iata": "ZF",
+        "name": "AZUR Air"
+      },
+      "flightNumber": "3007",
+      "departure": {
+        "iata": "VKO",
+        "terminal": "A",
+        "gate": "18A",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "AYT",
+        "terminal": "T2",
+        "gate": "",
+        "belt": "203",
+        "flag": "/airports/svg/flag/TR.svg"
+      }
+    },
+    {
+      "id": "47f8285c-d4d6-4ce6-b38c-16e8e5d476eb",
+      "city": "Groznyy",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "RED"
+        },
+        {
+          "type": "text",
+          "text": "3h Late",
+          "style": "RED"
+        }
+      ],
+      "originalTime": {
+        "text": "20:00",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "23:00",
+        "style": "RED"
+      },
+      "secondaryCorner": "Gate 17A",
+      "airline": {
+        "id": "26480181-2490-4ff6-a04e-cf1e7a1c71b4",
+        "iata": "UT",
+        "name": "Utair"
+      },
+      "flightNumber": "399",
+      "departure": {
+        "iata": "VKO",
+        "terminal": "A",
+        "gate": "17A",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "GRV",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "6d2e2433-559e-4095-9bbc-f4fa9497f283",
+      "city": "Monastir",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "GREEN"
+        },
+        {
+          "type": "text",
+          "text": "Departure Overdue",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "22:30",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "$undefined",
+      "airline": {
+        "id": "0d54c967-647b-4502-a6df-6596cfae4ff0",
+        "iata": "BJ",
+        "name": "Nouvelair"
+      },
+      "flightNumber": "815",
+      "departure": {
+        "iata": "VKO",
+        "terminal": "A",
+        "gate": "",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "MIR",
+        "terminal": "I",
+        "gate": "",
+        "belt": "",
+        "flag": "/airports/svg/flag/TN.svg"
+      }
+    },
+    {
+      "id": "98f76785-357d-4bb7-88ff-17778caf9970",
+      "city": "Saint Petersburg",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "GREEN"
+        },
+        {
+          "type": "text",
+          "text": "Departure Overdue",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "22:30",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 9",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "6184",
+      "departure": {
+        "iata": "VKO",
+        "terminal": "A",
+        "gate": "9",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "LED",
+        "terminal": "1",
+        "gate": "",
+        "belt": "3",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "2c4e8c3d-55b4-4910-8055-d2f25d49777e",
+      "city": "Baku",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "23:05",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 18A,18",
+      "airline": {
+        "id": "e501d79d-8740-4838-8d15-58758d1016cc",
+        "iata": "J2",
+        "name": "Azerbaijan Airlines"
+      },
+      "flightNumber": "804",
+      "departure": {
+        "iata": "VKO",
+        "terminal": "A",
+        "gate": "18A,18",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "GYD",
+        "terminal": "T1",
+        "gate": "",
+        "belt": "",
+        "flag": "/airports/svg/flag/AZ.svg"
+      }
+    },
+    {
+      "id": "c3f33874-8be1-4ba8-9d8d-7cbc879d54df",
+      "city": "Saint Petersburg",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "23:30",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 8",
+      "airline": {
+        "id": "5f86a325-9ecc-48fc-b50d-39905276f356",
+        "iata": "SU",
+        "name": "Aeroflot"
+      },
+      "flightNumber": "6186",
+      "departure": {
+        "iata": "VKO",
+        "terminal": "A",
+        "gate": "8",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "LED",
+        "terminal": "1",
+        "gate": "",
+        "belt": "",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "4ab3c5c4-239e-4bad-a788-50e75b266602",
+      "city": "Saint Petersburg",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "23:30",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 8",
+      "airline": {
+        "id": "c2378013-f6f7-49fc-b6b5-82437e540c59",
+        "iata": "FV",
+        "name": "Rossiya"
+      },
+      "flightNumber": "6186",
+      "departure": {
+        "iata": "VKO",
+        "terminal": "A",
+        "gate": "8",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "LED",
+        "terminal": "1",
+        "gate": "",
+        "belt": "",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "dab6da88-3650-4ea0-80fe-b45a8ff9fcad",
+      "city": "Astana",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "23:40",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 20",
+      "airline": {
+        "id": "82b4391e-da06-4d6b-8267-78d3c022a43b",
+        "iata": "DV",
+        "name": "SCAT"
+      },
+      "flightNumber": "814",
+      "departure": {
+        "iata": "VKO",
+        "terminal": "A",
+        "gate": "20",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "NQZ",
+        "terminal": "1",
+        "gate": "",
+        "belt": "",
+        "flag": "/airports/svg/flag/KZ.svg"
+      }
+    },
+    {
+      "id": "b90a9f4b-1f4c-4b53-b960-bc848a40359a",
+      "city": "Antalya",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "23:50",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 22",
+      "airline": {
+        "id": "dedaba6b-ec59-4129-90c3-b98d4117d215",
+        "iata": "PC",
+        "name": "Pegasus"
+      },
+      "flightNumber": "1581",
+      "departure": {
+        "iata": "VKO",
+        "terminal": "A",
+        "gate": "22",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "AYT",
+        "terminal": "2",
+        "gate": "",
+        "belt": "211",
+        "flag": "/airports/svg/flag/TR.svg"
+      }
+    },
+    {
+      "id": "c1dc1893-fefd-4bbd-866f-021682bc1b19",
+      "city": "Makhachkala",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "23:55",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 16",
+      "airline": {
+        "id": "26480181-2490-4ff6-a04e-cf1e7a1c71b4",
+        "iata": "UT",
+        "name": "Utair"
+      },
+      "flightNumber": "559",
+      "departure": {
+        "iata": "VKO",
+        "terminal": "A",
+        "gate": "16",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "MCX",
+        "terminal": "A",
+        "gate": "",
+        "belt": "",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "VKO-extra-gate-DP189--11:40",
+      "airline": {
+        "iata": "DP",
+        "name": ""
+      },
+      "flightNumber": "189",
+      "city": "Makhachkala",
+      "arrival": {
+        "iata": "",
+        "flag": "",
+        "countryCode": ""
+      },
+      "departure": {
+        "terminal": "",
+        "gate": "13A",
+        "gateSource": "fids.live VKO",
+        "gateMatch": "РґРѕРї. С‚Р°Р±Р»Рѕ: СЂРµР№СЃ + РїР»Р°РЅРѕРІРѕРµ РІСЂРµРјСЏ"
+      },
+      "dataQuality": "РЅР°РїСЂР°РІР»РµРЅРёРµ РїСЂРёС€Р»Рѕ РёР· СЂРµР·РµСЂРІРЅРѕРіРѕ live-С‚Р°Р±Р»Рѕ",
+      "destinationSource": "СЂРµР·РµСЂРІРЅРѕРµ С‚Р°Р±Р»Рѕ",
+      "originalTime": {
+        "text": "11:40"
+      },
+      "newTime": {
+        "text": "19:07"
+      },
+      "status": [
+        {
+          "type": "text",
+          "text": "Scheduled"
+        }
+      ]
+    },
+    {
+      "id": "VKO-extra-gate-TK416--19:25",
+      "airline": {
+        "iata": "TK",
+        "name": ""
+      },
+      "flightNumber": "416",
+      "city": "Istanbul",
+      "arrival": {
+        "iata": "",
+        "flag": "",
+        "countryCode": ""
+      },
+      "departure": {
+        "terminal": "",
+        "gate": "22",
+        "gateSource": "fids.live VKO",
+        "gateMatch": "РґРѕРї. С‚Р°Р±Р»Рѕ: СЂРµР№СЃ + РїР»Р°РЅРѕРІРѕРµ РІСЂРµРјСЏ"
+      },
+      "dataQuality": "РЅР°РїСЂР°РІР»РµРЅРёРµ РїСЂРёС€Р»Рѕ РёР· СЂРµР·РµСЂРІРЅРѕРіРѕ live-С‚Р°Р±Р»Рѕ",
+      "destinationSource": "СЂРµР·РµСЂРІРЅРѕРµ С‚Р°Р±Р»Рѕ",
+      "originalTime": {
+        "text": "19:25"
+      },
+      "newTime": {
+        "text": ""
+      },
+      "status": [
+        {
+          "type": "text",
+          "text": "Scheduled"
+        }
+      ]
+    },
+    {
+      "id": "VKO-extra-gate-DP205--12:10",
+      "airline": {
+        "iata": "DP",
+        "name": ""
+      },
+      "flightNumber": "205",
+      "city": "Saint Petersburg",
+      "arrival": {
+        "iata": "",
+        "flag": "",
+        "countryCode": ""
+      },
+      "departure": {
+        "terminal": "",
+        "gate": "18",
+        "gateSource": "airportinformation.com VKO",
+        "gateMatch": "РґРѕРї. С‚Р°Р±Р»Рѕ: СЂРµР№СЃ + РїР»Р°РЅРѕРІРѕРµ РІСЂРµРјСЏ"
+      },
+      "dataQuality": "РЅР°РїСЂР°РІР»РµРЅРёРµ РїСЂРёС€Р»Рѕ РёР· СЂРµР·РµСЂРІРЅРѕРіРѕ live-С‚Р°Р±Р»Рѕ",
+      "destinationSource": "СЂРµР·РµСЂРІРЅРѕРµ С‚Р°Р±Р»Рѕ",
+      "originalTime": {
+        "text": "12:10"
+      },
+      "newTime": {
+        "text": ""
+      },
+      "status": [
+        {
+          "type": "text",
+          "text": "Scheduled"
+        }
+      ]
+    },
+    {
+      "id": "VKO-extra-gate-DP197--18:05",
+      "airline": {
+        "iata": "DP",
+        "name": ""
+      },
+      "flightNumber": "197",
+      "city": "Vladikavkaz",
+      "arrival": {
+        "iata": "",
+        "flag": "",
+        "countryCode": ""
+      },
+      "departure": {
+        "terminal": "",
+        "gate": "18",
+        "gateSource": "airportinformation.com VKO",
+        "gateMatch": "РґРѕРї. С‚Р°Р±Р»Рѕ: СЂРµР№СЃ + РїР»Р°РЅРѕРІРѕРµ РІСЂРµРјСЏ"
+      },
+      "dataQuality": "РЅР°РїСЂР°РІР»РµРЅРёРµ РїСЂРёС€Р»Рѕ РёР· СЂРµР·РµСЂРІРЅРѕРіРѕ live-С‚Р°Р±Р»Рѕ",
+      "destinationSource": "СЂРµР·РµСЂРІРЅРѕРµ С‚Р°Р±Р»Рѕ",
+      "originalTime": {
+        "text": "18:05"
+      },
+      "newTime": {
+        "text": ""
+      },
+      "status": [
+        {
+          "type": "text",
+          "text": "Scheduled"
+        }
+      ]
+    },
+    {
+      "id": "VKO-extra-gate-UT375--18:40",
+      "airline": {
+        "iata": "UT",
+        "name": ""
+      },
+      "flightNumber": "375",
+      "city": "Syktyvkar",
+      "arrival": {
+        "iata": "",
+        "flag": "",
+        "countryCode": ""
+      },
+      "departure": {
+        "terminal": "",
+        "gate": "18",
+        "gateSource": "airportinformation.com VKO",
+        "gateMatch": "РґРѕРї. С‚Р°Р±Р»Рѕ: СЂРµР№СЃ + РїР»Р°РЅРѕРІРѕРµ РІСЂРµРјСЏ"
+      },
+      "dataQuality": "РЅР°РїСЂР°РІР»РµРЅРёРµ РїСЂРёС€Р»Рѕ РёР· СЂРµР·РµСЂРІРЅРѕРіРѕ live-С‚Р°Р±Р»Рѕ",
+      "destinationSource": "СЂРµР·РµСЂРІРЅРѕРµ С‚Р°Р±Р»Рѕ",
+      "originalTime": {
+        "text": "18:40"
+      },
+      "newTime": {
+        "text": ""
+      },
+      "status": [
+        {
+          "type": "text",
+          "text": "Scheduled"
+        }
+      ]
+    },
+    {
+      "id": "VKO-extra-gate-DP711--18:55",
+      "airline": {
+        "iata": "DP",
+        "name": ""
+      },
+      "flightNumber": "711",
+      "city": "Samarkand",
+      "arrival": {
+        "iata": "",
+        "flag": "",
+        "countryCode": ""
+      },
+      "departure": {
+        "terminal": "",
+        "gate": "19",
+        "gateSource": "airportinformation.com VKO",
+        "gateMatch": "РґРѕРї. С‚Р°Р±Р»Рѕ: СЂРµР№СЃ + РїР»Р°РЅРѕРІРѕРµ РІСЂРµРјСЏ"
+      },
+      "dataQuality": "РЅР°РїСЂР°РІР»РµРЅРёРµ РїСЂРёС€Р»Рѕ РёР· СЂРµР·РµСЂРІРЅРѕРіРѕ live-С‚Р°Р±Р»Рѕ",
+      "destinationSource": "СЂРµР·РµСЂРІРЅРѕРµ С‚Р°Р±Р»Рѕ",
+      "originalTime": {
+        "text": "18:55"
+      },
+      "newTime": {
+        "text": ""
+      },
+      "status": [
+        {
+          "type": "text",
+          "text": "Scheduled"
+        }
+      ]
+    },
+    {
+      "id": "VKO-extra-gate-DP967--19:00",
+      "airline": {
+        "iata": "DP",
+        "name": ""
+      },
+      "flightNumber": "967",
+      "city": "Minsk",
+      "arrival": {
+        "iata": "",
+        "flag": "",
+        "countryCode": ""
+      },
+      "departure": {
+        "terminal": "",
+        "gate": "19",
+        "gateSource": "airportinformation.com VKO",
+        "gateMatch": "РґРѕРї. С‚Р°Р±Р»Рѕ: СЂРµР№СЃ + РїР»Р°РЅРѕРІРѕРµ РІСЂРµРјСЏ"
+      },
+      "dataQuality": "РЅР°РїСЂР°РІР»РµРЅРёРµ РїСЂРёС€Р»Рѕ РёР· СЂРµР·РµСЂРІРЅРѕРіРѕ live-С‚Р°Р±Р»Рѕ",
+      "destinationSource": "СЂРµР·РµСЂРІРЅРѕРµ С‚Р°Р±Р»Рѕ",
+      "originalTime": {
+        "text": "19:00"
+      },
+      "newTime": {
+        "text": ""
+      },
+      "status": [
+        {
+          "type": "text",
+          "text": "Scheduled"
+        }
+      ]
+    },
+    {
+      "id": "VKO-extra-gate-DP115--19:10",
+      "airline": {
+        "iata": "DP",
+        "name": ""
+      },
+      "flightNumber": "115",
+      "city": "Adler/Sochi",
+      "arrival": {
+        "iata": "",
+        "flag": "",
+        "countryCode": ""
+      },
+      "departure": {
+        "terminal": "",
+        "gate": "19",
+        "gateSource": "airportinformation.com VKO",
+        "gateMatch": "РґРѕРї. С‚Р°Р±Р»Рѕ: СЂРµР№СЃ + РїР»Р°РЅРѕРІРѕРµ РІСЂРµРјСЏ"
+      },
+      "dataQuality": "РЅР°РїСЂР°РІР»РµРЅРёРµ РїСЂРёС€Р»Рѕ РёР· СЂРµР·РµСЂРІРЅРѕРіРѕ live-С‚Р°Р±Р»Рѕ",
+      "destinationSource": "СЂРµР·РµСЂРІРЅРѕРµ С‚Р°Р±Р»Рѕ",
+      "originalTime": {
+        "text": "19:10"
+      },
+      "newTime": {
+        "text": ""
+      },
+      "status": [
+        {
+          "type": "text",
+          "text": "Scheduled"
+        }
+      ]
+    },
+    {
+      "id": "VKO-extra-gate-DP181--19:15",
+      "airline": {
+        "iata": "DP",
+        "name": ""
+      },
+      "flightNumber": "181",
+      "city": "Volgograd",
+      "arrival": {
+        "iata": "",
+        "flag": "",
+        "countryCode": ""
+      },
+      "departure": {
+        "terminal": "",
+        "gate": "19",
+        "gateSource": "airportinformation.com VKO",
+        "gateMatch": "РґРѕРї. С‚Р°Р±Р»Рѕ: СЂРµР№СЃ + РїР»Р°РЅРѕРІРѕРµ РІСЂРµРјСЏ"
+      },
+      "dataQuality": "РЅР°РїСЂР°РІР»РµРЅРёРµ РїСЂРёС€Р»Рѕ РёР· СЂРµР·РµСЂРІРЅРѕРіРѕ live-С‚Р°Р±Р»Рѕ",
+      "destinationSource": "СЂРµР·РµСЂРІРЅРѕРµ С‚Р°Р±Р»Рѕ",
+      "originalTime": {
+        "text": "19:15"
+      },
+      "newTime": {
+        "text": ""
+      },
+      "status": [
+        {
+          "type": "text",
+          "text": "Scheduled"
+        }
+      ]
+    },
+    {
+      "id": "VKO-extra-gate-DP729--19:20",
+      "airline": {
+        "iata": "DP",
+        "name": ""
+      },
+      "flightNumber": "729",
+      "city": "Fergana",
+      "arrival": {
+        "iata": "",
+        "flag": "",
+        "countryCode": ""
+      },
+      "departure": {
+        "terminal": "",
+        "gate": "19",
+        "gateSource": "airportinformation.com VKO",
+        "gateMatch": "РґРѕРї. С‚Р°Р±Р»Рѕ: СЂРµР№СЃ + РїР»Р°РЅРѕРІРѕРµ РІСЂРµРјСЏ"
+      },
+      "dataQuality": "РЅР°РїСЂР°РІР»РµРЅРёРµ РїСЂРёС€Р»Рѕ РёР· СЂРµР·РµСЂРІРЅРѕРіРѕ live-С‚Р°Р±Р»Рѕ",
+      "destinationSource": "СЂРµР·РµСЂРІРЅРѕРµ С‚Р°Р±Р»Рѕ",
+      "originalTime": {
+        "text": "19:20"
+      },
+      "newTime": {
+        "text": ""
+      },
+      "status": [
+        {
+          "type": "text",
+          "text": "Scheduled"
+        }
+      ]
+    },
+    {
+      "id": "VKO-extra-gate-R3480--19:20",
+      "airline": {
+        "iata": "R3",
+        "name": ""
+      },
+      "flightNumber": "480",
+      "city": "Yakutsk",
+      "arrival": {
+        "iata": "",
+        "flag": "",
+        "countryCode": ""
+      },
+      "departure": {
+        "terminal": "",
+        "gate": "19",
+        "gateSource": "airportinformation.com VKO",
+        "gateMatch": "РґРѕРї. С‚Р°Р±Р»Рѕ: СЂРµР№СЃ + РїР»Р°РЅРѕРІРѕРµ РІСЂРµРјСЏ"
+      },
+      "dataQuality": "РЅР°РїСЂР°РІР»РµРЅРёРµ РїСЂРёС€Р»Рѕ РёР· СЂРµР·РµСЂРІРЅРѕРіРѕ live-С‚Р°Р±Р»Рѕ",
+      "destinationSource": "СЂРµР·РµСЂРІРЅРѕРµ С‚Р°Р±Р»Рѕ",
+      "originalTime": {
+        "text": "19:20"
+      },
+      "newTime": {
+        "text": ""
+      },
+      "status": [
+        {
+          "type": "text",
+          "text": "Scheduled"
+        }
+      ]
+    }
+  ]
+}
