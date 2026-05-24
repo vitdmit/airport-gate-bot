@@ -34,6 +34,8 @@ RUSSIAN_AIRPORT_IATAS = {
     "TJM", "TOF", "UCT", "UFA", "ULV", "ULY", "URS", "USK", "VKO", "VOG",
     "VOZ", "VVO", "YKS", "ZIA",
 }
+CYR_UPPER = r"\u0410-\u042f\u0401"
+CYR_LOWER = r"\u0430-\u044f\u0451"
 
 
 @dataclass(frozen=True)
@@ -475,13 +477,13 @@ def _parse_text_table_rows(text: str, source_label: str) -> list[GateRow]:
     rows: list[GateRow] = []
     plain = _plain(text)
     pattern = re.compile(
-        r"(?P<destination>[A-Za-zРђ-РЇР°-СЏС‘РЃ \-/]+)?\s*"
+        rf"(?P<destination>[A-Za-z{CYR_UPPER}{CYR_LOWER} \-/]+)?\s*"
         r"\((?P<iata>[A-Z]{3})\)\s+"
         r"(?P<time>\d{1,2}:\d{2}(?:\s+\d{1,2}:\d{2})?)\s+"
         r"(?P<status>.*?)\s+"
-        r"(?P<flight>[A-ZРђ-РЇ0-9]{1,3}\s*\d{1,4}[A-ZРђ-РЇ]?)\s+"
-        r"(?P<terminal>[A-ZРђ-РЇ]?)\s+"
-        r"(?P<gate>[A-ZРђ-РЇ]?\d{1,3}[A-ZРђ-РЇ]?(?:\d)?)\b",
+        rf"(?P<flight>[A-Z{CYR_UPPER}0-9]{{1,3}}\s*\d{{1,4}}[A-Z{CYR_UPPER}]?)\s+"
+        rf"(?P<terminal>[A-Z{CYR_UPPER}]?)\s+"
+        rf"(?P<gate>[A-Z{CYR_UPPER}]?\d{{1,3}}[A-Z{CYR_UPPER}]?(?:\d)?)\b",
         re.I,
     )
     for match in pattern.finditer(plain):
@@ -769,7 +771,7 @@ def _country_for_destination(destination_iata: str) -> str:
 
 def _flight_codes_from_cell(value: str) -> list[str]:
     codes: list[str] = []
-    tokens = re.findall(r"[A-ZРђ-РЇ0-9]+", (value or "").upper())
+    tokens = re.findall(rf"[A-Z{CYR_UPPER}0-9]+", (value or "").upper())
     index = 0
     while index < len(tokens):
         code = ""
@@ -777,7 +779,7 @@ def _flight_codes_from_cell(value: str) -> list[str]:
         if (
             index + 1 < len(tokens)
             and _looks_airline_token(token)
-            and re.fullmatch(r"\d{1,5}[A-ZРђ-РЇ]?", tokens[index + 1])
+            and re.fullmatch(rf"\d{{1,5}}[A-Z{CYR_UPPER}]?", tokens[index + 1])
         ):
             code = f"{token}{tokens[index + 1]}"
             index += 2
@@ -803,28 +805,29 @@ def _looks_airline_token(token: str) -> bool:
 
 
 def _normalize_code(value: str) -> str:
-    return re.sub(r"[^A-Za-zРђ-РЇР°-СЏ0-9]", "", value or "").upper()
+    return re.sub(rf"[^A-Za-z{CYR_UPPER}{CYR_LOWER}0-9]", "", value or "").upper()
 
 
 def _clean_gate(value: str) -> str:
-    text = _plain(value).upper().replace("Рђ", "A").replace("Р’", "B").replace("РЎ", "C")
+    text = _plain(value).upper()
+    text = text.replace("\u0410", "A").replace("\u0412", "B").replace("\u0421", "C").replace("\u0415", "E")
     text = re.sub(r"\s+", "", text)
     if not text or text in {"-", "N/A", "$UNDEFINED"}:
         return ""
-    match = re.search(r"([A-ZРђ-РЇ]?\d{1,3}[A-ZРђ-РЇ]?(?:\d)?)", text)
+    match = re.search(rf"([A-Z{CYR_UPPER}]?\d{{1,3}}[A-Z{CYR_UPPER}]?(?:\d)?)", text)
     return match.group(1) if match else ""
 
 
 def _clean_terminal(value: str) -> str:
     text = _plain(value).upper().strip()
-    match = re.search(r"[A-ZРђ-РЇ0-9]", text)
+    match = re.search(rf"[A-Z{CYR_UPPER}0-9]", text)
     return match.group(0) if match else ""
 
 
 def _split_gate_terminal(gate: str, terminal: str) -> tuple[str, str]:
     gate = gate.upper().strip()
     terminal = terminal.upper().strip()
-    match = re.fullmatch(r"([BCD])(\d{3}[A-ZРђ-РЇ]?)", gate)
+    match = re.fullmatch(rf"([BCD])(\d{{3}}[A-Z{CYR_UPPER}]?)", gate)
     if match:
         return match.group(2), terminal or match.group(1)
     return gate, terminal
