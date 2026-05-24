@@ -170,15 +170,25 @@ def _enrich_vko_gates(flights: list[dict[str, Any]]) -> dict[str, Any]:
 def _fetch_backup_rows(airport: str) -> tuple[list[GateRow], str]:
     errors: list[str] = []
     rows: list[GateRow] = []
+    planefinder_url = PLANEFINDER_DEPARTURES_URL.format(airport=airport)
+    fids_live_url = FIDS_LIVE_DEPARTURES_URL.format(airport=airport.lower())
+    airport_information_url = AIRPORT_INFORMATION_URL.format(airport=airport)
+    kupi_urls = (
+        [KUPI_TIMETABLE_URL.format(airport=KUPI_AIRPORT_SLUGS[airport])]
+        if airport in KUPI_AIRPORT_SLUGS
+        else []
+    )
     sources = [
-        (PLANEFINDER_DEPARTURES_URL.format(airport=airport), f"PlaneFinder {airport}"),
-        (FIDS_LIVE_DEPARTURES_URL.format(airport=airport.lower()), f"fids.live {airport}"),
+        (planefinder_url, f"PlaneFinder {airport}"),
+        (_reader_url(planefinder_url), f"PlaneFinder {airport} via Reader"),
+        (fids_live_url, f"fids.live {airport}"),
         *(
             [(KUPI_TIMETABLE_URL.format(airport=KUPI_AIRPORT_SLUGS[airport]), f"Kupi {airport}")]
             if airport in KUPI_AIRPORT_SLUGS
             else []
         ),
-        (AIRPORT_INFORMATION_URL.format(airport=airport), f"airportinformation.com {airport}"),
+        *[(_reader_url(url), f"Kupi {airport} via Reader") for url in kupi_urls],
+        (airport_information_url, f"airportinformation.com {airport}"),
         (BACKUP_BOARD_URL.format(airport=airport), f"доп. live-табло {airport}"),
     ]
     for url, label in sources:
@@ -193,6 +203,10 @@ def _fetch_backup_rows(airport: str) -> tuple[list[GateRow], str]:
             continue
         errors.append(f"{label}: rows not found")
     return _dedupe_gate_rows(rows), "; ".join(errors)
+
+
+def _reader_url(url: str) -> str:
+    return f"{JINA_READER_PREFIX}{url}"
 
 
 def _parse_gate_rows(text: str, source_label: str) -> list[GateRow]:
