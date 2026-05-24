@@ -21,6 +21,13 @@ VKO_ONLINE_URLS = (
 )
 BACKUP_BOARD_URL = "https://www.airports-worldwide.info/airport/{airport}/departures"
 AIRPORT_INFORMATION_URL = "https://www.airportinformation.com/{airport}/departures"
+PLANEFINDER_DEPARTURES_URL = "https://planefinder.net/data/airport/{airport}/departures"
+FIDS_LIVE_DEPARTURES_URL = "https://www.fids.live/{airport}/departures"
+KUPI_TIMETABLE_URL = "https://www.kupi.com/en-ae/explore/russian-federation/moscow/{airport}/timetable"
+KUPI_AIRPORT_SLUGS = {
+    "DME": "domodedovo",
+    "VKO": "vnukovo",
+}
 JINA_READER_PREFIX = "https://r.jina.ai/"
 
 
@@ -38,12 +45,31 @@ class GateRow:
 def enrich_airport_gates(airport: str, flights: list[dict[str, Any]]) -> dict[str, Any]:
     airport = airport.upper()
     if airport == "DME":
-        return enrich_dme_gates(flights)
+        return _enrich_dme_gates(flights)
     if airport == "SVO":
         return _enrich_svo_gates(flights)
     if airport == "VKO":
         return _enrich_vko_gates(flights)
     return {}
+
+
+def _enrich_dme_gates(flights: list[dict[str, Any]]) -> dict[str, Any]:
+    meta = enrich_dme_gates(flights)
+
+    # DME official mobile board fills rows we already have. Backup boards can
+    # also add rows that the main live source omitted.
+    backup_rows, backup_error = _fetch_backup_rows("DME")
+    backup_filled, backup_conflicts = _apply_gate_rows(flights, backup_rows)
+    backup_added = _append_gate_rows_as_flights(flights, backup_rows, "DME")
+    meta.update({
+        "dme_missing_after_backup": _count_missing_gates(flights),
+        "dme_backup_rows": len(backup_rows),
+        "dme_backup_filled": backup_filled,
+        "dme_backup_added_missing_flights": backup_added,
+        "dme_backup_conflicts": backup_conflicts,
+        "dme_backup_error": backup_error,
+    })
+    return meta
 
 
 def _enrich_svo_gates(flights: list[dict[str, Any]]) -> dict[str, Any]:
@@ -132,7 +158,15 @@ def _enrich_vko_gates(flights: list[dict[str, Any]]) -> dict[str, Any]:
 
 def _fetch_backup_rows(airport: str) -> tuple[list[GateRow], str]:
     errors: list[str] = []
+    rows: list[GateRow] = []
     sources = [
+        (PLANEFINDER_DEPARTURES_URL.format(airport=airport), f"PlaneFinder {airport}"),
+        (FIDS_LIVE_DEPARTURES_URL.format(airport=airport.lower()), f"fids.live {airport}"),
+        *(
+            [(KUPI_TIMETABLE_URL.format(airport=KUPI_AIRPORT_SLUGS[airport]), f"Kupi {airport}")]
+            if airport in KUPI_AIRPORT_SLUGS
+            else []
+        ),
         (AIRPORT_INFORMATION_URL.format(airport=airport), f"airportinformation.com {airport}"),
         (BACKUP_BOARD_URL.format(airport=airport), f"доп. live-табло {airport}"),
     ]
@@ -142,14 +176,21 @@ def _fetch_backup_rows(airport: str) -> tuple[list[GateRow], str]:
         except Exception as exc:
             errors.append(f"{label}: {exc}")
             continue
-        rows = _parse_gate_rows(text, label)
-        if rows:
-            return rows, "; ".join(errors)
+        source_rows = _parse_gate_rows(text, label)
+        if source_rows:
+            rows.extend(source_rows)
+            continue
         errors.append(f"{label}: rows not found")
-    return [], "; ".join(errors)
+    return _dedupe_gate_rows(rows), "; ".join(errors)
 
 
 def _parse_gate_rows(text: str, source_label: str) -> list[GateRow]:
+    if "planefinder" in source_label.lower():
+        return _parse_planefinder_rows(text, source_label)
+    if "fids.live" in source_label.lower():
+        return _parse_fids_live_rows(text, source_label)
+    if "kupi" in source_label.lower():
+        return _parse_kupi_rows(text, source_label)
     rows = _parse_html_table_rows(text, source_label)
     if rows:
         return rows
@@ -160,6 +201,315 @@ def _parse_gate_rows(text: str, source_label: str) -> list[GateRow]:
     if rows:
         return rows
     return _parse_text_table_rows(text, source_label)
+
+
+def _parse_planefinder_rows(text: str, source_label: str) -> list[GateRow]:
+    if not _planefinder_page_is_current(text):
+        return []
+
+    rows: list[GateRow] = []
+    lines = _plain_lines(text)
+    for idx, line in enumerate(lines):
+        if not re.fullmatch(r"\d{1,2}:\d{2}\s+[A-Z]{2,4}", line):
+            continue
+
+        times = _times_from_text(line)
+        if not times:
+            continue
+
+        flight_idx = -1
+        flight_codes: list[str] = []
+        for probe_idx in range(idx + 1, min(idx + 8, len(lines))):
+            flight_codes = _flight_codes_from_cell(lines[probe_idx])
+            if flight_codes:
+                flight_idx = probe_idx
+                break
+        if flight_idx < 0:
+            continue
+
+        destination_iata = ""
+        for probe_idx in range(flight_idx + 1, min(flight_idx + 5, len(lines))):
+            destination_iata = _destination_iata_from_text(lines[probe_idx])
+            if destination_iata:
+                break
+
+        terminal = ""
+        gate = ""
+        status_idx = -1
+        for probe_idx in range(flight_idx + 1, min(flight_idx + 9, len(lines))):
+            terminal, gate = _planefinder_terminal_gate(lines[probe_idx])
+            if gate:
+                status_idx = probe_idx
+                break
+        if not gate:
+            continue
+
+        actual_time = ""
+        if status_idx + 1 < len(lines):
+            next_times = _times_from_text(lines[status_idx + 1])
+            if next_times and not re.search(r"\b[A-Z]{2,4}\b", lines[status_idx + 1]):
+                actual_time = next_times[0]
+
+        for flight_code in flight_codes:
+            rows.append(
+                GateRow(
+                    flight_code=flight_code,
+                    scheduled_time=times[0],
+                    actual_time=actual_time,
+                    terminal=terminal,
+                    gate=gate,
+                    destination_iata=destination_iata,
+                    source_label=source_label,
+                )
+            )
+    return rows
+
+
+def _planefinder_terminal_gate(value: str) -> tuple[str, str]:
+    if not re.search(r"\b(?:boarding|cancelled|canceled|departed|departing|delayed|estimated|on time|scheduled)\b", value or "", re.I):
+        return "", ""
+
+    text = re.sub(
+        r"\b(?:boarding|cancelled|canceled|departed|departing|delayed|estimated|on time|scheduled)\b.*$",
+        "",
+        _plain(value),
+        flags=re.I,
+    ).strip()
+    if not text:
+        return "", ""
+
+    parts = text.split()
+    if len(parts) >= 2 and re.fullmatch(r"[A-Z]", parts[0], re.I) and re.search(r"\d", parts[1]):
+        return _clean_terminal(parts[0]), _clean_gate(parts[1])
+    return "", _clean_gate(text)
+
+
+def _planefinder_page_is_current(text: str) -> bool:
+    match = re.search(
+        r"\b(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday),\s+"
+        r"(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})\b",
+        text or "",
+        re.I,
+    )
+    if not match:
+        return True
+
+    months = {
+        "january": 1,
+        "february": 2,
+        "march": 3,
+        "april": 4,
+        "may": 5,
+        "june": 6,
+        "july": 7,
+        "august": 8,
+        "september": 9,
+        "october": 10,
+        "november": 11,
+        "december": 12,
+    }
+    month = months.get(match.group(2).lower())
+    if not month:
+        return False
+    page_date = datetime(int(match.group(3)), month, int(match.group(1))).date()
+    return page_date == datetime.now(ZoneInfo(MOSCOW_TZ)).date()
+
+
+def _parse_fids_live_rows(text: str, source_label: str) -> list[GateRow]:
+    if not _fids_live_page_is_current(text):
+        return []
+
+    rows: list[GateRow] = []
+    lines = _plain_lines(text)
+    for idx in range(0, max(len(lines) - 4, 0)):
+        times = _times_from_text(lines[idx])
+        if not times or not re.fullmatch(r"\d{1,2}:\d{2}", lines[idx]):
+            continue
+
+        flight_codes = _flight_codes_from_cell(lines[idx + 2])
+        gate = _clean_gate(lines[idx + 4])
+        if not flight_codes or not gate:
+            continue
+
+        actual_time = ""
+        status_times = _times_from_text(lines[idx + 3])
+        if status_times:
+            actual_time = status_times[-1]
+
+        for flight_code in flight_codes:
+            rows.append(
+                GateRow(
+                    flight_code=flight_code,
+                    scheduled_time=times[0],
+                    actual_time=actual_time,
+                    terminal="",
+                    gate=gate,
+                    destination_iata="",
+                    source_label=source_label,
+                )
+            )
+    return rows
+
+
+def _fids_live_page_is_current(text: str) -> bool:
+    match = re.search(r"\bToday\s+([A-Za-z]+)\s+(\d{1,2})\b", text or "", re.I)
+    if not match:
+        return True
+
+    months = {
+        "january": 1,
+        "february": 2,
+        "march": 3,
+        "april": 4,
+        "may": 5,
+        "june": 6,
+        "july": 7,
+        "august": 8,
+        "september": 9,
+        "october": 10,
+        "november": 11,
+        "december": 12,
+    }
+    month = months.get(match.group(1).lower())
+    if not month:
+        return False
+    today = datetime.now(ZoneInfo(MOSCOW_TZ)).date()
+    return month == today.month and int(match.group(2)) == today.day
+
+
+def _parse_kupi_rows(text: str, source_label: str) -> list[GateRow]:
+    if not _kupi_page_is_current(text):
+        return []
+
+    rows: list[GateRow] = []
+    lines = _plain_lines(text)
+    for idx, line in enumerate(lines):
+        times = _times_from_text(line)
+        if not times or not re.fullmatch(r"\d{1,2}:\d{2}", line):
+            continue
+        if (
+            idx > 0
+            and re.fullmatch(r"\d{1,2}:\d{2}", lines[idx - 1])
+            and idx + 1 < len(lines)
+            and _destination_iata_from_text(lines[idx + 1])
+        ):
+            continue
+
+        actual_time = ""
+        destination_idx = idx + 1
+        if destination_idx < len(lines):
+            possible_actual = _times_from_text(lines[destination_idx])
+            if (
+                possible_actual
+                and re.fullmatch(r"\d{1,2}:\d{2}", lines[destination_idx])
+                and destination_idx + 1 < len(lines)
+                and _destination_iata_from_text(lines[destination_idx + 1])
+            ):
+                actual_time = possible_actual[0]
+                destination_idx += 1
+
+        if destination_idx >= len(lines):
+            continue
+        destination_iata = _destination_iata_from_text(lines[destination_idx])
+        if not destination_iata:
+            continue
+
+        flight_idx = -1
+        flight_codes: list[str] = []
+        for probe_idx in range(destination_idx + 1, min(destination_idx + 7, len(lines))):
+            flight_codes = _flight_codes_from_cell(lines[probe_idx])
+            if flight_codes:
+                flight_idx = probe_idx
+                break
+        if flight_idx < 0:
+            continue
+
+        status_idx = -1
+        for probe_idx in range(flight_idx + 1, min(flight_idx + 6, len(lines))):
+            if _looks_kupi_status(lines[probe_idx]):
+                status_idx = probe_idx
+                break
+        if status_idx < 0 or status_idx + 1 >= len(lines):
+            continue
+
+        if not actual_time:
+            status_times = _times_from_text(lines[status_idx])
+            if status_times:
+                actual_time = status_times[-1]
+
+        terminal, gate = _kupi_terminal_gate(lines[status_idx + 1])
+        if not gate:
+            continue
+
+        for flight_code in flight_codes:
+            rows.append(
+                GateRow(
+                    flight_code=flight_code,
+                    scheduled_time=times[0],
+                    actual_time=actual_time,
+                    terminal=terminal,
+                    gate=gate,
+                    destination_iata=destination_iata,
+                    source_label=source_label,
+                )
+            )
+    return rows
+
+
+def _kupi_page_is_current(text: str) -> bool:
+    match = re.search(r"\bDeparture date\s+(\d{1,2})\s+([A-Za-z]+),\s+today\b", text or "", re.I)
+    if not match:
+        return "Departure date" not in (text or "")
+
+    months = {
+        "january": 1,
+        "february": 2,
+        "march": 3,
+        "april": 4,
+        "may": 5,
+        "june": 6,
+        "july": 7,
+        "august": 8,
+        "september": 9,
+        "october": 10,
+        "november": 11,
+        "december": 12,
+    }
+    month = months.get(match.group(2).lower())
+    if not month:
+        return False
+    today = datetime.now(ZoneInfo(MOSCOW_TZ)).date()
+    return int(match.group(1)) == today.day and month == today.month
+
+
+def _looks_kupi_status(value: str) -> bool:
+    return bool(
+        re.search(
+            r"\b(?:arrived|cancelled|canceled|delayed|departed|in flight|on schedule|boarding|scheduled)\b",
+            value or "",
+            re.I,
+        )
+    )
+
+
+def _kupi_terminal_gate(value: str) -> tuple[str, str]:
+    text = _plain(value).upper().replace("—", "-").strip()
+    text = re.sub(r"\s+", " ", text)
+    if not text or text in {"-", "--", "N/A"}:
+        return "", ""
+
+    match = re.fullmatch(r"T?([A-Z])\s+(\d{1,3}[A-Z]?)", text)
+    if match:
+        return _clean_terminal(match.group(1)), _clean_gate(match.group(2))
+
+    match = re.fullmatch(r"([A-Z])(\d{1,3}[A-Z]?)", text)
+    if match:
+        return _clean_terminal(match.group(1)), _clean_gate(match.group(2))
+
+    if re.fullmatch(r"\d{1,3}[A-Z]?", text):
+        return "", _clean_gate(text)
+
+    return "", ""
 
 
 def _parse_html_table_rows(text: str, source_label: str) -> list[GateRow]:
@@ -252,6 +602,25 @@ def _parse_text_table_rows(text: str, source_label: str) -> list[GateRow]:
     return rows
 
 
+def _dedupe_gate_rows(rows: list[GateRow]) -> list[GateRow]:
+    result: list[GateRow] = []
+    seen: set[tuple[str, str, str, str, str, str]] = set()
+    for row in rows:
+        key = (
+            row.flight_code,
+            row.scheduled_time,
+            row.actual_time,
+            row.destination_iata,
+            row.terminal,
+            row.gate,
+        )
+        if key in seen:
+            continue
+        seen.add(key)
+        result.append(row)
+    return result
+
+
 def _append_gate_rows_as_flights(flights: list[dict[str, Any]], rows: list[GateRow], airport: str) -> int:
     existing = {
         (
@@ -261,10 +630,19 @@ def _append_gate_rows_as_flights(flights: list[dict[str, Any]], rows: list[GateR
         )
         for flight in flights
     }
+    existing_code_time = {
+        (
+            _flight_code(flight),
+            _time_text((flight.get("originalTime") or {}).get("text")),
+        )
+        for flight in flights
+    }
     added = 0
     for row in rows:
         key = (row.flight_code, row.destination_iata, row.scheduled_time)
         if key in existing:
+            continue
+        if (row.flight_code, row.scheduled_time) in existing_code_time:
             continue
         airline_iata, flight_number = _split_flight_code(row.flight_code)
         if not airline_iata or not flight_number:
@@ -288,6 +666,7 @@ def _append_gate_rows_as_flights(flights: list[dict[str, Any]], rows: list[GateR
             }
         )
         existing.add(key)
+        existing_code_time.add((row.flight_code, row.scheduled_time))
         added += 1
     return added
 
@@ -334,7 +713,7 @@ def _apply_gate_rows(flights: list[dict[str, Any]], rows: list[GateRow]) -> tupl
         code_rows.setdefault(row.flight_code, []).append(row)
         for item_time in [row.scheduled_time, row.actual_time]:
             if item_time:
-                exact[(row.flight_code, item_time)] = row
+                exact.setdefault((row.flight_code, item_time), row)
 
     filled = 0
     conflicts = 0
@@ -425,6 +804,13 @@ def _split_flight_code(value: str) -> tuple[str, str]:
     if len(code) >= 4 and code[:3].isalpha() and code[3].isdigit():
         return code[:3], code[3:]
     return "", ""
+
+
+def _destination_iata_from_text(value: str) -> str:
+    matches = re.findall(r"\b([A-Z]{3})\b", value or "")
+    if not matches:
+        return ""
+    return matches[-1].upper()
 
 
 def _flight_codes_from_cell(value: str) -> list[str]:
