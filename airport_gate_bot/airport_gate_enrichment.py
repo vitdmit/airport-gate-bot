@@ -64,16 +64,16 @@ def enrich_airport_gates(airport: str, flights: list[dict[str, Any]]) -> dict[st
 def _enrich_dme_gates(flights: list[dict[str, Any]]) -> dict[str, Any]:
     meta = enrich_dme_gates(flights)
 
-    # DME official mobile board fills rows we already have. Backup boards can
-    # also add rows that the main live source omitted.
+    # Backup boards are used only to fill gates on flights we already trust
+    # from Flighty. Some free boards expose noisy historical rows, so we do
+    # not append them as standalone departures.
     backup_rows, backup_error = _fetch_backup_rows("DME")
     backup_filled, backup_conflicts = _apply_gate_rows(flights, backup_rows)
-    backup_added = _append_gate_rows_as_flights(flights, backup_rows, "DME")
     meta.update({
         "dme_missing_after_backup": _count_missing_gates(flights),
         "dme_backup_rows": len(backup_rows),
         "dme_backup_filled": backup_filled,
-        "dme_backup_added_missing_flights": backup_added,
+        "dme_backup_added_missing_flights": 0,
         "dme_backup_conflicts": backup_conflicts,
         "dme_backup_error": backup_error,
     })
@@ -148,16 +148,15 @@ def _enrich_vko_gates(flights: list[dict[str, Any]]) -> dict[str, Any]:
         "vko_official_errors": errors[:3],
     }
 
-    # VKO/Flighty can omit some carriers entirely, especially Pobeda (DP).
-    # So the backup board is useful even when all Flighty rows already have gates.
+    # Backup boards are useful as gate hints, but not reliable enough to add
+    # standalone flights: they can include stale rows and non-airport gates.
     backup_rows, backup_error = _fetch_backup_rows("VKO")
     backup_filled, backup_conflicts = _apply_gate_rows(flights, backup_rows)
-    backup_added = _append_gate_rows_as_flights(flights, backup_rows, "VKO")
     meta.update({
         "vko_missing_after_backup": _count_missing_gates(flights),
         "vko_backup_rows": len(backup_rows),
         "vko_backup_filled": backup_filled,
-        "vko_backup_added_missing_flights": backup_added,
+        "vko_backup_added_missing_flights": 0,
         "vko_backup_conflicts": backup_conflicts,
         "vko_backup_error": backup_error,
     })
@@ -813,6 +812,8 @@ def _clean_gate(value: str) -> str:
     text = text.replace("\u0410", "A").replace("\u0412", "B").replace("\u0421", "C").replace("\u0415", "E")
     text = re.sub(r"\s+", "", text)
     if not text or text in {"-", "N/A", "$UNDEFINED"}:
+        return ""
+    if text == "0" or re.fullmatch(r"0\d+", text):
         return ""
     match = re.search(rf"([A-Z{CYR_UPPER}]?\d{{1,3}}[A-Z{CYR_UPPER}]?(?:\d)?)", text)
     return match.group(1) if match else ""
