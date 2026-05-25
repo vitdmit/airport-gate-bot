@@ -17,7 +17,7 @@ from .settings import MOSCOW_TZ
 SVO_TIMETABLE_URL = "https://www.svo.aero/ru/timetable/departure?date=today&period={period}&terminal=all"
 VKO_ONLINE_URLS = (
     "https://www.vnukovo.ru/ru/for-passengers/flights/online/",
-    "https://www.vnukovo.ru/flights/online-timetable/#tab-sortie",
+    "https://www.vnukovo.ru/ru/for-passengers/reysi/online-tablo/?bound=departure",
 )
 BACKUP_BOARD_URL = "https://www.airports-worldwide.info/airport/{airport}/departures"
 AIRPORT_INFORMATION_URL = "https://www.airportinformation.com/{airport}/departures"
@@ -125,13 +125,14 @@ def _enrich_vko_gates(flights: list[dict[str, Any]]) -> dict[str, Any]:
     missing_before = _count_missing_gates(flights)
     rows: list[GateRow] = []
     errors: list[str] = []
-    for url in VKO_ONLINE_URLS:
+    now = datetime.now(ZoneInfo(MOSCOW_TZ))
+    for url in _vko_official_urls(now):
         try:
             text = _request_text(url)
         except Exception as exc:
             errors.append(f"official VKO: {exc}")
             continue
-        rows.extend(_parse_gate_rows(text, "РѕС„РёС†РёР°Р»СЊРЅС‹Р№ VKO"))
+        rows.extend(_parse_vko_official_rows(text, "official VKO"))
 
     filled, conflicts = _apply_gate_rows(flights, rows)
     missing_after_official = _count_missing_gates(flights)
@@ -161,6 +162,29 @@ def _enrich_vko_gates(flights: list[dict[str, Any]]) -> dict[str, Any]:
         "vko_backup_error": backup_error,
     })
     return meta
+
+
+def _vko_official_urls(now: datetime) -> list[str]:
+    urls = list(VKO_ONLINE_URLS)
+    hours = {now.hour, max(now.hour - 1, 0), max(now.hour - 2, 0)}
+    if now.hour <= 9:
+        hours.add(23)
+    for hour in sorted(hours, reverse=True):
+        urls.append(
+            "https://www.vnukovo.ru/ru/for-passengers/reysi/online-tablo/"
+            f"?bound=departure&date=today&from={hour}"
+        )
+    if now.hour <= 9:
+        urls.append(
+            "https://www.vnukovo.ru/ru/for-passengers/reysi/online-tablo/"
+            "?bound=departure&date=yesterday&from=23"
+        )
+
+    result: list[str] = []
+    for url in urls:
+        if url not in result:
+            result.append(url)
+    return result
 
 
 def _fetch_backup_rows(airport: str) -> tuple[list[GateRow], str]:
@@ -209,6 +233,109 @@ def _parse_gate_rows(text: str, source_label: str) -> list[GateRow]:
     if rows:
         return rows
     return _parse_text_table_rows(text, source_label)
+
+
+def _parse_vko_official_rows(text: str, source_label: str) -> list[GateRow]:
+    lines = _plain_lines(text)
+    rows: list[GateRow] = []
+    idx = 0
+    while idx < len(lines):
+        if lines[idx] not in {"Время вылета", "Departure time"}:
+            idx += 1
+            continue
+
+        next_idx = idx + 1
+        while next_idx < len(lines) and lines[next_idx] not in {"Время вылета", "Departure time"}:
+            next_idx += 1
+        rows.extend(_vko_rows_from_block(lines[idx:next_idx], source_label))
+        idx = next_idx
+    return _dedupe_gate_rows(rows)
+
+
+def _vko_rows_from_block(block: list[str], source_label: str) -> list[GateRow]:
+    if len(block) < 10:
+        return []
+
+    time_pos = 0
+    destination_pos = _find_label(block, {"Направление", "Destination"}, time_pos + 1)
+    flight_pos = _find_label(block, {"Рейс", "Flight"}, destination_pos + 1 if destination_pos >= 0 else 1)
+    airline_pos = _find_label(block, {"Авиакомпания", "Airline"}, flight_pos + 1 if flight_pos >= 0 else 1)
+    terminal_pos = _find_label(block, {"Терминал", "Терм.", "Terminal", "Term."}, airline_pos + 1 if airline_pos >= 0 else 1)
+    gate_pos = _find_label(block, {"Выход", "Gate"}, terminal_pos + 1 if terminal_pos >= 0 else 1)
+    status_pos = _find_label(block, {"Статус", "Status"}, gate_pos + 1 if gate_pos >= 0 else 1)
+
+    if min(destination_pos, flight_pos, terminal_pos, gate_pos) < 0:
+        return []
+
+    scheduled_time = _first_time(block[time_pos + 1:destination_pos])
+    if not scheduled_time:
+        return []
+    actual_time = _last_time(block[time_pos + 1:destination_pos])
+    if actual_time == scheduled_time:
+        actual_time = ""
+
+    destination_lines = block[destination_pos + 1:flight_pos]
+    destination_iata = next((item.upper() for item in destination_lines if re.fullmatch(r"[A-Z]{3}", item)), "")
+    destination_name = next((item for item in destination_lines if not re.fullmatch(r"[A-Z]{3}", item)), "")
+
+    flight_end = airline_pos if airline_pos >= 0 else terminal_pos
+    flight_codes: list[str] = []
+    for line in block[flight_pos + 1:flight_end]:
+        for code in _flight_codes_from_cell(line):
+            if code not in flight_codes:
+                flight_codes.append(code)
+
+    terminal = _first_value(block, terminal_pos + 1, gate_pos)
+    gate_end = status_pos if status_pos >= 0 else len(block)
+    gate = _clean_gate(_first_value(block, gate_pos + 1, gate_end))
+    if not flight_codes or not gate:
+        return []
+
+    return [
+        GateRow(
+            flight_code=flight_code,
+            scheduled_time=scheduled_time,
+            actual_time=actual_time,
+            terminal=_clean_terminal(terminal),
+            gate=gate,
+            destination_iata=destination_iata,
+            destination_name=destination_name,
+            source_label=source_label,
+        )
+        for flight_code in flight_codes
+    ]
+
+
+def _find_label(lines: list[str], labels: set[str], start: int = 0) -> int:
+    for idx in range(max(start, 0), len(lines)):
+        if lines[idx] in labels:
+            return idx
+    return -1
+
+
+def _first_value(lines: list[str], start: int, end: int) -> str:
+    for idx in range(max(start, 0), min(end, len(lines))):
+        value = str(lines[idx] or "").strip()
+        if value:
+            return value
+    return ""
+
+
+def _first_time(lines: list[str]) -> str:
+    for line in lines:
+        times = _times_from_text(line)
+        if times:
+            return times[0]
+    return ""
+
+
+def _last_time(lines: list[str]) -> str:
+    result = ""
+    for line in lines:
+        times = _times_from_text(line)
+        if times:
+            result = times[-1]
+    return result
 
 
 def _parse_planefinder_rows(text: str, source_label: str) -> list[GateRow]:
@@ -813,7 +940,7 @@ def _clean_gate(value: str) -> str:
     text = re.sub(r"\s+", "", text)
     if not text or text in {"-", "N/A", "$UNDEFINED"}:
         return ""
-    if text == "0" or re.fullmatch(r"0\d+", text):
+    if text == "0":
         return ""
     match = re.search(rf"([A-Z{CYR_UPPER}]?\d{{1,3}}[A-Z{CYR_UPPER}]?(?:\d)?)", text)
     return match.group(1) if match else ""
