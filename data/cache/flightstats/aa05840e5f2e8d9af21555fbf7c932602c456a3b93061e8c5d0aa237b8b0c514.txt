@@ -1,0 +1,66 @@
+Title: (SVO Departures) Moscow Sheremetyevo International Airport Departures
+
+URL Source: https://www.flightstats.com/v2/flight-tracker/departures/SVO?year=2026&month=5&date=24&hour=22
+
+Markdown Content:
+## (SVO) Moscow Sheremetyevo International Airport Departures 24-May-2026
+
+## SVO Departure Filters
+
+Departure Airport
+
+X
+
+Arrival Airport
+
+X
+
+Airline (optional)
+
+X
+
+Date
+
+Time
+
+Show Codeshares?
+
+Show
+
+Hide
+
+87 results
+
+«
+
+←
+
+1
+
+2
+
+3
+
+4
+
+→
+
+»
+
+[Flight Departure Time Arrival Time Destination](https://www.flightstats.com/v2/flight-tracker/departures/SVO?year=2026&month=5&date=24&hour=22)## [B2 972 ## 16:55 ## 18:20 ## MSQ Belavia Minsk](https://www.flightstats.com/v2/flight-tracker/B2/972?year=2026&month=5&date=24&flightId=1385279402)## [MU 592 ## 19:05 ## 08:55 ## PVG China Eastern Airlines Shanghai](https://www.flightstats.com/v2/flight-tracker/MU/592?year=2026&month=5&date=24&flightId=1385323469)## [SU 6865 ## 19:35 ## 12:25 ## DYR Aeroflot / Operated by Rossiya Airlines on behalf of Aeroflot Anadyr](https://www.flightstats.com/v2/flight-tracker/SU/6865?year=2026&month=5&date=24&flightId=1385336958)## [SU 1714 ## 21:10 ## 11:45 ## KHV Aeroflot Khabarovsk](https://www.flightstats.com/v2/flight-tracker/SU/1714?year=2026&month=5&date=24&flightId=1385336506)## [CZ 8004 ## 21:15 ## 10:30 ## WUH China Southern Airlines Wuhan](https://www.flightstats.com/v2/flight-tracker/CZ/8004?year=2026&month=5&date=24&flightId=1385287326)## [SU 1442 ## 21:20 ## 08:05 ## IKT Aeroflot Irkutsk](https://www.flightstats.com/v2/flight-tracker/SU/1442?year=2026&month=5&date=24&flightId=1385336397)## [SU 6707 ## 21:30 ## 22:55 ## LED Aeroflot / Operated by Rossiya Airlines on behalf of Aeroflot Saint Petersburg](https://www.flightstats.com/v2/flight-tracker/SU/6707?year=2026&month=5&date=24&flightId=1385336955)## [SU 1882 ## 21:35 ## 04:50 ## FRU Aeroflot Bishkek](https://www.flightstats.com/v2/flight-tracker/SU/1882?year=2026&month=5&date=24&flightId=1385336524)## [SU 1510 ## 21:40 ## 03:00 ## SGC Aeroflot Surgut](https://www.flightstats.com/v2/flight-tracker/SU/1510?year=2026&month=5&date=24&flightId=1385336432)## [DP*5547 ## 21:45 ## 06:20 ## KJA Pobeda Krasnojarsk](https://www.flightstats.com/v2/flight-tracker/DP*/5547?year=2026&month=5&date=24&flightId=1385838669)## [CZ 6002 ## 21:55 ## 08:20 ## URC China Southern Airlines Urumqi](https://www.flightstats.com/v2/flight-tracker/CZ/6002?year=2026&month=5&date=24&flightId=1385286623)## [DP*6521 ## 22:00 ## 04:25 ## OMS Pobeda Omsk](https://www.flightstats.com/v2/flight-tracker/DP*/6521?year=2026&month=5&date=24&flightId=1385838606)## [WY 184 ## 22:05 ## 06:30 ## MCT Oman Air Muscat](https://www.flightstats.com/v2/flight-tracker/WY/184?year=2026&month=5&date=24&flightId=1385358938)## [OMS 8030 ## 22:05 ## 06:30 ## MCT SalamAir / Operated by Oman Air 184 Muscat](https://www.flightstats.com/v2/flight-tracker/OMS/8030?year=2026&month=5&date=24&flightId=1385358938)## [SU 1762 ## 22:15 ## 04:40 ## OMS Aeroflot Omsk](https://www.flightstats.com/v2/flight-tracker/SU/1762?year=2026&month=5&date=24&flightId=1385336509)## [EY 844 ## 22:15 ## 06:55 ## AUH Etihad Airways Abu Dhabi](https://www.flightstats.com/v2/flight-tracker/EY/844?year=2026&month=5&date=24&flightId=1385296953)## [GA 9033 ## 22:15 ## 06:55 ## AUH Garuda Indonesia / Operated by Etihad Airways 844 Abu Dhabi](https://www.flightstats.com/v2/flight-tracker/GA/9033?year=2026&month=5&date=24&flightId=1385296953)## [SU 1198 ## 22:15 ## 23:55 ## KZN Aeroflot Kazan](https://www.flightstats.com/v2/flight-tracker/SU/1198?year=2026&month=5&date=24&flightId=1385336289)## [3U 3888 ## 22:20 ## 11:00 ## TFU Sichuan Airlines Chengdu](https://www.flightstats.com/v2/flight-tracker/3U/3888?year=2026&month=5&date=24&flightId=1385257310)## [SU 1554 ## 22:25 ## 06:40 ## OVB Aeroflot Novosibirsk](https://www.flightstats.com/v2/flight-tracker/SU/1554?year=2026&month=5&date=24&flightId=1385336436)## [SU 272 ## 22:25 ## 11:45 ## BKK Aeroflot Bangkok](https://www.flightstats.com/v2/flight-tracker/SU/272?year=2026&month=5&date=24&flightId=1385336614)## [DP*6547 ## 22:30 ## 07:10 ## KJA Pobeda Krasnojarsk](https://www.flightstats.com/v2/flight-tracker/DP*/6547?year=2026&month=5&date=24&flightId=1385838667)## [SU 6809 ## 22:30 ## 23:55 ## LED Aeroflot / Operated by Rossiya Airlines on behalf of Aeroflot Saint Petersburg](https://www.flightstats.com/v2/flight-tracker/SU/6809?year=2026&month=5&date=24&flightId=1385336954)## [SU 1458 ## 22:30 ## 06:45 ## NOZ Aeroflot Novokuznetsk](https://www.flightstats.com/v2/flight-tracker/SU/1458?year=2026&month=5&date=24&flightId=1385336418)## [SU 320 ## 22:35 ## 09:25 ## MLE Aeroflot Male](https://www.flightstats.com/v2/flight-tracker/SU/320?year=2026&month=5&date=24&flightId=1385336624)
+
+«
+
+←
+
+1
+
+2
+
+3
+
+4
+
+→
+
+»
