@@ -57,7 +57,6 @@ def build_operational_flights(
         key = (
             record["airport"],
             minute,
-            record["terminal"],
             record["gate"],
             unknown_gate_guard,
         )
@@ -65,7 +64,8 @@ def build_operational_flights(
 
     operational = []
     for key, items in groups.items():
-        airport, departure_dt, terminal, gate, _unknown_gate_guard = key
+        airport, departure_dt, gate, _unknown_gate_guard = key
+        terminal = _first_known(item["terminal"] for item in items) or _unique_join(item["terminal"] for item in items) or UNKNOWN_GATE
         line_types = sorted({item["line_type"] for item in items})
         destinations = _unique_join(item["destination"] for item in items)
         destination_iatas = _unique_join(item["destination_iata"] for item in items)
@@ -214,6 +214,8 @@ def normalize_flight(
     flight_code = f"{airline.get('iata', '').strip()} {str(flight.get('flightNumber', '')).strip()}".strip()
     arrival_country = str(arrival.get("countryCode") or "").upper() or _country_from_flag(arrival.get("flag", ""))
     gate = _normalize_gate(departure.get("gate"))
+    terminal = str(departure.get("terminal") or "").strip()
+    gate, terminal = _split_prefixed_svo_gate(airport, gate, terminal)
     gate_source = str(departure.get("gateSource") or "").strip()
     if _is_rejected_gate_source(gate_source):
         gate = UNKNOWN_GATE
@@ -229,7 +231,7 @@ def normalize_flight(
         "departure_dt": departure_dt,
         "scheduled_time": scheduled_dt.strftime("%H:%M"),
         "departure_time": departure_dt.strftime("%H:%M"),
-        "terminal": str(departure.get("terminal") or "").strip() or UNKNOWN_GATE,
+        "terminal": terminal or UNKNOWN_GATE,
         "gate": gate,
         "airline_iata": str(airline.get("iata") or "").strip(),
         "airline_name": str(airline.get("name") or "").strip(),
@@ -369,6 +371,18 @@ def _normalize_gate(value: Any) -> str:
     return gate
 
 
+def _split_prefixed_svo_gate(airport: str, gate: str, terminal: str) -> tuple[str, str]:
+    if str(airport or "").upper() != "SVO" or is_unknown_gate(gate):
+        return gate, terminal
+
+    text = re.sub(r"\s+", "", str(gate or "").upper())
+    match = re.fullmatch(r"([BCD])(\d{1,3}[A-Z]?)", text)
+    if not match:
+        return gate, terminal
+
+    return match.group(2), terminal or match.group(1)
+
+
 def is_unknown_gate(value: Any) -> bool:
     return str(value or "").strip().lower() in UNKNOWN_GATES
 
@@ -380,6 +394,14 @@ def _unique_join(values) -> str:
         if value and value not in result:
             result.append(value)
     return ", ".join(result)
+
+
+def _first_known(values) -> str:
+    for value in values:
+        text = str(value or "").strip()
+        if text and not is_unknown_gate(text):
+            return text
+    return ""
 
 
 def _timeline_text(rows: list[dict[str, Any]]) -> str:

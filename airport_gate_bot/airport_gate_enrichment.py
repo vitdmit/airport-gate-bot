@@ -17,6 +17,12 @@ from .settings import MOSCOW_TZ
 SVO_TIMETABLE_URLS = (
     "https://www.svo.aero/ru/departure/timetable?date=today&period={period}&terminal=all",
     "https://www.svo.aero/ru/timetable/departure?date=today&period={period}&terminal=all",
+    "https://www.svo.aero/en/departure/timetable?date=today&period={period}&terminal=all",
+    "https://www.svo.aero/en/timetable/departure?date=today&period={period}&terminal=all",
+    "https://www.svo.su/ru/departure/timetable?date=today&period={period}&terminal=all",
+    "https://www.svo.su/ru/timetable/departure?date=today&period={period}&terminal=all",
+    "https://www.svo.su/en/departure/timetable?date=today&period={period}&terminal=all",
+    "https://www.svo.su/en/timetable/departure?date=today&period={period}&terminal=all",
 )
 VKO_ONLINE_URLS = (
     "https://www.vnukovo.ru/ru/for-passengers/flights/online/",
@@ -108,6 +114,7 @@ def _enrich_svo_gates(flights: list[dict[str, Any]]) -> dict[str, Any]:
                 break
 
     filled, conflicts = _apply_gate_rows(flights, rows)
+    official_added = _append_gate_rows_as_flights(flights, rows, "SVO")
     missing_after_official = _count_missing_gates(flights)
     meta = {
         "svo_gate_enrichment_needed": int(missing_before > 0),
@@ -116,6 +123,7 @@ def _enrich_svo_gates(flights: list[dict[str, Any]]) -> dict[str, Any]:
         "svo_official_checked": 1,
         "svo_official_rows": len(rows),
         "svo_official_filled": filled,
+        "svo_official_added_missing_flights": official_added,
         "svo_official_conflicts": conflicts,
         "svo_official_errors": errors[:3],
     }
@@ -860,6 +868,7 @@ def _svo_periods(now: datetime) -> list[str]:
         value = f"{start:02d}:00-{end:02d}:00"
         if value not in result:
             result.append(value)
+    result.append("allday")
     return result
 
 
@@ -975,7 +984,7 @@ def _clean_terminal(value: str) -> str:
 def _split_gate_terminal(gate: str, terminal: str) -> tuple[str, str]:
     gate = gate.upper().strip()
     terminal = terminal.upper().strip()
-    match = re.fullmatch(rf"([BCD])(\d{{3}}[A-Z{CYR_UPPER}]?)", gate)
+    match = re.fullmatch(rf"([BCD])(\d{{1,3}}[A-Z{CYR_UPPER}]?)", gate)
     if match:
         return match.group(2), terminal or match.group(1)
     return gate, terminal

@@ -7,12 +7,12 @@ from datetime import date, datetime
 from pathlib import Path
 from typing import Any
 
-from .analytics import is_unknown_gate, normalize_flight
+from .analytics import UNKNOWN_GATE, is_unknown_gate, normalize_flight
 from .historical import fetch_historical_operational_rows
 from .storage import load_snapshots_around
 
 
-UNKNOWN = "не указан"
+UNKNOWN = UNKNOWN_GATE
 
 
 @dataclass(frozen=True)
@@ -76,6 +76,8 @@ def enrich_rows_with_snapshot_gates(
 
         enriched.append(item)
 
+    _propagate_codeshare_gates(enriched)
+    enriched = _merge_codeshare_rows(enriched)
     enriched.sort(key=lambda row: (row["airport"], row["line_type"], row["terminal"], row["gate"], row["departure_dt"]))
     return enriched
 
@@ -167,6 +169,101 @@ def _candidate_quality(candidate: GateCandidate) -> str:
     return _join_sources(*notes)
 
 
+def _propagate_codeshare_gates(rows: list[dict[str, Any]]) -> None:
+    groups: dict[tuple[str, str, str, str], list[dict[str, Any]]] = defaultdict(list)
+    for row in rows:
+        key = _codeshare_key(row)
+        if key[3]:
+            groups[key].append(row)
+
+    for items in groups.values():
+        donors = [item for item in items if _is_known(item.get("gate"))]
+        if not donors:
+            continue
+        donor = _best_gate_donor(donors)
+        for item in items:
+            if _is_known(item.get("gate")):
+                continue
+            item["terminal"] = donor.get("terminal") or item.get("terminal") or UNKNOWN
+            item["gate"] = donor["gate"]
+            item["gate_source"] = _join_sources(donor.get("gate_source", ""), "gate взят из кодшера того же вылета")
+            item["gate_match"] = _join_sources(
+                item.get("gate_match", ""),
+                f"кодшеринг: gate взят из {donor.get('flight_numbers', '')}".strip(),
+            )
+            item["data_quality"] = _join_sources(item.get("data_quality", ""), "gate заполнен по кодшерингу")
+
+
+def _merge_codeshare_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    groups: dict[tuple[str, str, str, str], list[dict[str, Any]]] = defaultdict(list)
+    for row in rows:
+        minute = _row_minute(row)
+        destination_iata = _first_csv(row.get("destination_iata", "")).upper()
+        groups[
+            (
+                str(row.get("airport", "")).upper(),
+                minute,
+                str(row.get("gate") or UNKNOWN),
+                destination_iata,
+            )
+        ].append(row)
+
+    merged: list[dict[str, Any]] = []
+    for items in groups.values():
+        if len(items) == 1:
+            merged.append(items[0])
+            continue
+        base = dict(sorted(items, key=lambda row: str(row.get("flight_numbers", "")))[0])
+        base["line_type"] = _unique_csv(item.get("line_type", "") for item in items)
+        known_terminal = _first_known(item.get("terminal", "") for item in items)
+        if known_terminal:
+            base["terminal"] = known_terminal
+        known_gate = _first_known(item.get("gate", "") for item in items)
+        if known_gate:
+            base["gate"] = known_gate
+        base["scheduled_time"] = _unique_csv(item.get("scheduled_time", "") for item in items)
+        base["airlines"] = _unique_csv(item.get("airlines", "") for item in items)
+        base["flight_numbers"] = _unique_csv(item.get("flight_numbers", "") for item in items)
+        base["destination"] = _unique_csv(item.get("destination", "") for item in items)
+        base["destination_iata"] = _unique_csv(item.get("destination_iata", "") for item in items)
+        base["status"] = _unique_csv(item.get("status", "") for item in items)
+        base["source_url"] = _join_sources(*(item.get("source_url", "") for item in items))
+        base["codeshare_rows"] = sum(int(item.get("codeshare_rows") or 1) for item in items)
+        base["gate_source"] = _join_sources(*(item.get("gate_source", "") for item in items))
+        base["gate_match"] = _join_sources(*(item.get("gate_match", "") for item in items))
+        base["data_quality"] = _join_sources(*(item.get("data_quality", "") for item in items))
+        merged.append(base)
+    return merged
+
+
+def _codeshare_key(row: dict[str, Any]) -> tuple[str, str, str, str]:
+    return (
+        str(row.get("airport", "")).upper(),
+        _row_minute(row),
+        _first_time(row.get("scheduled_time", "")),
+        _first_csv(row.get("destination_iata", "")).upper(),
+    )
+
+
+def _row_minute(row: dict[str, Any]) -> str:
+    departure_dt = row.get("departure_dt")
+    if departure_dt:
+        return departure_dt.replace(second=0, microsecond=0).isoformat()
+    return _first_time(row.get("departure_time", ""))
+
+
+def _best_gate_donor(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    return sorted(
+        rows,
+        key=lambda row: (
+            "live" in str(row.get("gate_source", "")).lower(),
+            "post-fact" in str(row.get("gate_source", "")).lower(),
+            str(row.get("flight_numbers", "")),
+        ),
+        reverse=True,
+    )[0]
+
+
 def _parse_date(value: str | None) -> date:
     if not value:
         return datetime.now().date()
@@ -204,6 +301,24 @@ def _first_csv(value: Any) -> str:
 def _first_time(value: Any) -> str:
     match = re.search(r"\d{1,2}:\d{2}", str(value or ""))
     return match.group(0) if match else ""
+
+
+def _unique_csv(values) -> str:
+    result = []
+    for value in values:
+        for part in str(value or "").split(","):
+            part = part.strip()
+            if part and part not in result:
+                result.append(part)
+    return ", ".join(result)
+
+
+def _first_known(values) -> str:
+    for value in values:
+        text = str(value or "").strip()
+        if _is_known(text):
+            return text
+    return ""
 
 
 def _join_sources(*values: Any) -> str:
