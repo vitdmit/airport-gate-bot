@@ -22,6 +22,8 @@ DME_GATE_LOOKBACK = timedelta(minutes=90)
 DME_GATE_LOOKAHEAD = timedelta(minutes=150)
 MAX_DETAIL_CHECKS_PER_RUN = 35
 DETAIL_REQUEST_PAUSE_SECONDS = 0.2
+DME_DETAIL_ATTEMPTS = 2
+DME_DETAIL_RETRY_PAUSE_SECONDS = 2.0
 
 
 @dataclass(frozen=True)
@@ -67,7 +69,7 @@ def enrich_dme_gates(flights: list[dict[str, Any]]) -> dict[str, Any]:
             break
         checked += 1
         try:
-            gate = _fetch_gate(row.detail_id)
+            gate = _fetch_gate_with_retries(row.detail_id)
         except Exception as exc:
             detail_errors.append(f"{row.flight_code} {row.planned_time}: {exc}")
             continue
@@ -165,6 +167,15 @@ def _fetch_gate(detail_id: str) -> str:
         match = re.search(pattern, plain, re.I)
         if match:
             return match.group(1).upper()
+    return ""
+
+
+def _fetch_gate_with_retries(detail_id: str) -> str:
+    for attempt in range(DME_DETAIL_ATTEMPTS):
+        gate = _fetch_gate(detail_id)
+        if gate or attempt == DME_DETAIL_ATTEMPTS - 1:
+            return gate
+        time_lib.sleep(DME_DETAIL_RETRY_PAUSE_SECONDS)
     return ""
 
 

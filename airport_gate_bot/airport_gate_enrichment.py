@@ -14,7 +14,10 @@ from .dme_source import enrich_dme_gates
 from .settings import MOSCOW_TZ
 
 
-SVO_TIMETABLE_URL = "https://www.svo.aero/ru/timetable/departure?date=today&period={period}&terminal=all"
+SVO_TIMETABLE_URLS = (
+    "https://www.svo.aero/ru/departure/timetable?date=today&period={period}&terminal=all",
+    "https://www.svo.aero/ru/timetable/departure?date=today&period={period}&terminal=all",
+)
 VKO_ONLINE_URLS = (
     "https://www.vnukovo.ru/ru/for-passengers/flights/online/",
     "https://www.vnukovo.ru/ru/for-passengers/reysi/online-tablo/?bound=departure",
@@ -36,6 +39,7 @@ RUSSIAN_AIRPORT_IATAS = {
 }
 CYR_UPPER = r"\u0410-\u042f\u0401"
 CYR_LOWER = r"\u0430-\u044f\u0451"
+UNKNOWN_GATE_VALUES = {"", "не указан", "РЅРµ СѓРєР°Р·Р°РЅ", "not available", "n/a", "--", "$undefined", "none", "null"}
 
 
 @dataclass(frozen=True)
@@ -85,13 +89,23 @@ def _enrich_svo_gates(flights: list[dict[str, Any]]) -> dict[str, Any]:
     rows: list[GateRow] = []
     errors: list[str] = []
     for period in _svo_periods(datetime.now(ZoneInfo(MOSCOW_TZ))):
-        url = SVO_TIMETABLE_URL.format(period=period)
-        try:
-            text = _request_text(url)
-        except Exception as exc:
-            errors.append(f"official SVO {period}: {exc}")
-            continue
-        rows.extend(_parse_gate_rows(text, "РѕС„РёС†РёР°Р»СЊРЅС‹Р№ SVO"))
+        for template in SVO_TIMETABLE_URLS:
+            url = template.format(period=period)
+            try:
+                text = _request_text(url)
+            except Exception as exc:
+                errors.append(f"official SVO {period}: {exc}")
+                text = ""
+            source_rows = _parse_gate_rows(text, "official SVO") if text else []
+            if not source_rows:
+                try:
+                    text = _request_text(_reader_url(url))
+                    source_rows = _parse_gate_rows(text, "official SVO via Reader")
+                except Exception as exc:
+                    errors.append(f"official SVO Reader {period}: {exc}")
+            if source_rows:
+                rows.extend(source_rows)
+                break
 
     filled, conflicts = _apply_gate_rows(flights, rows)
     missing_after_official = _count_missing_gates(flights)
@@ -806,6 +820,8 @@ def _apply_gate_rows(flights: list[dict[str, Any]], rows: list[GateRow]) -> tupl
         departure = flight.setdefault("departure", {})
         current_gate = str(departure.get("gate") or "").strip()
         row_gate, row_terminal = _split_gate_terminal(row.gate, row.terminal)
+        if _is_unknown_gate_value(current_gate):
+            current_gate = ""
         if current_gate and current_gate.upper() != row_gate.upper():
             departure["gateConflict"] = f"{row.source_label}: {row_gate}"
             conflicts += 1
@@ -858,7 +874,11 @@ def _count_missing_gates(flights: list[dict[str, Any]]) -> int:
 def _known_gate(flight: dict[str, Any]) -> bool:
     departure = flight.get("departure") or {}
     gate = str(departure.get("gate") or "").strip()
-    return bool(gate and gate.lower() not in {"РЅРµ СѓРєР°Р·Р°РЅ", "not available", "n/a", "--", "$undefined"})
+    return not _is_unknown_gate_value(gate)
+
+
+def _is_unknown_gate_value(value: str) -> bool:
+    return str(value or "").strip().lower() in UNKNOWN_GATE_VALUES
 
 
 def _flight_code(flight: dict[str, Any]) -> str:

@@ -8,7 +8,7 @@ from typing import Any
 
 DEPARTED_WORDS = ("departed", "landed", "arrived")
 CANCELLED_WORDS = ("cancel", "cancelled", "canceled")
-REJECTED_GATE_SOURCE_MARKERS = ("kupi",)
+REJECTED_GATE_SOURCE_MARKERS = ("kupi", "airportinformation.com")
 UNKNOWN_GATE = "\u043d\u0435 \u0443\u043a\u0430\u0437\u0430\u043d"
 UNKNOWN_GATES = {"", UNKNOWN_GATE, "РЅРµ СѓРєР°Р·Р°РЅ", "not available", "n/a", "--", "$undefined", "none", "null"}
 
@@ -48,10 +48,12 @@ def build_operational_flights(
             continue
         filtered.append(record)
 
+    _propagate_codeshare_gates(filtered)
+
     groups: dict[tuple[Any, ...], list[dict[str, Any]]] = defaultdict(list)
     for record in filtered:
         minute = record["departure_dt"].replace(second=0, microsecond=0)
-        unknown_gate_guard = record["destination_iata"] if record["gate"] == "РЅРµ СѓРєР°Р·Р°РЅ" else ""
+        unknown_gate_guard = record["destination_iata"] if is_unknown_gate(record["gate"]) else ""
         key = (
             record["airport"],
             minute,
@@ -227,7 +229,7 @@ def normalize_flight(
         "departure_dt": departure_dt,
         "scheduled_time": scheduled_dt.strftime("%H:%M"),
         "departure_time": departure_dt.strftime("%H:%M"),
-        "terminal": str(departure.get("terminal") or "").strip() or "РЅРµ СѓРєР°Р·Р°РЅ",
+        "terminal": str(departure.get("terminal") or "").strip() or UNKNOWN_GATE,
         "gate": gate,
         "airline_iata": str(airline.get("iata") or "").strip(),
         "airline_name": str(airline.get("name") or "").strip(),
@@ -317,15 +319,43 @@ def _carry_forward_known_gate(previous: dict[str, Any], current: dict[str, Any])
     merged = dict(current)
     if not _has_known_gate(merged) and _has_known_gate(previous):
         merged["gate"] = previous["gate"]
-        if previous.get("terminal") and previous.get("terminal") != "РЅРµ СѓРєР°Р·Р°РЅ":
+        if previous.get("terminal") and not is_unknown_gate(previous.get("terminal")):
             merged["terminal"] = previous["terminal"]
         if previous.get("gate_source"):
-            merged["gate_source"] = _unique_join([previous["gate_source"], "СЃРѕС…СЂР°РЅРµРЅ РёР· Р±РѕР»РµРµ СЂР°РЅРЅРµРіРѕ live-СЃРЅРёРјРєР°"])
-        carried_note = f"gate СЃРѕС…СЂР°РЅРµРЅ РёР· СЃРЅРёРјРєР° {previous['collected_at'].strftime('%H:%M')}"
+            merged["gate_source"] = _unique_join([previous["gate_source"], "сохранен из более раннего live-снимка"])
+        carried_note = f"gate сохранен из снимка {previous['collected_at'].strftime('%H:%M')}"
         merged["gate_match"] = _unique_join([previous.get("gate_match", ""), carried_note])
-        merged["data_quality"] = _unique_join([merged.get("data_quality", ""), "gate СЃРѕС…СЂР°РЅРµРЅ РёР· Р±РѕР»РµРµ СЂР°РЅРЅРµРіРѕ live-СЃРЅРёРјРєР°"])
+        merged["data_quality"] = _unique_join([merged.get("data_quality", ""), "gate сохранен из более раннего live-снимка"])
         merged["gate_carried_from"] = previous["collected_at"]
     return merged
+
+
+def _propagate_codeshare_gates(records: list[dict[str, Any]]) -> None:
+    groups: dict[tuple[Any, ...], list[dict[str, Any]]] = defaultdict(list)
+    for record in records:
+        minute = record["departure_dt"].replace(second=0, microsecond=0)
+        key = (
+            record["airport"],
+            minute,
+            record["scheduled_time"],
+            str(record.get("destination_iata") or "").upper(),
+        )
+        groups[key].append(record)
+
+    for items in groups.values():
+        known = [item for item in items if _has_known_gate(item)]
+        if not known:
+            continue
+        donor = max(known, key=lambda item: item.get("collected_at") or datetime.min)
+        for item in items:
+            if _has_known_gate(item):
+                continue
+            item["gate"] = donor["gate"]
+            if donor.get("terminal") and not is_unknown_gate(donor.get("terminal")):
+                item["terminal"] = donor["terminal"]
+            item["gate_source"] = _unique_join([donor.get("gate_source", ""), "взят из кодшера того же вылета"])
+            item["gate_match"] = _unique_join([item.get("gate_match", ""), f"gate взят из кодшера {donor.get('flight_code', '')}".strip()])
+            item["data_quality"] = _unique_join([item.get("data_quality", ""), "gate заполнен по кодшеру"])
 
 
 def _has_known_gate(record: dict[str, Any]) -> bool:

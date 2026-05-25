@@ -2,8 +2,8 @@ name: airport-gate-bot
 
 on:
   schedule:
-    # GitHub uses UTC. The guard below keeps DME/VKO to one snapshot per
-    # 10-minute bucket and SVO to one snapshot per hour.
+    # GitHub uses UTC. The guard below keeps every airport to one snapshot
+    # per 10-minute Moscow-time bucket.
     - cron: "*/10 * * * *"
   repository_dispatch:
     types:
@@ -68,25 +68,15 @@ jobs:
           HOUR="$(TZ=Europe/Moscow date +'%H')"
           MINUTE="$(TZ=Europe/Moscow date +'%M')"
           BUCKET_MINUTE="$(printf '%02d' $((10#${MINUTE} / 10 * 10)))"
-          HOUR_STAMP="${STAMP_DAY}_${HOUR}"
           BUCKET_STAMP="${STAMP_DAY}_${HOUR}${BUCKET_MINUTE}"
           COLLECT_AIRPORTS=()
 
-          for AIRPORT in DME VKO; do
+          for AIRPORT in DME VKO SVO; do
             if compgen -G "data/raw/${DAY}/${AIRPORT}_${BUCKET_STAMP}*.json" > /dev/null; then
               echo "${AIRPORT} snapshot already exists for Moscow 10-minute bucket ${BUCKET_STAMP}."
             else
               COLLECT_AIRPORTS+=("${AIRPORT}")
               echo "No ${AIRPORT} snapshot for Moscow 10-minute bucket ${BUCKET_STAMP}; collecting."
-            fi
-          done
-
-          for AIRPORT in SVO; do
-            if compgen -G "data/raw/${DAY}/${AIRPORT}_${HOUR_STAMP}*.json" > /dev/null; then
-              echo "${AIRPORT} snapshot already exists for Moscow hour ${HOUR_STAMP}."
-            else
-              COLLECT_AIRPORTS+=("${AIRPORT}")
-              echo "No ${AIRPORT} snapshot for Moscow hour ${HOUR_STAMP}; collecting."
             fi
           done
 
