@@ -6,7 +6,7 @@ import ssl
 import urllib.error
 import urllib.request
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import date, datetime, timedelta
 from typing import Any
 from zoneinfo import ZoneInfo
 
@@ -15,14 +15,14 @@ from .settings import MOSCOW_TZ
 
 
 SVO_TIMETABLE_URLS = (
-    "https://www.svo.aero/ru/departure/timetable?date=today&period={period}&terminal=all",
-    "https://www.svo.aero/ru/timetable/departure?date=today&period={period}&terminal=all",
-    "https://www.svo.aero/en/departure/timetable?date=today&period={period}&terminal=all",
-    "https://www.svo.aero/en/timetable/departure?date=today&period={period}&terminal=all",
-    "https://www.svo.su/ru/departure/timetable?date=today&period={period}&terminal=all",
-    "https://www.svo.su/ru/timetable/departure?date=today&period={period}&terminal=all",
-    "https://www.svo.su/en/departure/timetable?date=today&period={period}&terminal=all",
-    "https://www.svo.su/en/timetable/departure?date=today&period={period}&terminal=all",
+    "https://www.svo.aero/ru/departure/timetable?date={date}&period={period}&terminal=all",
+    "https://www.svo.aero/ru/timetable/departure?date={date}&period={period}&terminal=all",
+    "https://www.svo.aero/en/departure/timetable?date={date}&period={period}&terminal=all",
+    "https://www.svo.aero/en/timetable/departure?date={date}&period={period}&terminal=all",
+    "https://www.svo.su/ru/departure/timetable?date={date}&period={period}&terminal=all",
+    "https://www.svo.su/ru/timetable/departure?date={date}&period={period}&terminal=all",
+    "https://www.svo.su/en/departure/timetable?date={date}&period={period}&terminal=all",
+    "https://www.svo.su/en/timetable/departure?date={date}&period={period}&terminal=all",
 )
 VKO_ONLINE_URLS = (
     "https://www.vnukovo.ru/ru/for-passengers/flights/online/",
@@ -71,6 +71,11 @@ def enrich_airport_gates(airport: str, flights: list[dict[str, Any]]) -> dict[st
     return {}
 
 
+def fetch_svo_official_gate_rows_for_date(target_date: date) -> tuple[list[GateRow], list[str]]:
+    date_param = _svo_date_param(target_date)
+    return _fetch_svo_official_gate_rows(date_param, periods=["allday"])
+
+
 def _enrich_dme_gates(flights: list[dict[str, Any]]) -> dict[str, Any]:
     meta = enrich_dme_gates(flights)
 
@@ -92,26 +97,10 @@ def _enrich_dme_gates(flights: list[dict[str, Any]]) -> dict[str, Any]:
 
 def _enrich_svo_gates(flights: list[dict[str, Any]]) -> dict[str, Any]:
     missing_before = _count_missing_gates(flights)
-    rows: list[GateRow] = []
-    errors: list[str] = []
-    for period in _svo_periods(datetime.now(ZoneInfo(MOSCOW_TZ))):
-        for template in SVO_TIMETABLE_URLS:
-            url = template.format(period=period)
-            try:
-                text = _request_text(url)
-            except Exception as exc:
-                errors.append(f"official SVO {period}: {exc}")
-                text = ""
-            source_rows = _parse_gate_rows(text, "official SVO") if text else []
-            if not source_rows:
-                try:
-                    text = _request_text(_reader_url(url))
-                    source_rows = _parse_gate_rows(text, "official SVO via Reader")
-                except Exception as exc:
-                    errors.append(f"official SVO Reader {period}: {exc}")
-            if source_rows:
-                rows.extend(source_rows)
-                break
+    rows, errors = _fetch_svo_official_gate_rows(
+        "today",
+        periods=_svo_periods(datetime.now(ZoneInfo(MOSCOW_TZ))),
+    )
 
     filled, conflicts = _apply_gate_rows(flights, rows)
     official_added = _append_gate_rows_as_flights(flights, rows, "SVO")
@@ -236,11 +225,50 @@ def _fetch_backup_rows(airport: str) -> tuple[list[GateRow], str]:
     return _dedupe_gate_rows(rows), "; ".join(errors)
 
 
+def _fetch_svo_official_gate_rows(date_param: str, periods: list[str]) -> tuple[list[GateRow], list[str]]:
+    rows: list[GateRow] = []
+    errors: list[str] = []
+    for period in periods:
+        period_rows: list[GateRow] = []
+        for template in SVO_TIMETABLE_URLS:
+            url = template.format(date=date_param, period=period)
+            try:
+                text = _request_text(url)
+            except Exception as exc:
+                errors.append(f"official SVO {date_param} {period}: {exc}")
+                text = ""
+            source_rows = _parse_gate_rows(text, "official SVO") if text else []
+            if not source_rows:
+                try:
+                    text = _request_text(_reader_url(url))
+                    source_rows = _parse_gate_rows(text, "official SVO via Reader")
+                except Exception as exc:
+                    errors.append(f"official SVO Reader {date_param} {period}: {exc}")
+            if source_rows:
+                period_rows.extend(source_rows)
+                break
+        rows.extend(period_rows)
+    return _dedupe_gate_rows(rows), errors
+
+
+def _svo_date_param(target_date: date) -> str:
+    today = datetime.now(ZoneInfo(MOSCOW_TZ)).date()
+    if target_date == today:
+        return "today"
+    if target_date == today - timedelta(days=1):
+        return "yesterday"
+    return target_date.isoformat()
+
+
 def _reader_url(url: str) -> str:
     return f"{JINA_READER_PREFIX}{url}"
 
 
 def _parse_gate_rows(text: str, source_label: str) -> list[GateRow]:
+    if "official svo" in source_label.lower():
+        rows = _parse_svo_official_rows(text, source_label)
+        if rows:
+            return rows
     if "planefinder" in source_label.lower():
         return _parse_planefinder_rows(text, source_label)
     if "fids.live" in source_label.lower():
@@ -255,6 +283,139 @@ def _parse_gate_rows(text: str, source_label: str) -> list[GateRow]:
     if rows:
         return rows
     return _parse_text_table_rows(text, source_label)
+
+
+def _parse_svo_official_rows(text: str, source_label: str) -> list[GateRow]:
+    rows = _parse_svo_official_line_blocks(text, source_label)
+    rows.extend(_parse_svo_official_compact_rows(text, source_label))
+    return _dedupe_gate_rows(rows)
+
+
+def _parse_svo_official_line_blocks(text: str, source_label: str) -> list[GateRow]:
+    lines = _plain_lines(text)
+    rows: list[GateRow] = []
+    time_indexes = [idx for idx, line in enumerate(lines) if re.fullmatch(r"\d{1,2}:\d{2}", line)]
+    for pos, idx in enumerate(time_indexes):
+        next_idx = time_indexes[pos + 1] if pos + 1 < len(time_indexes) else len(lines)
+        block = lines[idx:next_idx]
+        row = _svo_row_from_block(block, source_label)
+        if row:
+            rows.extend(row)
+    return rows
+
+
+def _svo_row_from_block(block: list[str], source_label: str) -> list[GateRow]:
+    if not block:
+        return []
+    scheduled_time = _first_time(block[:3])
+    if not scheduled_time:
+        return []
+
+    terminal = ""
+    gate = ""
+    gate_pos = -1
+    for idx, line in enumerate(block[1:], start=1):
+        terminal, gate = _svo_terminal_gate(line)
+        if gate:
+            gate_pos = idx
+            break
+    if not gate:
+        return []
+
+    flight_codes: list[str] = []
+    for code in _flight_codes_from_cell(" ".join(block[1:gate_pos])):
+        if code not in flight_codes:
+            flight_codes.append(code)
+    if not flight_codes:
+        return []
+
+    destination_name = ""
+    for line in block[1:gate_pos]:
+        if _looks_like_svo_destination(line):
+            destination_name = _destination_name_from_text(line)
+            break
+
+    return [
+        GateRow(
+            flight_code=flight_code,
+            scheduled_time=scheduled_time,
+            actual_time="",
+            terminal=terminal,
+            gate=gate,
+            destination_iata="",
+            destination_name=destination_name,
+            source_label=source_label,
+        )
+        for flight_code in flight_codes
+    ]
+
+
+def _parse_svo_official_compact_rows(text: str, source_label: str) -> list[GateRow]:
+    plain = _plain(text)
+    rows: list[GateRow] = []
+    flight_pattern = r"(?:[A-Z0-9]{2,3}\s*\d{1,5}[A-Z]?\s*){1,4}"
+    pattern = re.compile(
+        rf"(?P<time>\b\d{{1,2}}:\d{{2}}\b)"
+        rf"(?:\s+\d{{1,2}}:\d{{2}})?"
+        rf"(?:\s+\d{{1,2}}\s+[А-Яа-яЁёA-Za-z]+)?\s+"
+        rf"(?P<destination>[A-Za-z{CYR_UPPER}{CYR_LOWER}][A-Za-z{CYR_UPPER}{CYR_LOWER} \-/]+?)\s+"
+        rf"(?P<flights>{flight_pattern})"
+        rf"(?P<terminal>[BCD])\s*(?P<gate>\d{{1,3}}[A-Z]?)\b",
+        re.I,
+    )
+    for match in pattern.finditer(plain):
+        flight_codes = _flight_codes_from_cell(match.group("flights"))
+        terminal, gate = _svo_terminal_gate(f"{match.group('terminal')} {match.group('gate')}")
+        if not flight_codes or not gate:
+            continue
+        destination_name = _destination_name_from_text(match.group("destination"))
+        for flight_code in flight_codes:
+            rows.append(
+                GateRow(
+                    flight_code=flight_code,
+                    scheduled_time=_times_from_text(match.group("time"))[0],
+                    actual_time="",
+                    terminal=terminal,
+                    gate=gate,
+                    destination_iata="",
+                    destination_name=destination_name,
+                    source_label=source_label,
+                )
+            )
+    return rows
+
+
+def _svo_terminal_gate(value: str) -> tuple[str, str]:
+    text = _plain(value).upper()
+    match = re.search(rf"\b([BCD])\s*(\d{{1,3}}[A-Z{CYR_UPPER}]?)\b", text)
+    if not match:
+        return "", ""
+    return _clean_terminal(match.group(1)), _clean_gate(match.group(2))
+
+
+def _looks_like_svo_destination(value: str) -> bool:
+    text = _plain(value)
+    if not text:
+        return False
+    if re.fullmatch(r"[A-Z0-9]{1,3}", text.upper()):
+        return False
+    if _flight_codes_from_cell(text):
+        return False
+    if re.search(r"\d", text):
+        return False
+    lowered = text.lower()
+    rejected = {
+        "табло", "услуги", "схема", "парковка", "добраться", "вакансии", "меню",
+        "сегодня", "вчера", "завтра", "любое время", "все терминалы",
+        "поиск по номеру рейса, городу и авиакомпании",
+    }
+    if lowered in rejected:
+        return False
+    if re.search(r"\b(?:gate|terminal|flight|departure|arrival|status)\b", lowered):
+        return False
+    if re.search(r"\b(?:прибыл|в полете|вылетел|посадка|отменен|задержан|совершил)\b", lowered):
+        return False
+    return bool(re.search(rf"[A-Za-z{CYR_UPPER}{CYR_LOWER}]", text))
 
 
 def _parse_vko_official_rows(text: str, source_label: str) -> list[GateRow]:
