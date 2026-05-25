@@ -3,7 +3,7 @@ from __future__ import annotations
 from collections import defaultdict
 from datetime import date, datetime
 
-from .analytics import is_unknown_gate
+from .analytics import is_unknown_gate, normalize_gate_number
 from .flightstats_source import FlightStatsError, FlightStatsFlight, fetch_daily_departures
 from .settings import AIRPORTS
 
@@ -34,8 +34,9 @@ def operational_rows_from_flights(flights: list[FlightStatsFlight], target_date:
     groups: dict[tuple, list[FlightStatsFlight]] = defaultdict(list)
     for flight in candidates:
         minute = flight.actual_departure.replace(second=0, microsecond=0)
-        unknown_gate_guard = flight.destination_iata if is_unknown_gate(flight.gate) else ""
-        groups[(flight.airport, minute, flight.terminal, flight.gate, unknown_gate_guard)].append(flight)
+        gate = normalize_gate_number(flight.gate)
+        unknown_gate_guard = flight.destination_iata if is_unknown_gate(gate) else ""
+        groups[(flight.airport, minute, flight.terminal, gate, unknown_gate_guard)].append(flight)
 
     rows = []
     for (airport, departure_dt, terminal, gate, _unknown_gate_guard), items in groups.items():

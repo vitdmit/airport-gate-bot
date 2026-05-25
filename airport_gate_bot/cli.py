@@ -5,12 +5,13 @@ from datetime import date, datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-from .analytics import build_operational_flights, is_unknown_gate, latest_records_from_snapshots
+from .analytics import build_operational_flights, is_unknown_gate, latest_records_from_snapshots, normalize_gate_number
 from .combined_history import build_combined_history
 from .flighty_source import SourceError, fetch_departures
 from .gate_history import build_daily_rows
 from .historical import fetch_historical_operational_rows
 from .manual_history import import_manual_history
+from .quality import ERROR, validate_daily_rows, write_quality_workbook
 from .report import create_report
 from .settings import AIRPORTS, MOSCOW_TZ
 from .storage import load_snapshots_around, write_snapshot
@@ -160,6 +161,7 @@ def history_report(target_date: date, airports: list[str], output: str = "") -> 
 def daily_report(target_date: date, airports: list[str], data_dir: Path, output: str = "") -> Path:
     operational, snapshots = build_daily_rows(target_date, airports, data_dir)
     output_path = Path(output) if output else Path("outputs") / f"gate_report_{target_date.isoformat()}_daily.xlsx"
+    _normalize_output_gates(operational)
     create_report(
         output_path,
         target_date,
@@ -173,13 +175,22 @@ def daily_report(target_date: date, airports: list[str], data_dir: Path, output:
     print(f"Daily report rows: {len(operational)}")
     print(f"Gates filled from live snapshots: {snapshot_gates}")
     print(f"Rows without gate: {missing_gates}")
+    issues = validate_daily_rows(operational, target_date, airports)
+    quality_path = output_path.with_name(f"{output_path.stem}_quality.xlsx")
+    write_quality_workbook(quality_path, target_date, operational, issues)
+    error_count = sum(1 for issue in issues if issue["level"] == ERROR)
+    print(f"Quality errors: {error_count}")
+    print(f"Saved quality check: {quality_path}")
     print(f"Saved report: {output_path}")
+    if error_count:
+        raise SystemExit(f"Daily report quality check failed: {error_count} error(s). See {quality_path}")
     return output_path
 
 
 def verified_report(target_date: date, airports: list[str], data_dir: Path, output: str = "") -> Path:
     operational, snapshots = build_daily_rows(target_date, airports, data_dir)
     output_path = Path(output) if output else Path("outputs") / f"gate_report_{target_date.isoformat()}_verified.xlsx"
+    _normalize_output_gates(operational)
     create_report(
         output_path,
         target_date,
@@ -195,6 +206,11 @@ def verified_report(target_date: date, airports: list[str], data_dir: Path, outp
     print(f"Rows without gate: {missing_gates}")
     print(f"Saved report: {output_path}")
     return output_path
+
+
+def _normalize_output_gates(rows: list[dict]) -> None:
+    for row in rows:
+        row["gate"] = normalize_gate_number(row.get("gate"))
 
 
 def import_history(

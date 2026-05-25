@@ -213,9 +213,10 @@ def normalize_flight(
     status = _status_text(flight.get("status", []))
     flight_code = f"{airline.get('iata', '').strip()} {str(flight.get('flightNumber', '')).strip()}".strip()
     arrival_country = str(arrival.get("countryCode") or "").upper() or _country_from_flag(arrival.get("flag", ""))
-    gate = _normalize_gate(departure.get("gate"))
+    raw_gate = str(departure.get("gate") or "").strip()
     terminal = str(departure.get("terminal") or "").strip()
-    gate, terminal = _split_prefixed_svo_gate(airport, gate, terminal)
+    gate, terminal = _split_prefixed_svo_gate(airport, raw_gate, terminal)
+    gate = _normalize_gate(gate)
     gate_source = str(departure.get("gateSource") or "").strip()
     if _is_rejected_gate_source(gate_source):
         gate = UNKNOWN_GATE
@@ -365,10 +366,24 @@ def _has_known_gate(record: dict[str, Any]) -> bool:
 
 
 def _normalize_gate(value: Any) -> str:
+    return normalize_gate_number(value)
+
+
+def normalize_gate_number(value: Any) -> str:
     gate = str(value or "").strip()
     if is_unknown_gate(gate):
         return UNKNOWN_GATE
-    return gate
+
+    numbers: list[str] = []
+    for part in gate.split(","):
+        match = re.search(r"\d{1,3}", part)
+        if not match:
+            continue
+        number = str(int(match.group(0)))
+        if number not in numbers:
+            numbers.append(number)
+
+    return ", ".join(numbers) if numbers else UNKNOWN_GATE
 
 
 def _split_prefixed_svo_gate(airport: str, gate: str, terminal: str) -> tuple[str, str]:

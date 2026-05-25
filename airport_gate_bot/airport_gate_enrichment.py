@@ -1056,8 +1056,9 @@ def _apply_gate_rows(flights: list[dict[str, Any]], rows: list[GateRow]) -> tupl
             continue
 
         departure = flight.setdefault("departure", {})
-        current_gate = str(departure.get("gate") or "").strip()
         row_gate, row_terminal = _split_gate_terminal(row.gate, row.terminal)
+        current_gate_raw = str(departure.get("gate") or "").strip()
+        current_gate = _clean_gate(current_gate_raw)
         if _is_unknown_gate_value(current_gate):
             current_gate = ""
         if current_gate and current_gate.upper() != row_gate.upper():
@@ -1066,6 +1067,7 @@ def _apply_gate_rows(flights: list[dict[str, Any]], rows: list[GateRow]) -> tupl
             continue
 
         if current_gate:
+            departure["gate"] = current_gate
             departure["gateSource"] = _append_value(
                 str(departure.get("gateSource") or "Flighty live-СЃРЅРёРјРѕРє"),
                 f"РїРѕРґС‚РІРµСЂР¶РґРµРЅ {row.source_label}",
@@ -1201,8 +1203,15 @@ def _clean_gate(value: str) -> str:
         return ""
     if text == "0":
         return ""
-    match = re.search(rf"([A-Z{CYR_UPPER}]?\d{{1,3}}[A-Z{CYR_UPPER}]?(?:\d)?)", text)
-    return match.group(1) if match else ""
+    numbers: list[str] = []
+    for part in text.split(","):
+        match = re.search(r"\d{1,3}", part)
+        if not match:
+            continue
+        number = str(int(match.group(0)))
+        if number not in numbers:
+            numbers.append(number)
+    return ", ".join(numbers)
 
 
 def _clean_terminal(value: str) -> str:
