@@ -525,6 +525,10 @@ def _parse_planefinder_rows(text: str, source_label: str) -> list[GateRow]:
     if not _planefinder_page_is_current(text):
         return []
 
+    block_rows = _parse_planefinder_line_blocks(text, source_label)
+    if block_rows:
+        return _dedupe_gate_rows(block_rows)
+
     rows: list[GateRow] = []
     lines = _plain_lines(text)
     for idx, line in enumerate(lines):
@@ -576,6 +580,71 @@ def _parse_planefinder_rows(text: str, source_label: str) -> list[GateRow]:
                 GateRow(
                     flight_code=flight_code,
                     scheduled_time=times[0],
+                    actual_time=actual_time,
+                    terminal=terminal,
+                    gate=gate,
+                    destination_iata=destination_iata,
+                    destination_name=destination_name,
+                    source_label=source_label,
+                )
+            )
+    return rows
+
+
+def _parse_planefinder_line_blocks(text: str, source_label: str) -> list[GateRow]:
+    lines = _plain_lines(text)
+    rows: list[GateRow] = []
+    time_indexes = [
+        idx
+        for idx, line in enumerate(lines)
+        if re.fullmatch(r"\d{1,2}:\d{2}\s+(?:MSK|UTC|[A-Z]{3,4})", line)
+    ]
+
+    for pos, idx in enumerate(time_indexes):
+        next_idx = time_indexes[pos + 1] if pos + 1 < len(time_indexes) else len(lines)
+        block = lines[idx:next_idx]
+        scheduled_time = _first_time(block[:1])
+        if not scheduled_time:
+            continue
+
+        flight_codes: list[str] = []
+        for line in block[1:]:
+            for code in _flight_codes_from_cell(line):
+                if code not in flight_codes:
+                    flight_codes.append(code)
+        if not flight_codes:
+            continue
+
+        terminal = ""
+        gate = ""
+        gate_idx = -1
+        for probe_idx, line in enumerate(block[1:], start=1):
+            terminal, gate = _planefinder_terminal_gate(line)
+            if gate:
+                gate_idx = probe_idx
+                break
+        if not gate:
+            continue
+
+        destination_iata = ""
+        destination_name = ""
+        for line in block[1:gate_idx]:
+            found_iata = _destination_iata_from_text(line)
+            if found_iata and not _flight_codes_from_cell(line):
+                destination_iata = found_iata
+                destination_name = _destination_name_from_text(line)
+        actual_time = ""
+        for line in block[gate_idx + 1 : gate_idx + 4]:
+            times = _times_from_text(line)
+            if times:
+                actual_time = times[-1]
+                break
+
+        for flight_code in flight_codes:
+            rows.append(
+                GateRow(
+                    flight_code=flight_code,
+                    scheduled_time=scheduled_time,
                     actual_time=actual_time,
                     terminal=terminal,
                     gate=gate,
