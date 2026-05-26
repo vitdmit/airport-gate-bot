@@ -154,7 +154,7 @@ def _add_svo_official_rows(
         print(f"SVO: official archive rows not found: {errors[:2]}")
     if rows:
         print(f"SVO: loaded {len(rows)} official archive gate rows")
-    collected_at = datetime.now()
+    collected_at = datetime.now().astimezone()
     for row in rows:
         _add_official_gate_candidate(
             row,
@@ -219,7 +219,7 @@ def _find_best_candidate(row: dict[str, Any], index: dict[str, dict[tuple[str, .
     if not candidates:
         return None, ""
 
-    candidates.sort(key=lambda item: (item[0], item[2].collected_at), reverse=True)
+    candidates.sort(key=lambda item: (item[0], _datetime_sort_value(item[2].collected_at)), reverse=True)
     score, match_name, candidate = candidates[0]
     return candidate, f"{match_name}; confidence={score}"
 
@@ -344,6 +344,12 @@ def _parse_datetime(value: str | None) -> datetime:
     if not value:
         return datetime.now()
     return datetime.fromisoformat(value)
+
+
+def _datetime_sort_value(value: datetime) -> float:
+    if value.tzinfo is None:
+        return value.timestamp()
+    return value.astimezone().timestamp()
 
 
 def _is_known(value: Any) -> bool:
