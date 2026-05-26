@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import Any
 
 from .analytics import UNKNOWN_GATE, is_unknown_gate, normalize_flight
-from .airport_gate_enrichment import GateRow, fetch_svo_official_gate_rows_for_date
+from .airport_gate_enrichment import GateRow, fetch_svo_official_gate_rows_for_date, fetch_vko_official_gate_rows_for_date
 from .historical import fetch_historical_operational_rows
 from .storage import load_snapshots_around
 
@@ -131,6 +131,12 @@ def _build_gate_index(snapshots: list[dict[str, Any]], target_date: date) -> dic
         by_destination_scheduled,
         by_destination_departure,
     )
+    _add_vko_official_rows(
+        target_date,
+        by_flight,
+        by_destination_scheduled,
+        by_destination_departure,
+    )
 
     return {
         "by_flight": by_flight,
@@ -157,6 +163,35 @@ def _add_svo_official_rows(
     collected_at = datetime.now().astimezone()
     for row in rows:
         _add_official_gate_candidate(
+            "SVO",
+            row,
+            target_date,
+            collected_at,
+            by_flight,
+            by_destination_scheduled,
+            by_destination_departure,
+        )
+
+
+def _add_vko_official_rows(
+    target_date: date,
+    by_flight: dict[tuple[str, ...], list[GateCandidate]],
+    by_destination_scheduled: dict[tuple[str, ...], list[GateCandidate]],
+    by_destination_departure: dict[tuple[str, ...], list[GateCandidate]],
+) -> None:
+    try:
+        rows, errors = fetch_vko_official_gate_rows_for_date(target_date)
+    except Exception as exc:
+        print(f"VKO: official archive skipped: {exc}")
+        return
+    if errors and not rows:
+        print(f"VKO: official archive rows not found: {errors[:2]}")
+    if rows:
+        print(f"VKO: loaded {len(rows)} official archive gate rows")
+    collected_at = datetime.now().astimezone()
+    for row in rows:
+        _add_official_gate_candidate(
+            "VKO",
             row,
             target_date,
             collected_at,
@@ -167,6 +202,7 @@ def _add_svo_official_rows(
 
 
 def _add_official_gate_candidate(
+    airport: str,
     row: GateRow,
     target_date: date,
     collected_at: datetime,
@@ -174,8 +210,9 @@ def _add_official_gate_candidate(
     by_destination_scheduled: dict[tuple[str, ...], list[GateCandidate]],
     by_destination_departure: dict[tuple[str, ...], list[GateCandidate]],
 ) -> None:
+    airport = airport.upper()
     candidate = GateCandidate(
-        airport="SVO",
+        airport=airport,
         terminal=row.terminal or UNKNOWN,
         gate=row.gate,
         flight_code=row.flight_code,
@@ -183,18 +220,18 @@ def _add_official_gate_candidate(
         scheduled_time=row.scheduled_time,
         departure_time=row.actual_time or row.scheduled_time,
         collected_at=collected_at,
-        source_url=f"official SVO archive {target_date.isoformat()}",
+        source_url=f"official {airport} archive {target_date.isoformat()}",
         gate_source=row.source_label,
-        gate_match="official SVO archive: flight + scheduled time",
-        data_quality="gate from official SVO archive",
+        gate_match=f"official {airport} archive: flight + scheduled time",
+        data_quality=f"gate from official {airport} archive",
     )
     normalized_code = _normalize_flight_code(candidate.flight_code)
     if normalized_code:
-        by_flight[("SVO", normalized_code)].append(candidate)
+        by_flight[(airport, normalized_code)].append(candidate)
     if candidate.destination_iata and candidate.scheduled_time:
-        by_destination_scheduled[("SVO", candidate.destination_iata, candidate.scheduled_time)].append(candidate)
+        by_destination_scheduled[(airport, candidate.destination_iata, candidate.scheduled_time)].append(candidate)
     if candidate.destination_iata and candidate.departure_time:
-        by_destination_departure[("SVO", candidate.destination_iata, candidate.departure_time)].append(candidate)
+        by_destination_departure[(airport, candidate.destination_iata, candidate.departure_time)].append(candidate)
 
 
 def _find_best_candidate(row: dict[str, Any], index: dict[str, dict[tuple[str, ...], list[GateCandidate]]]) -> tuple[GateCandidate | None, str]:
@@ -225,7 +262,7 @@ def _find_best_candidate(row: dict[str, Any], index: dict[str, dict[tuple[str, .
 
 
 def _candidate_gate_source(candidate: GateCandidate) -> str:
-    if "official SVO" in str(candidate.gate_source):
+    if "official SVO" in str(candidate.gate_source) or "official VKO" in str(candidate.gate_source):
         return candidate.gate_source
     return _join_sources("live-снимок", candidate.gate_source)
 

@@ -49,6 +49,27 @@ RUSSIAN_AIRPORT_IATAS = {
 CYR_UPPER = r"\u0410-\u042f\u0401"
 CYR_LOWER = r"\u0430-\u044f\u0451"
 UNKNOWN_GATE_VALUES = {"", "не указан", "РЅРµ СѓРєР°Р·Р°РЅ", "not available", "n/a", "--", "$undefined", "none", "null"}
+CYRILLIC_AIRLINE_CODES = {
+    "ДП": "DP",
+    "ИЖ": "I8",
+    "РГ": "FV",
+    "СУ": "SU",
+    "ЮТ": "UT",
+    "ЯМ": "YC",
+}
+CYRILLIC_FLIGHT_TRANSLATION = str.maketrans({
+    "А": "A",
+    "В": "B",
+    "Е": "E",
+    "К": "K",
+    "М": "M",
+    "Н": "H",
+    "О": "O",
+    "Р": "P",
+    "С": "C",
+    "Т": "T",
+    "Х": "X",
+})
 
 
 @dataclass(frozen=True)
@@ -77,6 +98,19 @@ def enrich_airport_gates(airport: str, flights: list[dict[str, Any]]) -> dict[st
 def fetch_svo_official_gate_rows_for_date(target_date: date) -> tuple[list[GateRow], list[str]]:
     date_param = _svo_date_param(target_date)
     return _fetch_svo_official_gate_rows(date_param, periods=["allday"])
+
+
+def fetch_vko_official_gate_rows_for_date(target_date: date) -> tuple[list[GateRow], list[str]]:
+    rows: list[GateRow] = []
+    errors: list[str] = []
+    for url in _vko_official_archive_urls(target_date):
+        try:
+            text = _request_text(url)
+        except Exception as exc:
+            errors.append(f"official VKO archive {target_date.isoformat()}: {exc}")
+            continue
+        rows.extend(_parse_vko_official_rows(text, "official VKO archive"))
+    return _dedupe_gate_rows(rows), errors
 
 
 def _enrich_dme_gates(flights: list[dict[str, Any]]) -> dict[str, Any]:
@@ -199,6 +233,24 @@ def _vko_official_urls(now: datetime) -> list[str]:
         if url not in result:
             result.append(url)
     return result
+
+
+def _vko_official_archive_urls(target_date: date) -> list[str]:
+    base = "https://www.vnukovo.ru/ru/for-passengers/reysi/online-tablo/"
+    date_param = _vko_date_param(target_date)
+    return [f"{base}?bound=departure&date={date_param}&from={hour}" for hour in range(24)]
+
+
+def _vko_date_param(target_date: date) -> str:
+    today = datetime.now(ZoneInfo(MOSCOW_TZ)).date()
+    delta_days = (today - target_date).days
+    if delta_days == 0:
+        return "today"
+    if delta_days == 1:
+        return "yesterday"
+    if delta_days == 2:
+        return "beforeyesterday"
+    return target_date.isoformat()
 
 
 def _fetch_backup_rows(airport: str) -> tuple[list[GateRow], str]:
@@ -549,18 +601,119 @@ def _looks_like_svo_destination(value: str) -> bool:
 def _parse_vko_official_rows(text: str, source_label: str) -> list[GateRow]:
     lines = _plain_lines(text)
     rows: list[GateRow] = []
+    header_idx = _find_label(lines, {"Статус", "Status"})
+    if header_idx >= 0:
+        rows.extend(_parse_vko_official_stream(lines[header_idx + 1:], source_label))
+
     idx = 0
     while idx < len(lines):
-        if lines[idx] not in {"Время вылета", "Departure time"}:
+        if lines[idx] in {"Время вылета", "Departure time"}:
+            next_idx = idx + 1
+            while next_idx < len(lines) and lines[next_idx] not in {"Время вылета", "Departure time"}:
+                next_idx += 1
+            rows.extend(_vko_rows_from_block(lines[idx:next_idx], source_label))
+            idx = next_idx
+            continue
+        idx += 1
+    return _dedupe_gate_rows(rows)
+
+
+def _parse_vko_official_stream(lines: list[str], source_label: str) -> list[GateRow]:
+    rows: list[GateRow] = []
+    idx = 0
+    while idx < len(lines):
+        if not re.fullmatch(r"\d{1,2}:\d{2}", lines[idx]):
             idx += 1
             continue
 
         next_idx = idx + 1
-        while next_idx < len(lines) and lines[next_idx] not in {"Время вылета", "Departure time"}:
+        while next_idx < len(lines) and not re.fullmatch(r"\d{1,2}:\d{2}", lines[next_idx]):
             next_idx += 1
-        rows.extend(_vko_rows_from_block(lines[idx:next_idx], source_label))
+        rows.extend(_vko_rows_from_record(lines[idx:next_idx], source_label))
         idx = next_idx
-    return _dedupe_gate_rows(rows)
+    return rows
+
+
+def _vko_rows_from_record(block: list[str], source_label: str) -> list[GateRow]:
+    if len(block) < 5:
+        return []
+
+    lowered = " ".join(block).lower()
+    if "отмен" in lowered or "cancel" in lowered:
+        return []
+
+    scheduled_time = _first_time(block[:3])
+    if not scheduled_time:
+        return []
+
+    terminal = ""
+    terminal_idx = -1
+    gate = ""
+    for idx in range(1, len(block)):
+        if not re.fullmatch(r"[A-ZА-Я]", block[idx].upper()):
+            continue
+        for gate_idx in range(idx + 1, min(idx + 5, len(block))):
+            if not re.fullmatch(r"[A-ZА-Я]?\d{1,3}[A-ZА-Я]?", block[gate_idx].upper()):
+                continue
+            gate = _clean_gate(block[gate_idx])
+            if gate:
+                terminal = _clean_terminal(block[idx])
+                terminal_idx = idx
+                break
+        if gate:
+            break
+    if not gate:
+        return []
+
+    flight_pos = -1
+    flight_codes: list[str] = []
+    flight_end = terminal_idx if terminal_idx >= 0 else len(block)
+    for idx, line in enumerate(block[1:flight_end], start=1):
+        codes = _flight_codes_from_cell(line)
+        if not codes:
+            continue
+        if flight_pos < 0:
+            flight_pos = idx
+        for code in codes:
+            if code not in flight_codes:
+                flight_codes.append(code)
+
+    if flight_pos < 0 or not flight_codes:
+        return []
+
+    destination_lines = [
+        line for line in block[1:flight_pos]
+        if not _times_from_text(line)
+        and not re.fullmatch(r"[A-Z]{3}", line)
+        and line.lower() not in {"вылетел", "departed"}
+    ]
+    destination_name = _destination_name_from_text(destination_lines[0]) if destination_lines else ""
+    destination_iata = next(
+        (line.upper() for line in block[1:flight_pos] if re.fullmatch(r"[A-Z]{3}", line)),
+        "",
+    )
+
+    actual_time = ""
+    status_start = terminal_idx + 1 if terminal_idx >= 0 else flight_pos + 1
+    for line in block[status_start:]:
+        if re.search(r"\b(?:вылетел|departed)\b", line, re.I):
+            actual_time = _last_time([line])
+            if actual_time:
+                break
+
+    return [
+        GateRow(
+            flight_code=flight_code,
+            scheduled_time=scheduled_time,
+            actual_time=actual_time,
+            terminal=terminal,
+            gate=gate,
+            destination_iata=destination_iata,
+            destination_name=destination_name,
+            source_label=source_label,
+        )
+        for flight_code in flight_codes
+    ]
 
 
 def _vko_rows_from_block(block: list[str], source_label: str) -> list[GateRow]:
@@ -1296,7 +1449,7 @@ def _flight_codes_from_cell(value: str) -> list[str]:
             and _looks_airline_token(token)
             and re.fullmatch(rf"\d{{1,5}}[A-Z{CYR_UPPER}]?", tokens[index + 1])
         ):
-            code = f"{token}{tokens[index + 1]}"
+            code = _compact_flight_code(f"{token}{tokens[index + 1]}")
             index += 2
         else:
             code = _compact_flight_code(token)
@@ -1320,7 +1473,11 @@ def _looks_airline_token(token: str) -> bool:
 
 
 def _normalize_code(value: str) -> str:
-    return re.sub(rf"[^A-Za-z{CYR_UPPER}{CYR_LOWER}0-9]", "", value or "").upper()
+    text = str(value or "").upper()
+    for cyrillic_code, latin_code in CYRILLIC_AIRLINE_CODES.items():
+        text = re.sub(rf"(?<![A-Z{CYR_UPPER}0-9]){cyrillic_code}(?=\s*\d)", latin_code, text)
+    text = text.translate(CYRILLIC_FLIGHT_TRANSLATION)
+    return re.sub(rf"[^A-Z{CYR_UPPER}0-9]", "", text)
 
 
 def _clean_gate(value: str) -> str:

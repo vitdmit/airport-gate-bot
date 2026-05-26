@@ -3,7 +3,9 @@ name: airport-gate-bot
 on:
   schedule:
     # GitHub uses UTC. The guard below keeps every airport to one snapshot
-    # per 10-minute Moscow-time bucket.
+    # DME is collected every 10 minutes because it does not keep reliable
+    # public post-fact gates. SVO and VKO are filled from their official
+    # previous-day archives when the daily report is built.
     - cron: "*/10 * * * *"
   repository_dispatch:
     types:
@@ -63,7 +65,7 @@ jobs:
           BUCKET_STAMP="${STAMP_DAY}_${HOUR}${BUCKET_MINUTE}"
           COLLECT_AIRPORTS=()
 
-          for AIRPORT in DME VKO SVO; do
+          for AIRPORT in DME; do
             if compgen -G "data/raw/${DAY}/${AIRPORT}_${BUCKET_STAMP}*.json" > /dev/null; then
               echo "${AIRPORT} snapshot already exists for Moscow 10-minute bucket ${BUCKET_STAMP}."
             else
