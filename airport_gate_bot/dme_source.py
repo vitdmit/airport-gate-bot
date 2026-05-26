@@ -35,10 +35,11 @@ class DmeRow:
 
 def enrich_dme_gates(flights: list[dict[str, Any]]) -> dict[str, Any]:
     now = datetime.now(ZoneInfo(MOSCOW_TZ))
+    missing_flights = [flight for flight in flights if not _known_gate(flight)]
     missing_keys = {
-        _flight_key(flight)
-        for flight in flights
-        if _flight_key(flight) and not _known_gate(flight)
+        key
+        for flight in missing_flights
+        for key in _flight_keys(flight)
     }
     if not missing_keys:
         return {
@@ -52,7 +53,7 @@ def enrich_dme_gates(flights: list[dict[str, Any]]) -> dict[str, Any]:
         rows = _fetch_rows(now)
     except Exception as exc:
         return {
-            "dme_missing_before": len(missing_keys),
+            "dme_missing_before": len(missing_flights),
             "dme_official_checked": 0,
             "dme_official_filled": 0,
             "dme_official_error": str(exc),
@@ -63,7 +64,7 @@ def enrich_dme_gates(flights: list[dict[str, Any]]) -> dict[str, Any]:
     gates: dict[str, str] = {}
     for row in rows:
         key = f"{_normalize_code(row.flight_code)}|{row.planned_time}"
-        if key not in missing_keys or not _is_near_now(row.planned_time, now):
+        if not _is_near_now(row.planned_time, now):
             continue
         if checked >= MAX_DETAIL_CHECKS_PER_RUN:
             break
@@ -77,10 +78,15 @@ def enrich_dme_gates(flights: list[dict[str, Any]]) -> dict[str, Any]:
             gates[key] = gate
         time_lib.sleep(DETAIL_REQUEST_PAUSE_SECONDS)
 
+    existing_keys = {
+        key
+        for flight in flights
+        for key in _flight_keys(flight)
+    }
+
     filled = 0
     for flight in flights:
-        key = _flight_key(flight)
-        gate = gates.get(key)
+        gate = next((gates[key] for key in _flight_keys(flight) if key in gates), "")
         if not gate:
             continue
         departure = flight.setdefault("departure", {})
@@ -92,13 +98,48 @@ def enrich_dme_gates(flights: list[dict[str, Any]]) -> dict[str, Any]:
         flight["secondaryCorner"] = f"Gate {gate}"
         filled += 1
 
+    added = 0
+    for row in rows:
+        key = f"{_normalize_code(row.flight_code)}|{row.planned_time}"
+        gate = gates.get(key)
+        if not gate or key in existing_keys:
+            continue
+        airline_iata, flight_number = _split_flight_code(row.flight_code)
+        if not airline_iata or not flight_number:
+            continue
+        flights.append(
+            {
+                "id": f"DME-official-{_normalize_code(row.flight_code)}-{row.planned_time}",
+                "airline": {"iata": airline_iata, "name": ""},
+                "flightNumber": flight_number,
+                "city": "",
+                "arrival": {"iata": "", "flag": "", "countryCode": ""},
+                "departure": {
+                    "iata": "DME",
+                    "terminal": "T1",
+                    "gate": gate,
+                    "gateSource": "official DME live board",
+                    "gateMatch": "official DME: flight + time",
+                },
+                "dataQuality": "gate from official DME live board; direction is filled from post-fact source",
+                "destinationSource": "",
+                "originalTime": {"text": row.planned_time},
+                "newTime": {"text": ""},
+                "secondaryCorner": f"Gate {gate}",
+                "status": [{"type": "text", "text": "Scheduled"}],
+            }
+        )
+        existing_keys.add(key)
+        added += 1
+
     return {
-        "dme_missing_before": len(missing_keys),
-        "dme_missing_after": max(len(missing_keys) - filled, 0),
+        "dme_missing_before": len(missing_flights),
+        "dme_missing_after": max(len(missing_flights) - filled, 0),
         "dme_official_rows": len(rows),
         "dme_official_checked": checked,
         "dme_official_check_window_minutes": f"-{int(DME_GATE_LOOKBACK.total_seconds() // 60)}..+{int(DME_GATE_LOOKAHEAD.total_seconds() // 60)}",
         "dme_official_filled": filled,
+        "dme_official_added_gate_candidates": added,
         "dme_official_detail_errors": detail_errors[:3],
     }
 
@@ -199,15 +240,29 @@ def _request_text(url: str, data: bytes | None = None, headers: dict[str, str] |
     raise RuntimeError(f"Cannot fetch DME official board: {last_error}")
 
 
-def _flight_key(flight: dict[str, Any]) -> str:
+def _flight_keys(flight: dict[str, Any]) -> set[str]:
     airline = flight.get("airline") or {}
     code = _normalize_code(f"{airline.get('iata', '')} {flight.get('flightNumber', '')}")
-    planned_time = _time_text((flight.get("originalTime") or {}).get("text"))
-    return f"{code}|{planned_time}" if code and planned_time else ""
+    if not code:
+        return set()
+    times = {
+        _time_text((flight.get("originalTime") or {}).get("text")),
+        _time_text((flight.get("newTime") or {}).get("text")),
+    }
+    return {f"{code}|{value}" for value in times if value}
 
 
 def _normalize_code(value: str) -> str:
     return re.sub(r"[^A-Za-zА-Яа-я0-9]", "", value or "").upper()
+
+
+def _split_flight_code(value: str) -> tuple[str, str]:
+    code = _normalize_code(value)
+    if len(code) >= 3 and code[:2].isalnum() and any(char.isalpha() for char in code[:2]) and code[2].isdigit():
+        return code[:2], code[2:]
+    if len(code) >= 4 and code[:3].isalpha() and code[3].isdigit():
+        return code[:3], code[3:]
+    return "", ""
 
 
 def _known_gate(flight: dict[str, Any]) -> bool:

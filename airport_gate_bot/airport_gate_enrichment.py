@@ -103,13 +103,19 @@ def fetch_svo_official_gate_rows_for_date(target_date: date) -> tuple[list[GateR
 def fetch_vko_official_gate_rows_for_date(target_date: date) -> tuple[list[GateRow], list[str]]:
     rows: list[GateRow] = []
     errors: list[str] = []
+    parse_notes: list[str] = []
     for url in _vko_official_archive_urls(target_date):
         try:
             text = _request_text(url)
         except Exception as exc:
             errors.append(f"official VKO archive {target_date.isoformat()}: {exc}")
             continue
-        rows.extend(_parse_vko_official_rows(text, "official VKO archive"))
+        parsed = _parse_vko_official_rows(text, "official VKO archive")
+        if not parsed and len(parse_notes) < 3:
+            parse_notes.append(f"{url}: fetched {len(text)} chars, parsed 0 rows, sample={_debug_sample(text)}")
+        rows.extend(parsed)
+    if not rows and parse_notes:
+        errors.extend(parse_notes)
     return _dedupe_gate_rows(rows), errors
 
 
@@ -599,8 +605,9 @@ def _looks_like_svo_destination(value: str) -> bool:
 
 
 def _parse_vko_official_rows(text: str, source_label: str) -> list[GateRow]:
+    rows = _parse_vko_official_json_rows(text, source_label)
+    rows.extend(_parse_vko_html_table_rows(text, source_label))
     lines = _plain_lines(text)
-    rows: list[GateRow] = []
     header_idx = _find_label(lines, {"Статус", "Status"})
     if header_idx >= 0:
         rows.extend(_parse_vko_official_stream(lines[header_idx + 1:], source_label))
@@ -616,6 +623,292 @@ def _parse_vko_official_rows(text: str, source_label: str) -> list[GateRow]:
             continue
         idx += 1
     return _dedupe_gate_rows(rows)
+
+
+def _parse_vko_html_table_rows(text: str, source_label: str) -> list[GateRow]:
+    rows: list[GateRow] = []
+    for block in re.findall(r"<tr\b.*?</tr>", text or "", flags=re.I | re.S):
+        cells = [_plain(cell) for cell in re.findall(r"<t[dh]\b[^>]*>(.*?)</t[dh]>", block, flags=re.I | re.S)]
+        if len(cells) < 7:
+            continue
+        if not _times_from_text(cells[0]) or not _flight_codes_from_cell(cells[2]):
+            continue
+        if re.search(r"\b(?:time|flight|status)\b", " ".join(cells), re.I):
+            continue
+        lowered = " ".join(cells).lower()
+        if "отмен" in lowered or "cancel" in lowered:
+            continue
+
+        times = _times_from_text(" ".join([cells[0], cells[6]]))
+        gate = _clean_gate(cells[5])
+        if not times or not gate:
+            continue
+        destination_iata = _destination_iata_from_text(cells[1])
+        destination_name = _destination_name_from_text(cells[1])
+        for flight_code in _flight_codes_from_cell(cells[2]):
+            rows.append(
+                GateRow(
+                    flight_code=flight_code,
+                    scheduled_time=times[0],
+                    actual_time=times[1] if len(times) > 1 else "",
+                    terminal=_clean_terminal(cells[4]),
+                    gate=gate,
+                    destination_iata=destination_iata,
+                    destination_name=destination_name,
+                    source_label=source_label,
+                )
+            )
+    return rows
+
+
+def _parse_vko_official_json_rows(text: str, source_label: str) -> list[GateRow]:
+    rows: list[GateRow] = []
+    for payload in _json_payloads_from_html(text):
+        for record in _iter_json_dicts(payload):
+            rows.extend(_vko_rows_from_json_record(record, source_label))
+    return _dedupe_gate_rows(rows)
+
+
+def _json_payloads_from_html(text: str) -> list[Any]:
+    payloads: list[Any] = []
+    for script in re.findall(r"<script\b[^>]*>(.*?)</script>", text or "", flags=re.I | re.S):
+        script = html.unescape(script).strip()
+        if not script:
+            continue
+        for candidate in _json_candidate_strings(script):
+            try:
+                payloads.append(json.loads(candidate))
+            except (TypeError, json.JSONDecodeError):
+                continue
+    return payloads
+
+
+def _json_candidate_strings(script: str) -> list[str]:
+    candidates: list[str] = []
+    stripped = script.strip()
+    if stripped.startswith("{") or stripped.startswith("["):
+        candidates.append(stripped)
+
+    # Some sites keep timetable data in a JS assignment. Extract only balanced
+    # object/array fragments; invalid JavaScript object literals are ignored.
+    for start in [match.start() for match in re.finditer(r"[\[{]", script)]:
+        if start > 0 and script[start - 1] in {"\\", "/"}:
+            continue
+        fragment = _balanced_json_fragment(script, start)
+        if fragment and fragment not in candidates:
+            candidates.append(fragment)
+        if len(candidates) >= 25:
+            break
+    return candidates
+
+
+def _balanced_json_fragment(text: str, start: int) -> str:
+    if start >= len(text) or text[start] not in "[{":
+        return ""
+    stack: list[str] = []
+    in_string = False
+    escaped = False
+    for pos in range(start, min(len(text), start + 2_000_000)):
+        char = text[pos]
+        if in_string:
+            if escaped:
+                escaped = False
+            elif char == "\\":
+                escaped = True
+            elif char == '"':
+                in_string = False
+            continue
+        if char == '"':
+            in_string = True
+            continue
+        if char in "{[":
+            stack.append("}" if char == "{" else "]")
+        elif char in "}]":
+            if not stack or stack[-1] != char:
+                return ""
+            stack.pop()
+            if not stack:
+                return text[start : pos + 1]
+    return ""
+
+
+def _iter_json_dicts(value: Any, depth: int = 0):
+    if depth > 14:
+        return
+    if isinstance(value, dict):
+        yield value
+        for child in value.values():
+            yield from _iter_json_dicts(child, depth + 1)
+    elif isinstance(value, list):
+        for child in value:
+            yield from _iter_json_dicts(child, depth + 1)
+
+
+def _vko_rows_from_json_record(record: dict[str, Any], source_label: str) -> list[GateRow]:
+    strings = _json_leaf_strings(record)
+    if not strings:
+        return []
+    text = " ".join(strings).lower()
+    if "отмен" in text or "cancel" in text:
+        return []
+
+    flight_codes = _json_flight_codes(record, strings)
+    if not flight_codes:
+        return []
+
+    gate = _json_gate(record)
+    if not gate:
+        return []
+
+    scheduled_time = _json_scheduled_time(record) or _first_time(strings)
+    if not scheduled_time:
+        return []
+
+    actual_time = _json_actual_time(record)
+    terminal = _json_terminal(record)
+    destination_iata, destination_name = _json_destination(record)
+
+    return [
+        GateRow(
+            flight_code=flight_code,
+            scheduled_time=scheduled_time,
+            actual_time=actual_time,
+            terminal=terminal,
+            gate=gate,
+            destination_iata=destination_iata,
+            destination_name=destination_name,
+            source_label=source_label,
+        )
+        for flight_code in flight_codes
+    ]
+
+
+def _json_flight_codes(record: dict[str, Any], strings: list[str]) -> list[str]:
+    flight_codes: list[str] = []
+    preferred = _json_values_for_keys_near(
+        record,
+        {
+            "flight", "flightnumber", "flightno", "number", "race", "flt",
+            "рейс", "reys", "nomer",
+        },
+    )
+    for value in preferred or strings:
+        for code in _flight_codes_from_cell(value):
+            if code not in flight_codes:
+                flight_codes.append(code)
+    return flight_codes
+
+
+def _json_gate(record: dict[str, Any]) -> str:
+    values = _json_values_for_keys_near(
+        record,
+        {"gate", "boardinggate", "exit", "output", "выход", "gatecode", "gatenumber"},
+    )
+    for value in values:
+        gate = _clean_gate(value)
+        if gate:
+            return gate
+    return ""
+
+
+def _json_terminal(record: dict[str, Any]) -> str:
+    values = _json_values_for_keys_near(record, {"terminal", "term", "терм"})
+    for value in values:
+        terminal = _clean_terminal(value)
+        if terminal:
+            return terminal
+    return ""
+
+
+def _json_scheduled_time(record: dict[str, Any]) -> str:
+    values = _json_values_for_keys_near(
+        record,
+        {"scheduled", "planned", "plan", "departuretime", "departtime", "timefrom", "from", "date"},
+    )
+    return _first_time(values)
+
+
+def _json_actual_time(record: dict[str, Any]) -> str:
+    values = _json_values_for_keys_near(
+        record,
+        {"actual", "fact", "real", "newtime", "estimated", "status", "state"},
+    )
+    for value in values:
+        if re.search(r"(?:вылетел|departed|took off)", value, re.I):
+            time_value = _last_time([value])
+            if time_value:
+                return time_value
+    return ""
+
+
+def _json_destination(record: dict[str, Any]) -> tuple[str, str]:
+    values = _json_values_for_keys(
+        record,
+        {"destination", "direction", "city", "arrival", "airport", "направ", "город", "iata"},
+    )
+    destination_iata = ""
+    destination_name = ""
+    for value in values:
+        for iata in re.findall(r"\b([A-Z]{3})\b", value or ""):
+            if iata.upper() != "VKO":
+                destination_iata = iata.upper()
+                break
+        if not destination_name and _looks_like_svo_destination(value):
+            destination_name = _destination_name_from_text(value)
+        if destination_iata and destination_name:
+            break
+    return destination_iata, destination_name
+
+
+def _json_values_for_keys_near(value: Any, tokens: set[str], depth: int = 0) -> list[str]:
+    if depth > 2 or not isinstance(value, dict):
+        return []
+    result: list[str] = []
+    for key, child in value.items():
+        key_text = re.sub(r"[^a-zа-яё]", "", str(key).lower())
+        if any(token in key_text for token in tokens):
+            result.extend(_json_leaf_strings(child))
+        elif isinstance(child, dict):
+            result.extend(_json_values_for_keys_near(child, tokens, depth + 1))
+    return result
+
+
+def _json_values_for_keys(value: Any, tokens: set[str], depth: int = 0) -> list[str]:
+    if depth > 8:
+        return []
+    result: list[str] = []
+    if isinstance(value, dict):
+        for key, child in value.items():
+            key_text = re.sub(r"[^a-zа-яё]", "", str(key).lower())
+            if any(token in key_text for token in tokens):
+                result.extend(_json_leaf_strings(child))
+            else:
+                result.extend(_json_values_for_keys(child, tokens, depth + 1))
+    elif isinstance(value, list):
+        for child in value:
+            result.extend(_json_values_for_keys(child, tokens, depth + 1))
+    return result
+
+
+def _json_leaf_strings(value: Any, depth: int = 0) -> list[str]:
+    if depth > 8:
+        return []
+    if isinstance(value, str):
+        text = _plain(value)
+        return [text] if text else []
+    if isinstance(value, (int, float)):
+        return [str(value)]
+    if isinstance(value, dict):
+        result: list[str] = []
+        for child in value.values():
+            result.extend(_json_leaf_strings(child, depth + 1))
+        return result
+    if isinstance(value, list):
+        result: list[str] = []
+        for child in value:
+            result.extend(_json_leaf_strings(child, depth + 1))
+        return result
+    return []
 
 
 def _parse_vko_official_stream(lines: list[str], source_label: str) -> list[GateRow]:
@@ -1576,3 +1869,7 @@ def _plain_lines(value: str) -> list[str]:
         if re.sub(r"\s+", " ", html.unescape(line).replace("\xa0", " ")).strip()
     ]
 
+
+def _debug_sample(value: str) -> str:
+    sample = _plain(value)[:300]
+    return re.sub(r"\s+", " ", sample).strip()
