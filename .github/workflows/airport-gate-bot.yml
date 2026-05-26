@@ -32,7 +32,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: airport-gate-bot
+  group: airport-gate-bot-${{ github.event_name == 'workflow_dispatch' && github.event.inputs.mode || 'auto' }}
   cancel-in-progress: false
 
 jobs:
@@ -149,7 +149,14 @@ jobs:
           git add data outputs || true
           if ! git diff --cached --quiet; then
             git commit -m "Update airport gate data"
-            git push
+            for attempt in 1 2 3 4 5; do
+              if git pull --rebase origin "${GITHUB_REF_NAME:-main}" && git push; then
+                exit 0
+              fi
+              echo "Push failed; retrying in $((attempt * 5)) seconds..."
+              sleep $((attempt * 5))
+            done
+            exit 1
           fi
 
       - uses: actions/upload-artifact@v4
