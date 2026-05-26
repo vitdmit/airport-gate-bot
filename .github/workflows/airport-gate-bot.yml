@@ -37,10 +37,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Refresh repository before checks
-        shell: bash
-        run: git pull --ff-only origin "${GITHUB_REF_NAME:-main}"
-
       - name: Decide whether this interval needs snapshots
         id: collect_guard
         shell: bash
@@ -139,20 +135,24 @@ jobs:
 
       - name: Save collected data and reports
         shell: bash
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
           git config user.name "airport-gate-bot"
           git config user.email "airport-gate-bot@users.noreply.github.com"
           git add data outputs || true
           if ! git diff --cached --quiet; then
             git commit -m "Update airport gate data"
+            git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
             for attempt in 1 2 3 4 5; do
-              if git pull --rebase origin "${GITHUB_REF_NAME:-main}" && git push; then
+              if git push origin "HEAD:${GITHUB_REF_NAME:-main}"; then
                 exit 0
               fi
+              git pull --rebase origin "${GITHUB_REF_NAME:-main}" || true
               echo "Push failed; retrying in $((attempt * 5)) seconds..."
               sleep $((attempt * 5))
             done
-            exit 1
+            echo "::warning::Could not push data to the repository. The run artifact still contains data and reports."
           fi
 
       - uses: actions/upload-artifact@v4
