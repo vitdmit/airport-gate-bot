@@ -121,22 +121,24 @@ def collect(airports_csv: str, data_dir: Path) -> list[Path]:
     for airport in _airport_list(airports_csv):
         try:
             snapshot = fetch_departures(airport)
+            path = write_snapshot(
+                data_dir=data_dir,
+                airport=airport,
+                service_date=service_date,
+                collected_at=collected_at,
+                source_url=snapshot.source_url,
+                flights=snapshot.flights,
+                meta=snapshot.meta,
+            )
         except SourceError as exc:
             print(f"{airport}: source error: {exc}")
             continue
-        path = write_snapshot(
-            data_dir=data_dir,
-            airport=airport,
-            service_date=service_date,
-            collected_at=collected_at,
-            source_url=snapshot.source_url,
-            flights=snapshot.flights,
-            meta=snapshot.meta,
-        )
+        except Exception as exc:
+            print(f"{airport}: unexpected collect error: {type(exc).__name__}: {exc}")
+            continue
         paths.append(path)
         print(f"{airport}: saved {len(snapshot.flights)} rows to {path}")
     return paths
-
 
 def report(target_date: date, data_dir: Path, output: str = "", preview: bool = False) -> Path:
     snapshots = load_snapshots_around(data_dir, target_date)
