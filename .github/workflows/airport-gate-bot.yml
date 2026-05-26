@@ -31,10 +31,6 @@ on:
 permissions:
   contents: write
 
-concurrency:
-  group: airport-gate-bot-${{ github.event_name == 'workflow_dispatch' && github.event.inputs.mode || 'auto' }}
-  cancel-in-progress: false
-
 jobs:
   run:
     runs-on: ubuntu-latest
