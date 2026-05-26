@@ -1,0 +1,332 @@
+{
+  "airport": "DME",
+  "service_date": "2026-05-26",
+  "collected_at": "2026-05-26T23:50:29+03:00",
+  "source_url": "https://flighty.com/airports/domodedovo-intl-dme/departures",
+  "meta": {
+    "airport_name": "Domodedovo",
+    "slug": "domodedovo-intl-dme",
+    "type": "departures",
+    "phase": "DEPARTURE",
+    "rows": 7,
+    "dme_missing_before": 1,
+    "dme_official_checked": 0,
+    "dme_official_error": "<urlopen error timed out>",
+    "dme_missing_after_backup": 1,
+    "dme_backup_rows": 11,
+    "dme_backup_filled": 0,
+    "dme_backup_added_missing_flights": 0,
+    "dme_backup_conflicts": 0,
+    "dme_backup_error": "PlaneFinder DME: Cannot fetch https://planefinder.net/data/airport/DME/departures: HTTP Error 403: Forbidden; PlaneFinder DME via Reader: rows not found; fids.live DME: rows not found; airports-worldwide DME: Cannot fetch https://www.airports-worldwide.info/airport/DME/departures: HTTP Error 403: Forbidden"
+  },
+  "flights": [
+    {
+      "id": "c6c57b63-2ca8-4d1a-8e2c-163810621ac1",
+      "city": "Bishkek",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "RED"
+        },
+        {
+          "type": "text",
+          "text": "Departure Overdue",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "00:30",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "23:44",
+        "style": "RED"
+      },
+      "secondaryCorner": "$undefined",
+      "airline": {
+        "id": "7ddde8d4-904c-4424-b9e8-47309ac3cc32",
+        "iata": "U6",
+        "name": "Ural"
+      },
+      "flightNumber": "2803",
+      "departure": {
+        "iata": "DME",
+        "terminal": "T1",
+        "gate": "",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "BSZ",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "",
+        "flag": "/airports/svg/flag/KG.svg"
+      }
+    },
+    {
+      "id": "bac7cda0-7d8c-4b5c-93c8-dd0ad04bc84d",
+      "city": "Kulyab",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "RED"
+        },
+        {
+          "type": "text",
+          "text": "Departed 1h 6m Late",
+          "style": "RED"
+        }
+      ],
+      "originalTime": {
+        "text": "22:30",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "23:36",
+        "style": "RED"
+      },
+      "secondaryCorner": "Gate E10",
+      "airline": {
+        "id": "7ddde8d4-904c-4424-b9e8-47309ac3cc32",
+        "iata": "U6",
+        "name": "Ural"
+      },
+      "flightNumber": "2969",
+      "departure": {
+        "iata": "DME",
+        "terminal": "T1",
+        "gate": "E10",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "TJU",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "",
+        "flag": "/airports/svg/flag/TJ.svg"
+      }
+    },
+    {
+      "id": "ae13ea86-d4ca-4231-a3c6-b255c35c25b8",
+      "city": "Dushanbe",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "ORANGE"
+        },
+        {
+          "type": "text",
+          "text": "Departed 24m Late",
+          "style": "ORANGE"
+        }
+      ],
+      "originalTime": {
+        "text": "23:00",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "23:24",
+        "style": "ORANGE"
+      },
+      "secondaryCorner": "Gate E9",
+      "airline": {
+        "id": "7ddde8d4-904c-4424-b9e8-47309ac3cc32",
+        "iata": "U6",
+        "name": "Ural"
+      },
+      "flightNumber": "8253",
+      "departure": {
+        "iata": "DME",
+        "terminal": "T1",
+        "gate": "E9",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "DYU",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "",
+        "flag": "/airports/svg/flag/TJ.svg"
+      }
+    },
+    {
+      "id": "f76d710a-d6a8-4478-90c3-6d979a039c25",
+      "city": "Novokuznetsk",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "ORANGE"
+        },
+        {
+          "type": "text",
+          "text": "Departed 17m Late",
+          "style": "ORANGE"
+        }
+      ],
+      "originalTime": {
+        "text": "23:25",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "23:42",
+        "style": "ORANGE"
+      },
+      "secondaryCorner": "Gate C12",
+      "airline": {
+        "id": "380321d2-373c-44cc-9ed9-5155a869890c",
+        "iata": "S7",
+        "name": "S7"
+      },
+      "flightNumber": "2625",
+      "departure": {
+        "iata": "DME",
+        "terminal": "T1",
+        "gate": "C12",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "NOZ",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "ff220ce0-fd32-4553-b15f-9f8bdc14fe99",
+      "city": "Yekaterinburg",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "GREEN"
+        },
+        {
+          "type": "text",
+          "text": "Departure Overdue",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "23:45",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate D11",
+      "airline": {
+        "id": "7ddde8d4-904c-4424-b9e8-47309ac3cc32",
+        "iata": "U6",
+        "name": "Ural"
+      },
+      "flightNumber": "271",
+      "departure": {
+        "iata": "DME",
+        "terminal": "T1",
+        "gate": "D11",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "SVX",
+        "terminal": "A",
+        "gate": "",
+        "belt": "",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "7878c13e-f3a3-41f3-bc48-5fa80a83756a",
+      "city": "Bratsk",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "GREEN"
+        },
+        {
+          "type": "text",
+          "text": "Departed 5m Early",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "23:45",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "23:40",
+        "style": "REGULAR"
+      },
+      "secondaryCorner": "Gate C8",
+      "airline": {
+        "id": "380321d2-373c-44cc-9ed9-5155a869890c",
+        "iata": "S7",
+        "name": "S7"
+      },
+      "flightNumber": "3041",
+      "departure": {
+        "iata": "DME",
+        "terminal": "T1",
+        "gate": "C8",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "BTK",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "c3309536-1c00-4fd9-83df-5c1b463e7ad6",
+      "city": "Blagoveschensk",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "GREEN"
+        },
+        {
+          "type": "text",
+          "text": "Departed 12m Early",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "23:50",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "23:38",
+        "style": "REGULAR"
+      },
+      "secondaryCorner": "Gate C18",
+      "airline": {
+        "id": "380321d2-373c-44cc-9ed9-5155a869890c",
+        "iata": "S7",
+        "name": "S7"
+      },
+      "flightNumber": "3061",
+      "departure": {
+        "iata": "DME",
+        "terminal": "T1",
+        "gate": "C18",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "BQS",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    }
+  ]
+}
