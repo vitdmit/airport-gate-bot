@@ -63,6 +63,8 @@ def enrich_rows_with_snapshot_gates(
             item["data_quality"] = _join_sources(item.get("data_quality", ""), _candidate_quality(match))
             item["source_url"] = _join_sources(item.get("source_url", ""), match.source_url)
         elif match and current_gate_is_known:
+            if match.terminal and not _is_known(item.get("terminal")):
+                item["terminal"] = match.terminal
             item["gate_source"] = _join_sources("post-fact источник; live подтвержден", match.gate_source)
             item["gate_match"] = _join_sources(match_name, match.gate_match)
             item["data_quality"] = _join_sources(item.get("data_quality", ""), _candidate_quality(match))

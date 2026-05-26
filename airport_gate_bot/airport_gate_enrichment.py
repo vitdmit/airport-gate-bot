@@ -1,9 +1,11 @@
 ﻿from __future__ import annotations
 
 import html
+import json
 import re
 import ssl
 import urllib.error
+import urllib.parse
 import urllib.request
 from dataclasses import dataclass
 from datetime import date, datetime, timedelta
@@ -24,6 +26,7 @@ SVO_TIMETABLE_URLS = (
     "https://www.svo.su/en/departure/timetable?date={date}&period={period}&terminal=all",
     "https://www.svo.su/en/timetable/departure?date={date}&period={period}&terminal=all",
 )
+SVO_API_TIMETABLE_URL = "https://www.svo.aero/bitrix/timetable/"
 VKO_ONLINE_URLS = (
     "https://www.vnukovo.ru/ru/for-passengers/flights/online/",
     "https://www.vnukovo.ru/ru/for-passengers/reysi/online-tablo/?bound=departure",
@@ -230,6 +233,15 @@ def _fetch_svo_official_gate_rows(date_param: str, periods: list[str]) -> tuple[
     errors: list[str] = []
     for period in periods:
         period_rows: list[GateRow] = []
+        try:
+            period_rows.extend(_fetch_svo_api_gate_rows(date_param, period))
+        except Exception as exc:
+            errors.append(f"official SVO API {date_param} {period}: {exc}")
+
+        if period_rows:
+            rows.extend(period_rows)
+            continue
+
         for template in SVO_TIMETABLE_URLS:
             url = template.format(date=date_param, period=period)
             try:
@@ -249,6 +261,122 @@ def _fetch_svo_official_gate_rows(date_param: str, periods: list[str]) -> tuple[
                 break
         rows.extend(period_rows)
     return _dedupe_gate_rows(rows), errors
+
+
+def _fetch_svo_api_gate_rows(date_param: str, period: str) -> list[GateRow]:
+    start_dt, end_dt = _svo_api_period_bounds(date_param, period)
+    query = urllib.parse.urlencode(
+        {
+            "direction": "departure",
+            "dateStart": start_dt.isoformat(timespec="seconds"),
+            "dateEnd": end_dt.isoformat(timespec="seconds"),
+            "perPage": 99999,
+            "page": 0,
+            "locale": "ru",
+        }
+    )
+    text = _request_text(f"{SVO_API_TIMETABLE_URL}?{query}")
+    data = json.loads(text)
+    items = data.get("items", []) if isinstance(data, dict) else []
+    if not isinstance(items, list):
+        return []
+    return _dedupe_gate_rows(_parse_svo_api_items(items))
+
+
+def _svo_api_period_bounds(date_param: str, period: str) -> tuple[datetime, datetime]:
+    day = _svo_date_from_param(date_param)
+    if period == "allday":
+        return datetime.combine(day, datetime.min.time()), datetime.combine(day, datetime.max.time().replace(microsecond=0))
+
+    match = re.fullmatch(r"(\d{1,2}):(\d{2})-(\d{1,2}):(\d{2})", period or "")
+    if not match:
+        return datetime.combine(day, datetime.min.time()), datetime.combine(day, datetime.max.time().replace(microsecond=0))
+
+    start_hour, start_minute, end_hour, end_minute = (int(value) for value in match.groups())
+    start_dt = datetime(day.year, day.month, day.day, start_hour, start_minute)
+    end_dt = datetime(day.year, day.month, day.day, end_hour, end_minute, 59)
+    if end_dt <= start_dt:
+        end_dt = datetime.combine(day, datetime.max.time().replace(microsecond=0))
+    return start_dt, end_dt
+
+
+def _svo_date_from_param(date_param: str) -> date:
+    today = datetime.now(ZoneInfo(MOSCOW_TZ)).date()
+    if date_param == "today":
+        return today
+    if date_param == "yesterday":
+        return today - timedelta(days=1)
+    return date.fromisoformat(date_param[:10])
+
+
+def _parse_svo_api_items(items: list[dict[str, Any]]) -> list[GateRow]:
+    rows: list[GateRow] = []
+    for item in items:
+        if not isinstance(item, dict):
+            continue
+
+        terminal = _clean_terminal(str(item.get("term") or ""))
+        gate = _clean_gate(str(item.get("gate_id") or ""))
+        if not gate:
+            continue
+
+        flight_codes = _svo_api_flight_codes(item)
+        scheduled_time = _svo_api_time(item.get("t_st") or item.get("dat"))
+        actual_time = _svo_api_time(item.get("t_at") or item.get("fplTime") or item.get("t_otpr"))
+        destination_iata, destination_name = _svo_api_destination(item)
+        if not flight_codes or not scheduled_time:
+            continue
+
+        for flight_code in flight_codes:
+            rows.append(
+                GateRow(
+                    flight_code=flight_code,
+                    scheduled_time=scheduled_time,
+                    actual_time=actual_time,
+                    terminal=terminal,
+                    gate=gate,
+                    destination_iata=destination_iata,
+                    destination_name=destination_name,
+                    source_label="official SVO API",
+                )
+            )
+    return rows
+
+
+def _svo_api_flight_codes(item: dict[str, Any]) -> list[str]:
+    flight_codes: list[str] = []
+    raw_flight = str(item.get("flt") or "").strip()
+    for code in _flight_codes_from_cell(raw_flight):
+        if code not in flight_codes:
+            flight_codes.append(code)
+
+    company = item.get("co") or {}
+    company_code = str(company.get("code") or "").strip() if isinstance(company, dict) else ""
+    if company_code and raw_flight and not _flight_codes_from_cell(raw_flight):
+        compact = _compact_flight_code(f"{company_code}{raw_flight}")
+        if compact and compact not in flight_codes:
+            flight_codes.append(compact)
+    return flight_codes
+
+
+def _svo_api_time(value: Any) -> str:
+    if not value:
+        return ""
+    return _time_text(str(value).replace("T", " "))
+
+
+def _svo_api_destination(item: dict[str, Any]) -> tuple[str, str]:
+    for key in ("mar1", "mar2", "mar3", "mar4", "mar5"):
+        airport = item.get(key)
+        if not isinstance(airport, dict):
+            continue
+        iata = str(airport.get("iata") or "").upper().strip()
+        if not iata or iata == "SVO":
+            continue
+        city = airport.get("city") if isinstance(airport.get("city"), dict) else {}
+        name = str(city.get("city") or airport.get("city") or airport.get("airport_rus") or airport.get("airport") or "").strip()
+        return iata, name
+    return "", ""
 
 
 def _svo_date_param(target_date: date) -> str:

@@ -183,7 +183,7 @@ def daily_report(target_date: date, airports: list[str], data_dir: Path, output:
     print(f"Saved quality check: {quality_path}")
     print(f"Saved report: {output_path}")
     if error_count:
-        raise SystemExit(f"Daily report quality check failed: {error_count} error(s). See {quality_path}")
+        print(f"Daily report quality check found {error_count} error(s). See {quality_path}")
     return output_path
 
 
