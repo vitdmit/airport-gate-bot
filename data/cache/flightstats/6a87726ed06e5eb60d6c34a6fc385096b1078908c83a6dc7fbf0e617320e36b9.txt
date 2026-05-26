@@ -1,0 +1,70 @@
+Title: (SVO Departures) Moscow Sheremetyevo International Airport Departures
+
+URL Source: https://www.flightstats.com/v2/flight-tracker/departures/SVO?year=2026&month=5&date=25&hour=16
+
+Markdown Content:
+## (SVO) Moscow Sheremetyevo International Airport Departures 25-May-2026
+
+## SVO Departure Filters
+
+Departure Airport
+
+X
+
+Arrival Airport
+
+X
+
+Airline (optional)
+
+X
+
+Date
+
+Time
+
+Show Codeshares?
+
+Show
+
+Hide
+
+115 results
+
+«
+
+←
+
+1
+
+2
+
+3
+
+4
+
+5
+
+→
+
+»
+
+[Flight Departure Time Arrival Time Destination](https://www.flightstats.com/v2/flight-tracker/departures/SVO?year=2026&month=5&date=25&hour=16)## [DP*6833 ## 15:55 ## 17:35 ## KGD Pobeda Kaliningrad](https://www.flightstats.com/v2/flight-tracker/DP*/6833?year=2026&month=5&date=25&flightId=1385496479)## [DP*6845 ## 15:55 ## 17:40 ## NBC Pobeda Naberezhnye Chelny](https://www.flightstats.com/v2/flight-tracker/DP*/6845?year=2026&month=5&date=25&flightId=1385797819)## [SU 6497 ## 16:00 ## 17:25 ## LED Aeroflot / Operated by Rossiya Airlines on behalf of Aeroflot Saint Petersburg](https://www.flightstats.com/v2/flight-tracker/SU/6497?year=2026&month=5&date=25&flightId=1385540423)## [SU 1438 ## 16:00 ## 20:30 ## MQF Aeroflot Magnitogorsk](https://www.flightstats.com/v2/flight-tracker/SU/1438?year=2026&month=5&date=25&flightId=1385539874)## [SU 1056 ## 16:05 ## 19:00 ## MCX Aeroflot Makhachkala](https://www.flightstats.com/v2/flight-tracker/SU/1056?year=2026&month=5&date=25&flightId=1385539729)## [CZ 8028 ## 16:05 ## 06:25 ## CAN China Southern Airlines Guangzhou](https://www.flightstats.com/v2/flight-tracker/CZ/8028?year=2026&month=5&date=25&flightId=1385489709)## [SU 6661 ## 16:15 ## 17:50 ## KGD Aeroflot / Operated by Rossiya Airlines on behalf of Aeroflot Kaliningrad](https://www.flightstats.com/v2/flight-tracker/SU/6661?year=2026&month=5&date=25&flightId=1385540464)## [SU 1174 ## 16:20 ## 20:00 ## ASF Aeroflot Astrakhan](https://www.flightstats.com/v2/flight-tracker/SU/1174?year=2026&month=5&date=25&flightId=1385539775)## [SU 1422 ## 16:25 ## 21:00 ## CEK Aeroflot Chelyabinsk](https://www.flightstats.com/v2/flight-tracker/SU/1422?year=2026&month=5&date=25&flightId=1385539862)## [VN 62 ## 16:30 ## 05:20 ## HAN Vietnam Airlines Hanoi](https://www.flightstats.com/v2/flight-tracker/VN/62?year=2026&month=5&date=25&flightId=1385557440)## [5N 207 ## 16:30 ## 19:10 ## MCX Smartavia Makhachkala](https://www.flightstats.com/v2/flight-tracker/5N/207?year=2026&month=5&date=25&flightId=1385460655)## [SU 6515 ## 16:30 ## 17:55 ## LED Aeroflot / Operated by Rossiya Airlines on behalf of Aeroflot Saint Petersburg](https://www.flightstats.com/v2/flight-tracker/SU/6515?year=2026&month=5&date=25&flightId=1385540435)## [SU 1730 ## 16:35 ## 09:55 ## PKC Aeroflot Petropavlovsk-Kamchatsky](https://www.flightstats.com/v2/flight-tracker/SU/1730?year=2026&month=5&date=25&flightId=1385539991)## [DP*6909 ## 16:40 ## 19:55 ## MRV Pobeda Mineralnye Vody](https://www.flightstats.com/v2/flight-tracker/DP*/6909?year=2026&month=5&date=25&flightId=1385797840)## [SU 2134 ## 16:40 ## 22:10 ## ISL Aeroflot Istanbul](https://www.flightstats.com/v2/flight-tracker/SU/2134?year=2026&month=5&date=25&flightId=1385540054)## [MU 248 ## 16:50 ## 06:55 ## PVG China Eastern Airlines Shanghai](https://www.flightstats.com/v2/flight-tracker/MU/248?year=2026&month=5&date=25&flightId=1385525521)## [DP*6941 ## 16:50 ## 20:35 ## AER Pobeda Adler/Sochi](https://www.flightstats.com/v2/flight-tracker/DP*/6941?year=2026&month=5&date=25&flightId=1385797838)## [SU 1864 ## 16:50 ## 21:20 ## EVN Aeroflot Yerevan](https://www.flightstats.com/v2/flight-tracker/SU/1864?year=2026&month=5&date=25&flightId=1385540015)## [SU 1214 ## 16:55 ## 19:40 ## KUF Aeroflot Samara](https://www.flightstats.com/v2/flight-tracker/SU/1214?year=2026&month=5&date=25&flightId=1385539798)## [SU 1756 ## 17:00 ## 08:20 ## VVO Aeroflot Vladivostok](https://www.flightstats.com/v2/flight-tracker/SU/1756?year=2026&month=5&date=25&flightId=1385539973)## [SU 1590 ## 17:05 ## 20:10 ## GRV Aeroflot Groznyy](https://www.flightstats.com/v2/flight-tracker/SU/1590?year=2026&month=5&date=25&flightId=1385539945)## [SU 1744 ## 17:10 ## 09:15 ## UUS Aeroflot Yuzhno-Sakhalinsk](https://www.flightstats.com/v2/flight-tracker/SU/1744?year=2026&month=5&date=25&flightId=1385539982)## [MU 2076 ## 17:15 ## 05:30 ## PKX China Eastern Airlines Beijing](https://www.flightstats.com/v2/flight-tracker/MU/2076?year=2026&month=5&date=25&flightId=1385525192)## [SU 24 ## 17:15 ## 18:45 ## LED Aeroflot Saint Petersburg](https://www.flightstats.com/v2/flight-tracker/SU/24?year=2026&month=5&date=25&flightId=1385540078)## [SU 6287 ## 17:20 ## 07:55 ## KHV Aeroflot / Operated by Rossiya Airlines on behalf of Aeroflot Khabarovsk](https://www.flightstats.com/v2/flight-tracker/SU/6287?year=2026&month=5&date=25&flightId=1385540237)
+
+«
+
+←
+
+1
+
+2
+
+3
+
+4
+
+5
+
+→
+
+»

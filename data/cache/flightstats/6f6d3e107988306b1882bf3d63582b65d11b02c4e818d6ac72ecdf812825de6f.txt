@@ -1,0 +1,58 @@
+Title: (DME Departures) Moscow Domodedovo Airport Departures
+
+URL Source: https://www.flightstats.com/v2/flight-tracker/departures/DME?year=2026&month=5&date=25&hour=12
+
+Markdown Content:
+## (DME) Moscow Domodedovo Airport Departures 25-May-2026
+
+## DME Departure Filters
+
+Departure Airport
+
+X
+
+Arrival Airport
+
+X
+
+Airline (optional)
+
+X
+
+Date
+
+Time
+
+Show Codeshares?
+
+Show
+
+Hide
+
+30 results
+
+«
+
+←
+
+1
+
+2
+
+→
+
+»
+
+[Flight Departure Time Arrival Time Destination](https://www.flightstats.com/v2/flight-tracker/departures/DME?year=2026&month=5&date=25&hour=12)## [U6 2803 ## 22:00 ## 05:05 ## FRU Ural Airlines Bishkek](https://www.flightstats.com/v2/flight-tracker/U6/2803?year=2026&month=5&date=25&flightId=1385547701)## [U6 1387 ## 10:15 ## 13:20 ## OGZ Ural Airlines Vladikavkaz](https://www.flightstats.com/v2/flight-tracker/U6/1387?year=2026&month=5&date=25&flightId=1385547497)## [HY 604 ## 11:45 ## 17:30 ## TAS Uzbekistan Airways Tashkent](https://www.flightstats.com/v2/flight-tracker/HY/604?year=2026&month=5&date=25&flightId=1385511631)## [S7 4263 ## 11:45 ## 17:30 ## TAS S7 Airlines / Operated by Uzbekistan Airways 604 Tashkent](https://www.flightstats.com/v2/flight-tracker/S7/4263?year=2026&month=5&date=25&flightId=1385511631)## [S7 1005 ## 12:10 ## 13:45 ## LED S7 Airlines Saint Petersburg](https://www.flightstats.com/v2/flight-tracker/S7/1005?year=2026&month=5&date=25&flightId=1385536812)## [TYA 410 ## 12:10 ## 15:10 ## MCX NordStar Makhachkala](https://www.flightstats.com/v2/flight-tracker/TYA/410?year=2026&month=5&date=25&flightId=1385567532)## [B2 958 ## 12:15 ## 13:40 ## MSQ Belavia Minsk](https://www.flightstats.com/v2/flight-tracker/B2/958?year=2026&month=5&date=25&flightId=1385481932)## [U6 279 ## 12:35 ## 16:15 ## AER Ural Airlines Adler/Sochi](https://www.flightstats.com/v2/flight-tracker/U6/279?year=2026&month=5&date=25&flightId=1385547554)## [D2 253 ## 12:45 ## 14:10 ## PES Severstal Aircompany Petrozavodsk](https://www.flightstats.com/v2/flight-tracker/D2/253?year=2026&month=5&date=25&flightId=1385490025)## [J2 182 ## 12:45 ## 17:05 ## GYD Azerbaijan Airlines Baku](https://www.flightstats.com/v2/flight-tracker/J2/182?year=2026&month=5&date=25&flightId=1385514039)## [S7 4101 ## 12:45 ## 17:05 ## GYD S7 Airlines / Operated by Azerbaijan Airlines 182 Baku](https://www.flightstats.com/v2/flight-tracker/S7/4101?year=2026&month=5&date=25&flightId=1385514039)## [S7 3021 ## 12:45 ## 23:30 ## IKT S7 Airlines Irkutsk](https://www.flightstats.com/v2/flight-tracker/S7/3021?year=2026&month=5&date=25&flightId=1385536855)## [S7 2157 ## 13:05 ## 16:05 ## MCX S7 Airlines Makhachkala](https://www.flightstats.com/v2/flight-tracker/S7/2157?year=2026&month=5&date=25&flightId=1385536777)## [U6 1555 ## 13:30 ## 18:35 ## AYT Ural Airlines Antalya](https://www.flightstats.com/v2/flight-tracker/U6/1555?year=2026&month=5&date=25&flightId=1385547731)## [U6 269 ## 13:35 ## 18:05 ## SVX Ural Airlines Yekaterinburg](https://www.flightstats.com/v2/flight-tracker/U6/269?year=2026&month=5&date=25&flightId=1385547556)## [S7 2507 ## 13:40 ## 21:40 ## OVB S7 Airlines Novosibirsk](https://www.flightstats.com/v2/flight-tracker/S7/2507?year=2026&month=5&date=25&flightId=1385536772)## [S7 2169 ## 13:45 ## 17:10 ## MRV S7 Airlines Mineralnye Vody](https://www.flightstats.com/v2/flight-tracker/S7/2169?year=2026&month=5&date=25&flightId=1385536834)## [T5 768 ## 13:55 ## 20:25 ## ASB Turkmenistan Airlines Ashgabat](https://www.flightstats.com/v2/flight-tracker/T5/768?year=2026&month=5&date=25&flightId=1385541314)## [S7 1213 ## 14:20 ## 16:10 ## KGD S7 Airlines Kaliningrad](https://www.flightstats.com/v2/flight-tracker/S7/1213?year=2026&month=5&date=25&flightId=1385536802)## [S7 1073 ## 14:30 ## 17:15 ## KUF S7 Airlines Samara](https://www.flightstats.com/v2/flight-tracker/S7/1073?year=2026&month=5&date=25&flightId=1385536846)## [EK 134 ## 16:25 ## 00:40 ## DXB Emirates Dubai](https://www.flightstats.com/v2/flight-tracker/EK/134?year=2026&month=5&date=25&flightId=1385497707)## [S7 1137 ## 16:30 ## 20:35 ## UFA S7 Airlines Ufa](https://www.flightstats.com/v2/flight-tracker/S7/1137?year=2026&month=5&date=25&flightId=1385536807)## [U6 6001 ## 16:30 ## 21:00 ## SVX Ural Airlines Yekaterinburg](https://www.flightstats.com/v2/flight-tracker/U6/6001?year=2026&month=5&date=25&flightId=1385999030)## [S7 2509 ## 16:35 ## 00:35 ## OVB S7 Airlines Novosibirsk](https://www.flightstats.com/v2/flight-tracker/S7/2509?year=2026&month=5&date=25&flightId=1385536811)## [U6 167 ## 16:40 ## 18:25 ## KGD Ural Airlines Kaliningrad](https://www.flightstats.com/v2/flight-tracker/U6/167?year=2026&month=5&date=25&flightId=1385547538)
+
+«
+
+←
+
+1
+
+2
+
+→
+
+»

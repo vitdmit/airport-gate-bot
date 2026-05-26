@@ -1,0 +1,308 @@
+Title: EgyptAir MS 728 Flight Tracker
+
+URL Source: https://www.flightstats.com/v2/flight-tracker/MS/728?year=2026&month=5&date=26&flightId=1385723065
+
+Markdown Content:
+# MS728 - EgyptAir MS 728 Flight Tracker
+
+![Image 3](https://assets.flightstats.com/v2/backgrounds/Clouds.jpg)[![Image 4](https://assets.flightstats.com/v2/FSbyCLogo.png)](https://www.flightstats.com/v2)
+
+Follow us on
+
+[](https://twitter.com/cirium)[](https://www.linkedin.com/company/cirium)[](https://www.youtube.com/c/Cirium)
+
+[Create Account](https://www.flightstats.com/v2/register/plan)[Login](https://www.flightstats.com/v2/account/login)
+
+[Flights](https://www.flightstats.com/v2/flight-tracker/MS/728?year=2026&month=5&date=26&flightId=1385723065)
+
+    *   [Flight Tracker](https://www.flightstats.com/v2/flight-tracker/search)
+
+    *   [Historical Flight Status](https://www.flightstats.com/v2/historical-flight/search)
+
+    *   [Alerts](https://www.flightstats.com/v2/flight-alerts/home)
+
+[Airports](https://www.flightstats.com/v2/flight-tracker/MS/728?year=2026&month=5&date=26&flightId=1385723065)
+
+    *   [Current Conditions](https://www.flightstats.com/v2/airport-conditions/search)
+
+    *   [Departures and Arrivals](https://www.flightstats.com/v2/airports/departing-arriving/search)
+
+    *   [Airport Delays](https://www.flightstats.com/v2/airport-delays)
+
+[On-Time Performance](https://www.flightstats.com/v2/flight-tracker/MS/728?year=2026&month=5&date=26&flightId=1385723065)
+
+    *   [On-Time Performance Reports](https://www.cirium.com/resources/on-time-performance/?cmpid=ilc%7Cotp%7CCIALD_202501_glob_mul%7C2024-OTP-Annual-Report_m&sfid=701dP000008LIGgQAO)
+
+    *   [On-Time Monthly Update](https://www.cirium.com/thoughtcloud/cirium-monthly-on-time-performance-reports/?cmpid=ilc%7Cotp%7CCIALD_202501_glob_mul%7C2024-OTP-Annual-Report_m&sfid=701dP000008LIGgQAO)
+
+    *   [On-Time Performance Articles](https://www.cirium.com/thoughtcloud/?cmpid=ilc|otp|CIALD_202501_glob_mul|2024-OTP-articles_m&sfid=701dP000008LIGgQAO)
+
+[Cirium](https://www.flightstats.com/v2/flight-tracker/MS/728?year=2026&month=5&date=26&flightId=1385723065)
+
+    *   [About](https://www.cirium.com/about/)
+
+    *   [Cirium](https://www.cirium.com/)
+
+    *   [Thought Cloud](https://www.cirium.com/thoughtcloud/)
+
+[Resources](https://www.flightstats.com/v2/flight-tracker/MS/728?year=2026&month=5&date=26&flightId=1385723065)
+
+    *   [Support](https://helpdesk.cirium.com/s/topic/0TOJ5000000TNJ1OAO/flightstats-by-cirium)
+
+    *   [Developer Studio](https://developer.cirium.com/?inctmp=flightstats-resources-menu)
+
+    *   [Careers](https://relx.wd3.myworkdayjobs.com/ciriumcareers)
+
+    *   [Contact](https://www.cirium.com/contact-us/?cmpid=ILC%7CCIR%7CCIR-flightstats-contact)
+
+[My FlightStats](https://www.flightstats.com/v2/flight-tracker/MS/728?year=2026&month=5&date=26&flightId=1385723065)
+
+    *   [My Alerts](https://www.flightstats.com/v2/flight-alerts/home)
+
+    *   [My Account](https://www.flightstats.com/v2/my-account/profile)
+
+## Track a Flight
+
+[SEARCH](https://www.flightstats.com/v2/flight-tracker/MS/728?year=2026&month=5&date=26&flightId=1385723065)
+
+[ADVANCED SEARCH](https://www.flightstats.com/v2/flight-tracker/search)
+
+# (MS) EgyptAir 728 Flight Tracker
+
+## Flight Status
+
+MS 728
+
+EgyptAir
+
+[DME](https://www.flightstats.com/v2/airport-conditions/DME)
+
+Moscow
+
+[HRG](https://www.flightstats.com/v2/airport-conditions/HRG)
+
+Hurghada
+
+Arrived
+
+On time
+
+[DME](https://www.flightstats.com/v2/airport-conditions/DME)
+
+Moscow, RU
+
+Moscow Domodedovo Airport
+
+Flight Departure Times
+
+26-May-2026
+
+Scheduled
+
+01:10 MSK
+
+Actual
+
+01:11 MSK
+
+Terminal
+
+N/A
+
+Gate
+
+N/A
+
+[HRG](https://www.flightstats.com/v2/airport-conditions/HRG)
+
+Hurghada, EG
+
+Hurghada International Airport
+
+Flight Arrival Times
+
+26-May-2026
+
+Scheduled
+
+06:55 EEST
+
+Actual
+
+06:39 EEST
+
+Terminal
+
+1
+
+Gate
+
+N/A
+
+[VIEW FLIGHT DETAILS](https://www.flightstats.com/v2/flight-details/MS/728?year=2026&month=5&date=26&flightId=1385723065)[ON-TIME PERFORMANCE](https://www.flightstats.com/v2/flight-ontime-performance-rating/MS/728/DME)[AIRPORT DELAYS](https://www.flightstats.com/v2/airport-delays/europe)[DME AIRPORT CONDITIONS](https://www.flightstats.com/v2/airport-conditions/DME)[HRG AIRPORT CONDITIONS](https://www.flightstats.com/v2/airport-conditions/HRG)[REFRESH DATA](https://www.flightstats.com/v2/flight-tracker/MS/728?year=2026&month=5&date=26&flightId=1385723065)
+
+## Flight Tracker
+
+### Positional Tracking Has Ended
+
+The flight has landed
+
+![Image 5](https://tiles-s3.flightstats.com/satellite/4/9/5.png)![Image 6](https://tiles-s3.flightstats.com/satellite/4/9/6.png)![Image 7](https://tiles-s3.flightstats.com/satellite/4/8/5.png)![Image 8](https://tiles-s3.flightstats.com/satellite/4/10/5.png)![Image 9](https://tiles-s3.flightstats.com/satellite/4/8/6.png)![Image 10](https://tiles-s3.flightstats.com/satellite/4/10/6.png)![Image 11](https://tiles-s3.flightstats.com/satellite/4/9/4.png)![Image 12](https://tiles-s3.flightstats.com/satellite/4/9/7.png)![Image 13](https://tiles-s3.flightstats.com/satellite/4/8/4.png)![Image 14](https://tiles-s3.flightstats.com/satellite/4/10/4.png)![Image 15](https://tiles-s3.flightstats.com/satellite/4/8/7.png)![Image 16](https://tiles-s3.flightstats.com/satellite/4/10/7.png)![Image 17](https://tiles-s3.flightstats.com/satellite/4/7/5.png)![Image 18](https://tiles-s3.flightstats.com/satellite/4/11/5.png)![Image 19](https://tiles-s3.flightstats.com/satellite/4/7/6.png)![Image 20](https://tiles-s3.flightstats.com/satellite/4/11/6.png)![Image 21](https://tiles-s3.flightstats.com/satellite/4/7/4.png)![Image 22](https://tiles-s3.flightstats.com/satellite/4/11/4.png)![Image 23](https://tiles-s3.flightstats.com/satellite/4/7/7.png)![Image 24](https://tiles-s3.flightstats.com/satellite/4/11/7.png)
+
+![Image 25](https://tiles-s3.flightstats.com/hybrid/4/9/5.png)![Image 26](https://tiles-s3.flightstats.com/hybrid/4/9/6.png)![Image 27](https://tiles-s3.flightstats.com/hybrid/4/8/5.png)![Image 28](https://tiles-s3.flightstats.com/hybrid/4/10/5.png)![Image 29](https://tiles-s3.flightstats.com/hybrid/4/8/6.png)![Image 30](https://tiles-s3.flightstats.com/hybrid/4/10/6.png)![Image 31](https://tiles-s3.flightstats.com/hybrid/4/9/4.png)![Image 32](https://tiles-s3.flightstats.com/hybrid/4/9/7.png)![Image 33](https://tiles-s3.flightstats.com/hybrid/4/8/4.png)![Image 34](https://tiles-s3.flightstats.com/hybrid/4/10/4.png)![Image 35](https://tiles-s3.flightstats.com/hybrid/4/8/7.png)![Image 36](https://tiles-s3.flightstats.com/hybrid/4/10/7.png)![Image 37](https://tiles-s3.flightstats.com/hybrid/4/7/5.png)![Image 38](https://tiles-s3.flightstats.com/hybrid/4/11/5.png)![Image 39](https://tiles-s3.flightstats.com/hybrid/4/7/6.png)![Image 40](https://tiles-s3.flightstats.com/hybrid/4/11/6.png)![Image 41](https://tiles-s3.flightstats.com/hybrid/4/7/4.png)![Image 42](https://tiles-s3.flightstats.com/hybrid/4/11/4.png)![Image 43](https://tiles-s3.flightstats.com/hybrid/4/7/7.png)![Image 44](https://tiles-s3.flightstats.com/hybrid/4/11/7.png)
+
+[Leaflet](http://leafletjs.com/ "A JS library for interactive maps") | [Map licensing](https://www.flightstats.com/map-attributions)
+
+Labels
+
+US Weather
+
+ALTITUDE 0 ft
+
+LANDED
+
+### Flight Time
+
+#### Total
+
+##### 5h 28m
+
+#### Elapsed
+
+##### 5h 28m
+
+#### Remaining
+
+##### 0m
+
+### Flight Distance
+
+#### Total
+
+##### 1961 mi
+
+#### Flown
+
+##### 1961 mi
+
+#### Remaining
+
+##### 0 mi
+
+## Additional Details
+
+### Aircraft Equipment
+
+#### Code
+
+##### 73H
+
+#### Description
+
+##### Boeing 737-800 (winglets) Passenger/BBJ2
+
+## Past and Upcoming Flights
+
+For flights prior to the results below, please use our[Historical Flight Status](https://www.flightstats.com/v2/historical-flight/search)feature.
+
+26-May
+
+23-May
+
+24-May
+
+25-May
+
+26-May
+
+27-May
+
+28-May
+
+29-May
+
+Flights for Saturday, 23-May-2026
+
+Departure Time
+
+Origin
+
+Destination
+
+Arrival Time
+
+[01:10 MSK DME Moscow SSH Sharm el Sheikh 06:55 EEST](https://www.flightstats.com/v2/flight-tracker/MS/728?year=2026&month=05&date=23&flightId=1385124091)
+
+Flights for Sunday, 24-May-2026
+
+Departure Time
+
+Origin
+
+Destination
+
+Arrival Time
+
+[01:10 MSK DME Moscow HRG Hurghada 06:55 EEST](https://www.flightstats.com/v2/flight-tracker/MS/728?year=2026&month=05&date=24&flightId=1385321911)
+
+Flights for Monday, 25-May-2026
+
+Departure Time
+
+Origin
+
+Destination
+
+Arrival Time
+
+[01:10 MSK DME Moscow SSH Sharm el Sheikh 06:55 EEST](https://www.flightstats.com/v2/flight-tracker/MS/728?year=2026&month=05&date=25&flightId=1385525018)
+
+Flights for Tuesday, 26-May-2026
+
+One Flight This Day
+
+You are currently viewing the only flight for this day
+
+Flights for Wednesday, 27-May-2026
+
+Departure Time
+
+Origin
+
+Destination
+
+Arrival Time
+
+[01:10 MSK DME Moscow SSH Sharm el Sheikh 06:55 EEST](https://www.flightstats.com/v2/flight-tracker/MS/728?year=2026&month=05&date=27&flightId=1385903766)
+
+Flights for Thursday, 28-May-2026
+
+Departure Time
+
+Origin
+
+Destination
+
+Arrival Time
+
+[01:10 MSK DME Moscow HRG Hurghada 06:55 EEST](https://www.flightstats.com/v2/flight-tracker/MS/728?year=2026&month=05&date=28&flightId=1386080078)
+
+Flights for Friday, 29-May-2026
+
+No Flight Information Available
+
+According to our data, this flight is not scheduled to fly on this date
+
+## Mobile Applications for the Active Traveler
+
+### Over 10 million people have downloaded our FlightStats mobile apps!
+
+#### try it out today!
+
+[](https://itunes.apple.com/app/apple-store/id572700574?pt=829440&ct=flightstats.com&mt=8)[](https://play.google.com/store/apps/details?id=com.conducivetech.android.traveler&referrer=utm_source%3Dflightstats.com)
+
+[Cookie Settings](https://www.flightstats.com/v2/flight-tracker/MS/728?year=2026&month=5&date=26&flightId=1385723065)[Cookie Policy](https://risk.lexisnexis.com/corporate/cookie-policy)[Privacy Policy](https://risk.lexisnexis.com/corporate/privacy-policy)[Terms of Use](https://www.flightstats.com/company/legal/terms-of-use)[Security](https://risk.lexisnexis.com/contact-us#security)[Sitemap](https://www.flightstats.com/v2/sitemap)[Copyright](https://risk.lexisnexis.com/group/copyright)© 2026 LNRS Data Services
+
+[Contact Us](https://www.cirium.com/about/contact-us/)
+
+Version v8.1.2-nxt[![Image 45: RELX Group](https://assets.flightstats.com/common/Relx-OrangeWhite@2x.png)](http://www.relx.com/)
