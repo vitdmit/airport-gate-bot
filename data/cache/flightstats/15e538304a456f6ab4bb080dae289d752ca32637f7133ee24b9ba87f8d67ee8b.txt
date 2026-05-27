@@ -1,0 +1,66 @@
+Title: (SVO Departures) Moscow Sheremetyevo International Airport Departures
+
+URL Source: https://www.flightstats.com/v2/flight-tracker/departures/SVO?year=2026&month=5&date=26&hour=22
+
+Markdown Content:
+## (SVO) Moscow Sheremetyevo International Airport Departures 26-May-2026
+
+## SVO Departure Filters
+
+Departure Airport
+
+X
+
+Arrival Airport
+
+X
+
+Airline (optional)
+
+X
+
+Date
+
+Time
+
+Show Codeshares?
+
+Show
+
+Hide
+
+78 results
+
+«
+
+←
+
+1
+
+2
+
+3
+
+4
+
+→
+
+»
+
+[Flight Departure Time Arrival Time Destination](https://www.flightstats.com/v2/flight-tracker/departures/SVO?year=2026&month=5&date=26&hour=22)## [DP*6825 ## 20:35 ## 21:55 ## LED Pobeda Saint Petersburg](https://www.flightstats.com/v2/flight-tracker/DP*/6825?year=2026&month=5&date=26&flightId=1386188771)## [SU 232 ## 21:25 ## 06:00 ## DEL Aeroflot Delhi](https://www.flightstats.com/v2/flight-tracker/SU/232?year=2026&month=5&date=26&flightId=1385737490)## [DP*6521 ## 22:00 ## 04:25 ## OMS Pobeda Omsk](https://www.flightstats.com/v2/flight-tracker/DP*/6521?year=2026&month=5&date=26&flightId=1386205092)## [B2 978 ## 22:05 ## 23:30 ## MSQ Belavia Minsk](https://www.flightstats.com/v2/flight-tracker/B2/978?year=2026&month=5&date=26&flightId=1385681873)## [3U 3888 ## 22:15 ## 11:00 ## TFU Sichuan Airlines Chengdu](https://www.flightstats.com/v2/flight-tracker/3U/3888?year=2026&month=5&date=26&flightId=1385659937)## [SU 1198 ## 22:15 ## 23:55 ## KZN Aeroflot Kazan](https://www.flightstats.com/v2/flight-tracker/SU/1198?year=2026&month=5&date=26&flightId=1385737188)## [SU 1762 ## 22:15 ## 04:40 ## OMS Aeroflot Omsk](https://www.flightstats.com/v2/flight-tracker/SU/1762?year=2026&month=5&date=26&flightId=1385737387)## [EY 844 ## 22:20 ## 07:00 ## AUH Etihad Airways Abu Dhabi](https://www.flightstats.com/v2/flight-tracker/EY/844?year=2026&month=5&date=26&flightId=1385699362)## [GA 9033 ## 22:20 ## 07:00 ## AUH Garuda Indonesia / Operated by Etihad Airways 844 Abu Dhabi](https://www.flightstats.com/v2/flight-tracker/GA/9033?year=2026&month=5&date=26&flightId=1385699362)## [SU 1464 ## 22:25 ## 06:40 ## OVB Aeroflot Novosibirsk](https://www.flightstats.com/v2/flight-tracker/SU/1464?year=2026&month=5&date=26&flightId=1385737314)## [SU 272 ## 22:25 ## 11:45 ## BKK Aeroflot Bangkok](https://www.flightstats.com/v2/flight-tracker/SU/272?year=2026&month=5&date=26&flightId=1385737503)## [DP*6547 ## 22:30 ## 07:10 ## KJA Pobeda Krasnojarsk](https://www.flightstats.com/v2/flight-tracker/DP*/6547?year=2026&month=5&date=26&flightId=1386205008)## [SU 6809 ## 22:30 ## 23:55 ## LED Aeroflot / Operated by Rossiya Airlines on behalf of Aeroflot Saint Petersburg](https://www.flightstats.com/v2/flight-tracker/SU/6809?year=2026&month=5&date=26&flightId=1385737816)## [SU 1458 ## 22:30 ## 06:45 ## NOZ Aeroflot Novokuznetsk](https://www.flightstats.com/v2/flight-tracker/SU/1458?year=2026&month=5&date=26&flightId=1385737321)## [SU 320 ## 22:35 ## 09:25 ## MLE Aeroflot Male](https://www.flightstats.com/v2/flight-tracker/SU/320?year=2026&month=5&date=26&flightId=1385737491)## [B2 992 ## 22:35 ## 00:00 ## MSQ Belavia Minsk](https://www.flightstats.com/v2/flight-tracker/B2/992?year=2026&month=5&date=26&flightId=1385681876)## [SU 1726 ## 22:40 ## 14:00 ## VVO Aeroflot Vladivostok](https://www.flightstats.com/v2/flight-tracker/SU/1726?year=2026&month=5&date=26&flightId=1385737372)## [SU 6255 ## 22:45 ## 11:40 ## BQS Aeroflot / Operated by Rossiya Airlines on behalf of Aeroflot Blagoveschensk](https://www.flightstats.com/v2/flight-tracker/SU/6255?year=2026&month=5&date=26&flightId=1385737618)## [SU 1450 ## 22:45 ## 07:05 ## KEJ Aeroflot Kemerovo](https://www.flightstats.com/v2/flight-tracker/SU/1450?year=2026&month=5&date=26&flightId=1385737303)## [SU 1646 ## 22:55 ## 04:15 ## NJC Aeroflot Nizhnevartovsk](https://www.flightstats.com/v2/flight-tracker/SU/1646?year=2026&month=5&date=26&flightId=1385737384)## [SU 1530 ## 23:00 ## 07:20 ## TOF Aeroflot Tomsk](https://www.flightstats.com/v2/flight-tracker/SU/1530?year=2026&month=5&date=26&flightId=1385737332)## [SU 6287 ## 23:05 ## 13:25 ## KHV Aeroflot / Operated by Rossiya Airlines on behalf of Aeroflot Khabarovsk](https://www.flightstats.com/v2/flight-tracker/SU/6287?year=2026&month=5&date=26&flightId=1385737623)## [SU 1072 ## 23:20 ## 01:00 ## KGD Aeroflot Kaliningrad](https://www.flightstats.com/v2/flight-tracker/SU/1072?year=2026&month=5&date=26&flightId=1385737127)## [MFX 404 ## 23:25 ## 05:40 ## TAS Centrum Air (My Freighter) Tashkent](https://www.flightstats.com/v2/flight-tracker/MFX/404?year=2026&month=5&date=26&flightId=1385684926)## [SU 2138 ## 23:25 ## 04:35 ## ISL Aeroflot Istanbul](https://www.flightstats.com/v2/flight-tracker/SU/2138?year=2026&month=5&date=26&flightId=1385737457)
+
+«
+
+←
+
+1
+
+2
+
+3
+
+4
+
+→
+
+»
