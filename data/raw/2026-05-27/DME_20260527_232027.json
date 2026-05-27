@@ -1,0 +1,1095 @@
+{
+  "airport": "DME",
+  "service_date": "2026-05-27",
+  "collected_at": "2026-05-27T23:20:27+03:00",
+  "source_url": "https://flighty.com/airports/domodedovo-intl-dme/departures",
+  "meta": {
+    "airport_name": "Domodedovo",
+    "slug": "domodedovo-intl-dme",
+    "type": "departures",
+    "phase": "DEPARTURE",
+    "rows": 26,
+    "dme_missing_before": 3,
+    "dme_missing_after": 0,
+    "dme_official_rows": 100,
+    "dme_official_checked": 22,
+    "dme_official_filled": 11,
+    "dme_official_added_gate_candidates": 11,
+    "dme_official_detail_errors": [],
+    "dme_missing_after_backup": 3,
+    "dme_backup_rows": 11,
+    "dme_backup_filled": 0,
+    "dme_backup_added_missing_flights": 0,
+    "dme_backup_conflicts": 0,
+    "dme_backup_error": "PlaneFinder DME: Cannot fetch https://planefinder.net/data/airport/DME/departures: HTTP Error 403: Forbidden; PlaneFinder DME via Reader: rows not found; fids.live DME: rows not found; airports-worldwide DME: Cannot fetch https://www.airports-worldwide.info/airport/DME/departures: HTTP Error 403: Forbidden"
+  },
+  "flights": [
+    {
+      "id": "700a98f4-6ea8-43cf-9490-6f21759625be",
+      "city": "Samarkand",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "RED"
+        },
+        {
+          "type": "text",
+          "text": "Departure Overdue",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "20:45",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "22:55",
+        "style": "RED"
+      },
+      "secondaryCorner": "Gate E6",
+      "airline": {
+        "id": "45fb20f2-483e-44d0-9d09-82b228c511ec",
+        "iata": "C6",
+        "name": "Centrum Air"
+      },
+      "flightNumber": "410",
+      "departure": {
+        "iata": "DME",
+        "terminal": "",
+        "gate": "E6",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "SKD",
+        "terminal": "",
+        "gate": "",
+        "belt": "",
+        "flag": "/airports/svg/flag/UZ.svg"
+      }
+    },
+    {
+      "id": "fe8b5ff7-e985-4bef-81ef-a8c14b62b75e",
+      "city": "Kulyab",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "ORANGE"
+        },
+        {
+          "type": "text",
+          "text": "Departed 34m Late",
+          "style": "ORANGE"
+        }
+      ],
+      "originalTime": {
+        "text": "22:30",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "23:04",
+        "style": "ORANGE"
+      },
+      "secondaryCorner": "Gate 9",
+      "airline": {
+        "id": "7ddde8d4-904c-4424-b9e8-47309ac3cc32",
+        "iata": "U6",
+        "name": "Ural"
+      },
+      "flightNumber": "2969",
+      "departure": {
+        "iata": "DME",
+        "terminal": "T1",
+        "gate": "9",
+        "flag": "/airports/svg/flag/RU.svg",
+        "gateSource": "official DME live board",
+        "gateMatch": "official DME: flight + scheduled/new time"
+      },
+      "arrival": {
+        "iata": "TJU",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "",
+        "flag": "/airports/svg/flag/TJ.svg"
+      }
+    },
+    {
+      "id": "dbafef7d-1deb-452d-a4c9-37f8ea725bce",
+      "city": "Osh",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "GREEN"
+        },
+        {
+          "type": "text",
+          "text": "Departure Overdue",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "22:50",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "$undefined",
+      "airline": {
+        "id": "d7ec8617-797e-4214-a2c6-d0d0178f551c",
+        "iata": "YK",
+        "name": "Avia Traffic Company"
+      },
+      "flightNumber": "748",
+      "departure": {
+        "iata": "DME",
+        "terminal": "T1",
+        "gate": "",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "OSS",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "",
+        "flag": "/airports/svg/flag/KG.svg"
+      }
+    },
+    {
+      "id": "fad79a33-0303-4d2d-acb6-ab00cf98a6a4",
+      "city": "Tashkent",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "GREEN"
+        },
+        {
+          "type": "text",
+          "text": "Departure Overdue",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "23:00",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 8",
+      "airline": {
+        "id": "9c95c233-4a2b-471e-849b-488926af7d80",
+        "iata": "HY",
+        "name": "Uzbekistan Airways"
+      },
+      "flightNumber": "602",
+      "departure": {
+        "iata": "DME",
+        "terminal": "T1",
+        "gate": "8",
+        "flag": "/airports/svg/flag/RU.svg",
+        "gateSource": "official DME live board",
+        "gateMatch": "official DME: flight + scheduled/new time"
+      },
+      "arrival": {
+        "iata": "TAS",
+        "terminal": "T2",
+        "gate": "",
+        "belt": "",
+        "flag": "/airports/svg/flag/UZ.svg"
+      }
+    },
+    {
+      "id": "dda8c8e5-b6f9-4908-adcc-3f80b579f1c6",
+      "city": "Osh",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "GREEN"
+        },
+        {
+          "type": "text",
+          "text": "Departure Overdue",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "23:00",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "$undefined",
+      "airline": {
+        "id": "7ddde8d4-904c-4424-b9e8-47309ac3cc32",
+        "iata": "U6",
+        "name": "Ural"
+      },
+      "flightNumber": "2709",
+      "departure": {
+        "iata": "DME",
+        "terminal": "T1",
+        "gate": "",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "OSS",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "",
+        "flag": "/airports/svg/flag/KG.svg"
+      }
+    },
+    {
+      "id": "9364d8a9-e45a-4438-9422-c5c7bad9df30",
+      "city": "Dushanbe",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "GREEN"
+        },
+        {
+          "type": "text",
+          "text": "Departure Overdue",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "23:00",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 7",
+      "airline": {
+        "id": "7ddde8d4-904c-4424-b9e8-47309ac3cc32",
+        "iata": "U6",
+        "name": "Ural"
+      },
+      "flightNumber": "8253",
+      "departure": {
+        "iata": "DME",
+        "terminal": "T1",
+        "gate": "7",
+        "flag": "/airports/svg/flag/RU.svg",
+        "gateSource": "official DME live board",
+        "gateMatch": "official DME: flight + scheduled/new time"
+      },
+      "arrival": {
+        "iata": "DYU",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "",
+        "flag": "/airports/svg/flag/TJ.svg"
+      }
+    },
+    {
+      "id": "4debcd9e-292f-4280-b939-2a6a944ebf28",
+      "city": "Dubai",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "CANCELLED",
+          "style": "DARK_RED"
+        },
+        {
+          "type": "text",
+          "text": "Canceled",
+          "style": "DARK_RED"
+        }
+      ],
+      "originalTime": {
+        "text": "23:10",
+        "style": "DARK_RED_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "$undefined",
+      "airline": {
+        "id": "daa8b561-0aed-4a16-ace4-f13fa6c6ea21",
+        "iata": "EK",
+        "name": "Emirates"
+      },
+      "flightNumber": "132",
+      "departure": {
+        "iata": "DME",
+        "terminal": "",
+        "gate": "",
+        "flag": "/airports/svg/flag/RU.svg"
+      },
+      "arrival": {
+        "iata": "DXB",
+        "terminal": "3",
+        "gate": "",
+        "belt": "",
+        "flag": "/airports/svg/flag/AE.svg"
+      }
+    },
+    {
+      "id": "96954502-4514-4d10-8215-addef711b1bc",
+      "city": "Omsk",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "GREEN"
+        },
+        {
+          "type": "text",
+          "text": "Departed 3m Early",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "23:10",
+        "style": "GRAY_STRIKETHROUGH"
+      },
+      "newTime": {
+        "text": "23:07",
+        "style": "REGULAR"
+      },
+      "secondaryCorner": "Gate 11",
+      "airline": {
+        "id": "7ddde8d4-904c-4424-b9e8-47309ac3cc32",
+        "iata": "U6",
+        "name": "Ural"
+      },
+      "flightNumber": "387",
+      "departure": {
+        "iata": "DME",
+        "terminal": "T1",
+        "gate": "11",
+        "flag": "/airports/svg/flag/RU.svg",
+        "gateSource": "official DME live board",
+        "gateMatch": "official DME: flight + scheduled/new time"
+      },
+      "arrival": {
+        "iata": "OMS",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "9ec138f2-3611-4847-8b48-b611caf97864",
+      "city": "Novokuznetsk",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "23:25",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 13",
+      "airline": {
+        "id": "380321d2-373c-44cc-9ed9-5155a869890c",
+        "iata": "S7",
+        "name": "S7"
+      },
+      "flightNumber": "2625",
+      "departure": {
+        "iata": "DME",
+        "terminal": "T1",
+        "gate": "13",
+        "flag": "/airports/svg/flag/RU.svg",
+        "gateSource": "official DME live board",
+        "gateMatch": "official DME: flight + scheduled/new time"
+      },
+      "arrival": {
+        "iata": "NOZ",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "94a378bc-2598-4c7e-a4a7-da26ee20aef5",
+      "city": "Omsk",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "23:30",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 7",
+      "airline": {
+        "id": "380321d2-373c-44cc-9ed9-5155a869890c",
+        "iata": "S7",
+        "name": "S7"
+      },
+      "flightNumber": "2565",
+      "departure": {
+        "iata": "DME",
+        "terminal": "T1",
+        "gate": "7",
+        "flag": "/airports/svg/flag/RU.svg",
+        "gateSource": "official DME live board",
+        "gateMatch": "official DME: flight + scheduled/new time"
+      },
+      "arrival": {
+        "iata": "OMS",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "3c72ad40-1073-431d-8589-7ab2eb773a1d",
+      "city": "Noril'sk",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "23:40",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 3",
+      "airline": {
+        "id": "380321d2-373c-44cc-9ed9-5155a869890c",
+        "iata": "S7",
+        "name": "S7"
+      },
+      "flightNumber": "2581",
+      "departure": {
+        "iata": "DME",
+        "terminal": "T1",
+        "gate": "3",
+        "flag": "/airports/svg/flag/RU.svg",
+        "gateSource": "official DME live board",
+        "gateMatch": "official DME: flight + scheduled/new time"
+      },
+      "arrival": {
+        "iata": "NSK",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "13385b7c-f310-40f5-8301-77d4fd8bd4e3",
+      "city": "Noril'sk",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "23:45",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 3",
+      "airline": {
+        "id": "c16df0b1-08ab-434e-93ce-53545da61137",
+        "iata": "Y7",
+        "name": "NordStar"
+      },
+      "flightNumber": "401",
+      "departure": {
+        "iata": "DME",
+        "terminal": "T1",
+        "gate": "3",
+        "flag": "/airports/svg/flag/RU.svg",
+        "gateSource": "official DME live board",
+        "gateMatch": "official DME: flight + scheduled/new time"
+      },
+      "arrival": {
+        "iata": "NSK",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "90713b1d-bf3b-43fb-a145-bd6b29b52e72",
+      "city": "Yekaterinburg",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "23:45",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 7",
+      "airline": {
+        "id": "7ddde8d4-904c-4424-b9e8-47309ac3cc32",
+        "iata": "U6",
+        "name": "Ural"
+      },
+      "flightNumber": "271",
+      "departure": {
+        "iata": "DME",
+        "terminal": "T1",
+        "gate": "7",
+        "flag": "/airports/svg/flag/RU.svg",
+        "gateSource": "official DME live board",
+        "gateMatch": "official DME: flight + scheduled/new time"
+      },
+      "arrival": {
+        "iata": "SVX",
+        "terminal": "A",
+        "gate": "",
+        "belt": "",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "0d4bb959-6f9a-46f9-b80d-7df4ef700705",
+      "city": "Blagoveschensk",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "23:50",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 15",
+      "airline": {
+        "id": "380321d2-373c-44cc-9ed9-5155a869890c",
+        "iata": "S7",
+        "name": "S7"
+      },
+      "flightNumber": "3061",
+      "departure": {
+        "iata": "DME",
+        "terminal": "T1",
+        "gate": "15",
+        "flag": "/airports/svg/flag/RU.svg",
+        "gateSource": "official DME live board",
+        "gateMatch": "official DME: flight + scheduled/new time"
+      },
+      "arrival": {
+        "iata": "BQS",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "4ce5cbba-3c65-4adb-b865-305cb7dbc127",
+      "city": "Noril'sk",
+      "status": [
+        {
+          "type": "icon",
+          "icon": "BULLET",
+          "style": "REGULAR"
+        },
+        {
+          "type": "text",
+          "text": "Scheduled",
+          "style": "REGULAR"
+        }
+      ],
+      "originalTime": {
+        "text": "23:55",
+        "style": "REGULAR"
+      },
+      "newTime": {
+        "text": "",
+        "style": "BASE"
+      },
+      "secondaryCorner": "Gate 6",
+      "airline": {
+        "id": "c16df0b1-08ab-434e-93ce-53545da61137",
+        "iata": "Y7",
+        "name": "NordStar"
+      },
+      "flightNumber": "105",
+      "departure": {
+        "iata": "DME",
+        "terminal": "T1",
+        "gate": "6",
+        "flag": "/airports/svg/flag/RU.svg",
+        "gateSource": "official DME live board",
+        "gateMatch": "official DME: flight + scheduled/new time"
+      },
+      "arrival": {
+        "iata": "NSK",
+        "terminal": "MAIN",
+        "gate": "",
+        "belt": "",
+        "flag": "/airports/svg/flag/RU.svg"
+      }
+    },
+    {
+      "id": "DME-official-S72605-21:55",
+      "airline": {
+        "iata": "S7",
+        "name": ""
+      },
+      "flightNumber": "2605",
+      "city": "",
+      "arrival": {
+        "iata": "",
+        "flag": "",
+        "countryCode": ""
+      },
+      "departure": {
+        "iata": "DME",
+        "terminal": "T1",
+        "gate": "13",
+        "gateSource": "official DME live board",
+        "gateMatch": "official DME: flight + time"
+      },
+      "dataQuality": "gate from official DME live board; destination filled from post-fact source",
+      "originalTime": {
+        "text": "21:55"
+      },
+      "newTime": {
+        "text": ""
+      },
+      "secondaryCorner": "Gate 13",
+      "status": [
+        {
+          "type": "text",
+          "text": "Scheduled"
+        }
+      ]
+    },
+    {
+      "id": "DME-official-U62633-22:00",
+      "airline": {
+        "iata": "U6",
+        "name": ""
+      },
+      "flightNumber": "2633",
+      "city": "",
+      "arrival": {
+        "iata": "",
+        "flag": "",
+        "countryCode": ""
+      },
+      "departure": {
+        "iata": "DME",
+        "terminal": "T1",
+        "gate": "12",
+        "gateSource": "official DME live board",
+        "gateMatch": "official DME: flight + time"
+      },
+      "dataQuality": "gate from official DME live board; destination filled from post-fact source",
+      "originalTime": {
+        "text": "22:00"
+      },
+      "newTime": {
+        "text": ""
+      },
+      "secondaryCorner": "Gate 12",
+      "status": [
+        {
+          "type": "text",
+          "text": "Scheduled"
+        }
+      ]
+    },
+    {
+      "id": "DME-official-U6265-22:00",
+      "airline": {
+        "iata": "U6",
+        "name": ""
+      },
+      "flightNumber": "265",
+      "city": "",
+      "arrival": {
+        "iata": "",
+        "flag": "",
+        "countryCode": ""
+      },
+      "departure": {
+        "iata": "DME",
+        "terminal": "T1",
+        "gate": "4",
+        "gateSource": "official DME live board",
+        "gateMatch": "official DME: flight + time"
+      },
+      "dataQuality": "gate from official DME live board; destination filled from post-fact source",
+      "originalTime": {
+        "text": "22:00"
+      },
+      "newTime": {
+        "text": ""
+      },
+      "secondaryCorner": "Gate 4",
+      "status": [
+        {
+          "type": "text",
+          "text": "Scheduled"
+        }
+      ]
+    },
+    {
+      "id": "DME-official-S73275-22:00",
+      "airline": {
+        "iata": "S7",
+        "name": ""
+      },
+      "flightNumber": "3275",
+      "city": "",
+      "arrival": {
+        "iata": "",
+        "flag": "",
+        "countryCode": ""
+      },
+      "departure": {
+        "iata": "DME",
+        "terminal": "T1",
+        "gate": "12",
+        "gateSource": "official DME live board",
+        "gateMatch": "official DME: flight + time"
+      },
+      "dataQuality": "gate from official DME live board; destination filled from post-fact source",
+      "originalTime": {
+        "text": "22:00"
+      },
+      "newTime": {
+        "text": ""
+      },
+      "secondaryCorner": "Gate 12",
+      "status": [
+        {
+          "type": "text",
+          "text": "Scheduled"
+        }
+      ]
+    },
+    {
+      "id": "DME-official-YK960-22:10",
+      "airline": {
+        "iata": "YK",
+        "name": ""
+      },
+      "flightNumber": "960",
+      "city": "",
+      "arrival": {
+        "iata": "",
+        "flag": "",
+        "countryCode": ""
+      },
+      "departure": {
+        "iata": "DME",
+        "terminal": "T1",
+        "gate": "3",
+        "gateSource": "official DME live board",
+        "gateMatch": "official DME: flight + time"
+      },
+      "dataQuality": "gate from official DME live board; destination filled from post-fact source",
+      "originalTime": {
+        "text": "22:10"
+      },
+      "newTime": {
+        "text": ""
+      },
+      "secondaryCorner": "Gate 3",
+      "status": [
+        {
+          "type": "text",
+          "text": "Scheduled"
+        }
+      ]
+    },
+    {
+      "id": "DME-official-S73033-22:15",
+      "airline": {
+        "iata": "S7",
+        "name": ""
+      },
+      "flightNumber": "3033",
+      "city": "",
+      "arrival": {
+        "iata": "",
+        "flag": "",
+        "countryCode": ""
+      },
+      "departure": {
+        "iata": "DME",
+        "terminal": "T1",
+        "gate": "5",
+        "gateSource": "official DME live board",
+        "gateMatch": "official DME: flight + time"
+      },
+      "dataQuality": "gate from official DME live board; destination filled from post-fact source",
+      "originalTime": {
+        "text": "22:15"
+      },
+      "newTime": {
+        "text": ""
+      },
+      "secondaryCorner": "Gate 5",
+      "status": [
+        {
+          "type": "text",
+          "text": "Scheduled"
+        }
+      ]
+    },
+    {
+      "id": "DME-official-S72615-22:25",
+      "airline": {
+        "iata": "S7",
+        "name": ""
+      },
+      "flightNumber": "2615",
+      "city": "",
+      "arrival": {
+        "iata": "",
+        "flag": "",
+        "countryCode": ""
+      },
+      "departure": {
+        "iata": "DME",
+        "terminal": "T1",
+        "gate": "12",
+        "gateSource": "official DME live board",
+        "gateMatch": "official DME: flight + time"
+      },
+      "dataQuality": "gate from official DME live board; destination filled from post-fact source",
+      "originalTime": {
+        "text": "22:25"
+      },
+      "newTime": {
+        "text": ""
+      },
+      "secondaryCorner": "Gate 12",
+      "status": [
+        {
+          "type": "text",
+          "text": "Scheduled"
+        }
+      ]
+    },
+    {
+      "id": "DME-official-S72629-22:50",
+      "airline": {
+        "iata": "S7",
+        "name": ""
+      },
+      "flightNumber": "2629",
+      "city": "",
+      "arrival": {
+        "iata": "",
+        "flag": "",
+        "countryCode": ""
+      },
+      "departure": {
+        "iata": "DME",
+        "terminal": "T1",
+        "gate": "18",
+        "gateSource": "official DME live board",
+        "gateMatch": "official DME: flight + time"
+      },
+      "dataQuality": "gate from official DME live board; destination filled from post-fact source",
+      "originalTime": {
+        "text": "22:50"
+      },
+      "newTime": {
+        "text": ""
+      },
+      "secondaryCorner": "Gate 18",
+      "status": [
+        {
+          "type": "text",
+          "text": "Scheduled"
+        }
+      ]
+    },
+    {
+      "id": "DME-official-S72601-22:55",
+      "airline": {
+        "iata": "S7",
+        "name": ""
+      },
+      "flightNumber": "2601",
+      "city": "",
+      "arrival": {
+        "iata": "",
+        "flag": "",
+        "countryCode": ""
+      },
+      "departure": {
+        "iata": "DME",
+        "terminal": "T1",
+        "gate": "8",
+        "gateSource": "official DME live board",
+        "gateMatch": "official DME: flight + time"
+      },
+      "dataQuality": "gate from official DME live board; destination filled from post-fact source",
+      "originalTime": {
+        "text": "22:55"
+      },
+      "newTime": {
+        "text": ""
+      },
+      "secondaryCorner": "Gate 8",
+      "status": [
+        {
+          "type": "text",
+          "text": "Scheduled"
+        }
+      ]
+    },
+    {
+      "id": "DME-official-S74261-23:00",
+      "airline": {
+        "iata": "S7",
+        "name": ""
+      },
+      "flightNumber": "4261",
+      "city": "",
+      "arrival": {
+        "iata": "",
+        "flag": "",
+        "countryCode": ""
+      },
+      "departure": {
+        "iata": "DME",
+        "terminal": "T1",
+        "gate": "8",
+        "gateSource": "official DME live board",
+        "gateMatch": "official DME: flight + time"
+      },
+      "dataQuality": "gate from official DME live board; destination filled from post-fact source",
+      "originalTime": {
+        "text": "23:00"
+      },
+      "newTime": {
+        "text": ""
+      },
+      "secondaryCorner": "Gate 8",
+      "status": [
+        {
+          "type": "text",
+          "text": "Scheduled"
+        }
+      ]
+    },
+    {
+      "id": "DME-official-S72513-23:05",
+      "airline": {
+        "iata": "S7",
+        "name": ""
+      },
+      "flightNumber": "2513",
+      "city": "",
+      "arrival": {
+        "iata": "",
+        "flag": "",
+        "countryCode": ""
+      },
+      "departure": {
+        "iata": "DME",
+        "terminal": "T1",
+        "gate": "14",
+        "gateSource": "official DME live board",
+        "gateMatch": "official DME: flight + time"
+      },
+      "dataQuality": "gate from official DME live board; destination filled from post-fact source",
+      "originalTime": {
+        "text": "23:05"
+      },
+      "newTime": {
+        "text": ""
+      },
+      "secondaryCorner": "Gate 14",
+      "status": [
+        {
+          "type": "text",
+          "text": "Scheduled"
+        }
+      ]
+    }
+  ]
+}
