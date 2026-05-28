@@ -1,0 +1,58 @@
+Title: (VKO Departures) Moscow Vnukovo International Airport Departures
+
+URL Source: https://www.flightstats.com/v2/flight-tracker/departures/VKO?year=2026&month=5&date=27&hour=2
+
+Markdown Content:
+## (VKO) Moscow Vnukovo International Airport Departures 27-May-2026
+
+## VKO Departure Filters
+
+Departure Airport
+
+X
+
+Arrival Airport
+
+X
+
+Airline (optional)
+
+X
+
+Date
+
+Time
+
+Show Codeshares?
+
+Show
+
+Hide
+
+42 results
+
+«
+
+←
+
+1
+
+2
+
+→
+
+»
+
+[Flight Departure Time Arrival Time Destination](https://www.flightstats.com/v2/flight-tracker/departures/VKO?year=2026&month=5&date=27&hour=2)## [KTK 2903 ## 17:25 ## 06:50 ## HKT Azur Air Phuket](https://www.flightstats.com/v2/flight-tracker/KTK/2903?year=2026&month=5&date=27&flightId=1385942842)## [HY 606 ## 01:00 ## 07:00 ## SKD Uzbekistan Airways Samarkand](https://www.flightstats.com/v2/flight-tracker/HY/606?year=2026&month=5&date=27&flightId=1385890668)## [S7 4265 ## 01:00 ## 07:00 ## SKD S7 Airlines / Operated by Uzbekistan Airways 606 Samarkand](https://www.flightstats.com/v2/flight-tracker/S7/4265?year=2026&month=5&date=27&flightId=1385890668)## [FZ 988 ## 01:20 ## 10:00 ## DXB Flydubai Dubai](https://www.flightstats.com/v2/flight-tracker/FZ/988?year=2026&month=5&date=27&flightId=1385885669)## [EK 2323 ## 01:20 ## 10:00 ## DXB Emirates / Operated by Flydubai 988 Dubai](https://www.flightstats.com/v2/flight-tracker/EK/2323?year=2026&month=5&date=27&flightId=1385885669)## [PC 1522 ## 01:40 ## 05:50 ## ADB Pegasus Izmir](https://www.flightstats.com/v2/flight-tracker/PC/1522?year=2026&month=5&date=27&flightId=1385910498)## [TK 3179 ## 01:45 ## 06:20 ## DLM Turkish Airlines Dalaman](https://www.flightstats.com/v2/flight-tracker/TK/3179?year=2026&month=5&date=27&flightId=1385920778)## [AJA 276 ## 01:45 ## 06:00 ## SAW AJet Istanbul](https://www.flightstats.com/v2/flight-tracker/AJA/276?year=2026&month=5&date=27&flightId=1385932240)## [TK 3003 ## 01:50 ## 06:30 ## AYT Turkish Airlines Antalya](https://www.flightstats.com/v2/flight-tracker/TK/3003?year=2026&month=5&date=27&flightId=1385920770)## [A4*7107 ## 01:50 ## 06:00 ## TBS Azimuth Airlines Tbilisi](https://www.flightstats.com/v2/flight-tracker/A4*/7107?year=2026&month=5&date=27&flightId=1385847011)## [TK 3015 ## 02:05 ## 06:45 ## AYT Turkish Airlines Antalya](https://www.flightstats.com/v2/flight-tracker/TK/3015?year=2026&month=5&date=27&flightId=1385920769)## [TK 3037 ## 02:20 ## 07:00 ## AYT Turkish Airlines Antalya](https://www.flightstats.com/v2/flight-tracker/TK/3037?year=2026&month=5&date=27&flightId=1385920777)## [TK 422 ## 02:25 ## 06:15 ## ISL Turkish Airlines Istanbul](https://www.flightstats.com/v2/flight-tracker/TK/422?year=2026&month=5&date=27&flightId=1385920916)## [FIE 324 ## 02:30 ## 06:40 ## EVN FlyOne Armenia Yerevan](https://www.flightstats.com/v2/flight-tracker/FIE/324?year=2026&month=5&date=27&flightId=1385839491)## [TK 3155 ## 02:55 ## 07:20 ## BJV Turkish Airlines Bodrum](https://www.flightstats.com/v2/flight-tracker/TK/3155?year=2026&month=5&date=27&flightId=1385920779)## [RSX 320 ## 03:50 ## 09:20 ## HRG Red Sea Airlines Hurghada](https://www.flightstats.com/v2/flight-tracker/RSX/320?year=2026&month=5&date=27&flightId=1385840426)## [PC 387 ## 04:00 ## 08:10 ## SAW Pegasus Istanbul](https://www.flightstats.com/v2/flight-tracker/PC/387?year=2026&month=5&date=27&flightId=1385910848)## [UT 6315 ## 05:00 ## 10:25 ## BVJ Utair Bovanenkovo](https://www.flightstats.com/v2/flight-tracker/UT/6315?year=2026&month=5&date=27&flightId=1385930721)## [AJA 588 ## 05:05 ## 09:20 ## ESB AJet Ankara](https://www.flightstats.com/v2/flight-tracker/AJA/588?year=2026&month=5&date=27&flightId=1385932509)## [A9 931 ## 05:30 ## 09:20 ## TBS Georgian Airways Tbilisi](https://www.flightstats.com/v2/flight-tracker/A9/931?year=2026&month=5&date=27&flightId=1385847109)## [PC 1457 ## 05:30 ## 09:45 ## BJV Pegasus Bodrum](https://www.flightstats.com/v2/flight-tracker/PC/1457?year=2026&month=5&date=27&flightId=1385910488)## [AJA 278 ## 05:50 ## 10:05 ## SAW AJet Istanbul](https://www.flightstats.com/v2/flight-tracker/AJA/278?year=2026&month=5&date=27&flightId=1385932236)## [PC 391 ## 06:10 ## 10:20 ## SAW Pegasus Istanbul](https://www.flightstats.com/v2/flight-tracker/PC/391?year=2026&month=5&date=27&flightId=1385910845)## [TK 420 ## 06:25 ## 10:20 ## ISL Turkish Airlines Istanbul](https://www.flightstats.com/v2/flight-tracker/TK/420?year=2026&month=5&date=27&flightId=1385920917)## [SU 6190 ## 06:30 ## 08:00 ## LED Aeroflot / Operated by Rossiya Airlines on behalf of Aeroflot Saint Petersburg](https://www.flightstats.com/v2/flight-tracker/SU/6190?year=2026&month=5&date=27&flightId=1385918767)
+
+«
+
+←
+
+1
+
+2
+
+→
+
+»
