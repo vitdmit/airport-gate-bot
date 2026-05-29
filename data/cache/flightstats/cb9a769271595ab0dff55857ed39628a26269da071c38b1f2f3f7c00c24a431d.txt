@@ -1,0 +1,102 @@
+Title: (DME Departures) Moscow Domodedovo Airport Departures
+
+URL Source: https://www.flightstats.com/v2/flight-tracker/departures/DME?year=2026&month=5&date=28&hour=0
+
+Markdown Content:
+# (DME Departures) Moscow Domodedovo Airport Departures
+
+![Image 2](https://assets.flightstats.com/v2/backgrounds/ArrivalBoard.jpg)[![Image 3](https://assets.flightstats.com/v2/FSbyCLogo.png)](https://www.flightstats.com/v2)
+
+Follow us on
+
+[](https://twitter.com/cirium)[](https://www.linkedin.com/company/cirium)[](https://www.youtube.com/c/Cirium)
+
+[Create Account](https://www.flightstats.com/v2/register/plan)[Login](https://www.flightstats.com/v2/account/login)
+
+[Flights](https://www.flightstats.com/v2/flight-tracker/departures/DME?year=2026&month=5&date=28&hour=0)
+
+    *   [Flight Tracker](https://www.flightstats.com/v2/flight-tracker/search)
+
+    *   [Historical Flight Status](https://www.flightstats.com/v2/historical-flight/search)
+
+    *   [Alerts](https://www.flightstats.com/v2/flight-alerts/home)
+
+[Airports](https://www.flightstats.com/v2/flight-tracker/departures/DME?year=2026&month=5&date=28&hour=0)
+
+    *   [Current Conditions](https://www.flightstats.com/v2/airport-conditions/search)
+
+    *   [Departures and Arrivals](https://www.flightstats.com/v2/airports/departing-arriving/search)
+
+    *   [Airport Delays](https://www.flightstats.com/v2/airport-delays)
+
+[On-Time Performance](https://www.flightstats.com/v2/flight-tracker/departures/DME?year=2026&month=5&date=28&hour=0)
+
+    *   [On-Time Performance Reports](https://www.cirium.com/resources/on-time-performance/?cmpid=ilc%7Cotp%7CCIALD_202501_glob_mul%7C2024-OTP-Annual-Report_m&sfid=701dP000008LIGgQAO)
+
+    *   [On-Time Monthly Update](https://www.cirium.com/thoughtcloud/cirium-monthly-on-time-performance-reports/?cmpid=ilc%7Cotp%7CCIALD_202501_glob_mul%7C2024-OTP-Annual-Report_m&sfid=701dP000008LIGgQAO)
+
+    *   [On-Time Performance Articles](https://www.cirium.com/thoughtcloud/?cmpid=ilc|otp|CIALD_202501_glob_mul|2024-OTP-articles_m&sfid=701dP000008LIGgQAO)
+
+[Cirium](https://www.flightstats.com/v2/flight-tracker/departures/DME?year=2026&month=5&date=28&hour=0)
+
+    *   [About](https://www.cirium.com/about/)
+
+    *   [Cirium](https://www.cirium.com/)
+
+    *   [Thought Cloud](https://www.cirium.com/thoughtcloud/)
+
+[Resources](https://www.flightstats.com/v2/flight-tracker/departures/DME?year=2026&month=5&date=28&hour=0)
+
+    *   [Support](https://helpdesk.cirium.com/s/topic/0TOJ5000000TNJ1OAO/flightstats-by-cirium)
+
+    *   [Developer Studio](https://developer.cirium.com/?inctmp=flightstats-resources-menu)
+
+    *   [Careers](https://relx.wd3.myworkdayjobs.com/ciriumcareers)
+
+    *   [Contact](https://www.cirium.com/contact-us/?cmpid=ILC%7CCIR%7CCIR-flightstats-contact)
+
+[My FlightStats](https://www.flightstats.com/v2/flight-tracker/departures/DME?year=2026&month=5&date=28&hour=0)
+
+    *   [My Alerts](https://www.flightstats.com/v2/flight-alerts/home)
+
+    *   [My Account](https://www.flightstats.com/v2/my-account/profile)
+
+# (DME) Moscow Domodedovo Airport Departures 28-May-2026
+
+## DME Departure Filters
+
+Departure Airport 
+
+X
+
+Arrival Airport 
+
+X
+
+Airline (optional) 
+
+X
+
+Date 
+
+Time 
+
+Refine Search
+
+Show Codeshares? 
+
+Show
+
+- [x] 
+
+Hide
+
+16 results
+
+[Flight Departure Time Arrival Time Destination](https://www.flightstats.com/v2/flight-tracker/departures/DME?year=2026&month=5&date=28&hour=0)## [U6 2633 ## 22:00 ## 01:15 ## EVN Ural Airlines Yerevan](https://www.flightstats.com/v2/flight-tracker/U6/2633?year=2026&month=5&date=27&flightId=1385924690)## [U6 271 ## 23:45 ## 04:15 ## SVX Ural Airlines Yekaterinburg](https://www.flightstats.com/v2/flight-tracker/U6/271?year=2026&month=5&date=27&flightId=1385924701)## [SMR 202 ## 00:30 ## 06:30 ## DYU Somon Air Dushanbe](https://www.flightstats.com/v2/flight-tracker/SMR/202?year=2026&month=5&date=28&flightId=1386095956)## [J2 186 ## 00:40 ## 05:00 ## GYD Azerbaijan Airlines Baku](https://www.flightstats.com/v2/flight-tracker/J2/186?year=2026&month=5&date=28&flightId=1386069124)## [S7 4103 ## 00:40 ## 05:00 ## GYD S7 Airlines / Operated by Azerbaijan Airlines 186 Baku](https://www.flightstats.com/v2/flight-tracker/S7/4103?year=2026&month=5&date=28&flightId=1386069124)## [U6 3557 ## 00:45 ## 05:50 ## AYT Ural Airlines Antalya](https://www.flightstats.com/v2/flight-tracker/U6/3557?year=2026&month=5&date=28&flightId=1386101590)## [TYA 1091 ## 01:00 ## 05:45 ## KRO NordStar Kurgan](https://www.flightstats.com/v2/flight-tracker/TYA/1091?year=2026&month=5&date=28&flightId=1386121464)## [MS 728 ## 01:10 ## 06:55 ## HRG EgyptAir Hurghada](https://www.flightstats.com/v2/flight-tracker/MS/728?year=2026&month=5&date=28&flightId=1386080078)## [YC 90 ## 01:30 ## 07:05 ## NUX Yamal Airlines Novyj Urengoj](https://www.flightstats.com/v2/flight-tracker/YC/90?year=2026&month=5&date=28&flightId=1386121714)## [S7 2571 ## 01:45 ## 07:15 ## NUX S7 Airlines Novyj Urengoj](https://www.flightstats.com/v2/flight-tracker/S7/2571?year=2026&month=5&date=28&flightId=1386091835)## [FIE 314 ## 01:50 ## 05:50 ## EVN FlyOne Armenia Yerevan](https://www.flightstats.com/v2/flight-tracker/FIE/314?year=2026&month=5&date=28&flightId=1386014432)## [YC 32 ## 03:05 ## 08:05 ## SLY Yamal Airlines Salekhard](https://www.flightstats.com/v2/flight-tracker/YC/32?year=2026&month=5&date=28&flightId=1386121725)## [U6 3555 ## 03:20 ## 08:25 ## AYT Ural Airlines Antalya](https://www.flightstats.com/v2/flight-tracker/U6/3555?year=2026&month=5&date=28&flightId=1386101565)## [TYA 111 ## 03:25 ## 11:45 ## NSK NordStar Noril'sk](https://www.flightstats.com/v2/flight-tracker/TYA/111?year=2026&month=5&date=28&flightId=1386121469)## [YC 173 ## 03:45 ## 09:00 ## NYM Yamal Airlines Nadym](https://www.flightstats.com/v2/flight-tracker/YC/173?year=2026&month=5&date=28&flightId=1386121680)## [QNT 718 ## 05:40 ## 11:40 ## TAS Qanot Sharq Tashkent](https://www.flightstats.com/v2/flight-tracker/QNT/718?year=2026&month=5&date=28&flightId=1386065316)
+
+[Cookie Settings](https://www.flightstats.com/v2/flight-tracker/departures/DME?year=2026&month=5&date=28&hour=0)[Cookie Policy](https://risk.lexisnexis.com/corporate/cookie-policy)[Privacy Policy](https://risk.lexisnexis.com/corporate/privacy-policy)[Terms of Use](https://www.flightstats.com/company/legal/terms-of-use)[Security](https://risk.lexisnexis.com/contact-us#security)[Sitemap](https://www.flightstats.com/v2/sitemap)[Copyright](https://risk.lexisnexis.com/group/copyright)© 2026 LNRS Data Services
+
+[Contact Us](https://www.cirium.com/about/contact-us/)
+
+Version v8.1.2-nxt[![Image 4: RELX Group](https://assets.flightstats.com/common/Relx-OrangeWhite@2x.png)](http://www.relx.com/)

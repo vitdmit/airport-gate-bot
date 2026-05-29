@@ -1,0 +1,168 @@
+Title: Aeroflot SU 1246 Flight Tracker
+
+URL Source: https://www.flightstats.com/v2/flight-tracker/SU/1246?year=2026&month=5&date=28&flightId=1386094754
+
+Markdown Content:
+![Image 1](https://assets.flightstats.com/v2/backgrounds/Clouds.jpg)
+
+[![Image 2](https://assets.flightstats.com/v2/FSbyCLogo.png)](https://www.flightstats.com/v2)
+Follow us on
+
+[](https://twitter.com/cirium)[](https://www.linkedin.com/company/cirium)[](https://www.youtube.com/c/Cirium)
+## Track a Flight
+
+## Flight Status
+
+SU 1246
+
+Aeroflot
+
+Moscow
+
+Orenburg
+
+Arrived
+
+On time
+
+Moscow, RU
+
+Moscow Sheremetyevo International Airport
+
+Flight Departure Times
+
+28-May-2026
+
+Scheduled
+
+17:50 MSK
+
+Actual
+
+17:53 MSK
+
+Terminal
+
+B
+
+Gate
+
+102
+
+Orenburg, RU
+
+Orenburg Tsentralny Airport
+
+Flight Arrival Times
+
+28-May-2026
+
+Scheduled
+
+22:00 +05
+
+Estimated
+
+21:50 +05
+
+Terminal
+
+N/A
+
+Gate
+
+N/A
+
+Baggage
+
+B1
+
+## Flight Tracker
+
+### Positional Tracking Has Ended
+
+The flight has landed
+
+Labels
+
+US Weather
+
+ALTITUDE 0 ft
+
+LANDED
+
+### Flight Time
+
+#### Total
+
+##### 1h 57m
+
+#### Elapsed
+
+##### 1h 57m
+
+#### Remaining
+
+##### 0m
+
+### Flight Distance
+
+#### Total
+
+##### 787 mi
+
+#### Flown
+
+##### 787 mi
+
+#### Remaining
+
+##### 0 mi
+
+## Additional Details
+
+### Aircraft Equipment
+
+#### Code
+
+##### 73H
+
+#### Description
+
+##### Boeing 737-800 (winglets) Passenger/BBJ2
+
+## Past and Upcoming Flights
+
+28-May
+
+26-May
+
+27-May
+
+28-May
+
+29-May
+
+30-May
+
+31-May
+
+01-Jun
+
+Flights for Thursday, 28-May-2026
+
+One Flight This Day
+
+You are currently viewing the only flight for this day
+
+Flights for Monday, 01-Jun-2026
+
+No Flight Information Available
+
+According to our data, this flight is not scheduled to fly on this date
+
+## Mobile Applications for the Active Traveler
+
+### Over 10 million people have downloaded our FlightStats mobile apps!
+
+#### try it out today!

@@ -1,0 +1,204 @@
+Title: (SVO Departures) Moscow Sheremetyevo International Airport Departures
+
+URL Source: https://www.flightstats.com/v2/flight-tracker/departures/SVO?year=2026&month=5&date=28&hour=1
+
+Markdown Content:
+# (SVO Departures) Moscow Sheremetyevo International Airport Departures
+
+![Image 2](https://assets.flightstats.com/v2/backgrounds/ArrivalBoard.jpg)[![Image 3](https://assets.flightstats.com/v2/FSbyCLogo.png)](https://www.flightstats.com/v2)
+
+Follow us on
+
+[](https://twitter.com/cirium)[](https://www.linkedin.com/company/cirium)[](https://www.youtube.com/c/Cirium)
+
+[Create Account](https://www.flightstats.com/v2/register/plan)[Login](https://www.flightstats.com/v2/account/login)
+
+[Flights](https://www.flightstats.com/v2/flight-tracker/departures/SVO?year=2026&month=5&date=28&hour=1)
+
+    *   [Flight Tracker](https://www.flightstats.com/v2/flight-tracker/search)
+
+    *   [Historical Flight Status](https://www.flightstats.com/v2/historical-flight/search)
+
+    *   [Alerts](https://www.flightstats.com/v2/flight-alerts/home)
+
+[Airports](https://www.flightstats.com/v2/flight-tracker/departures/SVO?year=2026&month=5&date=28&hour=1)
+
+    *   [Current Conditions](https://www.flightstats.com/v2/airport-conditions/search)
+
+    *   [Departures and Arrivals](https://www.flightstats.com/v2/airports/departing-arriving/search)
+
+    *   [Airport Delays](https://www.flightstats.com/v2/airport-delays)
+
+[On-Time Performance](https://www.flightstats.com/v2/flight-tracker/departures/SVO?year=2026&month=5&date=28&hour=1)
+
+    *   [On-Time Performance Reports](https://www.cirium.com/resources/on-time-performance/?cmpid=ilc%7Cotp%7CCIALD_202501_glob_mul%7C2024-OTP-Annual-Report_m&sfid=701dP000008LIGgQAO)
+
+    *   [On-Time Monthly Update](https://www.cirium.com/thoughtcloud/cirium-monthly-on-time-performance-reports/?cmpid=ilc%7Cotp%7CCIALD_202501_glob_mul%7C2024-OTP-Annual-Report_m&sfid=701dP000008LIGgQAO)
+
+    *   [On-Time Performance Articles](https://www.cirium.com/thoughtcloud/?cmpid=ilc|otp|CIALD_202501_glob_mul|2024-OTP-articles_m&sfid=701dP000008LIGgQAO)
+
+[Cirium](https://www.flightstats.com/v2/flight-tracker/departures/SVO?year=2026&month=5&date=28&hour=1)
+
+    *   [About](https://www.cirium.com/about/)
+
+    *   [Cirium](https://www.cirium.com/)
+
+    *   [Thought Cloud](https://www.cirium.com/thoughtcloud/)
+
+[Resources](https://www.flightstats.com/v2/flight-tracker/departures/SVO?year=2026&month=5&date=28&hour=1)
+
+    *   [Support](https://helpdesk.cirium.com/s/topic/0TOJ5000000TNJ1OAO/flightstats-by-cirium)
+
+    *   [Developer Studio](https://developer.cirium.com/?inctmp=flightstats-resources-menu)
+
+    *   [Careers](https://relx.wd3.myworkdayjobs.com/ciriumcareers)
+
+    *   [Contact](https://www.cirium.com/contact-us/?cmpid=ILC%7CCIR%7CCIR-flightstats-contact)
+
+[My FlightStats](https://www.flightstats.com/v2/flight-tracker/departures/SVO?year=2026&month=5&date=28&hour=1)
+
+    *   [My Alerts](https://www.flightstats.com/v2/flight-alerts/home)
+
+    *   [My Account](https://www.flightstats.com/v2/my-account/profile)
+
+# (SVO) Moscow Sheremetyevo International Airport Departures 28-May-2026
+
+## SVO Departure Filters
+
+Departure Airport 
+
+X
+
+Arrival Airport 
+
+X
+
+Airline (optional) 
+
+X
+
+Date 
+
+Time 
+
+Refine Search
+
+Show Codeshares? 
+
+Show
+
+- [x] 
+
+Hide
+
+42 results
+
+«
+
+←
+
+1
+
+2
+
+→
+
+»
+
+[Flight Departure Time Arrival Time Destination](https://www.flightstats.com/v2/flight-tracker/departures/SVO?year=2026&month=5&date=28&hour=1)## [DP*6561 ## 23:55 ## 04:40 ## TJM Pobeda Tyumen](https://www.flightstats.com/v2/flight-tracker/DP*/6561?year=2026&month=5&date=27&flightId=1386425695)## [SU 1456 ## 00:40 ## 09:00 ## KEJ Aeroflot Kemerovo](https://www.flightstats.com/v2/flight-tracker/SU/1456?year=2026&month=5&date=28&flightId=1386094854)## [STW 174 ## 00:45 ## 05:00 ## AYT Southwind Airlines Antalya](https://www.flightstats.com/v2/flight-tracker/STW/174?year=2026&month=5&date=28&flightId=1386014356)## [DP*6515 ## 00:50 ## 04:50 ## PEE Pobeda Perm](https://www.flightstats.com/v2/flight-tracker/DP*/6515?year=2026&month=5&date=28&flightId=1386351347)## [SU 1482 ## 00:55 ## 09:35 ## KJA Aeroflot Krasnojarsk](https://www.flightstats.com/v2/flight-tracker/SU/1482?year=2026&month=5&date=28&flightId=1386094885)## [SU 1382 ## 01:00 ## 05:55 ## HMA Aeroflot Khanty-Mansiysk](https://www.flightstats.com/v2/flight-tracker/SU/1382?year=2026&month=5&date=28&flightId=1386094884)## [SU 6699 ## 01:00 ## 02:25 ## LED Aeroflot / Operated by Rossiya Airlines on behalf of Aeroflot Saint Petersburg](https://www.flightstats.com/v2/flight-tracker/SU/6699?year=2026&month=5&date=28&flightId=1386095368)## [SU 2170 ## 01:00 ## 06:00 ## ISL Aeroflot Istanbul](https://www.flightstats.com/v2/flight-tracker/SU/2170?year=2026&month=5&date=28&flightId=1386095069)## [SU 1306 ## 01:05 ## 09:05 ## OVB Aeroflot Novosibirsk](https://www.flightstats.com/v2/flight-tracker/SU/1306?year=2026&month=5&date=28&flightId=1386094792)## [SU 1966 ## 01:15 ## 05:45 ## EVN Aeroflot Yerevan](https://www.flightstats.com/v2/flight-tracker/SU/1966?year=2026&month=5&date=28&flightId=1386095008)## [SU 424 ## 01:25 ## 08:00 ## HRG Aeroflot Hurghada](https://www.flightstats.com/v2/flight-tracker/SU/424?year=2026&month=5&date=28&flightId=1386095089)## [SU 1426 ## 01:30 ## 06:00 ## CEK Aeroflot Chelyabinsk](https://www.flightstats.com/v2/flight-tracker/SU/1426?year=2026&month=5&date=28&flightId=1386094822)## [SU 1562 ## 01:30 ## 12:10 ## IKT Aeroflot Irkutsk](https://www.flightstats.com/v2/flight-tracker/SU/1562?year=2026&month=5&date=28&flightId=1386094915)## [SU 1436 ## 01:35 ## 05:50 ## SVX Aeroflot Yekaterinburg](https://www.flightstats.com/v2/flight-tracker/SU/1436?year=2026&month=5&date=28&flightId=1386094870)## [SU 1512 ## 01:40 ## 06:50 ## SGC Aeroflot Surgut](https://www.flightstats.com/v2/flight-tracker/SU/1512?year=2026&month=5&date=28&flightId=1386094901)## [SU 1054 ## 02:10 ## 05:20 ## MCX Aeroflot Makhachkala](https://www.flightstats.com/v2/flight-tracker/SU/1054?year=2026&month=5&date=28&flightId=1386094695)## [SU 2148 ## 02:15 ## 07:35 ## AYT Aeroflot Antalya](https://www.flightstats.com/v2/flight-tracker/SU/2148?year=2026&month=5&date=28&flightId=1386095040)## [SU 428 ## 02:15 ## 08:35 ## SSH Aeroflot Sharm el Sheikh](https://www.flightstats.com/v2/flight-tracker/SU/428?year=2026&month=5&date=28&flightId=1386095101)## [SU 1172 ## 02:20 ## 06:00 ## ASF Aeroflot Astrakhan](https://www.flightstats.com/v2/flight-tracker/SU/1172?year=2026&month=5&date=28&flightId=1386094725)## [SU 1466 ## 02:20 ## 06:40 ## SVX Aeroflot Yekaterinburg](https://www.flightstats.com/v2/flight-tracker/SU/1466?year=2026&month=5&date=28&flightId=1386094864)## [5N 231 ## 02:30 ## 06:45 ## REN Smartavia Orenburg](https://www.flightstats.com/v2/flight-tracker/5N/231?year=2026&month=5&date=28&flightId=1386016180)## [SU 1250 ## 02:55 ## 04:45 ## NBC Aeroflot Naberezhnye Chelny](https://www.flightstats.com/v2/flight-tracker/SU/1250?year=2026&month=5&date=28&flightId=1386094757)## [JU 137 ## 02:55 ## 05:00 ## BEG Air Serbia Belgrade](https://www.flightstats.com/v2/flight-tracker/JU/137?year=2026&month=5&date=28&flightId=1386071476)## [SU 1110 ## 04:55 ## 08:30 ## AER Aeroflot Adler/Sochi](https://www.flightstats.com/v2/flight-tracker/SU/1110?year=2026&month=5&date=28&flightId=1386094720)## [SU 1264 ## 05:20 ## 09:20 ## KRR Aeroflot Krasnodar](https://www.flightstats.com/v2/flight-tracker/SU/1264?year=2026&month=5&date=28&flightId=1386094790)
+
+«
+
+←
+
+1
+
+2
+
+→
+
+»
+
+[Cookies Settings](https://www.flightstats.com/v2/flight-tracker/departures/SVO?year=2026&month=5&date=28&hour=1)[Cookie Policy](https://risk.lexisnexis.com/corporate/cookie-policy)[Privacy Policy](https://risk.lexisnexis.com/corporate/privacy-policy)[Terms of Use](https://www.flightstats.com/company/legal/terms-of-use)[Security](https://risk.lexisnexis.com/contact-us#security)[Sitemap](https://www.flightstats.com/v2/sitemap)[Copyright](https://risk.lexisnexis.com/group/copyright)© 2026 LNRS Data Services
+
+[Contact Us](https://www.cirium.com/about/contact-us/)
+
+Version v8.1.2-nxt[![Image 4: RELX Group](https://assets.flightstats.com/common/Relx-OrangeWhite@2x.png)](http://www.relx.com/)
+
+We use cookies to analyze and improve our service, to improve and personalize content, advertising and your digital experience. We also share information about your use of our site with our social media, advertising and analytics partners. [Cookie Policy](https://privacy.rxglobal.com/en-us/cookie-policy.html)
+
+Cookies Settings Accept All Cookies
+
+![Image 5: Company Logo](https://cdn.cookielaw.org/logos/static/ot_company_logo.png)
+
+## Cookie Preference Center
+
+## Cookie Preference Center
+
+*   ### Your Privacy 
+*   ### Strictly Necessary Cookies 
+*   ### Performance Cookies 
+*   ### Functional Cookies 
+*   ### Targeting Cookies 
+
+#### Your Privacy
+
+We process your information, to deliver content or advertisements and measure the delivery of such content or advertisements, extract insights, and generate reports to understand service usage; and/or accessing or storing information on devices for that purpose. 
+
+ You can choose not to allow some types of cookies. However, blocking some types of cookies may impact your experience of the site and the services we are able to offer. Click on the different category headings to find out more, to change our default settings, and/or view the list of [Google Ad-Tech Vendors](https://support.google.com/admanager/answer/9012903). 
+
+[Cookie Policy](https://privacy.reedexpo.com/en-us/cookie-policy.html)
+
+#### Strictly Necessary Cookies
+
+Always Active
+
+These cookies are necessary for the website to function and cannot be switched off in our systems. They are usually only set in response to actions made by you which amount to a request for services, such as setting your privacy preferences, logging in or filling in forms. You can set your browser to block or alert you about these cookies, but some parts of the site will not then work.
+
+Cookies Details‎
+
+#### Performance Cookies
+
+- [x] Performance Cookies 
+
+These cookies allow us to count visits and traffic sources so we can measure and improve the performance of our site. They help us to know which pages are the most and least popular and see how visitors move around the site.
+
+Cookies Details‎
+
+#### Functional Cookies
+
+- [x] Functional Cookies 
+
+These cookies enable the website to provide enhanced functionality and personalization. They may be set by us or by third party providers whose services we have added to our pages. If you do not allow these cookies then some or all of these services may not function properly.
+
+Cookies Details‎
+
+#### Targeting Cookies
+
+- [x] Targeting Cookies 
+
+These cookies may be set through our site by our advertising partners. They may be used by those companies to build a profile of your interests and show you relevant adverts on other sites. If you do not allow these cookies, you will experience less targeted advertising.
+
+Cookies Details‎
+
+### Cookie List
+
+Consent Leg.Interest
+
+- [x] checkbox label label
+
+- [x] checkbox label label
+
+- [x] checkbox label label
+
+Clear
+
+- [x] checkbox label label
+
+Apply Cancel
+
+Confirm My Choices
+
+Allow All
+
+[![Image 6: Powered by Onetrust](https://cdn.cookielaw.org/logos/static/powered_by_logo.svg)](https://www.onetrust.com/products/cookie-consent/)

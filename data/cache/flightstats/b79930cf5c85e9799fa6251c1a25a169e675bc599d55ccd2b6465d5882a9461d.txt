@@ -1,0 +1,58 @@
+Title: (DME Departures) Moscow Domodedovo Airport Departures
+
+URL Source: https://www.flightstats.com/v2/flight-tracker/departures/DME?year=2026&month=5&date=28&hour=23
+
+Markdown Content:
+## (DME) Moscow Domodedovo Airport Departures 28-May-2026
+
+## DME Departure Filters
+
+Departure Airport
+
+X
+
+Arrival Airport
+
+X
+
+Airline (optional)
+
+X
+
+Date
+
+Time
+
+Show Codeshares?
+
+Show
+
+Hide
+
+28 results
+
+«
+
+←
+
+1
+
+2
+
+→
+
+»
+
+[Flight Departure Time Arrival Time Destination](https://www.flightstats.com/v2/flight-tracker/departures/DME?year=2026&month=5&date=28&hour=23)## [U6 2969 ## 22:30 ## 04:45 ## TJU Ural Airlines Kulyab](https://www.flightstats.com/v2/flight-tracker/U6/2969?year=2026&month=5&date=28&flightId=1386101558)## [S7 2601 ## 22:55 ## 07:05 ## BAX S7 Airlines Barnaul](https://www.flightstats.com/v2/flight-tracker/S7/2601?year=2026&month=5&date=28&flightId=1386091871)## [HY 602 ## 23:00 ## 04:45 ## TAS Uzbekistan Airways Tashkent](https://www.flightstats.com/v2/flight-tracker/HY/602?year=2026&month=5&date=28&flightId=1386066742)## [S7 4261 ## 23:00 ## 04:45 ## TAS S7 Airlines / Operated by Uzbekistan Airways 602 Tashkent](https://www.flightstats.com/v2/flight-tracker/S7/4261?year=2026&month=5&date=28&flightId=1386066742)## [S7 2513 ## 23:05 ## 07:05 ## OVB S7 Airlines Novosibirsk](https://www.flightstats.com/v2/flight-tracker/S7/2513?year=2026&month=5&date=28&flightId=1386091837)## [EK 132 ## 23:10 ## 07:25 ## DXB Emirates Dubai](https://www.flightstats.com/v2/flight-tracker/EK/132?year=2026&month=5&date=28&flightId=1386052969)## [U6 387 ## 23:10 ## 05:25 ## OMS Ural Airlines Omsk](https://www.flightstats.com/v2/flight-tracker/U6/387?year=2026&month=5&date=28&flightId=1386101573)## [Z7 748 ## 23:20 ## 06:25 ## OSS Avia Traffic Company Osh](https://www.flightstats.com/v2/flight-tracker/Z7/748?year=2026&month=5&date=28&flightId=1386121756)## [S7 2625 ## 23:25 ## 07:40 ## NOZ S7 Airlines Novokuznetsk](https://www.flightstats.com/v2/flight-tracker/S7/2625?year=2026&month=5&date=28&flightId=1386091846)## [S7 2565 ## 23:30 ## 05:50 ## OMS S7 Airlines Omsk](https://www.flightstats.com/v2/flight-tracker/S7/2565?year=2026&month=5&date=28&flightId=1386091860)## [U6 3559 ## 23:30 ## 04:35 ## AYT Ural Airlines Antalya](https://www.flightstats.com/v2/flight-tracker/U6/3559?year=2026&month=5&date=28&flightId=1386101589)## [S7 2581 ## 23:40 ## 07:50 ## NSK S7 Airlines Noril'sk](https://www.flightstats.com/v2/flight-tracker/S7/2581?year=2026&month=5&date=28&flightId=1386091872)## [S7 3041 ## 23:45 ## 10:00 ## BTK S7 Airlines Bratsk](https://www.flightstats.com/v2/flight-tracker/S7/3041?year=2026&month=5&date=28&flightId=1386091880)## [TYA 103 ## 23:45 ## 08:05 ## NSK NordStar Noril'sk](https://www.flightstats.com/v2/flight-tracker/TYA/103?year=2026&month=5&date=28&flightId=1386121476)## [U6 271 ## 23:45 ## 04:15 ## SVX Ural Airlines Yekaterinburg](https://www.flightstats.com/v2/flight-tracker/U6/271?year=2026&month=5&date=28&flightId=1386101520)## [S7 3061 ## 23:50 ## 13:15 ## BQS S7 Airlines Blagoveschensk](https://www.flightstats.com/v2/flight-tracker/S7/3061?year=2026&month=5&date=28&flightId=1386091897)## [WZ 3201 ## 00:15 ## 14:15 ## CXR Red Wings Airlines Nha Trang](https://www.flightstats.com/v2/flight-tracker/WZ/3201?year=2026&month=5&date=29&flightId=1386314968)## [SMR 202 ## 00:30 ## 06:30 ## DYU Somon Air Dushanbe](https://www.flightstats.com/v2/flight-tracker/SMR/202?year=2026&month=5&date=29&flightId=1386290197)## [U6 8253 ## 00:35 ## 06:55 ## DYU Ural Airlines Dushanbe](https://www.flightstats.com/v2/flight-tracker/U6/8253?year=2026&month=5&date=29&flightId=1386296237)## [J2 186 ## 00:40 ## 05:00 ## GYD Azerbaijan Airlines Baku](https://www.flightstats.com/v2/flight-tracker/J2/186?year=2026&month=5&date=29&flightId=1386262401)## [S7 4103 ## 00:40 ## 05:00 ## GYD S7 Airlines / Operated by Azerbaijan Airlines 186 Baku](https://www.flightstats.com/v2/flight-tracker/S7/4103?year=2026&month=5&date=29&flightId=1386262401)## [TYA 1091 ## 01:00 ## 05:45 ## KRO NordStar Kurgan](https://www.flightstats.com/v2/flight-tracker/TYA/1091?year=2026&month=5&date=29&flightId=1386316843)## [MS 728 ## 01:10 ## 06:55 ## SSH EgyptAir Sharm el Sheikh](https://www.flightstats.com/v2/flight-tracker/MS/728?year=2026&month=5&date=29&flightId=1386273623)## [YC 90 ## 01:30 ## 07:05 ## NUX Yamal Airlines Novyj Urengoj](https://www.flightstats.com/v2/flight-tracker/YC/90?year=2026&month=5&date=29&flightId=1386317074)## [S7 2571 ## 01:45 ## 07:15 ## NUX S7 Airlines Novyj Urengoj](https://www.flightstats.com/v2/flight-tracker/S7/2571?year=2026&month=5&date=29&flightId=1386285869)
+
+«
+
+←
+
+1
+
+2
+
+→
+
+»

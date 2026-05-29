@@ -1,0 +1,142 @@
+Title: Aeroflot SU 1756 Flight Tracker
+
+URL Source: https://www.flightstats.com/v2/flight-tracker/SU/1756?year=2026&month=5&date=28&flightId=1386094955
+
+Markdown Content:
+## Track a Flight
+
+## Flight Status
+
+Moscow, RU
+
+Moscow Sheremetyevo International Airport
+
+Flight Departure Times
+
+28-May-2026
+
+Scheduled
+
+17:00 MSK
+
+Actual
+
+17:17 MSK
+
+Terminal
+
+B
+
+Gate
+
+119
+
+Vladivostok, RU
+
+Vladivostok Knevichi International Airport
+
+Flight Arrival Times
+
+29-May-2026
+
+Scheduled
+
+08:20 +10
+
+Estimated
+
+07:50 +10
+
+Terminal
+
+N/A
+
+Gate
+
+N/A
+
+Baggage
+
+B2
+
+## Flight Tracker
+
+Labels
+
+US Weather
+
+ALTITUDE 25336 ft
+
+AND DESCENDING
+
+Heading 138
+
+Speed
+
+386 kts
+
+### Flight Time
+
+#### Total
+
+##### 7h 34m
+
+#### Elapsed
+
+##### 7h 34m
+
+#### Remaining
+
+##### 1m
+
+### Flight Distance
+
+#### Total
+
+##### 3980 mi
+
+#### Flown
+
+##### 3889 mi
+
+#### Remaining
+
+##### 91 mi
+
+## Additional Details
+
+### Aircraft Equipment
+
+#### Code
+
+##### 77W
+
+#### Description
+
+##### Boeing 777-300ER
+
+## Past and Upcoming Flights
+
+For flights prior to the results below, please use our[Historical Flight Status](https://www.flightstats.com/v2/historical-flight/search)feature.
+
+26-May
+
+27-May
+
+28-May
+
+29-May
+
+30-May
+
+31-May
+
+01-Jun
+
+Sorry, we do not have any other information for this flight in the past 3 days or upcoming in the the next 3 days. For information on this flight prior to 3 days please use our[Historical Flight Status](https://www.flightstats.com/v2/historical-flight/search)feature.
+
+## Mobile Applications for the Active Traveler
+
+### Over 10 million people have downloaded our FlightStats mobile apps!
+
+#### try it out today!

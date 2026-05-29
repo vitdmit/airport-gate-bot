@@ -1,0 +1,314 @@
+Title: Aeroflot SU 1586 Flight Tracker
+
+URL Source: https://www.flightstats.com/v2/flight-tracker/SU/1586?year=2026&month=5&date=28&flightId=1386094905
+
+Markdown Content:
+# SU1586 - Aeroflot SU 1586 Flight Tracker
+
+![Image 3](https://assets.flightstats.com/v2/backgrounds/Clouds.jpg)[![Image 4](https://assets.flightstats.com/v2/FSbyCLogo.png)](https://www.flightstats.com/v2)
+
+Follow us on
+
+[](https://twitter.com/cirium)[](https://www.linkedin.com/company/cirium)[](https://www.youtube.com/c/Cirium)
+
+[Create Account](https://www.flightstats.com/v2/register/plan)[Login](https://www.flightstats.com/v2/account/login)
+
+[Flights](https://www.flightstats.com/v2/flight-tracker/SU/1586?year=2026&month=5&date=28&flightId=1386094905)
+
+    *   [Flight Tracker](https://www.flightstats.com/v2/flight-tracker/search)
+
+    *   [Historical Flight Status](https://www.flightstats.com/v2/historical-flight/search)
+
+    *   [Alerts](https://www.flightstats.com/v2/flight-alerts/home)
+
+[Airports](https://www.flightstats.com/v2/flight-tracker/SU/1586?year=2026&month=5&date=28&flightId=1386094905)
+
+    *   [Current Conditions](https://www.flightstats.com/v2/airport-conditions/search)
+
+    *   [Departures and Arrivals](https://www.flightstats.com/v2/airports/departing-arriving/search)
+
+    *   [Airport Delays](https://www.flightstats.com/v2/airport-delays)
+
+[On-Time Performance](https://www.flightstats.com/v2/flight-tracker/SU/1586?year=2026&month=5&date=28&flightId=1386094905)
+
+    *   [On-Time Performance Reports](https://www.cirium.com/resources/on-time-performance/?cmpid=ilc%7Cotp%7CCIALD_202501_glob_mul%7C2024-OTP-Annual-Report_m&sfid=701dP000008LIGgQAO)
+
+    *   [On-Time Monthly Update](https://www.cirium.com/thoughtcloud/cirium-monthly-on-time-performance-reports/?cmpid=ilc%7Cotp%7CCIALD_202501_glob_mul%7C2024-OTP-Annual-Report_m&sfid=701dP000008LIGgQAO)
+
+    *   [On-Time Performance Articles](https://www.cirium.com/thoughtcloud/?cmpid=ilc|otp|CIALD_202501_glob_mul|2024-OTP-articles_m&sfid=701dP000008LIGgQAO)
+
+[Cirium](https://www.flightstats.com/v2/flight-tracker/SU/1586?year=2026&month=5&date=28&flightId=1386094905)
+
+    *   [About](https://www.cirium.com/about/)
+
+    *   [Cirium](https://www.cirium.com/)
+
+    *   [Thought Cloud](https://www.cirium.com/thoughtcloud/)
+
+[Resources](https://www.flightstats.com/v2/flight-tracker/SU/1586?year=2026&month=5&date=28&flightId=1386094905)
+
+    *   [Support](https://helpdesk.cirium.com/s/topic/0TOJ5000000TNJ1OAO/flightstats-by-cirium)
+
+    *   [Developer Studio](https://developer.cirium.com/?inctmp=flightstats-resources-menu)
+
+    *   [Careers](https://relx.wd3.myworkdayjobs.com/ciriumcareers)
+
+    *   [Contact](https://www.cirium.com/contact-us/?cmpid=ILC%7CCIR%7CCIR-flightstats-contact)
+
+[My FlightStats](https://www.flightstats.com/v2/flight-tracker/SU/1586?year=2026&month=5&date=28&flightId=1386094905)
+
+    *   [My Alerts](https://www.flightstats.com/v2/flight-alerts/home)
+
+    *   [My Account](https://www.flightstats.com/v2/my-account/profile)
+
+## Track a Flight
+
+[SEARCH](https://www.flightstats.com/v2/flight-tracker/SU/1586?year=2026&month=5&date=28&flightId=1386094905)
+
+[ADVANCED SEARCH](https://www.flightstats.com/v2/flight-tracker/search)
+
+# (SU) Aeroflot 1586 Flight Tracker
+
+## Flight Status
+
+SU 1586
+
+Aeroflot
+
+[SVO](https://www.flightstats.com/v2/airport-conditions/SVO)
+
+Moscow
+
+[CSY](https://www.flightstats.com/v2/airport-conditions/CSY)
+
+Cheboksary
+
+Departed
+
+On time
+
+[SVO](https://www.flightstats.com/v2/airport-conditions/SVO)
+
+Moscow, RU
+
+Moscow Sheremetyevo International Airport
+
+Flight Departure Times
+
+28-May-2026
+
+Scheduled
+
+20:50 MSK
+
+Actual
+
+20:43 MSK
+
+Terminal
+
+B
+
+Gate
+
+105
+
+[CSY](https://www.flightstats.com/v2/airport-conditions/CSY)
+
+Cheboksary, RU
+
+Cheboksary International Airport
+
+Flight Arrival Times
+
+28-May-2026
+
+Scheduled
+
+22:15 MSK
+
+Estimated
+
+--
+
+Terminal
+
+N/A
+
+Gate
+
+N/A
+
+Baggage
+
+B6
+
+[VIEW FLIGHT DETAILS](https://www.flightstats.com/v2/flight-details/SU/1586?year=2026&month=5&date=28&flightId=1386094905)[SET UP FLIGHT ALERTS](https://www.flightstats.com/v2/flight-alerts/new/SU/1586/2026/5/28/SVO/CSY/true)[ON-TIME PERFORMANCE](https://www.flightstats.com/v2/flight-ontime-performance-rating/SU/1586/SVO)[SVO AIRPORT CONDITIONS](https://www.flightstats.com/v2/airport-conditions/SVO)[CSY AIRPORT CONDITIONS](https://www.flightstats.com/v2/airport-conditions/CSY)[REFRESH DATA](https://www.flightstats.com/v2/flight-tracker/SU/1586?year=2026&month=5&date=28&flightId=1386094905)
+
+## Flight Tracker
+
+![Image 5](https://tiles-s3.flightstats.com/satellite/6/39/19.png)![Image 6](https://tiles-s3.flightstats.com/satellite/6/39/20.png)![Image 7](https://tiles-s3.flightstats.com/satellite/6/38/19.png)![Image 8](https://tiles-s3.flightstats.com/satellite/6/40/19.png)![Image 9](https://tiles-s3.flightstats.com/satellite/6/38/20.png)![Image 10](https://tiles-s3.flightstats.com/satellite/6/40/20.png)![Image 11](https://tiles-s3.flightstats.com/satellite/6/39/18.png)![Image 12](https://tiles-s3.flightstats.com/satellite/6/39/21.png)![Image 13](https://tiles-s3.flightstats.com/satellite/6/38/18.png)![Image 14](https://tiles-s3.flightstats.com/satellite/6/40/18.png)![Image 15](https://tiles-s3.flightstats.com/satellite/6/38/21.png)![Image 16](https://tiles-s3.flightstats.com/satellite/6/40/21.png)![Image 17](https://tiles-s3.flightstats.com/satellite/6/37/19.png)![Image 18](https://tiles-s3.flightstats.com/satellite/6/41/19.png)![Image 19](https://tiles-s3.flightstats.com/satellite/6/37/20.png)![Image 20](https://tiles-s3.flightstats.com/satellite/6/41/20.png)![Image 21](https://tiles-s3.flightstats.com/satellite/6/37/18.png)![Image 22](https://tiles-s3.flightstats.com/satellite/6/41/18.png)![Image 23](https://tiles-s3.flightstats.com/satellite/6/37/21.png)![Image 24](https://tiles-s3.flightstats.com/satellite/6/41/21.png)
+
+![Image 25](https://tiles-s3.flightstats.com/hybrid/6/39/19.png)![Image 26](https://tiles-s3.flightstats.com/hybrid/6/39/20.png)![Image 27](https://tiles-s3.flightstats.com/hybrid/6/38/19.png)![Image 28](https://tiles-s3.flightstats.com/hybrid/6/40/19.png)![Image 29](https://tiles-s3.flightstats.com/hybrid/6/38/20.png)![Image 30](https://tiles-s3.flightstats.com/hybrid/6/40/20.png)![Image 31](https://tiles-s3.flightstats.com/hybrid/6/39/18.png)![Image 32](https://tiles-s3.flightstats.com/hybrid/6/39/21.png)![Image 33](https://tiles-s3.flightstats.com/hybrid/6/38/18.png)![Image 34](https://tiles-s3.flightstats.com/hybrid/6/40/18.png)![Image 35](https://tiles-s3.flightstats.com/hybrid/6/38/21.png)![Image 36](https://tiles-s3.flightstats.com/hybrid/6/40/21.png)![Image 37](https://tiles-s3.flightstats.com/hybrid/6/37/19.png)![Image 38](https://tiles-s3.flightstats.com/hybrid/6/41/19.png)![Image 39](https://tiles-s3.flightstats.com/hybrid/6/37/20.png)![Image 40](https://tiles-s3.flightstats.com/hybrid/6/41/20.png)![Image 41](https://tiles-s3.flightstats.com/hybrid/6/37/18.png)![Image 42](https://tiles-s3.flightstats.com/hybrid/6/41/18.png)![Image 43](https://tiles-s3.flightstats.com/hybrid/6/37/21.png)![Image 44](https://tiles-s3.flightstats.com/hybrid/6/41/21.png)
+
+[Leaflet](http://leafletjs.com/ "A JS library for interactive maps") | [Map licensing](https://www.flightstats.com/map-attributions)
+
+Labels
+
+US Weather
+
+ALTITUDE 8518 ft
+
+AND DESCENDING
+
+Heading 091
+
+Speed
+
+228 kts
+
+### Flight Time
+
+#### Total
+
+##### 1h 25m
+
+#### Elapsed
+
+##### 1h 16m
+
+#### Remaining
+
+##### 9m
+
+### Flight Distance
+
+#### Total
+
+##### 383 mi
+
+#### Flown
+
+##### 355 mi
+
+#### Remaining
+
+##### 29 mi
+
+## Additional Details
+
+### Aircraft Equipment
+
+#### Code
+
+##### 32A
+
+#### Description
+
+##### Airbus A320 (sharklets)
+
+## Past and Upcoming Flights
+
+For flights prior to the results below, please use our[Historical Flight Status](https://www.flightstats.com/v2/historical-flight/search)feature.
+
+28-May
+
+26-May
+
+27-May
+
+28-May
+
+29-May
+
+30-May
+
+31-May
+
+01-Jun
+
+Flights for Tuesday, 26-May-2026
+
+Departure Time
+
+Origin
+
+Destination
+
+Arrival Time
+
+[20:50 MSK SVO Moscow CSY Cheboksary 22:15 MSK](https://www.flightstats.com/v2/flight-tracker/SU/1586?year=2026&month=05&date=26&flightId=1385737379)
+
+Flights for Wednesday, 27-May-2026
+
+Departure Time
+
+Origin
+
+Destination
+
+Arrival Time
+
+[21:05 MSK SVO Moscow CSY Cheboksary 22:30 MSK](https://www.flightstats.com/v2/flight-tracker/SU/1586?year=2026&month=05&date=27&flightId=1385918469)
+
+Flights for Thursday, 28-May-2026
+
+One Flight This Day
+
+You are currently viewing the only flight for this day
+
+Flights for Friday, 29-May-2026
+
+Departure Time
+
+Origin
+
+Destination
+
+Arrival Time
+
+[20:50 MSK SVO Moscow CSY Cheboksary 22:15 MSK](https://www.flightstats.com/v2/flight-tracker/SU/1586?year=2026&month=05&date=29&flightId=1386289078)
+
+Flights for Saturday, 30-May-2026
+
+Departure Time
+
+Origin
+
+Destination
+
+Arrival Time
+
+[21:05 MSK SVO Moscow CSY Cheboksary 22:30 MSK](https://www.flightstats.com/v2/flight-tracker/SU/1586?year=2026&month=05&date=30&flightId=1386481526)
+
+Flights for Sunday, 31-May-2026
+
+Departure Time
+
+Origin
+
+Destination
+
+Arrival Time
+
+[20:50 MSK SVO Moscow CSY Cheboksary 22:15 MSK](https://www.flightstats.com/v2/flight-tracker/SU/1586?year=2026&month=05&date=31&flightId=1386676424)
+
+Flights for Monday, 01-Jun-2026
+
+No Flight Information Available
+
+According to our data, this flight is not scheduled to fly on this date
+
+## Mobile Applications for the Active Traveler
+
+### Over 10 million people have downloaded our FlightStats mobile apps!
+
+#### try it out today!
+
+[](https://itunes.apple.com/app/apple-store/id572700574?pt=829440&ct=flightstats.com&mt=8)[](https://play.google.com/store/apps/details?id=com.conducivetech.android.traveler&referrer=utm_source%3Dflightstats.com)
+
+[Cookie Settings](https://www.flightstats.com/v2/flight-tracker/SU/1586?year=2026&month=5&date=28&flightId=1386094905)[Cookie Policy](https://risk.lexisnexis.com/corporate/cookie-policy)[Privacy Policy](https://risk.lexisnexis.com/corporate/privacy-policy)[Terms of Use](https://www.flightstats.com/company/legal/terms-of-use)[Security](https://risk.lexisnexis.com/contact-us#security)[Sitemap](https://www.flightstats.com/v2/sitemap)[Copyright](https://risk.lexisnexis.com/group/copyright)© 2026 LNRS Data Services
+
+[Contact Us](https://www.cirium.com/about/contact-us/)
+
+Version v8.1.2-nxt[![Image 45: RELX Group](https://assets.flightstats.com/common/Relx-OrangeWhite@2x.png)](http://www.relx.com/)

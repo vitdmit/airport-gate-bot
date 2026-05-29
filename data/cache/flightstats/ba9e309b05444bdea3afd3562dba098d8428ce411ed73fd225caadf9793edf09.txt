@@ -1,0 +1,55 @@
+Title: (DME Departures) Moscow Domodedovo Airport Departures
+
+URL Source: https://www.flightstats.com/v2/flight-tracker/departures/DME?year=2026&month=5&date=28&hour=2
+
+Markdown Content:
+![Image 1](https://assets.flightstats.com/v2/backgrounds/ArrivalBoard.jpg)
+
+[![Image 2](https://assets.flightstats.com/v2/FSbyCLogo.png)](https://www.flightstats.com/v2)
+Follow us on
+
+[](https://twitter.com/cirium)[](https://www.linkedin.com/company/cirium)[](https://www.youtube.com/c/Cirium)
+
+[Create Account](https://www.flightstats.com/v2/register/plan)[Login](https://www.flightstats.com/v2/account/login)
+
+[Flights](https://www.flightstats.com/v2/flight-tracker/departures/DME?year=2026&month=5&date=28&hour=2)
+
+[Airports](https://www.flightstats.com/v2/flight-tracker/departures/DME?year=2026&month=5&date=28&hour=2)
+
+[On-Time Performance](https://www.flightstats.com/v2/flight-tracker/departures/DME?year=2026&month=5&date=28&hour=2)
+
+[Cirium](https://www.flightstats.com/v2/flight-tracker/departures/DME?year=2026&month=5&date=28&hour=2)
+
+[Resources](https://www.flightstats.com/v2/flight-tracker/departures/DME?year=2026&month=5&date=28&hour=2)
+
+[My FlightStats](https://www.flightstats.com/v2/flight-tracker/departures/DME?year=2026&month=5&date=28&hour=2)
+
+## (DME) Moscow Domodedovo Airport Departures 28-May-2026
+
+## DME Departure Filters
+
+Departure Airport
+
+X
+
+Arrival Airport
+
+X
+
+Airline (optional)
+
+X
+
+Date
+
+Time
+
+Show Codeshares?
+
+Show
+
+Hide
+
+7 results
+
+[Flight Departure Time Arrival Time Destination](https://www.flightstats.com/v2/flight-tracker/departures/DME?year=2026&month=5&date=28&hour=2)## [U6 3557 ## 00:45 ## 05:50 ## AYT Ural Airlines Antalya](https://www.flightstats.com/v2/flight-tracker/U6/3557?year=2026&month=5&date=28&flightId=1386101590)## [YC 32 ## 03:05 ## 08:05 ## SLY Yamal Airlines Salekhard](https://www.flightstats.com/v2/flight-tracker/YC/32?year=2026&month=5&date=28&flightId=1386121725)## [U6 3555 ## 03:20 ## 08:25 ## AYT Ural Airlines Antalya](https://www.flightstats.com/v2/flight-tracker/U6/3555?year=2026&month=5&date=28&flightId=1386101565)## [TYA 111 ## 03:25 ## 11:45 ## NSK NordStar Noril'sk](https://www.flightstats.com/v2/flight-tracker/TYA/111?year=2026&month=5&date=28&flightId=1386121469)## [YC 173 ## 03:45 ## 09:00 ## NYM Yamal Airlines Nadym](https://www.flightstats.com/v2/flight-tracker/YC/173?year=2026&month=5&date=28&flightId=1386121680)## [QNT 718 ## 05:40 ## 11:40 ## TAS Qanot Sharq Tashkent](https://www.flightstats.com/v2/flight-tracker/QNT/718?year=2026&month=5&date=28&flightId=1386065316)## [S7 2519 ## 07:30 ## 15:30 ## OVB S7 Airlines Novosibirsk](https://www.flightstats.com/v2/flight-tracker/S7/2519?year=2026&month=5&date=28&flightId=1386091855)

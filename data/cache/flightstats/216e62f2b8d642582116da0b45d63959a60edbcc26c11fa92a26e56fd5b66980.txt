@@ -1,0 +1,62 @@
+Title: (VKO Departures) Moscow Vnukovo International Airport Departures
+
+URL Source: https://www.flightstats.com/v2/flight-tracker/departures/VKO?year=2026&month=5&date=28&hour=15
+
+Markdown Content:
+## (VKO) Moscow Vnukovo International Airport Departures 28-May-2026
+
+## VKO Departure Filters
+
+Departure Airport
+
+X
+
+Arrival Airport
+
+X
+
+Airline (optional)
+
+X
+
+Date
+
+Time
+
+Show Codeshares?
+
+Show
+
+Hide
+
+55 results
+
+«
+
+←
+
+1
+
+2
+
+3
+
+→
+
+»
+
+[Flight Departure Time Arrival Time Destination](https://www.flightstats.com/v2/flight-tracker/departures/VKO?year=2026&month=5&date=28&hour=15)## [A4*7029 ## 07:45 ## 12:15 ## EVN Azimuth Airlines Yerevan](https://www.flightstats.com/v2/flight-tracker/A4*/7029?year=2026&month=5&date=28&flightId=1386021939)## [DP*205 ## 12:10 ## 13:40 ## LED Pobeda Saint Petersburg](https://www.flightstats.com/v2/flight-tracker/DP*/205?year=2026&month=5&date=28&flightId=1386051495)## [TK 418 ## 14:30 ## 18:30 ## ISL Turkish Airlines Istanbul](https://www.flightstats.com/v2/flight-tracker/TK/418?year=2026&month=5&date=28&flightId=1386097472)## [B2 984 ## 14:55 ## 16:20 ## GME Belavia Gomel](https://www.flightstats.com/v2/flight-tracker/B2/984?year=2026&month=5&date=28&flightId=1386037270)## [DP*263 ## 15:00 ## 16:40 ## KGD Pobeda Kaliningrad](https://www.flightstats.com/v2/flight-tracker/DP*/263?year=2026&month=5&date=28&flightId=1386051528)## [PC 389 ## 15:05 ## 19:15 ## SAW Pegasus Istanbul](https://www.flightstats.com/v2/flight-tracker/PC/389?year=2026&month=5&date=28&flightId=1386087265)## [DP*191 ## 15:45 ## 18:40 ## MCX Pobeda Makhachkala](https://www.flightstats.com/v2/flight-tracker/DP*/191?year=2026&month=5&date=28&flightId=1386051505)## [6R*544 ## 15:45 ## 23:45 ## OVB Alrosa Air Company Novosibirsk](https://www.flightstats.com/v2/flight-tracker/6R*/544?year=2026&month=5&date=28&flightId=1386018918)## [DP*117 ## 16:00 ## 18:30 ## AER Pobeda Adler/Sochi](https://www.flightstats.com/v2/flight-tracker/DP*/117?year=2026&month=5&date=28&flightId=1386051476)## [SU 6032 ## 16:00 ## 17:30 ## LED Aeroflot / Operated by Rossiya Airlines on behalf of Aeroflot Saint Petersburg](https://www.flightstats.com/v2/flight-tracker/SU/6032?year=2026&month=5&date=28&flightId=1386095122)## [DP*265 ## 16:15 ## 17:10 ## KGD Pobeda Kaliningrad](https://www.flightstats.com/v2/flight-tracker/DP*/265?year=2026&month=5&date=28&flightId=1386051526)## [FZ 990 ## 16:15 ## 00:55 ## DXB Flydubai Dubai](https://www.flightstats.com/v2/flight-tracker/FZ/990?year=2026&month=5&date=28&flightId=1386061331)## [EK 2311 ## 16:15 ## 00:55 ## DXB Emirates / Operated by Flydubai 990 Dubai](https://www.flightstats.com/v2/flight-tracker/EK/2311?year=2026&month=5&date=28&flightId=1386061331)## [7R 193 ## 16:20 ## 17:25 ## TBW RusLine Tambov](https://www.flightstats.com/v2/flight-tracker/7R/193?year=2026&month=5&date=28&flightId=1386019280)## [A9 925 ## 17:00 ## 20:50 ## TBS Georgian Airways Tbilisi](https://www.flightstats.com/v2/flight-tracker/A9/925?year=2026&month=5&date=28&flightId=1386022021)## [DP*179 ## 17:00 ## 20:15 ## MRV Pobeda Mineralnye Vody](https://www.flightstats.com/v2/flight-tracker/DP*/179?year=2026&month=5&date=28&flightId=1386051503)## [DP*441 ## 17:20 ## 19:05 ## NBC Pobeda Naberezhnye Chelny](https://www.flightstats.com/v2/flight-tracker/DP*/441?year=2026&month=5&date=28&flightId=1386051587)## [A4*7007 ## 17:25 ## 21:55 ## TBS Azimuth Airlines Tbilisi](https://www.flightstats.com/v2/flight-tracker/A4*/7007?year=2026&month=5&date=28&flightId=1386021920)## [SU 6038 ## 17:30 ## 19:00 ## LED Aeroflot / Operated by Rossiya Airlines on behalf of Aeroflot Saint Petersburg](https://www.flightstats.com/v2/flight-tracker/SU/6038?year=2026&month=5&date=28&flightId=1386095135)## [DP*281 ## 17:35 ## 19:15 ## PES Pobeda Petrozavodsk](https://www.flightstats.com/v2/flight-tracker/DP*/281?year=2026&month=5&date=28&flightId=1386051536)## [DP*119 ## 17:35 ## 20:05 ## AER Pobeda Adler/Sochi](https://www.flightstats.com/v2/flight-tracker/DP*/119?year=2026&month=5&date=28&flightId=1386051486)## [DP*431 ## 18:00 ## 22:00 ## PEE Pobeda Perm](https://www.flightstats.com/v2/flight-tracker/DP*/431?year=2026&month=5&date=28&flightId=1386051566)## [DP*235 ## 18:00 ## 20:35 ## MMK Pobeda Murmansk](https://www.flightstats.com/v2/flight-tracker/DP*/235?year=2026&month=5&date=28&flightId=1386051545)## [A4*7025 ## 18:05 ## 20:25 ## KVK Azimuth Airlines Kirovsk](https://www.flightstats.com/v2/flight-tracker/A4*/7025?year=2026&month=5&date=28&flightId=1386021935)## [DP*261 ## 18:15 ## 19:55 ## KGD Pobeda Kaliningrad](https://www.flightstats.com/v2/flight-tracker/DP*/261?year=2026&month=5&date=28&flightId=1386051527)
+
+«
+
+←
+
+1
+
+2
+
+3
+
+→
+
+»

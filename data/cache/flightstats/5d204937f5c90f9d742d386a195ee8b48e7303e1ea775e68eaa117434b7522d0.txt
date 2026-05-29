@@ -1,0 +1,128 @@
+Title: Aeroflot SU 1242 Flight Tracker
+
+URL Source: https://www.flightstats.com/v2/flight-tracker/SU/1242?year=2026&month=5&date=28&flightId=1386094756
+
+Markdown Content:
+![Image 1](https://assets.flightstats.com/v2/backgrounds/Clouds.jpg)
+
+[![Image 2](https://assets.flightstats.com/v2/FSbyCLogo.png)](https://www.flightstats.com/v2)
+Follow us on
+
+[](https://twitter.com/cirium)[](https://www.linkedin.com/company/cirium)[](https://www.youtube.com/c/Cirium)
+## Track a Flight
+
+#### Unknown Final Status
+
+We were unable to determine the final status of this flight. Please contact the airline for more details.
+
+## Flight Status
+
+SU 1242
+
+Aeroflot
+
+Moscow
+
+Orenburg
+
+Unknown
+
+Moscow, RU
+
+Moscow Sheremetyevo International Airport
+
+Flight Departure Times
+
+28-May-2026
+
+Scheduled
+
+06:30 MSK
+
+Actual
+
+06:35 MSK
+
+Terminal
+
+B
+
+Gate
+
+106
+
+Orenburg, RU
+
+Orenburg Tsentralny Airport
+
+Flight Arrival Times
+
+28-May-2026
+
+Scheduled
+
+10:45 +05
+
+Estimated
+
+--
+
+Terminal
+
+N/A
+
+Gate
+
+N/A
+
+Baggage
+
+B2
+
+## Additional Details
+
+### Aircraft Equipment
+
+#### Code
+
+##### 32A
+
+#### Description
+
+##### Airbus A320 (sharklets)
+
+## Past and Upcoming Flights
+
+28-May
+
+26-May
+
+27-May
+
+28-May
+
+29-May
+
+30-May
+
+31-May
+
+01-Jun
+
+Flights for Thursday, 28-May-2026
+
+One Flight This Day
+
+You are currently viewing the only flight for this day
+
+Flights for Monday, 01-Jun-2026
+
+No Flight Information Available
+
+According to our data, this flight is not scheduled to fly on this date
+
+## Mobile Applications for the Active Traveler
+
+### Over 10 million people have downloaded our FlightStats mobile apps!
+
+#### try it out today!
